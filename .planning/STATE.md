@@ -1,0 +1,64 @@
+# Project State
+
+## Project Reference
+
+See: .planning/PROJECT.md (updated 2026-04-13)
+
+**Core value:** Trasformare 45 anni di esperienza edile locale in lead qualificati ("Richiedi un sopralluogo") presentando un sito istituzionale sobrio, autorevole e veloce che converta privati, enti pubblici e professionisti.
+**Current focus:** Phase 1 — Fondamenta
+
+## Current Position
+
+Phase: 1 of 7 (Fondamenta)
+Plan: 0 of TBD in current phase
+Status: Ready to plan
+Last activity: 2026-04-13 — Roadmap creato, requirements mappati, STATE inizializzato
+
+Progress: [░░░░░░░░░░] 0%
+
+## Performance Metrics
+
+**Velocity:**
+- Total plans completed: 0
+- Average duration: -
+- Total execution time: 0 hours
+
+**By Phase:**
+
+| Phase | Plans | Total | Avg/Plan |
+|-------|-------|-------|----------|
+| - | - | - | - |
+
+**Recent Trend:**
+- Last 5 plans: -
+- Trend: -
+
+*Updated after each plan completion*
+
+## Accumulated Context
+
+### Decisions
+
+Decisions are logged in PROJECT.md Key Decisions table.
+Recent decisions affecting current work:
+
+- [Roadmap]: Stack lock-in confermato: Next.js 16 + Tailwind v4 + Vercel + pnpm + Resend + Turnstile. Nessuna deviazione.
+- [Roadmap]: GA4 escluso per enforcement Garante. Vercel Analytics cookieless obbligatorio da Phase 1.
+- [Roadmap]: Google Maps iframe escluso per obbligo cookie banner. Mappa statica AVIF + link in Phase 6.
+- [Roadmap]: Nessun CMS per MVP. Contenuto in moduli TypeScript sotto `content/`.
+
+### Pending Todos
+
+None yet.
+
+### Blockers/Concerns
+
+- [Phase 4 blocker]: Portfolio bloccato da fotografia reale (cantieri, team, mezzi). Lead time 2–4 settimane. Comunicare al cliente all'avvio di Phase 1.
+- [Phase 5 blocker]: Chi siamo richiede PDF attestazioni SOA e ISO dal cliente. Richiedere in Phase 1.
+- [Phase 6 blocker]: Form contatti richiede Resend DNS verificato (SPF, DKIM x2, DMARC) + Cloudflare Turnstile keys. Avviare configurazione DNS in Phase 1 — può richiedere settimane se DNS è gestito da fornitore terzo.
+
+## Session Continuity
+
+Last session: 2026-04-13
+Stopped at: Roadmap creato e approvato. Prossimo passo: `/gsd-plan-phase 1`
+Resume file: None

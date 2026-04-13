@@ -133,19 +133,71 @@ Quali fasi coprono quali requirements. Aggiornato durante creazione roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FND-01 → FND-10 | Phase 1 | Pending |
-| HOM-01 → HOM-08 | Phase 2 | Pending |
-| SRV-01 → SRV-05 | Phase 3 | Pending |
-| PRG-01 → PRG-07 | Phase 4 | Pending |
-| CHI-01 → CHI-06 | Phase 5 | Pending |
-| CON-01 → CON-11 | Phase 6 | Pending |
-| SEO-01 → SEO-12 | Phase 7 | Pending |
+| FND-01 | Phase 1 | Pending |
+| FND-02 | Phase 1 | Pending |
+| FND-03 | Phase 1 | Pending |
+| FND-04 | Phase 1 | Pending |
+| FND-05 | Phase 1 | Pending |
+| FND-06 | Phase 1 | Pending |
+| FND-07 | Phase 1 | Pending |
+| FND-08 | Phase 1 | Pending |
+| FND-09 | Phase 1 | Pending |
+| FND-10 | Phase 1 | Pending |
+| HOM-01 | Phase 2 | Pending |
+| HOM-02 | Phase 2 | Pending |
+| HOM-03 | Phase 2 | Pending |
+| HOM-04 | Phase 2 | Pending |
+| HOM-05 | Phase 2 | Pending |
+| HOM-06 | Phase 2 | Pending |
+| HOM-07 | Phase 2 | Pending |
+| HOM-08 | Phase 2 | Pending |
+| SRV-01 | Phase 3 | Pending |
+| SRV-02 | Phase 3 | Pending |
+| SRV-03 | Phase 3 | Pending |
+| SRV-04 | Phase 3 | Pending |
+| SRV-05 | Phase 3 | Pending |
+| PRG-01 | Phase 4 | Pending |
+| PRG-02 | Phase 4 | Pending |
+| PRG-03 | Phase 4 | Pending |
+| PRG-04 | Phase 4 | Pending |
+| PRG-05 | Phase 4 | Pending |
+| PRG-06 | Phase 4 | Pending |
+| PRG-07 | Phase 4 | Pending |
+| CHI-01 | Phase 5 | Pending |
+| CHI-02 | Phase 5 | Pending |
+| CHI-03 | Phase 5 | Pending |
+| CHI-04 | Phase 5 | Pending |
+| CHI-05 | Phase 5 | Pending |
+| CHI-06 | Phase 5 | Pending |
+| CON-01 | Phase 6 | Pending |
+| CON-02 | Phase 6 | Pending |
+| CON-03 | Phase 6 | Pending |
+| CON-04 | Phase 6 | Pending |
+| CON-05 | Phase 6 | Pending |
+| CON-06 | Phase 6 | Pending |
+| CON-07 | Phase 6 | Pending |
+| CON-08 | Phase 6 | Pending |
+| CON-09 | Phase 6 | Pending |
+| CON-10 | Phase 6 | Pending |
+| CON-11 | Phase 6 | Pending |
+| SEO-01 | Phase 7 | Pending |
+| SEO-02 | Phase 7 | Pending |
+| SEO-03 | Phase 7 | Pending |
+| SEO-04 | Phase 7 | Pending |
+| SEO-05 | Phase 7 | Pending |
+| SEO-06 | Phase 7 | Pending |
+| SEO-07 | Phase 7 | Pending |
+| SEO-08 | Phase 7 | Pending |
+| SEO-09 | Phase 7 | Pending |
+| SEO-10 | Phase 7 | Pending |
+| SEO-11 | Phase 7 | Pending |
+| SEO-12 | Phase 7 | Pending |
 
 **Coverage:**
 - v1 requirements: 59 totali
 - Mapped to phases: 59
-- Unmapped: 0 ✓
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-04-13*
-*Last updated: 2026-04-13 after initialization*
+*Last updated: 2026-04-13 — traceability expanded a requirement individuale dopo creazione roadmap*
