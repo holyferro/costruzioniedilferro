@@ -1,19 +1,37 @@
 // app/page.tsx
-// Placeholder di Phase 1. La homepage reale arriva in Phase 2.
+// Homepage — orchestratore. Importa sezioni e passa dati via props dal content module.
+// Nessun hardcoding: tutto il copy viene da content/homepage.ts o content/site.ts.
+import { buildMetadata } from "@/lib/seo/metadata";
+import { homepageContent } from "@/content/homepage";
 import { siteContent } from "@/content/site";
+import { primaryCta } from "@/content/navigation";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { TrustStrip } from "@/components/sections/TrustStrip";
+import { ServiceOverview } from "@/components/sections/ServiceOverview";
+import { ServiceAreaSection } from "@/components/sections/ServiceAreaSection";
+import { HomepageCta } from "@/components/sections/HomepageCta";
+import { MobileStickyBar } from "@/components/ui/MobileStickyBar";
+
+export const metadata = buildMetadata({
+  title: "Impresa Edile — Porto Viro, Rovigo, Veneto",
+  description: siteContent.brand.tagline,
+  alternates: { canonical: "/" },
+});
 
 export default function Home() {
   return (
-    <section className="mx-auto max-w-2xl px-6 py-24">
-      <p className="text-sm font-medium uppercase tracking-widest text-ink/60">
-        Fondamenta
-      </p>
-      <h1 className="font-serif text-h1 leading-[1.1] text-ink">
-        {siteContent.brand.name} — sito in costruzione
-      </h1>
-      <p className="mt-6 max-w-prose text-lg text-ink/80">
-        {siteContent.brand.tagline}
-      </p>
-    </section>
+    <>
+      <HeroSection {...homepageContent.hero} />
+      <TrustStrip {...homepageContent.trustStrip} />
+      <ServiceOverview {...homepageContent.services} />
+      <ServiceAreaSection {...homepageContent.serviceArea} />
+      <HomepageCta {...homepageContent.finalCta} />
+      <MobileStickyBar
+        ctaLabel={primaryCta.label}
+        ctaHref={primaryCta.href}
+        phoneDisplay={siteContent.contact.phone.display}
+        phoneTel={siteContent.contact.phone.tel}
+      />
+    </>
   );
 }
