@@ -1,5 +1,6 @@
 // components/sections/ServiceOverview.tsx
 // RSC. Icone Lucide importate dinamicamente tramite iconName string dal content module.
+import type { Route } from "next";
 import Link from "next/link";
 import { Building2, Factory, Landmark, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
@@ -38,7 +39,7 @@ export function ServiceOverview({ sectionTitle, sectionSubtitle, cards }: Servic
             return (
               <Link
                 key={card.title}
-                href={card.href}
+                href={card.href as Route<string>}
                 className={cn(
                   "group flex flex-col gap-4 rounded-xl border border-border bg-surface p-8",
                   "transition-colors hover:border-ink/30",

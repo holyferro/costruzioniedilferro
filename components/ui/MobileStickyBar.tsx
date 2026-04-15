@@ -3,6 +3,7 @@
 // components/ui/MobileStickyBar.tsx
 // "use client" — necessario per position:fixed dopo hydration.
 // Visibile solo su mobile (md:hidden). z-50 > Header z-40.
+import type { Route } from "next";
 import Link from "next/link";
 
 type MobileStickyBarProps = {
@@ -32,7 +33,7 @@ export function MobileStickyBar({
         {phoneDisplay}
       </a>
       <Link
-        href={ctaHref}
+        href={ctaHref as Route<string>}
         className="ml-2 flex-1 rounded-full bg-brand py-3 text-center text-sm font-medium text-panna"
       >
         {ctaLabel}

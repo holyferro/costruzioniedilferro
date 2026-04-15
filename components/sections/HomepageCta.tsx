@@ -1,6 +1,7 @@
 // components/sections/HomepageCta.tsx
 // RSC. CTA finale prima del footer.
 // pb-24 md:pb-20 crea clearance per la sticky bar mobile (altezza ~72px).
+import type { Route } from "next";
 import Link from "next/link";
 
 type HomepageCtaProps = {
@@ -17,7 +18,7 @@ export function HomepageCta({ headline, body, ctaLabel, ctaHref }: HomepageCtaPr
         <h2 className="font-serif text-h2 text-ink">{headline}</h2>
         <p className="mx-auto mt-6 max-w-xl text-lg text-ink/70">{body}</p>
         <Link
-          href={ctaHref}
+          href={ctaHref as Route<string>}
           className="mt-10 inline-flex rounded-full bg-brand px-8 py-4 text-base font-medium text-panna transition-colors hover:bg-brand/90"
         >
           {ctaLabel}

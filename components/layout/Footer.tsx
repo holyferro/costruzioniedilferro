@@ -2,6 +2,7 @@
 // Server Component. Reads from content/site.ts + content/legal.ts + content/navigation.ts.
 // D-16 — 4 columns desktop, stack mobile. D-17 — zero client JS.
 
+import type { Route } from "next";
 import Link from "next/link";
 import { siteContent } from "@/content/site";
 import { legalContent } from "@/content/legal";
@@ -31,7 +32,7 @@ export function Footer() {
             <ul className="mt-4 space-y-2">
               {primaryNav.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="text-sm text-ink/80 hover:text-ink">
+                  <Link href={item.href as Route<string>} className="text-sm text-ink/80 hover:text-ink">
                     {item.label}
                   </Link>
                 </li>
@@ -101,7 +102,7 @@ export function Footer() {
           {legaleGroup ? (
             <nav className="flex gap-4" aria-label="Note legali">
               {legaleGroup.items.map((item) => (
-                <Link key={item.href} href={item.href} className="hover:text-ink">
+                <Link key={item.href} href={item.href as Route<string>} className="hover:text-ink">
                   {item.label}
                 </Link>
               ))}

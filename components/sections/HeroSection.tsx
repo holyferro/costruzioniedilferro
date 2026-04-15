@@ -1,5 +1,6 @@
 // components/sections/HeroSection.tsx
 // RSC — nessun "use client". Il "use client" per la sticky bar è in MobileStickyBar.tsx.
+import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -39,7 +40,7 @@ export function HeroSection({
         <h1 className="max-w-2xl font-serif text-h1 leading-[1.1] text-panna">{headline}</h1>
         <p className="mt-4 max-w-xl text-lg text-panna/85">{subheadline}</p>
         <Link
-          href={ctaHref}
+          href={ctaHref as Route<string>}
           className="mt-8 inline-flex rounded-full bg-brand px-7 py-3.5 text-sm font-medium text-panna transition-colors hover:bg-brand/90"
         >
           {ctaLabel}

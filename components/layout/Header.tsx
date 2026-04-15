@@ -2,6 +2,7 @@
 // Server Component. No client interaction in Phase 1.
 // Hamburger menu is a Phase 2 concern (needs a client island).
 
+import type { Route } from "next";
 import Link from "next/link";
 import { primaryNav, primaryCta } from "@/content/navigation";
 import { siteContent } from "@/content/site";
@@ -27,7 +28,7 @@ export function Header() {
           {primaryNav.map((item) => (
             <Link
               key={item.href}
-              href={item.href}
+              href={item.href as Route<string>}
               className="text-sm font-medium text-ink/80 transition-colors hover:text-ink"
             >
               {item.label}
@@ -37,7 +38,7 @@ export function Header() {
 
         {/* Desktop CTA (D-06 fill-only: panna text on brand background) */}
         <Link
-          href={primaryCta.href}
+          href={primaryCta.href as Route<string>}
           className="hidden rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-panna transition-colors hover:bg-brand/90 md:inline-flex"
         >
           {primaryCta.label}
