@@ -1,26 +1,54 @@
 @import "tailwindcss";
 
+/* ---------- Brand tokens ---------- */
+/* Single source of truth for the 3-color palette.
+   See D-01 / D-02 / D-03 in 01-CONTEXT.md.
+   WCAG contrast verified in scripts/check-contrast.mjs. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-ink: #1a1a1a; /* D-01 — titles, body, UI structure */
+  --color-panna: #f8f5ee; /* D-02 — default background */
+  --color-brand: #291572; /* D-03 — CTA fills, accent (FILL ONLY — see D-06) */
+
+  /* Support neutrals (minimal per D-04) */
+  --color-border: #e6e1d6; /* hairline on panna */
+  --color-surface: #ffffff; /* card / section-break background */
 }
 
+/* ---------- Tailwind theme wiring ---------- */
+/* @theme inline resolves var() at definition time, preventing scoping issues
+   when utilities reference CSS variables from next/font. See RESEARCH §2 Pitfall 1. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Brand colors — generates bg-ink, text-ink, bg-panna, text-brand, etc. */
+  --color-ink: var(--color-ink);
+  --color-panna: var(--color-panna);
+  --color-brand: var(--color-brand);
+  --color-border: var(--color-border);
+  --color-surface: var(--color-surface);
+
+  /* Fonts — wired to next/font CSS variables.
+     --font-sans is Tailwind's default font-sans utility.
+     --font-serif is the serif utility, used on hero + H1 only (D-08). */
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-ibm-plex-serif);
+
+  /* Fluid type scale — D-10 base 17px, ratio 1.25.
+     Only h1 + h2 use clamp(); body / UI stay discrete. */
+  --text-h1: clamp(2.25rem, 1.5rem + 3.2vw, 4rem);
+  --text-h1--line-height: 1.1;
+  --text-h2: clamp(1.625rem, 1.25rem + 1.6vw, 2.25rem);
+  --text-h2--line-height: 1.2;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ---------- Global defaults ---------- */
+html {
+  /* D-10 — base body 17px */
+  font-size: 17px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-panna);
+  color: var(--color-ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
