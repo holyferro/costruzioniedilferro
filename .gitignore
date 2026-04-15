@@ -32,6 +32,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# .env.production contains only safe public-facing placeholders (no secrets)
+!.env.production
 
 # vercel
 .vercel
