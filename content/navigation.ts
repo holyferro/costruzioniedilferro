@@ -21,7 +21,7 @@ export const primaryNav: readonly NavLink[] = [
 
 export const primaryCta: NavLink = {
   href: "/contatti",
-  label: "Richiedi un sopralluogo",
+  label: "Richiedi un preventivo",
 };
 
 export const footerNav: readonly NavGroup[] = [

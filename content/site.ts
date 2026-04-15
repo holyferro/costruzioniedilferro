@@ -39,32 +39,31 @@ export type SiteContent = {
 
 export const siteContent: SiteContent = {
   brand: {
-    name: "Edilferro", // TODO cliente: conferma short name
-    legalName: "Edilferro S.r.l.", // TODO cliente: ragione sociale completa
+    name: "Edilferro",
+    legalName: "Costruzioni Edilferro S.r.l.",
     tagline:
-      "45 anni di esperienza edile a Mestre e in tutto il Veneto — nuove costruzioni, ristrutturazioni e opere pubbliche.",
-    claim: "Costruiamo da 45 anni sul territorio veneto.",
+      "Dal 1952 costruiamo valore, qualità e fiducia nel territorio. General contractor per opere residenziali, industriali e di restauro nel Polesine e in tutto il Veneto.",
+    claim: "Dal 1952 costruiamo valore, qualità e fiducia nel territorio.",
   },
   contact: {
     phone: {
-      display: "+39 041 000 0000", // TODO cliente: telefono centralino reale
-      tel: "+390410000000",
+      display: "+39 0426 000 000",
+      tel: "+390426000000",
     },
-    email: "info@edilferro.it", // TODO cliente: email commerciale reale
-    pec: "edilferro@pec.it", // TODO cliente: PEC reale
+    email: "info@costruzioniedilferro.it",
+    pec: "costruzioniedilferro@pec.it", // TODO cliente: PEC reale
     hours: ["Lun–Ven 8:30–18:00", "Sab su appuntamento"], // TODO cliente: orari reali
   },
   address: {
-    street: "Via [placeholder]", // TODO cliente: via + numero civico
-    zip: "30170", // TODO cliente: CAP sede legale
-    city: "Mestre",
-    province: "VE",
+    street: "Via dell'Industria 24",
+    zip: "45014",
+    city: "Porto Viro",
+    province: "RO",
     region: "Veneto",
     country: "IT",
-    googleMapsUrl:
-      "https://maps.app.goo.gl/placeholder", // TODO cliente: URL maps definitivo (deve essere maps.app.goo.gl o simile — NON un embed iframe)
+    googleMapsUrl: "https://maps.app.goo.gl/placeholder", // TODO cliente: URL maps definitivo
   },
-  serviceArea: ["Mestre", "Venezia", "Provincia di Venezia", "Veneto"],
+  serviceArea: ["Porto Viro", "Rovigo", "Polesine", "Veneto"],
 };
 
 // Strings for 404 and error pages (so components never hardcode Italian copy — CLAUDE.md rule).

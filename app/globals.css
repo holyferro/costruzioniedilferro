@@ -7,7 +7,7 @@
 :root {
   --color-ink: #1a1a1a; /* D-01 — titles, body, UI structure */
   --color-panna: #f8f5ee; /* D-02 — default background */
-  --color-brand: #291572; /* D-03 — CTA fills, accent (FILL ONLY — see D-06) */
+  --color-brand: #1b3a2e; /* D-03 — verde scuro istituzionale, CTA fills, accent */
 
   /* Support neutrals (minimal per D-04) */
   --color-border: #e6e1d6; /* hairline on panna */
