@@ -8,7 +8,7 @@ import process from "node:process";
 
 const INK = "#1A1A1A"; // D-01
 const PANNA = "#F8F5EE"; // D-02
-const BRAND = "#1B3A2E"; // D-03 — verde scuro istituzionale
+const BRAND = "#291572"; // D-03
 const SURFACE = "#FFFFFF"; // neutral white card
 
 const AA = 4.5; // WCAG 2.1 AA for normal text
