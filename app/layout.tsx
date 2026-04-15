@@ -7,18 +7,10 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { siteContent } from "@/content/site";
+import { defaultMetadata } from "@/lib/seo/metadata";
 
-// Plan 01-03 replaces the inline metadata object with a
-// `defaultMetadata` import from `@/lib/seo/metadata`. For now we ship a
-// minimal inline `Metadata` object so the build is green without lib/seo/metadata.ts.
-export const metadata: Metadata = {
-  title: {
-    default: siteContent.brand.name,
-    template: `%s — ${siteContent.brand.name}`,
-  },
-  description: siteContent.brand.tagline,
-};
+// Shared metadata defaults live in lib/seo/metadata. Per-page metadata uses buildMetadata().
+export const metadata: Metadata = defaultMetadata;
 
 const inter = Inter({
   subsets: ["latin"],
