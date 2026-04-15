@@ -62,8 +62,8 @@ Decimal phases appear between their surrounding integers in numeric order.
    **Plans**: 2 piani
    Plans:
 
-- [ ] 02-01-PLAN.md — Fondamenta content: content/homepage.ts + route stub (/servizi, /progetti, /chi-siamo, /contatti) + typedRoutes riabilitato
-- [ ] 02-02-PLAN.md — Sezioni homepage: HeroSection, TrustStrip, ServiceOverview, ServiceAreaSection, HomepageCta, MobileStickyBar + app/page.tsx
+- [x] 02-01-PLAN.md — Fondamenta content: content/homepage.ts + route stub (/servizi, /progetti, /chi-siamo, /contatti) + typedRoutes riabilitato
+- [x] 02-02-PLAN.md — Sezioni homepage: HeroSection, TrustStrip, ServiceOverview, ServiceAreaSection, HomepageCta, MobileStickyBar + app/page.tsx
       **UI hint**: yes
 
 ### Phase 3: Servizi
