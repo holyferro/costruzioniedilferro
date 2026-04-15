@@ -1,0 +1,72 @@
+// content/legal.ts
+// D.Lgs. 70/2003 art. 7 compliance. Rendered in footer on every route.
+// All fields ship with placeholders; substitute real values in a dedicated commit when client delivers (see D-18/D-19).
+
+export type LegalContent = {
+  readonly ragioneSociale: string;
+  readonly piva: string;
+  readonly codiceFiscale: string;
+  readonly rea: {
+    readonly number: string;
+    readonly chamber: string;
+  };
+  readonly capitaleSociale: {
+    readonly declared: string;
+    readonly paidUp: string;
+  };
+  readonly sedeLegale: {
+    readonly street: string;
+    readonly zip: string;
+    readonly city: string;
+    readonly province: string;
+  };
+  readonly sedeOperativa?: {
+    readonly street: string;
+    readonly zip: string;
+    readonly city: string;
+    readonly province: string;
+  };
+  readonly certifications: {
+    readonly soa: {
+      readonly categories: readonly string[];
+      readonly expiration: string;
+    };
+    readonly iso: {
+      readonly standard: string;
+      readonly issuer: string;
+      readonly expiration: string;
+    };
+  };
+};
+
+export const legalContent: LegalContent = {
+  // TODO cliente: tutti i campi sottostanti sono placeholder. Sostituire alla consegna.
+  ragioneSociale: "Edilferro S.r.l.",
+  piva: "00000000000", // TODO cliente: P.IVA reale (11 cifre)
+  codiceFiscale: "00000000000", // TODO cliente: C.F. reale
+  rea: {
+    number: "VE-000000", // TODO cliente: numero REA reale
+    chamber: "CCIAA Venezia Rovigo", // TODO cliente: conferma camera di commercio
+  },
+  capitaleSociale: {
+    declared: "€ 100.000", // TODO cliente: capitale sociale dichiarato
+    paidUp: "€ 100.000 i.v.", // TODO cliente: capitale sociale versato
+  },
+  sedeLegale: {
+    street: "Via [placeholder] 1", // TODO cliente: via + civico
+    zip: "30170", // TODO cliente: CAP
+    city: "Mestre",
+    province: "VE",
+  },
+  certifications: {
+    soa: {
+      categories: ["OG1", "OG3"], // TODO cliente: categorie SOA reali
+      expiration: "2027-06-30", // TODO cliente: data scadenza attestazione
+    },
+    iso: {
+      standard: "ISO 9001:2015",
+      issuer: "[Ente Certificatore]", // TODO cliente: ente certificatore
+      expiration: "2027-06-30", // TODO cliente: scadenza certificato
+    },
+  },
+};

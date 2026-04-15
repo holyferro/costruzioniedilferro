@@ -1,0 +1,39 @@
+// content/navigation.ts
+// Header + footer link structure. Single source of truth so both components stay in sync.
+
+export type NavLink = {
+  readonly href: string;
+  readonly label: string;
+};
+
+export type NavGroup = {
+  readonly title: string;
+  readonly items: readonly NavLink[];
+};
+
+export const primaryNav: readonly NavLink[] = [
+  { href: "/", label: "Home" },
+  { href: "/servizi", label: "Servizi" },
+  { href: "/progetti", label: "Progetti" },
+  { href: "/chi-siamo", label: "Chi siamo" },
+  { href: "/contatti", label: "Contatti" },
+];
+
+export const primaryCta: NavLink = {
+  href: "/contatti",
+  label: "Richiedi un sopralluogo",
+};
+
+export const footerNav: readonly NavGroup[] = [
+  {
+    title: "Sezioni",
+    items: primaryNav,
+  },
+  {
+    title: "Legale",
+    items: [
+      { href: "/privacy", label: "Privacy policy" },
+      { href: "/cookie-policy", label: "Cookie policy" },
+    ],
+  },
+];
