@@ -690,23 +690,23 @@ Questo sblocca `typedRoutes: true` in `next.config.ts` come da nota nel SUMMARY 
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Numero di telefono reale**
    - Cosa sappiamo: `siteContent.contact.phone.display = "+39 0426 000 000"` è placeholder
    - Gap: La MobileStickyBar mostra questo numero — se il cliente non lo ha ancora fornito, la barra mostra un numero falso
-   - Raccomandazione: Completare `content/site.ts` con dati reali prima del deploy in produzione (non blocca lo sviluppo)
+   - RESOLVED: placeholder accettato per sviluppo; aggiornare `content/site.ts` con il numero reale prima del deploy in produzione. Non blocca Phase 2.
 
 2. **CTA label: "Richiedi un sopralluogo" vs "Richiedi un preventivo"**
    - `navigation.ts` usa `"Richiedi un preventivo"` per `primaryCta.label`
    - `ROADMAP.md` Phase 2 success criteria usa "Richiedi un sopralluogo"
    - `edilferro_website_master_context_claude.md` usa "Richiedi un preventivo"
-   - **Raccomandazione:** Usare `primaryCta.label` da `navigation.ts` (fonte di verità) = "Richiedi un preventivo". Se si vuole "sopralluogo", cambiare in `navigation.ts` in modo centralizzato.
+   - RESOLVED: i piani usano `primaryCta.label` da `navigation.ts` come fonte di verità = "Richiedi un preventivo". Il master context è la fonte autorevole; la ROADMAP va allineata ma non blocca lo sviluppo.
 
 3. **typedRoutes e route placeholder**
    - Riabilitare `typedRoutes: true` richiede che tutte le route in `primaryNav` esistano come file `page.tsx`
    - Phase 2 deve creare stub per `/servizi`, `/progetti`, `/chi-siamo`, `/contatti`
-   - I placeholder devono essere compilabili e non rompere `pnpm typecheck`
+   - RESOLVED: Piano 01 Task 2 crea i 4 stub e riabilita `typedRoutes: true` in `next.config.ts`.
 
 ---
 
