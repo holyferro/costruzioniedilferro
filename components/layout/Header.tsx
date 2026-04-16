@@ -11,6 +11,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { primaryNav } from "@/content/navigation";
 import { siteContent } from "@/content/site";
+import { MobileMenu } from "@/components/layout/MobileMenu";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -41,7 +42,7 @@ export function Header() {
     >
       <div
         className={`mx-auto flex max-w-screen-2xl items-center justify-between px-4 transition-[padding] duration-300 ease-in-out ${
-          scrolled ? "py-6" : "py-7"
+          scrolled ? "py-3 md:py-6" : "py-4 md:py-7"
         }`}
       >
         {/* Logo */}
@@ -57,7 +58,7 @@ export function Header() {
             width={240}
             height={60}
             className={`w-auto object-contain transition-all duration-300 ease-in-out ${
-              scrolled ? "h-11 scale-95 opacity-0" : "h-13 scale-100 opacity-100"
+              scrolled ? "h-9 scale-95 opacity-0 md:h-11" : "h-10 scale-100 opacity-100 md:h-13"
             }`}
             priority
           />
@@ -69,7 +70,7 @@ export function Header() {
             width={240}
             height={60}
             className={`absolute inset-0 w-auto object-contain transition-all duration-300 ease-in-out ${
-              scrolled ? "h-11 scale-100 opacity-100" : "h-13 scale-95 opacity-0"
+              scrolled ? "h-9 scale-100 opacity-100 md:h-11" : "h-10 scale-95 opacity-0 md:h-13"
             }`}
           />
         </Link>
@@ -98,31 +99,9 @@ export function Header() {
           })}
         </nav>
 
-        {/* Mobile zone — click-to-call */}
-        <div className="flex items-center gap-2 md:hidden">
-          <a
-            href={`tel:${siteContent.contact.phone.tel}`}
-            aria-label={`Chiama ${siteContent.brand.name}`}
-            className={`rounded-full border p-3 transition-colors ${
-              scrolled
-                ? "border-white/30 text-white hover:border-white"
-                : "border-black/20 text-black hover:border-black/60"
-            }`}
-          >
-            <svg
-              aria-hidden="true"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-            </svg>
-          </a>
+        {/* Mobile zone — hamburger menu */}
+        <div className="flex items-center md:hidden">
+          <MobileMenu scrolled={scrolled} />
         </div>
       </div>
     </header>

@@ -48,6 +48,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html
       lang="it"
       className={`${inter.variable} ${ibmPlexSerif.variable} ${neueMontreal.variable}`}
+      suppressHydrationWarning
     >
       <body className="bg-panna text-ink antialiased">
         {/* Content layer — sits ABOVE the fixed footer via z-10 */}
@@ -61,7 +62,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           The fixed footer (z-0) paints on top of static elements, so at max scroll
           the footer is visible here. The content div (z-10) covers it while scrolling.
         */}
-        <div aria-hidden="true" style={{ height: "var(--footer-height, 340px)" }} />
+        {/* Spacer only needed on desktop where the footer is fixed-position */}
+        <div
+          aria-hidden="true"
+          className="hidden md:block"
+          style={{ height: "var(--footer-height, 340px)" }}
+        />
 
         {/* Footer: fixed at z-0, revealed as content scrolls away */}
         <FooterReveal>

@@ -35,7 +35,11 @@ export function FooterReveal({ children }: FooterRevealProps) {
   }, []);
 
   return (
-    <div ref={wrapperRef} className="fixed right-0 bottom-0 left-0 z-0" aria-hidden="false">
+    <div
+      ref={wrapperRef}
+      className="z-0 md:fixed md:right-0 md:bottom-0 md:left-0"
+      aria-hidden="false"
+    >
       {children}
     </div>
   );
