@@ -13,8 +13,15 @@
   --color-border: #e6e1d6; /* hairline on panna */
   --color-surface: #ffffff; /* card / section-break background */
 
-  /* Layout geometry — single source of truth */
-  --header-height: 116px; /* desktop non-scrolled: py-7 (2×29.75px) + h-13 logo (55px) + border 1px */
+  /* Layout geometry — mobile first (py-4 + h-10 logo + border) */
+  --header-height: 78px;
+}
+
+/* Desktop: header grows to py-7 + h-13 logo */
+@media (min-width: 48rem) {
+  :root {
+    --header-height: 116px;
+  }
 }
 
 /* ---------- Tailwind theme wiring ---------- */
