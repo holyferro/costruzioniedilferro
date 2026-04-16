@@ -8,6 +8,7 @@ import Image from "next/image";
 import { siteContent } from "@/content/site";
 import { legalContent } from "@/content/legal";
 import { primaryNav, footerNav } from "@/content/navigation";
+import { FooterLink } from "@/components/layout/FooterLink";
 
 export function Footer() {
   const legaleGroup = footerNav.find((g) => g.title === "Legale");
@@ -106,12 +107,12 @@ export function Footer() {
               <ul className="mt-3 space-y-2">
                 {primaryNav.map((item) => (
                   <li key={item.href}>
-                    <Link
-                      href={item.href as Route<string>}
-                      className="text-sm text-white/70 hover:text-white"
-                    >
-                      {item.label}
-                    </Link>
+                    <FooterLink
+                      href={item.href}
+                      label={item.label}
+                      className="text-sm text-white/70"
+                      iconSize={15}
+                    />
                   </li>
                 ))}
               </ul>
@@ -204,13 +205,13 @@ export function Footer() {
           {legaleGroup ? (
             <nav className="flex gap-4" aria-label="Note legali">
               {legaleGroup.items.map((item) => (
-                <Link
+                <FooterLink
                   key={item.href}
-                  href={item.href as Route<string>}
-                  className="hover:text-white"
-                >
-                  {item.label}
-                </Link>
+                  href={item.href}
+                  label={item.label}
+                  className="text-white/40"
+                  iconSize={13}
+                />
               ))}
             </nav>
           ) : null}
