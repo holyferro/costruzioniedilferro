@@ -54,9 +54,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <div className="bg-panna relative z-10 flex min-h-screen flex-col">
           <Header />
           <main className="flex-1">{children}</main>
-          {/* Spacer: pushes content down by footer height so scrolling exposes it */}
-          <div aria-hidden="true" style={{ height: "var(--footer-height, 340px)" }} />
         </div>
+
+        {/*
+          Spacer — static (non-positioned), sits OUTSIDE the z-10 content div.
+          The fixed footer (z-0) paints on top of static elements, so at max scroll
+          the footer is visible here. The content div (z-10) covers it while scrolling.
+        */}
+        <div aria-hidden="true" style={{ height: "var(--footer-height, 340px)" }} />
 
         {/* Footer: fixed at z-0, revealed as content scrolls away */}
         <FooterReveal>
