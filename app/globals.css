@@ -54,25 +54,8 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* ---------- Footer reveal from bottom ---------- */
-/* Scroll-driven animation: footer slides up as it enters the viewport.
-   Progressive enhancement — browsers without animation-timeline support
-   show the footer normally with no animation. */
-@keyframes footer-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(3rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@supports (animation-timeline: view()) {
-  footer {
-    animation: footer-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 30%;
-  }
+/* ---------- Footer depth shadow ---------- */
+/* Creates the illusion that page content slides over the footer. */
+footer {
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.25);
 }

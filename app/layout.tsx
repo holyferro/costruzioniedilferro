@@ -8,6 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { FooterReveal } from "@/components/layout/FooterReveal";
 import { defaultMetadata } from "@/lib/seo/metadata";
 
 // Shared metadata defaults live in lib/seo/metadata. Per-page metadata uses buildMetadata().
@@ -48,10 +49,20 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       lang="it"
       className={`${inter.variable} ${ibmPlexSerif.variable} ${neueMontreal.variable}`}
     >
-      <body className="bg-panna text-ink flex min-h-screen flex-col antialiased">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <body className="bg-panna text-ink antialiased">
+        {/* Content layer — sits ABOVE the fixed footer via z-10 */}
+        <div className="bg-panna relative z-10 flex min-h-screen flex-col">
+          <Header />
+          <main className="flex-1">{children}</main>
+          {/* Spacer: pushes content down by footer height so scrolling exposes it */}
+          <div aria-hidden="true" style={{ height: "var(--footer-height, 340px)" }} />
+        </div>
+
+        {/* Footer: fixed at z-0, revealed as content scrolls away */}
+        <FooterReveal>
+          <Footer />
+        </FooterReveal>
+
         <Analytics />
         <SpeedInsights />
       </body>
