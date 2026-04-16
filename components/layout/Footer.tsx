@@ -121,7 +121,7 @@ export function Footer() {
               <h2 className="text-xs font-semibold tracking-widest text-white/40 uppercase">
                 Contatti
               </h2>
-              <ul className="mt-2 space-y-1.5 text-sm text-white/70 md:mt-3 md:space-y-2">
+              <ul className="mt-2 space-y-1.5 text-xs text-white/70 md:mt-3 md:space-y-2 md:text-sm">
                 <li>
                   <a href={`tel:${siteContent.contact.phone.tel}`} className="hover:text-white">
                     {siteContent.contact.phone.display}
