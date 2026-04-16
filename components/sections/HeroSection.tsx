@@ -3,26 +3,35 @@
 import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { RotatingWord } from "@/components/ui/RotatingWord";
 
 type HeroSectionProps = {
   headline: string;
+  headlinePrefix?: string;
+  headlineWords?: readonly string[];
   subheadline: string;
   ctaLabel: string;
   ctaHref: string;
   imageSrc: string;
   imageAlt: string;
+  className?: string;
 };
 
 export function HeroSection({
   headline,
+  headlinePrefix,
+  headlineWords,
   subheadline,
   ctaLabel,
   ctaHref,
   imageSrc,
   imageAlt,
+  className,
 }: HeroSectionProps) {
   return (
-    <section className="relative h-[100svh] max-h-[900px] min-h-[600px]">
+    <section
+      className={`bg-ink relative overflow-hidden ${className ?? "h-[100svh] max-h-[900px] min-h-[600px]"}`}
+    >
       {/* Immagine hero full-bleed — fill richiede position: relative + altezza esplicita */}
       <Image
         src={imageSrc}
@@ -30,18 +39,27 @@ export function HeroSection({
         fill
         priority
         sizes="100vw"
-        className="object-cover"
+        className="object-cover object-[center_27%]"
         quality={85}
       />
       {/* Overlay scuro per leggibilità testo su foto (D-06: no text-brand su sfondo chiaro) */}
-      <div className="absolute inset-0 bg-ink/55" aria-hidden="true" />
-      {/* Contenuto — testo posizionato in basso per permettere alla foto di respirare */}
-      <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col items-start justify-end px-6 pb-16 md:pb-20">
-        <h1 className="max-w-2xl font-serif text-h1 leading-[1.1] text-panna">{headline}</h1>
-        <p className="mt-4 max-w-xl text-lg text-panna/85">{subheadline}</p>
+      <div className="bg-ink/47 absolute inset-0" aria-hidden="true" />
+      {/* Contenuto — centrato verticalmente */}
+      <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col items-start justify-center px-6">
+        <h1 className="text-h1 text-panna max-w-2xl font-serif leading-[1.1]">
+          {headlinePrefix && headlineWords ? (
+            <>
+              <span className="block">{headlinePrefix}</span>
+              <RotatingWord words={headlineWords} />
+            </>
+          ) : (
+            headline
+          )}
+        </h1>
+        <p className="text-panna/85 mt-4 max-w-xl text-lg">{subheadline}</p>
         <Link
           href={ctaHref as Route<string>}
-          className="mt-8 inline-flex rounded-full bg-brand px-7 py-3.5 text-sm font-medium text-panna transition-colors hover:bg-brand/90"
+          className="bg-brand text-panna hover:bg-brand/90 mt-8 inline-flex rounded-full px-7 py-3.5 text-sm font-medium transition-colors"
         >
           {ctaLabel}
         </Link>

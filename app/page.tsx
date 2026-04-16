@@ -19,8 +19,14 @@ export const metadata = buildMetadata({
 export default function Home() {
   return (
     <>
-      <HeroSection {...homepageContent.hero} />
-      <TrustStrip {...homepageContent.trustStrip} />
+      {/* Hero + TrustStrip occupano esattamente lo spazio visibile sotto l'header */}
+      <div
+        className="flex flex-col"
+        style={{ height: "calc(100svh - var(--header-height, 116px))" }}
+      >
+        <HeroSection {...homepageContent.hero} className="min-h-0 flex-1" />
+        <TrustStrip {...homepageContent.trustStrip} />
+      </div>
       <ServiceOverview {...homepageContent.services} />
       <ServiceAreaSection {...homepageContent.serviceArea} />
       <HomepageCta {...homepageContent.finalCta} />

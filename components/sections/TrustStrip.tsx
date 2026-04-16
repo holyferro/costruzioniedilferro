@@ -13,13 +13,13 @@ type TrustStripProps = {
 
 export function TrustStrip({ metrics }: TrustStripProps) {
   return (
-    <section className="bg-ink py-12" aria-label="Numeri chiave dell'impresa">
+    <section className="bg-black py-6" aria-label="Numeri chiave dell'impresa">
       <div className="mx-auto max-w-6xl px-6">
         <dl className="grid grid-cols-2 gap-8 md:grid-cols-4">
           {metrics.map((m) => (
             <div key={m.label} className="text-center">
-              <dt className="font-serif text-h2 text-panna">{m.value}</dt>
-              <dd className="mt-1 text-sm text-panna/70">{m.label}</dd>
+              <dt className="text-h2 text-panna font-serif">{m.value}</dt>
+              <dd className="text-panna/70 mt-1 text-sm">{m.label}</dd>
             </div>
           ))}
         </dl>

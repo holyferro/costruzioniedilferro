@@ -12,6 +12,9 @@
   /* Support neutrals (minimal per D-04) */
   --color-border: #e6e1d6; /* hairline on panna */
   --color-surface: #ffffff; /* card / section-break background */
+
+  /* Layout geometry — single source of truth */
+  --header-height: 116px; /* desktop non-scrolled: py-7 (2×29.75px) + h-13 logo (55px) + border 1px */
 }
 
 /* ---------- Tailwind theme wiring ---------- */
