@@ -14,7 +14,7 @@ export function Footer() {
   const legaleGroup = footerNav.find((g) => g.title === "Legale");
 
   return (
-    <footer className="border-t border-white/10 bg-black text-white">
+    <footer className="border-brand border-t-2 bg-black text-white">
       <div className="mx-auto max-w-screen-2xl px-4 py-10">
         {/* Main area: content + rotated phone strip */}
         <div className="flex gap-8">
@@ -167,9 +167,9 @@ export function Footer() {
                   {legalContent.capitaleSociale.paidUp})
                 </li>
               </ul>
-              <div className="mt-4 flex gap-2 text-xs text-white/40">
-                <span className="rounded border border-white/20 px-2 py-1">SOA</span>
-                <span className="rounded border border-white/20 px-2 py-1">ISO</span>
+              <div className="mt-4 flex gap-2 text-xs">
+                <span className="bg-brand rounded px-2 py-1 font-semibold text-white">SOA</span>
+                <span className="bg-brand rounded px-2 py-1 font-semibold text-white">ISO</span>
               </div>
             </div>
           </div>
