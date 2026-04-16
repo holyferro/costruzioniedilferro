@@ -12,7 +12,6 @@ export type NavGroup = {
 };
 
 export const primaryNav: readonly NavLink[] = [
-  { href: "/", label: "Home" },
   { href: "/servizi", label: "Servizi" },
   { href: "/progetti", label: "Progetti" },
   { href: "/chi-siamo", label: "Chi siamo" },

@@ -1,9 +1,10 @@
 // components/layout/Footer.tsx
-// Server Component. Reads from content/site.ts + content/legal.ts + content/navigation.ts.
-// D-16 — 4 columns desktop, stack mobile. D-17 — zero client JS.
+// Server Component. Black background, white text.
+// Layout: main 4-col grid + rotated phone strip on desktop.
 
 import type { Route } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { siteContent } from "@/content/site";
 import { legalContent } from "@/content/legal";
 import { primaryNav, footerNav } from "@/content/navigation";
@@ -12,97 +13,202 @@ export function Footer() {
   const legaleGroup = footerNav.find((g) => g.title === "Legale");
 
   return (
-    <footer className="border-t border-border bg-surface">
-      <div className="mx-auto max-w-6xl px-6 py-16">
-        <div className="grid gap-12 md:grid-cols-4">
-          {/* Col 1 — Identity */}
-          <div>
-            <p className="font-serif text-lg text-ink">{siteContent.brand.name}</p>
-            <p className="mt-3 text-sm text-ink/70">{legalContent.ragioneSociale}</p>
-            <p className="mt-4 text-sm text-ink/70">
-              Opera in {siteContent.serviceArea.join(", ")}.
-            </p>
-          </div>
+    <footer className="border-t border-white/10 bg-black text-white">
+      <div className="mx-auto max-w-screen-2xl px-4 py-10">
+        {/* Main area: content + rotated phone strip */}
+        <div className="flex gap-8">
+          {/* Content grid */}
+          <div className="grid flex-1 gap-8 md:grid-cols-4">
+            {/* Col 1 — Identity */}
+            <div>
+              <div className="flex items-center gap-5">
+                <Image
+                  src="/images/portfolio/icon-edilferro-white.svg"
+                  alt="Icona Costruzioni Edilferro"
+                  width={32}
+                  height={32}
+                  className="h-8 w-auto object-contain"
+                />
+                <p className="font-serif text-sm leading-tight font-medium">
+                  Costruzioni
+                  <br />
+                  Edilferro S.r.l.
+                </p>
+              </div>
+              <p className="mt-3 text-xs text-white/60">{legalContent.ragioneSociale}</p>
+              <p className="mt-1 text-xs text-white/60">
+                Opera in {siteContent.serviceArea.join(", ")}.
+              </p>
 
-          {/* Col 2 — Sections */}
-          <nav aria-label="Sezioni del sito">
-            <h2 className="text-sm font-medium uppercase tracking-widest text-ink/60">
-              Sezioni
-            </h2>
-            <ul className="mt-4 space-y-2">
-              {primaryNav.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href as Route<string>} className="text-sm text-ink/80 hover:text-ink">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          {/* Col 3 — Contacts */}
-          <div>
-            <h2 className="text-sm font-medium uppercase tracking-widest text-ink/60">
-              Contatti
-            </h2>
-            <ul className="mt-4 space-y-2 text-sm text-ink/80">
-              <li>
-                <a href={`tel:${siteContent.contact.phone.tel}`} className="hover:text-ink">
-                  {siteContent.contact.phone.display}
+              {/* Social links */}
+              <div className="mt-5 flex items-center gap-4">
+                <a
+                  href="#"
+                  aria-label="Facebook"
+                  className="text-white/50 transition-colors hover:text-white"
+                >
+                  <svg
+                    aria-hidden="true"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                  </svg>
                 </a>
-              </li>
-              <li>
-                <a href={`mailto:${siteContent.contact.email}`} className="hover:text-ink">
-                  {siteContent.contact.email}
+                <a
+                  href="#"
+                  aria-label="Instagram"
+                  className="text-white/50 transition-colors hover:text-white"
+                >
+                  <svg
+                    aria-hidden="true"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                  </svg>
                 </a>
-              </li>
-              <li>
-                <a href={`mailto:${siteContent.contact.pec}`} className="hover:text-ink">
-                  PEC: {siteContent.contact.pec}
+                <a
+                  href="#"
+                  aria-label="LinkedIn"
+                  className="text-white/50 transition-colors hover:text-white"
+                >
+                  <svg
+                    aria-hidden="true"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                    <rect width="4" height="12" x="2" y="9" />
+                    <circle cx="4" cy="4" r="2" />
+                  </svg>
                 </a>
-              </li>
-              {siteContent.contact.hours.map((line) => (
-                <li key={line}>{line}</li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Col 4 — Legal + certifications (FND-06, D.Lgs. 70/2003 art. 7) */}
-          <div>
-            <h2 className="text-sm font-medium uppercase tracking-widest text-ink/60">
-              Dati legali
-            </h2>
-            <ul className="mt-4 space-y-1 text-xs text-ink/70">
-              <li>
-                {legalContent.sedeLegale.street}, {legalContent.sedeLegale.zip}{" "}
-                {legalContent.sedeLegale.city} ({legalContent.sedeLegale.province})
-              </li>
-              <li>P.IVA {legalContent.piva}</li>
-              <li>C.F. {legalContent.codiceFiscale}</li>
-              <li>
-                REA {legalContent.rea.number} — {legalContent.rea.chamber}
-              </li>
-              <li>
-                Capitale sociale {legalContent.capitaleSociale.declared}{" "}
-                ({legalContent.capitaleSociale.paidUp})
-              </li>
-            </ul>
-            <div className="mt-6 flex gap-2 text-xs text-ink/60">
-              <span className="rounded border border-border px-2 py-1">SOA</span>
-              <span className="rounded border border-border px-2 py-1">ISO</span>
-              {/* Real badge images land in Phase 5 */}
+              </div>
             </div>
+
+            {/* Col 2 — Sections */}
+            <nav aria-label="Sezioni del sito">
+              <h2 className="text-xs font-semibold tracking-widest text-white/40 uppercase">
+                Sezioni
+              </h2>
+              <ul className="mt-3 space-y-2">
+                {primaryNav.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href as Route<string>}
+                      className="text-sm text-white/70 hover:text-white"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            {/* Col 3 — Contacts */}
+            <div>
+              <h2 className="text-xs font-semibold tracking-widest text-white/40 uppercase">
+                Contatti
+              </h2>
+              <ul className="mt-3 space-y-2 text-sm text-white/70">
+                <li>
+                  <a href={`tel:${siteContent.contact.phone.tel}`} className="hover:text-white">
+                    {siteContent.contact.phone.display}
+                  </a>
+                </li>
+                <li>
+                  <a href={`mailto:${siteContent.contact.email}`} className="hover:text-white">
+                    {siteContent.contact.email}
+                  </a>
+                </li>
+                <li>
+                  <a href={`mailto:${siteContent.contact.pec}`} className="hover:text-white">
+                    PEC: {siteContent.contact.pec}
+                  </a>
+                </li>
+                {siteContent.contact.hours.map((line) => (
+                  <li key={line} className="text-white/50">
+                    {line}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Col 4 — Legal */}
+            <div>
+              <h2 className="text-xs font-semibold tracking-widest text-white/40 uppercase">
+                Dati legali
+              </h2>
+              <ul className="mt-3 space-y-1 text-xs text-white/50">
+                <li>
+                  {legalContent.sedeLegale.street}, {legalContent.sedeLegale.zip}{" "}
+                  {legalContent.sedeLegale.city} ({legalContent.sedeLegale.province})
+                </li>
+                <li>P.IVA {legalContent.piva}</li>
+                <li>C.F. {legalContent.codiceFiscale}</li>
+                <li>
+                  REA {legalContent.rea.number} — {legalContent.rea.chamber}
+                </li>
+                <li>
+                  Capitale sociale {legalContent.capitaleSociale.declared} (
+                  {legalContent.capitaleSociale.paidUp})
+                </li>
+              </ul>
+              <div className="mt-4 flex gap-2 text-xs text-white/40">
+                <span className="rounded border border-white/20 px-2 py-1">SOA</span>
+                <span className="rounded border border-white/20 px-2 py-1">ISO</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Rotated phone strip — desktop only */}
+          <div className="hidden items-center justify-center border-l border-white/10 pr-0 pl-4 md:flex">
+            <a
+              href={`tel:${siteContent.contact.phone.tel}`}
+              aria-label={`Chiama ${siteContent.brand.name}`}
+              className="text-2xl font-bold tracking-wider whitespace-nowrap text-white/80 transition-colors hover:text-white"
+              style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+            >
+              {siteContent.contact.phone.display}
+            </a>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-border pt-8 text-xs text-ink/60 md:flex-row md:items-center md:justify-between">
+        {/* Mobile phone — shown below content on small screens */}
+        <div className="mt-6 flex justify-center border-t border-white/10 pt-6 md:hidden">
+          <a
+            href={`tel:${siteContent.contact.phone.tel}`}
+            className="text-xl font-bold tracking-wider text-white/80 hover:text-white"
+          >
+            {siteContent.contact.phone.display}
+          </a>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/40 md:flex-row md:items-center md:justify-between">
           <p>
             © {new Date().getFullYear()} {legalContent.ragioneSociale}. Tutti i diritti riservati.
           </p>
           {legaleGroup ? (
             <nav className="flex gap-4" aria-label="Note legali">
               {legaleGroup.items.map((item) => (
-                <Link key={item.href} href={item.href as Route<string>} className="hover:text-ink">
+                <Link
+                  key={item.href}
+                  href={item.href as Route<string>}
+                  className="hover:text-white"
+                >
                   {item.label}
                 </Link>
               ))}
