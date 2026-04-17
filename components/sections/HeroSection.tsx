@@ -35,7 +35,7 @@ export function HeroSection({
         fill
         priority
         sizes="100vw"
-        className="object-cover object-[center_27%]"
+        className="object-cover object-[68%_27%] md:object-[center_27%]"
         quality={85}
       />
       {/* Gradiente grigio sinistra→destra */}
@@ -49,11 +49,12 @@ export function HeroSection({
             {eyebrow}
           </p>
         )}
-        <h1 className="text-panna max-w-none font-[family-name:var(--font-neue-montreal)] text-[clamp(3.025rem,1.98rem+4.4vw,5.5rem)] leading-[1.1] font-normal">
+        <h1 className="text-panna max-w-none font-[family-name:var(--font-neue-montreal)] text-[2.2rem] leading-[1.05] font-normal md:text-[clamp(3.025rem,1.98rem+4.4vw,5.5rem)] md:leading-[1.1]">
           {headlinePrefix && headlineWords ? (
             <>
               <span className="block">{headlinePrefix}</span>
-              <span className="-mt-[0.1em] block min-h-[1.2em] font-bold whitespace-nowrap">
+              {/* Mobile: wrapping allowed, 2-line slot; desktop: nowrap, 1-line slot */}
+              <span className="-mt-[0.1em] block min-h-[2.2em] font-bold md:min-h-[1.2em] md:whitespace-nowrap">
                 <RotatingWord words={headlineWords} />
               </span>
             </>
