@@ -1,29 +1,26 @@
 // components/sections/HeroSection.tsx
-// RSC — nessun "use client". Il "use client" per la sticky bar è in MobileStickyBar.tsx.
-import type { Route } from "next";
+// RSC — nessun "use client".
 import Image from "next/image";
-import Link from "next/link";
 import { RotatingWord } from "@/components/ui/RotatingWord";
+import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 
 type HeroSectionProps = {
+  eyebrow?: string;
   headline: string;
   headlinePrefix?: string;
   headlineWords?: readonly string[];
   subheadline: string;
-  ctaLabel: string;
-  ctaHref: string;
   imageSrc: string;
   imageAlt: string;
   className?: string;
 };
 
 export function HeroSection({
+  eyebrow,
   headline,
   headlinePrefix,
   headlineWords,
   subheadline,
-  ctaLabel,
-  ctaHref,
   imageSrc,
   imageAlt,
   className,
@@ -32,7 +29,6 @@ export function HeroSection({
     <section
       className={`bg-ink relative overflow-hidden ${className ?? "h-[100svh] max-h-[900px] min-h-[600px]"}`}
     >
-      {/* Immagine hero full-bleed — fill richiede position: relative + altezza esplicita */}
       <Image
         src={imageSrc}
         alt={imageAlt}
@@ -42,27 +38,34 @@ export function HeroSection({
         className="object-cover object-[center_27%]"
         quality={85}
       />
-      {/* Overlay scuro per leggibilità testo su foto (D-06: no text-brand su sfondo chiaro) */}
-      <div className="bg-ink/47 absolute inset-0" aria-hidden="true" />
-      {/* Contenuto — centrato verticalmente */}
+      {/* Gradiente grigio sinistra→destra */}
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-[#12142b]/80 via-[#12142b]/35 to-transparent"
+        aria-hidden="true"
+      />
       <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col items-start justify-center px-6">
-        <h1 className="text-h1 text-panna max-w-2xl font-serif leading-[1.1]">
+        {eyebrow && (
+          <p className="text-panna/90 mb-5 text-sm font-semibold tracking-[0.38em] uppercase">
+            {eyebrow}
+          </p>
+        )}
+        <h1 className="text-panna max-w-none font-[family-name:var(--font-neue-montreal)] text-[clamp(3.025rem,1.98rem+4.4vw,5.5rem)] leading-[1.1] font-normal">
           {headlinePrefix && headlineWords ? (
             <>
               <span className="block">{headlinePrefix}</span>
-              <RotatingWord words={headlineWords} />
+              <span className="-mt-[0.1em] block min-h-[1.2em] font-bold whitespace-nowrap">
+                <RotatingWord words={headlineWords} />
+              </span>
             </>
           ) : (
             headline
           )}
         </h1>
-        <p className="text-panna/85 mt-4 max-w-xl text-lg">{subheadline}</p>
-        <Link
-          href={ctaHref as Route<string>}
-          className="bg-brand text-panna hover:bg-brand/90 mt-8 inline-flex rounded-full px-7 py-3.5 text-sm font-medium transition-colors"
-        >
-          {ctaLabel}
-        </Link>
+        <p className="text-panna/80 mt-5 max-w-lg text-lg leading-relaxed whitespace-pre-line">
+          {subheadline}
+        </p>
+
+        <ScrollIndicator targetId="contenuto" />
       </div>
     </section>
   );

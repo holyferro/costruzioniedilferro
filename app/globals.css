@@ -54,6 +54,7 @@
 html {
   /* D-10 — base body 17px */
   font-size: 17px;
+  scroll-behavior: smooth;
 }
 
 body {

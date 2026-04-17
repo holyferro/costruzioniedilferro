@@ -27,11 +27,11 @@ type ServiceOverviewProps = {
 
 export function ServiceOverview({ sectionTitle, sectionSubtitle, cards }: ServiceOverviewProps) {
   return (
-    <section className="bg-panna py-20">
+    <section id="contenuto" className="bg-panna [scroll-margin-top:var(--header-height)] py-20">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-12 max-w-2xl">
-          <h2 className="font-serif text-h2 text-ink">{sectionTitle}</h2>
-          <p className="mt-4 text-lg text-ink/70">{sectionSubtitle}</p>
+          <h2 className="text-h2 text-ink font-serif">{sectionTitle}</h2>
+          <p className="text-ink/70 mt-4 text-lg">{sectionSubtitle}</p>
         </div>
         <div className="grid gap-6 md:grid-cols-3">
           {cards.map((card) => {
@@ -41,14 +41,14 @@ export function ServiceOverview({ sectionTitle, sectionSubtitle, cards }: Servic
                 key={card.title}
                 href={card.href as Route<string>}
                 className={cn(
-                  "group flex flex-col gap-4 rounded-xl border border-border bg-surface p-8",
-                  "transition-colors hover:border-ink/30",
+                  "group border-border bg-surface flex flex-col gap-4 rounded-xl border p-8",
+                  "hover:border-ink/30 transition-colors",
                 )}
               >
-                <Icon className="h-7 w-7 text-brand" aria-hidden="true" strokeWidth={1.5} />
-                <h3 className="text-lg font-medium text-ink">{card.title}</h3>
-                <p className="text-sm leading-relaxed text-ink/70">{card.description}</p>
-                <span className="mt-auto text-sm font-medium text-brand">Scopri di più →</span>
+                <Icon className="text-brand h-7 w-7" aria-hidden="true" strokeWidth={1.5} />
+                <h3 className="text-ink text-lg font-medium">{card.title}</h3>
+                <p className="text-ink/70 text-sm leading-relaxed">{card.description}</p>
+                <span className="text-brand mt-auto text-sm font-medium">Scopri di più →</span>
               </Link>
             );
           })}

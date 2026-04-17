@@ -62,11 +62,14 @@ export function MobileMenu({ scrolled }: MobileMenuProps) {
         aria-expanded={isOpen}
         aria-controls="mobile-menu-panel"
         onClick={handleOpen}
-        className={`flex items-center justify-center rounded p-1.5 transition-colors ${
+        className={`flex items-center gap-1.5 rounded p-1.5 transition-colors ${
           scrolled ? "text-white hover:bg-white/10" : "text-brand hover:bg-brand/8"
         }`}
       >
         <Menu size={26} strokeWidth={1.5} aria-hidden />
+        <span className="font-[family-name:var(--font-neue-montreal)] text-[11px] font-medium tracking-[0.12em] uppercase">
+          Menu
+        </span>
       </button>
 
       {/* Full-screen container — always in DOM so transitions work correctly */}

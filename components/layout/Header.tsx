@@ -3,7 +3,7 @@
 // components/layout/Header.tsx
 // Client Component — scroll detection for dark-mode sticky header.
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import type { Route } from "next";
 import Link from "next/link";
@@ -16,10 +16,11 @@ import { MobileMenu } from "@/components/layout/MobileMenu";
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const ENTER = 120; // scroll down past this → black
-    const EXIT = 30; // scroll up below this → white
+    const ENTER = 120;
+    const EXIT = 30;
     const onScroll = () => {
       const y = window.scrollY;
       setScrolled((prev) => {
@@ -32,8 +33,21 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Sync --header-height CSS variable to actual rendered height
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const update = () =>
+      document.documentElement.style.setProperty("--header-height", `${el.offsetHeight}px`);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   return (
     <header
+      ref={headerRef}
       className={`sticky top-0 z-40 border-b transition-[background-color,border-color,box-shadow] duration-300 ease-in-out ${
         scrolled
           ? "border-white/10 bg-black shadow-[0_2px_20px_rgba(0,0,0,0.18)]"
@@ -42,7 +56,7 @@ export function Header() {
     >
       <div
         className={`mx-auto flex max-w-screen-2xl items-center justify-between px-4 transition-[padding] duration-300 ease-in-out ${
-          scrolled ? "py-3 md:py-6" : "py-4 md:py-7"
+          scrolled ? "py-3 md:py-6" : "py-4 md:py-[26px]"
         }`}
       >
         {/* Logo */}
@@ -80,11 +94,24 @@ export function Header() {
           {primaryNav.map((item) => {
             const isActive =
               pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+
+            if (item.href === "/contatti") {
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href as Route<string>}
+                  className="bg-brand text-panna hover:bg-brand/85 inline-flex items-center rounded-full px-5 py-2 font-[family-name:var(--font-neue-montreal)] text-[15px] font-medium tracking-[0.015em] uppercase transition-colors"
+                >
+                  {item.label}
+                </Link>
+              );
+            }
+
             return (
               <Link
                 key={item.href}
                 href={item.href as Route<string>}
-                className={`group flex items-center gap-1 font-[family-name:var(--font-neue-montreal)] text-[18px] font-normal tracking-[0.015em] uppercase ${scrolled ? "text-white" : "text-black"}`}
+                className={`group flex items-center gap-1 font-[family-name:var(--font-neue-montreal)] text-[18px] font-normal tracking-[0.015em] uppercase transition-colors duration-200 ${scrolled ? "text-white" : "hover:text-brand text-black"}`}
               >
                 {item.label}
                 <ArrowUpRight
@@ -92,7 +119,7 @@ export function Header() {
                   strokeWidth={1}
                   className={`transition-opacity duration-200 ${
                     isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-                  } ${scrolled ? "text-white" : "text-brand"}`}
+                  } ${scrolled ? "text-brand" : "text-brand"}`}
                 />
               </Link>
             );

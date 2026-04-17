@@ -17,12 +17,11 @@ export type ServiceCard = {
 
 export type HomepageContent = {
   readonly hero: {
+    readonly eyebrow?: string;
     readonly headline: string;
     readonly headlinePrefix?: string;
     readonly headlineWords?: readonly string[];
     readonly subheadline: string;
-    readonly ctaLabel: string;
-    readonly ctaHref: string;
     readonly imageSrc: string;
     readonly imageAlt: string;
   };
@@ -49,13 +48,11 @@ export type HomepageContent = {
 
 export const homepageContent: HomepageContent = {
   hero: {
-    headline: "Dal 1952 costruiamo valore, qualità e fiducia nel territorio.",
-    headlinePrefix: "Dal 1952 costruiamo",
+    eyebrow: "DAL 1952",
+    headline: "Costruiamo valore, qualità e fiducia nel territorio.",
+    headlinePrefix: "Costruiamo",
     headlineWords: ["valore", "qualità", "fiducia nel territorio"] as const,
-    subheadline:
-      "General contractor per opere residenziali, industriali e di restauro nel Polesine e in tutto il Veneto. Certificati SOA e ISO 9001.",
-    ctaLabel: "Richiedi un preventivo",
-    ctaHref: "/contatti",
+    subheadline: "Radicati nel territorio,\ncostruiamo con esperienza e continuità.",
     imageSrc: "/images/hero3.webp",
     imageAlt: "Cantiere residenze universitarie Rovigo — Costruzioni Edilferro",
   },
