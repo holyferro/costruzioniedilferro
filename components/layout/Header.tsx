@@ -64,6 +64,12 @@ export function Header() {
           href="/"
           aria-label={`${siteContent.brand.legalName} — home`}
           className="relative block"
+          onClick={(e) => {
+            if (pathname === "/") {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
         >
           {/* Blue logo — visible on white header */}
           <Image
