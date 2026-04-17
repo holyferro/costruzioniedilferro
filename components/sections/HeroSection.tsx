@@ -49,7 +49,7 @@ export function HeroSection({
             {eyebrow}
           </p>
         )}
-        <h1 className="text-panna max-w-none font-[family-name:var(--font-neue-montreal)] text-[2.2rem] leading-[1.05] font-normal md:text-[clamp(3.025rem,1.98rem+4.4vw,5.5rem)] md:leading-[1.1]">
+        <h1 className="text-panna max-w-none font-[family-name:var(--font-neue-montreal)] text-[clamp(3.025rem,1.98rem+4.4vw,5.5rem)] leading-[1.1] font-normal">
           {headlinePrefix && headlineWords ? (
             <>
               <span className="block">{headlinePrefix}</span>
