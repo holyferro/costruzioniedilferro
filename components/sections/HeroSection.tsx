@@ -27,7 +27,8 @@ export function HeroSection({
 }: HeroSectionProps) {
   return (
     <section
-      className={`bg-ink relative overflow-hidden ${className ?? "h-[100svh] max-h-[900px] min-h-[600px]"}`}
+      className={`bg-ink relative overflow-hidden ${className ?? "min-h-[600px]"}`}
+      style={{ height: "calc(100svh - var(--header-height, 72px))" }}
     >
       <Image
         src={imageSrc}

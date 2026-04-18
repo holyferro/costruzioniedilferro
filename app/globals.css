@@ -65,6 +65,39 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* ---------- Scroll indicator bounce ---------- */
+@keyframes scrollBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+/* ---------- Scrollbar ---------- */
+@supports (-moz-appearance: none) {
+  html {
+    scrollbar-color: var(--color-brand) transparent;
+    scrollbar-width: thin;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand);
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1a0d4a;
+}
+
 /* ---------- Footer depth shadow ---------- */
 /* Creates the illusion that page content slides over the footer. */
 footer {

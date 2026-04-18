@@ -53,7 +53,10 @@ export function ScrollIndicator({ targetId }: Props) {
       <span className="font-[family-name:var(--font-neue-montreal)] text-sm tracking-[0.14em] uppercase">
         Scopri di più
       </span>
-      <span className="inline-block transition-transform duration-[800ms] ease-in-out group-hover:translate-y-1.5">
+      <span
+        className="inline-block"
+        style={{ animation: "scrollBounce 1.8s cubic-bezier(0.37, 0, 0.63, 1) infinite" }}
+      >
         ↓
       </span>
     </a>

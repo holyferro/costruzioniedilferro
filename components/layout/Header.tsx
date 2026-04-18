@@ -125,7 +125,7 @@ export function Header() {
                   strokeWidth={1}
                   className={`transition-opacity duration-200 ${
                     isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-                  } ${scrolled ? "text-brand" : "text-brand"}`}
+                  } ${scrolled ? "text-white" : "text-brand"}`}
                 />
               </Link>
             );
