@@ -45,6 +45,9 @@ yarn-error.log*
 # claude code worktrees
 .claude/worktrees/
 
+# design references (local only, not deployed)
+/_design/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

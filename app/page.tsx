@@ -7,6 +7,8 @@ import { siteContent } from "@/content/site";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { ServiceOverview } from "@/components/sections/ServiceOverview";
+import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
+import { Values } from "@/components/sections/Values";
 import { ServiceAreaSection } from "@/components/sections/ServiceAreaSection";
 import { HomepageCta } from "@/components/sections/HomepageCta";
 
@@ -19,15 +21,11 @@ export const metadata = buildMetadata({
 export default function Home() {
   return (
     <>
-      {/* Hero + TrustStrip occupano esattamente lo spazio visibile sotto l'header */}
-      <div
-        className="flex flex-col"
-        style={{ height: "calc(100svh - var(--header-height, 116px))" }}
-      >
-        <HeroSection {...homepageContent.hero} className="min-h-0 flex-1" />
-        <TrustStrip {...homepageContent.trustStrip} />
-      </div>
+      <HeroSection {...homepageContent.hero} />
+      <TrustStrip {...homepageContent.trustStrip} />
       <ServiceOverview {...homepageContent.services} />
+      <FeaturedProjects {...homepageContent.featuredProjects} />
+      <Values {...homepageContent.values} />
       <ServiceAreaSection {...homepageContent.serviceArea} />
       <HomepageCta {...homepageContent.finalCta} />
     </>

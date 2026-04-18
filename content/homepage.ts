@@ -3,16 +3,49 @@
 // Importato da app/page.tsx e passato come props alle sezioni.
 // Nessun import esterno — puro TypeScript, no JSX, no React.
 
-export type TrustMetric = {
+export type TrustRow = {
   readonly value: string;
-  readonly label: string;
+  readonly label: string; // frase in italic
+  readonly sub: string; // caption uppercase
 };
 
-export type ServiceCard = {
+export type ServiceItem = {
+  readonly n: string; // "01" / "02" / "03"
+  readonly kicker: string; // audience label es. "Privati"
   readonly title: string;
-  readonly description: string;
+  readonly body: string;
+  readonly imageSrc: string;
+  readonly imageAlt: string;
+  readonly tags: readonly string[];
+  readonly ctaLabel: string;
+  readonly ctaHref: string;
+};
+
+export type ProjectTile = {
+  readonly imageSrc: string;
+  readonly imageAlt: string;
+  readonly tag: string;
+  readonly title: string;
+  readonly place: string;
+  readonly year: string;
   readonly href: string;
-  readonly iconName: string; // nome icona Lucide — stringa, NON il componente
+};
+
+export type FeaturedProject = ProjectTile & {
+  readonly description: string;
+};
+
+export type Principle = {
+  readonly n: string;
+  readonly title: string;
+  readonly body: string;
+};
+
+export type Zone = {
+  readonly name: string;
+  readonly role: string;
+  readonly km: string;
+  readonly primary: boolean;
 };
 
 export type HomepageContent = {
@@ -26,23 +59,52 @@ export type HomepageContent = {
     readonly imageAlt: string;
   };
   readonly trustStrip: {
-    readonly metrics: readonly TrustMetric[];
+    readonly eyebrow: string;
+    readonly title: string;
+    readonly body: string;
+    readonly rows: readonly TrustRow[];
   };
   readonly services: {
-    readonly sectionTitle: string;
-    readonly sectionSubtitle: string;
-    readonly cards: readonly ServiceCard[];
+    readonly eyebrow: string;
+    readonly titleStart: string;
+    readonly titleAccent: string;
+    readonly titleEnd: string;
+    readonly body: string;
+    readonly indexLinkLabel: string;
+    readonly indexLinkHref: string;
+    readonly items: readonly ServiceItem[];
+  };
+  readonly featuredProjects: {
+    readonly eyebrow: string;
+    readonly titleStart: string;
+    readonly titleAccent: string;
+    readonly titleEnd: string;
+    readonly archiveLinkLabel: string;
+    readonly archiveLinkHref: string;
+    readonly feature: FeaturedProject;
+    readonly tiles: readonly ProjectTile[];
+  };
+  readonly values: {
+    readonly eyebrow: string;
+    readonly titleStart: string;
+    readonly titleAccent: string;
+    readonly titleEnd: string;
+    readonly body: string;
+    readonly principles: readonly Principle[];
   };
   readonly serviceArea: {
-    readonly sectionTitle: string;
+    readonly eyebrow: string;
+    readonly titleStart: string;
+    readonly titleAccent: string;
     readonly body: string;
-    readonly zones: readonly string[];
+    readonly zones: readonly Zone[];
   };
   readonly finalCta: {
+    readonly eyebrow: string;
     readonly headline: string;
     readonly body: string;
-    readonly ctaLabel: string;
-    readonly ctaHref: string;
+    readonly primaryCta: { readonly label: string; readonly href: string };
+    readonly secondaryCta: { readonly label: string; readonly href: string };
   };
 };
 
@@ -57,49 +119,178 @@ export const homepageContent: HomepageContent = {
     imageAlt: "Cantiere residenze universitarie Rovigo — Costruzioni Edilferro",
   },
   trustStrip: {
-    metrics: [
-      { value: "70+", label: "anni di esperienza" },
-      { value: "450+", label: "cantieri completati" },
-      { value: "35", label: "professionisti e maestranze" },
-      { value: "3", label: "province servite" },
+    eyebrow: "Affidabilità misurabile",
+    title: "Quattro numeri, oltre settant'anni di lavoro.",
+    body: "Dati verificabili, aggiornati al bilancio dell'ultimo esercizio. Nessuna stima di comodo.",
+    rows: [
+      {
+        value: "70+",
+        label: "anni di attività",
+        sub: "fondata nel 1952",
+      },
+      {
+        value: "450+",
+        label: "cantieri completati",
+        sub: "residenziale · pubblico · industriale",
+      },
+      {
+        value: "35",
+        label: "tra tecnici e maestranze",
+        sub: "squadra diretta, zero subappalti opachi",
+      },
+      {
+        value: "SOA",
+        label: "OG1 · OG2 · OG3",
+        sub: "qualificazione opere pubbliche",
+      },
     ],
   },
   services: {
-    sectionTitle: "Cosa realizziamo",
-    sectionSubtitle:
-      "Dal progetto alla consegna, un unico interlocutore per opere residenziali, industriali e di restauro.",
-    cards: [
+    eyebrow: "Cosa realizziamo",
+    titleStart: "Un'impresa edile, ",
+    titleAccent: "tre committenze",
+    titleEnd: " distinte.",
+    body: "Metodi, strumenti e referenti dedicati per chi costruisce una casa, per chi gestisce un patrimonio pubblico, per chi deve far lavorare un capannone domani mattina.",
+    indexLinkLabel: "Tutti i servizi",
+    indexLinkHref: "/servizi",
+    items: [
       {
-        title: "Residenziale",
-        description:
-          "Nuove costruzioni, ristrutturazioni di pregio e soluzioni chiavi in mano per privati.",
-        href: "/servizi#residenziale",
-        iconName: "Building2",
+        n: "01",
+        kicker: "Privati",
+        title: "Case che invecchiano bene.",
+        body: "Villette singole, palazzine e ville di pregio. Dalla nuova costruzione antisismica alla ristrutturazione chiavi in mano, con direzione lavori interna e un unico referente dal preventivo alla consegna.",
+        imageSrc: "/images/design/img-residenziale.jpg",
+        imageAlt: "Cantiere residenziale — villa di pregio",
+        tags: [
+          "Nuove costruzioni",
+          "Ristrutturazioni complete",
+          "Case passive NZEB",
+          "Chiavi in mano",
+        ],
+        ctaLabel: "Servizi per privati",
+        ctaHref: "/servizi#privati",
       },
       {
-        title: "Industriale e Commerciale",
-        description: "Capannoni, strutture commerciali e manutenzioni programmate per aziende.",
-        href: "/servizi#industriale",
-        iconName: "Factory",
+        n: "02",
+        kicker: "Settore Pubblico",
+        title: "Opere in cui la comunità investe.",
+        body: "Affianchiamo Comuni, ASL ed enti del territorio nella realizzazione di scuole, edifici sanitari e restauro conservativo. Attestazione SOA OG1–OG2–OG3, esperienza consolidata nei rapporti con Soprintendenze e stazioni appaltanti.",
+        imageSrc: "/images/design/img-pubblico.jpg",
+        imageAlt: "Cantiere pubblico — restauro istituzionale",
+        tags: ["Appalti SOA", "Restauro conservativo", "Scuole e ASL", "Direzione lavori"],
+        ctaLabel: "Opere pubbliche",
+        ctaHref: "/servizi#pubblico",
       },
       {
-        title: "Restauri e Opere Pubbliche",
-        description:
-          "Recupero edilizio, restauro conservativo e appalti pubblici con attestazione SOA.",
-        href: "/servizi#restauri",
-        iconName: "Landmark",
+        n: "03",
+        kicker: "Aziende & Professionisti",
+        title: "Spazi che lavorano con te.",
+        body: "Capannoni industriali, sedi direzionali, strutture commerciali. Tempistiche contrattuali, manutenzione programmata e cantieri che non fermano la tua attività. Collaboriamo con studi di architettura e ingegneria come impresa generale di fiducia.",
+        imageSrc: "/images/design/img-industriale.jpg",
+        imageAlt: "Cantiere industriale — capannone produttivo",
+        tags: ["Capannoni", "Sedi direzionali", "General contractor", "Manutenzione programmata"],
+        ctaLabel: "Soluzioni per aziende",
+        ctaHref: "/servizi#professionisti",
+      },
+    ],
+  },
+  featuredProjects: {
+    eyebrow: "Selezione lavori",
+    titleStart: "Cantieri recenti ",
+    titleAccent: "dal Polesine",
+    titleEnd: " al resto del Veneto.",
+    archiveLinkLabel: "Archivio progetti",
+    archiveLinkHref: "/progetti",
+    feature: {
+      imageSrc: "/images/design/proj-corti.jpg",
+      imageAlt: "Residenze Le Corti — Rovigo",
+      tag: "Residenziale",
+      title: "Residenze Le Corti",
+      place: "Rovigo",
+      year: "2024",
+      href: "/progetti",
+      description:
+        "18 unità residenziali in classe A. Progettazione antisismica, cappotto in fibra di legno, domotica di serie. Cantiere concluso con tre settimane di anticipo sul cronoprogramma.",
+    },
+    tiles: [
+      {
+        imageSrc: "/images/design/proj-villaregia.jpg",
+        imageAlt: "Abbazia di Villaregia — restauro conservativo",
+        tag: "Restauro",
+        title: "Abbazia di Villaregia",
+        place: "Porto Viro",
+        year: "2023",
+        href: "/progetti",
+      },
+      {
+        imageSrc: "/images/design/proj-passiva.jpg",
+        imageAlt: "Casa passiva privata — Adria",
+        tag: "Residenziale",
+        title: "Casa passiva privata",
+        place: "Adria",
+        year: "2024",
+        href: "/progetti",
+      },
+      {
+        imageSrc: "/images/design/proj-casa-cura.jpg",
+        imageAlt: "Ampliamento casa di cura — Rovigo",
+        tag: "Opere pubbliche",
+        title: "Ampliamento casa di cura",
+        place: "Rovigo",
+        year: "2022",
+        href: "/progetti",
+      },
+    ],
+  },
+  values: {
+    eyebrow: "Perché sceglierci",
+    titleStart: "Quattro promesse ",
+    titleAccent: "che manteniamo",
+    titleEnd: " da cantiere a cantiere.",
+    body: "Non le chiamiamo valori. Sono il modo in cui lavoriamo da settant'anni, e il motivo per cui i nostri clienti tornano.",
+    principles: [
+      {
+        n: "01",
+        title: "Un unico interlocutore, dal preventivo al collaudo.",
+        body: "Il direttore di cantiere che incontri al sopralluogo è lo stesso che firma la consegna. Niente passaggi di mano, niente catena di subappalti da rincorrere.",
+      },
+      {
+        n: "02",
+        title: "Preventivi chiusi, senza varianti a sorpresa.",
+        body: "Lavoriamo a corpo. Il prezzo pattuito è il prezzo finale, salvo modifiche esplicitamente richieste dal committente e sempre preventivate per iscritto.",
+      },
+      {
+        n: "03",
+        title: "Maestranze dirette, non agenzie interinali.",
+        body: "Trentacinque persone in organico, contratti Cassa Edile. La qualità di una finitura dipende da chi la posa: per questo non esternalizziamo il mestiere.",
+      },
+      {
+        n: "04",
+        title: "Cantieri puliti, consegne puntuali.",
+        body: "Sicurezza sul lavoro certificata ISO 45001, piani operativi aggiornati settimanalmente. Nel 2024 il 96% dei nostri cantieri è stato consegnato entro la data contrattuale.",
       },
     ],
   },
   serviceArea: {
-    sectionTitle: "Dove operiamo",
-    body: "Costruzioni Edilferro opera principalmente nel Polesine e in tutto il Veneto, con cantieri attivi a Porto Viro, Rovigo e nei comuni limitrofi. Serviamo privati, enti pubblici e professionisti in un raggio esteso alle province di Ferrara e Padova per commesse di particolare dimensione.",
-    zones: ["Porto Viro", "Rovigo", "Polesine", "Veneto", "Ferrara", "Padova"],
+    eyebrow: "Dove operiamo",
+    titleStart: "Radicati nel Polesine, ",
+    titleAccent: "presenti in tutto il Veneto.",
+    body: "Sede storica nel cuore del Polesine, una rete di fornitori consolidati e squadre pronte a intervenire in giornata sui cantieri continuativi. Per commesse di rilievo raggiungiamo Padova, Ferrara e Venezia.",
+    zones: [
+      { name: "Porto Viro", role: "Sede operativa", km: "0 km", primary: true },
+      { name: "Rovigo", role: "Cantieri continuativi", km: "28 km", primary: true },
+      { name: "Adria", role: "Cantieri continuativi", km: "18 km", primary: true },
+      { name: "Chioggia", role: "Cantieri continuativi", km: "35 km", primary: true },
+      { name: "Padova", role: "Commesse selezionate", km: "62 km", primary: false },
+      { name: "Ferrara", role: "Commesse selezionate", km: "54 km", primary: false },
+      { name: "Venezia", role: "Commesse selezionate", km: "75 km", primary: false },
+    ],
   },
   finalCta: {
-    headline: "Affida il tuo progetto a un partner solido e qualificato.",
-    body: "Dalla nuova costruzione al recupero di immobili complessi, Costruzioni Edilferro affianca privati, aziende ed enti con un approccio strutturato, trasparente e orientato al risultato.",
-    ctaLabel: "Richiedi un preventivo",
-    ctaHref: "/contatti",
+    eyebrow: "Iniziamo a parlarne",
+    headline: "Ogni progetto comincia con un sopralluogo in cantiere.",
+    body: "Raccontaci l'opera. Veniamo sul posto, valutiamo fattibilità e tempi, e prepariamo un'offerta dettagliata entro dieci giorni lavorativi. Nessun costo, nessun impegno.",
+    primaryCta: { label: "Richiedi un sopralluogo", href: "/contatti" },
+    secondaryCta: { label: "Richiedi un preventivo", href: "/contatti" },
   },
 } as const;

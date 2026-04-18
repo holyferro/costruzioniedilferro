@@ -88,7 +88,8 @@
       "Bash(awk '{x=int\\($1\\)} x>=380 && x<=700 {print x}')",
       "Bash(awk '{x=int\\($1+0.5\\)} x>=350 && x<=560 {print x}')",
       "Bash(awk '{x=$1+0} x<450 {if\\(x>max_icon\\) max_icon=x} x>450 {if\\(x<min_text || min_text==0\\) min_text=x} END {print \"max_icon_x:\", max_icon, \"| min_text_x:\", min_text}')",
-      "Skill(gsd-quick)"
+      "Skill(gsd-quick)",
+      "WebFetch(domain:api.anthropic.com)"
     ]
   }
 }
