@@ -7,7 +7,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Route } from "next";
-import type { ServicesTarget, SoaBadge } from "@/content/services";
+import type { ServicesTarget, SoaBadge, ServiceCard } from "@/content/services";
 
 type ServicesEditorialRowProps = {
   id: string; // "privati" | "pubblico" | "professionisti" — anchor target
@@ -50,6 +50,10 @@ export function ServicesEditorialRow({ id, variant, item, reverse }: ServicesEdi
 
             {item.soaBadges && item.soaBadges.length > 0 ? (
               <SoaBadgeGrid badges={item.soaBadges} surface={variant} />
+            ) : null}
+
+            {item.serviceCards && item.serviceCards.length > 0 ? (
+              <ServiceCardGrid cards={item.serviceCards} surface={variant} />
             ) : null}
 
             <Link
@@ -119,6 +123,29 @@ function SoaBadgeGrid({
           </p>
           <p className="text-ink mt-1 font-serif text-lg font-medium md:text-xl">{badge.name}</p>
           <p className="text-ink/70 mt-1 text-sm leading-[1.55]">{badge.description}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ServiceCardGrid({
+  cards,
+  surface,
+}: {
+  cards: readonly ServiceCard[];
+  surface: "panna" | "white";
+}) {
+  const cardSurface = surface === "panna" ? "bg-white" : "bg-panna";
+  return (
+    <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+      {cards.map((card) => (
+        <div
+          key={card.title}
+          className={`${cardSurface} border-border rounded-lg border px-5 py-4 md:px-6 md:py-5`}
+        >
+          <p className="text-ink font-serif text-lg font-medium md:text-xl">{card.title}</p>
+          <p className="text-ink/70 mt-1 text-sm leading-[1.55]">{card.description}</p>
         </div>
       ))}
     </div>

@@ -9,6 +9,11 @@ export type SoaBadge = {
   readonly description: string; // 1-2 righe in italiano leggibile
 };
 
+export type ServiceCard = {
+  readonly title: string;
+  readonly description: string;
+};
+
 export type ServicesTarget = {
   readonly id: string; // "privati" | "pubblico" | "professionisti"
   readonly n: string; // "01" | "02" | "03"
@@ -21,6 +26,7 @@ export type ServicesTarget = {
   readonly ctaLabel: string;
   readonly ctaHref: string;
   readonly soaBadges?: readonly SoaBadge[]; // SOLO per target "pubblico"
+  readonly serviceCards?: readonly ServiceCard[];
 };
 
 export type ProcessStep = {
@@ -84,6 +90,28 @@ export const servicesContent: ServicesContent = {
         ],
         ctaLabel: "Scopri i servizi",
         ctaHref: "/contatti",
+        serviceCards: [
+          {
+            title: "Nuove costruzioni antisismiche",
+            description:
+              "Edifici residenziali conformi alle norme NTC 2018. Struttura in c.a. o acciaio certificata, dal progetto esecutivo alla consegna.",
+          },
+          {
+            title: "Ristrutturazioni di pregio",
+            description:
+              "Interventi completi sull'esistente: consolidamento strutturale, rifacimento impiantistico, rifinitura su misura.",
+          },
+          {
+            title: "Efficienza energetica NZEB",
+            description:
+              "Case passive e nZEB con cappotto termico, serramenti ad alta prestazione e impianti a basse emissioni.",
+          },
+          {
+            title: "Direzione lavori interna",
+            description:
+              "Un unico referente tecnico dall'apertura cantiere alla consegna chiavi. Nessuna catena di subappalti non coordinata.",
+          },
+        ],
       },
       // ---- ENTI PUBBLICI (id: "pubblico") ----
       {
@@ -140,6 +168,28 @@ export const servicesContent: ServicesContent = {
         ],
         ctaLabel: "Scopri i servizi",
         ctaHref: "/contatti",
+        serviceCards: [
+          {
+            title: "General contractor",
+            description:
+              "Gestiamo l'intera filiera: progettazione esecutiva, subappaltatori specializzati, rendicontazione a corpo e cronoprogramma vincolante.",
+          },
+          {
+            title: "Strutture industriali e commerciali",
+            description:
+              "Capannoni prefabbricati e in c.a., sedi direzionali, showroom e strutture ricettive fino a grande scala.",
+          },
+          {
+            title: "Manutenzione programmata",
+            description:
+              "Contratti di manutenzione ordinaria e straordinaria con intervento pianificato, reportistica e tempi garantiti.",
+          },
+          {
+            title: "Collaborazione con studi tecnici",
+            description:
+              "Affiancamento a studi di architettura e ingegneria come partner realizzativo di fiducia per la fase di cantiere.",
+          },
+        ],
       },
     ],
   },
