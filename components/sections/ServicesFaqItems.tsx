@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Plus, Minus } from "lucide-react";
 import type { FaqItem } from "@/content/services";
 
 export function ServicesFaqItems({ items }: { items: readonly FaqItem[] }) {
@@ -37,11 +38,15 @@ export function ServicesFaqItems({ items }: { items: readonly FaqItem[] }) {
                 </span>
                 <span
                   aria-hidden="true"
-                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xl leading-none font-light transition-colors duration-200 ${
+                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-200 ${
                     isOpen ? "bg-ink/10 text-ink" : "text-ink"
                   }`}
                 >
-                  {isOpen ? "−" : "+"}
+                  {isOpen ? (
+                    <Minus size={18} strokeWidth={1.5} />
+                  ) : (
+                    <Plus size={18} strokeWidth={1.5} />
+                  )}
                 </span>
               </button>
             </dt>
