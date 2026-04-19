@@ -77,8 +77,13 @@ Decimal phases appear between their surrounding integers in numeric order.
 2. La sezione Enti Pubblici nomina esplicitamente le categorie SOA possedute dall'impresa
 3. Tutti e quattro i servizi principali (nuove costruzioni, ristrutturazioni di pregio, opere pubbliche, urbanizzazioni) hanno una sezione dedicata con descrizione
 4. La pagina termina con la CTA "Richiedi un sopralluogo" visibile senza doversi ricordare di tornare all'header
-   **Plans**: TBD
-   **UI hint**: yes
+   **Plans**: 3 piani
+   Plans:
+
+- [ ] 03-01-PLAN.md — Content module: content/services.ts (hero, 3 target con SOA badges OG1/OG2/OG3, processo 4 step, finalCta)
+- [ ] 03-02-PLAN.md — Sezioni RSC: ServicesHero, TargetIndex, ServicesEditorialRow (con SOA badges slot), HowWeWork
+- [ ] 03-03-PLAN.md — Orchestratore /servizi (app/servizi/page.tsx) + checkpoint verifica umana visiva
+      **UI hint**: yes
 
 ### Phase 4: Portfolio
 
@@ -154,7 +159,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | --------------- | -------------- | ----------- | --------- |
 | 1. Fondamenta   | 0/TBD          | Not started | -         |
 | 2. Homepage     | 0/2            | Planned     | -         |
-| 3. Servizi      | 0/TBD          | Not started | -         |
+| 3. Servizi      | 0/3            | Planned     | -         |
 | 4. Portfolio    | 0/TBD          | Not started | -         |
 | 5. Chi Siamo    | 0/TBD          | Not started | -         |
 | 6. Contatti     | 0/TBD          | Not started | -         |
