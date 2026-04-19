@@ -4,21 +4,16 @@ import { useState } from "react";
 import type { FaqItem } from "@/content/services";
 
 export function ServicesFaqItems({ items }: { items: readonly FaqItem[] }) {
-  const [openSet, setOpenSet] = useState<ReadonlySet<number>>(new Set());
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   function toggle(i: number) {
-    setOpenSet((prev) => {
-      const next = new Set(prev);
-      if (next.has(i)) next.delete(i);
-      else next.add(i);
-      return next;
-    });
+    setOpenIndex((prev) => (prev === i ? null : i));
   }
 
   return (
     <dl className="m-0 list-none p-0">
       {items.map((item, i) => {
-        const isOpen = openSet.has(i);
+        const isOpen = openIndex === i;
         return (
           <div
             key={item.q}
