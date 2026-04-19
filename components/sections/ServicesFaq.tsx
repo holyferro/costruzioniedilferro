@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { FaqItem } from "@/content/services";
 import { ServicesFaqItems } from "@/components/sections/ServicesFaqItems";
 
@@ -28,7 +29,19 @@ export function ServicesFaq({
           </h2>
         </div>
 
-        <ServicesFaqItems items={items} />
+        <div>
+          <ServicesFaqItems items={items} />
+          <p className="text-ink/50 mt-8 text-sm leading-relaxed">
+            Non hai trovato la risposta che cercavi?{" "}
+            <Link
+              href="/contatti"
+              className="text-ink/70 hover:text-brand underline underline-offset-2 transition-colors duration-150"
+            >
+              Contattaci
+            </Link>{" "}
+            — siamo disponibili a chiarire ogni dubbio.
+          </p>
+        </div>
       </div>
     </section>
   );
