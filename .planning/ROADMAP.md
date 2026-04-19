@@ -80,8 +80,8 @@ Decimal phases appear between their surrounding integers in numeric order.
    **Plans**: 3 piani
    Plans:
 
-- [ ] 03-01-PLAN.md — Content module: content/services.ts (hero, 3 target con SOA badges OG1/OG2/OG3, processo 4 step, finalCta)
-- [ ] 03-02-PLAN.md — Sezioni RSC: ServicesHero, TargetIndex, ServicesEditorialRow (con SOA badges slot), HowWeWork
+- [x] 03-01-PLAN.md — Content module: content/services.ts (hero, 3 target con SOA badges OG1/OG2/OG3, processo 4 step, finalCta)
+- [x] 03-02-PLAN.md — Sezioni RSC: ServicesHero, TargetIndex, ServicesEditorialRow (con SOA badges slot), HowWeWork
 - [ ] 03-03-PLAN.md — Orchestratore /servizi (app/servizi/page.tsx) + checkpoint verifica umana visiva
       **UI hint**: yes
 
