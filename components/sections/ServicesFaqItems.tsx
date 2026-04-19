@@ -37,18 +37,35 @@ export function ServicesFaqItems({ items }: { items: readonly FaqItem[] }) {
                 </span>
                 <span
                   aria-hidden="true"
-                  className={`relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors duration-300 ${
+                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors duration-300 ${
                     isOpen ? "bg-ink/[0.07] text-ink" : "text-ink"
                   }`}
                 >
-                  {/* horizontal bar — always visible */}
-                  <span className="absolute h-[2px] w-[20px] rounded-full bg-current" />
-                  {/* vertical bar — collapses when open */}
-                  <span
-                    className={`absolute h-[20px] w-[2px] rounded-full bg-current transition-transform duration-500 ease-in-out ${
-                      isOpen ? "scale-y-0" : "scale-y-100"
-                    }`}
-                  />
+                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+                    <line
+                      x1="2"
+                      y1="7.5"
+                      x2="13"
+                      y2="7.5"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                    />
+                    <line
+                      x1="7.5"
+                      y1="2"
+                      x2="7.5"
+                      y2="13"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      style={{
+                        transformOrigin: "7.5px 7.5px",
+                        transform: isOpen ? "scaleY(0)" : "scaleY(1)",
+                        transition: "transform 500ms ease-in-out",
+                      }}
+                    />
+                  </svg>
                 </span>
               </button>
             </dt>
