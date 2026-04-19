@@ -37,9 +37,11 @@ export function ServicesFaqItems({ items }: { items: readonly FaqItem[] }) {
                 </span>
                 <span
                   aria-hidden="true"
-                  className={`shrink-0 text-sm font-medium transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}
+                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xl leading-none font-light transition-colors duration-200 ${
+                    isOpen ? "bg-ink/10 text-ink" : "text-ink"
+                  }`}
                 >
-                  +
+                  {isOpen ? "−" : "+"}
                 </span>
               </button>
             </dt>
