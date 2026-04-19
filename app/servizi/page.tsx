@@ -8,6 +8,7 @@ import { ServicesHero } from "@/components/sections/ServicesHero";
 import { TargetIndex } from "@/components/sections/TargetIndex";
 import { ServicesEditorialRow } from "@/components/sections/ServicesEditorialRow";
 import { HowWeWork } from "@/components/sections/HowWeWork";
+import { ServicesFaq } from "@/components/sections/ServicesFaq";
 import { HomepageCta } from "@/components/sections/HomepageCta";
 
 export const metadata = buildMetadata({
@@ -18,7 +19,7 @@ export const metadata = buildMetadata({
 });
 
 export default function ServiziPage() {
-  const { hero, targetIndex, howWeWork, finalCta } = servicesContent;
+  const { hero, targetIndex, howWeWork, faq, finalCta } = servicesContent;
   return (
     <>
       <ServicesHero {...hero} />
@@ -33,6 +34,7 @@ export default function ServiziPage() {
         />
       ))}
       <HowWeWork {...howWeWork} />
+      <ServicesFaq {...faq} />
       <HomepageCta {...finalCta} />
     </>
   );

@@ -36,6 +36,11 @@ export type ProcessStep = {
   readonly description: string;
 };
 
+export type FaqItem = {
+  readonly q: string;
+  readonly a: string;
+};
+
 export type ServicesContent = {
   readonly hero: {
     readonly eyebrow: string;
@@ -53,6 +58,13 @@ export type ServicesContent = {
     readonly titleAccent: string;
     readonly titleEnd: string;
     readonly steps: readonly ProcessStep[];
+  };
+  readonly faq: {
+    readonly eyebrow: string;
+    readonly titleStart: string;
+    readonly titleAccent: string;
+    readonly titleEnd: string;
+    readonly items: readonly FaqItem[];
   };
   readonly finalCta: {
     readonly eyebrow: string;
@@ -271,6 +283,38 @@ export const servicesContent: ServicesContent = {
         title: "Consegna",
         description:
           "Collaudo, documentazione tecnica, garanzie e supporto post-consegna sul lavoro eseguito.",
+      },
+    ],
+  },
+  faq: {
+    eyebrow: "DOMANDE FREQUENTI",
+    titleStart: "Risposte ",
+    titleAccent: "chiare",
+    titleEnd: " ai tuoi dubbi.",
+    items: [
+      {
+        q: "Quanto tempo passa dal primo contatto all'inizio del cantiere?",
+        a: "Dopo il sopralluogo elaboriamo il preventivo entro 10 giorni lavorativi. Una volta accettato, i tempi di avvio dipendono dalle pratiche edilizie necessarie: per interventi in manutenzione ordinaria si può partire in 2–4 settimane, per nuove costruzioni con permesso di costruire si calcolano 60–90 giorni per l'iter autorizzativo.",
+      },
+      {
+        q: "Operate solo nel Polesine o anche in altre province del Veneto?",
+        a: "Operiamo principalmente nel Polesine (Rovigo e provincia) e nelle aree limitrofe del Veneto. Per opere pubbliche e commesse di importo rilevante siamo disponibili su tutto il territorio regionale. Contattaci per valutare insieme la fattibilità logistica del tuo progetto.",
+      },
+      {
+        q: "Rilasciate garanzie sui lavori eseguiti?",
+        a: "Sì. Emettiamo garanzia post-consegna su tutti i lavori eseguiti direttamente dalle nostre maestranze. Per le nuove costruzioni la garanzia decennale è obbligatoria per legge (art. 1669 c.c.) e copre vizi strutturali. Per ristrutturazioni e interventi di manutenzione applichiamo una garanzia contrattuale specifica, concordata caso per caso.",
+      },
+      {
+        q: "Come si struttura il preventivo? Lavorate a misura o a corpo?",
+        a: "Lavoriamo preferibilmente a corpo con computo metrico dettagliato allegato al contratto: il prezzo concordato è fisso e non varia al variare delle quantità. Questo elimina le sorprese a fine lavori. Su richiesta è possibile strutturare il contratto a misura per interventi particolarmente complessi o con variabili difficilmente prevedibili in fase progettuale.",
+      },
+      {
+        q: "Gestite anche le pratiche edilizie e i rapporti con il Comune?",
+        a: "Sì, ci occupiamo della gestione delle pratiche CILA, SCIA e permessi di costruire attraverso i nostri tecnici di fiducia. Coordiniamo i rapporti con il Comune, la Soprintendenza (per interventi su edifici vincolati) e gli altri enti coinvolti. Il committente ha un unico interlocutore per tutto l'iter.",
+      },
+      {
+        q: "Cosa significa avere l'attestazione SOA e perché è importante?",
+        a: "L'attestazione SOA (Società Organismo di Attestazione) certifica che un'impresa edile ha i requisiti tecnici, economici e organizzativi per eseguire lavori pubblici. Le nostre qualifiche OG1 (edifici civili), OG2 (restauro beni tutelati) e OG3 (strade e urbanizzazioni) ci abilitano a partecipare a gare d'appalto pubbliche. Per i privati è un segnale di solidità: attestano che l'impresa è stata verificata da un organismo terzo accreditato.",
       },
     ],
   },
