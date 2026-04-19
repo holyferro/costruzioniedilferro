@@ -32,7 +32,7 @@ export function ServicesFaqItems({ items }: { items: readonly FaqItem[] }) {
                 </span>
                 <span
                   aria-hidden="true"
-                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors duration-300 ${
+                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors duration-[600ms] ${
                     isOpen ? "bg-ink/[0.07] text-ink" : "text-ink"
                   }`}
                 >
@@ -57,7 +57,7 @@ export function ServicesFaqItems({ items }: { items: readonly FaqItem[] }) {
                       style={{
                         transformOrigin: "7.5px 7.5px",
                         transform: isOpen ? "scaleY(0)" : "scaleY(1)",
-                        transition: "transform 500ms ease-in-out",
+                        transition: "transform 1000ms ease-in-out",
                       }}
                     />
                   </svg>
@@ -65,7 +65,7 @@ export function ServicesFaqItems({ items }: { items: readonly FaqItem[] }) {
               </button>
             </dt>
             <dd
-              className={`m-0 grid transition-[grid-template-rows] duration-300 ease-in-out ${
+              className={`m-0 grid transition-[grid-template-rows] duration-[600ms] ease-in-out ${
                 isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
               }`}
             >
