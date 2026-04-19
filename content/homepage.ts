@@ -159,7 +159,7 @@ export const homepageContent: HomepageContent = {
         kicker: "Privati",
         title: "Case che invecchiano bene.",
         body: "Villette singole, palazzine e ville di pregio. Dalla nuova costruzione antisismica alla ristrutturazione chiavi in mano, con direzione lavori interna e un unico referente dal preventivo alla consegna.",
-        imageSrc: "/images/design/img-residenziale.jpg",
+        imageSrc: "/images/design/img-residenziale.webp",
         imageAlt: "Cantiere residenziale — villa di pregio",
         tags: [
           "Nuove costruzioni",
@@ -175,7 +175,7 @@ export const homepageContent: HomepageContent = {
         kicker: "Settore Pubblico",
         title: "Opere in cui la comunità investe.",
         body: "Affianchiamo Comuni, ASL ed enti del territorio nella realizzazione di scuole, edifici sanitari e restauro conservativo. Attestazione SOA OG1–OG2–OG3, esperienza consolidata nei rapporti con Soprintendenze e stazioni appaltanti.",
-        imageSrc: "/images/design/img-pubblico.jpg",
+        imageSrc: "/images/design/img-pubblico.webp",
         imageAlt: "Cantiere pubblico — restauro istituzionale",
         tags: ["Appalti SOA", "Restauro conservativo", "Scuole e ASL", "Direzione lavori"],
         ctaLabel: "Opere pubbliche",
@@ -186,7 +186,7 @@ export const homepageContent: HomepageContent = {
         kicker: "Aziende & Professionisti",
         title: "Spazi che lavorano con te.",
         body: "Capannoni industriali, sedi direzionali, strutture commerciali. Tempistiche contrattuali, manutenzione programmata e cantieri che non fermano la tua attività. Collaboriamo con studi di architettura e ingegneria come impresa generale di fiducia.",
-        imageSrc: "/images/design/img-industriale.jpg",
+        imageSrc: "/images/design/img-industriale.webp",
         imageAlt: "Cantiere industriale — capannone produttivo",
         tags: ["Capannoni", "Sedi direzionali", "General contractor", "Manutenzione programmata"],
         ctaLabel: "Soluzioni per aziende",
@@ -202,7 +202,7 @@ export const homepageContent: HomepageContent = {
     archiveLinkLabel: "Archivio progetti",
     archiveLinkHref: "/progetti",
     feature: {
-      imageSrc: "/images/design/proj-corti.jpg",
+      imageSrc: "/images/design/proj-corti.webp",
       imageAlt: "Residenze Le Corti — Rovigo",
       tag: "Residenziale",
       title: "Residenze Le Corti",
@@ -214,7 +214,7 @@ export const homepageContent: HomepageContent = {
     },
     tiles: [
       {
-        imageSrc: "/images/design/proj-villaregia.jpg",
+        imageSrc: "/images/design/proj-villaregia.webp",
         imageAlt: "Abbazia di Villaregia — restauro conservativo",
         tag: "Restauro",
         title: "Abbazia di Villaregia",
@@ -223,7 +223,7 @@ export const homepageContent: HomepageContent = {
         href: "/progetti",
       },
       {
-        imageSrc: "/images/design/proj-passiva.jpg",
+        imageSrc: "/images/design/proj-passiva.webp",
         imageAlt: "Casa passiva privata — Adria",
         tag: "Residenziale",
         title: "Casa passiva privata",
@@ -232,7 +232,7 @@ export const homepageContent: HomepageContent = {
         href: "/progetti",
       },
       {
-        imageSrc: "/images/design/proj-casa-cura.jpg",
+        imageSrc: "/images/design/proj-casa-cura.webp",
         imageAlt: "Ampliamento casa di cura — Rovigo",
         tag: "Opere pubbliche",
         title: "Ampliamento casa di cura",

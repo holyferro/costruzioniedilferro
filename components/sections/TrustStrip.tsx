@@ -21,7 +21,7 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
       <div className="mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-[1fr_2fr] md:gap-16 md:px-12">
         <div className="md:sticky md:top-[calc(var(--header-height)+24px)] md:self-start">
           <Eyebrow>{eyebrow}</Eyebrow>
-          <h2 className="text-h2 text-ink mt-5 max-w-[15ch] font-serif font-medium tracking-tight">
+          <h2 className="text-ink mt-5 max-w-[15ch] font-serif text-[clamp(2rem,1rem+2.6vw,3.4rem)] leading-[1.12] font-medium tracking-tight">
             {title}
           </h2>
           <p className="text-ink/70 mt-6 max-w-[34ch] text-[15px] leading-[1.65]">{body}</p>
