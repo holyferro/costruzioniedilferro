@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, Minus } from "lucide-react";
 import type { FaqItem } from "@/content/services";
 
 export function ServicesFaqItems({ items }: { items: readonly FaqItem[] }) {
@@ -38,15 +37,18 @@ export function ServicesFaqItems({ items }: { items: readonly FaqItem[] }) {
                 </span>
                 <span
                   aria-hidden="true"
-                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-200 ${
+                  className={`relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-300 ${
                     isOpen ? "bg-ink/10 text-ink" : "text-ink"
                   }`}
                 >
-                  {isOpen ? (
-                    <Minus size={18} strokeWidth={1.5} />
-                  ) : (
-                    <Plus size={18} strokeWidth={1.5} />
-                  )}
+                  {/* horizontal bar — always visible */}
+                  <span className="absolute h-[1.5px] w-[18px] rounded-full bg-current" />
+                  {/* vertical bar — collapses to nothing when open */}
+                  <span
+                    className={`absolute h-[18px] w-[1.5px] rounded-full bg-current transition-transform duration-500 ease-in-out ${
+                      isOpen ? "scale-y-0" : "scale-y-100"
+                    }`}
+                  />
                 </span>
               </button>
             </dt>
