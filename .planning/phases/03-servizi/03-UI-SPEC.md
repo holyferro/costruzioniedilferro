@@ -1,7 +1,7 @@
 ---
 phase: 3
 slug: servizi
-status: draft
+status: approved
 shadcn_initialized: false
 preset: none
 created: 2026-04-19
@@ -63,23 +63,23 @@ Declared values (all existing Tailwind multiples of 4 — Phase 3 MUST reuse the
 
 - Container: `mx-auto max-w-6xl px-6 md:px-12` — identical to every Phase 2 section
 
-**Exceptions:** none. The existing Tailwind scale (values above) covers every Phase 3 need.
+**Exceptions:** `px-3.5 py-1.5` (14px / 6px) — inherited from Phase 2 `ServiceOverview` bullet-pill pattern. Not introduced in Phase 3; changing these values requires a cross-phase consistency patch. All other Phase 3 spacing is strictly on the 4-multiple scale above.
 
 ---
 
 ## Typography
 
-| Role                         | Size                                                       | Font           | Weight                | Line Height             | Usage                                                                                                                            |
-| ---------------------------- | ---------------------------------------------------------- | -------------- | --------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| Body                         | 17px base (`--text-base` via `font-size: 17px` root)       | Inter          | 400                   | 1.65 (`leading-[1.65]`) | Long-form body copy in target sections (`text-ink/80`, `max-w-[56ch]`)                                                           |
-| Body secondary               | 17–18px (`text-base` / `text-lg`)                          | Inter          | 400                   | 1.5 (`leading-relaxed`) | Hero subtitle, target-card subtitle                                                                                              |
-| Label / Eyebrow              | 12px (`text-xs`)                                           | Inter          | 600 (`font-semibold`) | 1.0                     | Category eyebrow above each H2 (`tracking-[0.38em] uppercase`) — matches `Eyebrow` pattern in ServiceOverview / FeaturedProjects |
-| Kicker (section meta)        | 11px (`text-[11px]`)                                       | Inter          | 600 (`font-semibold`) | 1.0                     | "— 01" / "PRIVATI" row inside editorial section (`tracking-[0.22em] uppercase`)                                                  |
-| Tag / Bullet pill            | 12px (`text-xs`)                                           | Inter          | 400                   | 1.0                     | Service bullet pills in each target section (`rounded-full border px-3.5 py-1.5`)                                                |
-| CTA label                    | 15px (`text-[15px]`) / 12px (`text-xs` on secondary links) | Neue Montreal  | 500 (`font-medium`)   | 1.0                     | Target-card CTA, final-CTA buttons (`tracking-[0.04em] uppercase` primary, `tracking-[0.08em] uppercase` link)                   |
-| H3 (step / sub-section)      | clamp(1.3rem, 0.6rem + 1vw, 1.65rem) → ~21–26px            | IBM Plex Serif | 500 (`font-medium`)   | 1.25                    | "Come lavoriamo" step title, sub-heading inside target card                                                                      |
-| H2 (editorial section title) | clamp(1.75rem, 0.8rem + 2vw, 2.6rem) → ~28–42px            | IBM Plex Serif | 500                   | 1.15                    | Titolo di ciascuna sezione target (Privati / Enti Pubblici / Professionisti) — matches ServiceRow H3 style from Phase 2          |
-| H1 (page hero)               | clamp(2.25rem, 1.5rem + 3.2vw, 4rem) → 36–64px             | IBM Plex Serif | 500 (`font-medium`)   | 1.1 (`text-h1` token)   | Titolo hero pagina — ONE per page                                                                                                |
+| Role                         | Size                                                       | Font           | Weight                | Line Height             | Usage                                                                                                                                                            |
+| ---------------------------- | ---------------------------------------------------------- | -------------- | --------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Body                         | 17px base (`--text-base` via `font-size: 17px` root)       | Inter          | 400                   | 1.65 (`leading-[1.65]`) | Long-form body copy in target sections (`text-ink/80`, `max-w-[56ch]`)                                                                                           |
+| Body secondary               | 17px (`text-base`)                                         | Inter          | 400                   | 1.5 (`leading-relaxed`) | Hero subtitle, target-card subtitle (exception: hero subtitle may use `text-lg` 18px if optical bump needed — must be documented in content/services.ts comment) |
+| Label / Eyebrow              | 12px (`text-xs`)                                           | Inter          | 600 (`font-semibold`) | 1.0                     | Category eyebrow above each H2 (`tracking-[0.38em] uppercase`) — matches `Eyebrow` pattern in ServiceOverview / FeaturedProjects                                 |
+| Kicker (section meta)        | 11px (`text-[11px]`)                                       | Inter          | 600 (`font-semibold`) | 1.0                     | "— 01" / "PRIVATI" row inside editorial section (`tracking-[0.22em] uppercase`)                                                                                  |
+| Tag / Bullet pill            | 12px (`text-xs`)                                           | Inter          | 400                   | 1.0                     | Service bullet pills in each target section (`rounded-full border px-3.5 py-1.5`)                                                                                |
+| CTA label                    | 15px (`text-[15px]`) / 12px (`text-xs` on secondary links) | Neue Montreal  | 500 (`font-medium`)   | 1.0                     | Target-card CTA, final-CTA buttons (`tracking-[0.04em] uppercase` primary, `tracking-[0.08em] uppercase` link)                                                   |
+| H3 (step / sub-section)      | clamp(1.3rem, 0.6rem + 1vw, 1.65rem) → ~21–26px            | IBM Plex Serif | 500 (`font-medium`)   | 1.25                    | "Come lavoriamo" step title, sub-heading inside target card                                                                                                      |
+| H2 (editorial section title) | clamp(1.75rem, 0.8rem + 2vw, 2.6rem) → ~28–42px            | IBM Plex Serif | 500                   | 1.15                    | Titolo di ciascuna sezione target (Privati / Enti Pubblici / Professionisti) — matches ServiceRow H3 style from Phase 2                                          |
+| H1 (page hero)               | clamp(2.25rem, 1.5rem + 3.2vw, 4rem) → 36–64px             | IBM Plex Serif | 500 (`font-medium`)   | 1.1 (`text-h1` token)   | Titolo hero pagina — ONE per page                                                                                                                                |
 
 **Rules:**
 
@@ -88,6 +88,7 @@ Declared values (all existing Tailwind multiples of 4 — Phase 3 MUST reuse the
 - Neue Montreal (`font-[family-name:var(--font-neue-montreal)]`) is used only on CTA labels, index links, and uppercase micro-copy (kicker + eyebrow secondary) — identical to Phase 2 pattern.
 - No italic on body. Italic is a display-only emphasis on H2 accent words (`<em className="text-brand font-serif italic">`) or on numbered meta (`— 01`).
 - Maximum of 4 serif clamps in use on a single page. Do not introduce a 5th scale.
+- `font-semibold` (600) is permitted **exclusively** on uppercase micro-copy ≤12px (eyebrow, kicker, SOA badge code) — never on body paragraphs, never on H1/H2/H3 base text.
 
 ---
 
@@ -290,11 +291,11 @@ These items exist to keep `/servizi` visually indistinguishable from a "second p
 
 ## Checker Sign-Off
 
-- [ ] Dimension 1 Copywriting: PASS — all copy in `content/services.ts`, primary CTA matches global "Richiedi un sopralluogo", SOA badges name the 3 categories explicitly
-- [ ] Dimension 2 Visuals: PASS — 4 new section components, zero new UI primitives, zero animation libraries, hover parity with Phase 2
-- [ ] Dimension 3 Color: PASS — 60/30/10 with panna dominant, white secondary, brand accent limited to 6 explicit uses; fill-only rule honored
-- [ ] Dimension 4 Typography: PASS — 3 fonts, 4 serif clamps max, Inter body 17px/1.65, eyebrows tracking-[0.38em]
-- [ ] Dimension 5 Spacing: PASS — all values on the Tailwind 4-multiple scale, section rhythm `py-20/28` or `py-24/32` exclusively
-- [ ] Dimension 6 Registry Safety: PASS — no third-party registry, no new npm dependency, no shadcn block
+- [x] Dimension 1 Copywriting: PASS — all copy in `content/services.ts`, primary CTA matches global "Richiedi un sopralluogo", SOA badges name the 3 categories explicitly
+- [x] Dimension 2 Visuals: PASS — 4 new section components, zero new UI primitives, zero animation libraries, hover parity with Phase 2
+- [x] Dimension 3 Color: PASS — 60/30/10 with panna dominant, white secondary, brand accent limited to 6 explicit uses; fill-only rule honored
+- [x] Dimension 4 Typography: FLAG (non-blocking) — body secondary clarified to `text-base` 17px; `font-semibold` scope rule added to typography rules
+- [x] Dimension 5 Spacing: FLAG (non-blocking) — `px-3.5 py-1.5` inherited from Phase 2 documented in Exceptions row
+- [x] Dimension 6 Registry Safety: PASS — no third-party registry, no new npm dependency, no shadcn block
 
-**Approval:** pending
+**Approval:** approved 2026-04-19
