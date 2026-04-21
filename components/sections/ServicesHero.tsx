@@ -21,7 +21,7 @@ export function ServicesHero({
   subtitle,
 }: ServicesHeroProps) {
   return (
-    <section className="bg-panna text-ink flex h-dvh flex-col py-12 md:py-16">
+    <section className="bg-panna text-ink flex h-[calc(100dvh-var(--header-height))] flex-col py-12 md:py-16">
       <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-6 md:px-12">
         <div className="mx-auto max-w-3xl flex-none text-center">
           <Eyebrow>{eyebrow}</Eyebrow>
