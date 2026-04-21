@@ -169,24 +169,50 @@ export const servicesContent: ServicesContent = {
         ],
         ctaLabel: "Scopri i servizi per enti pubblici",
         ctaHref: "/contatti",
-        soaBadges: [
+        serviceCards: [
           {
-            code: "OG1",
-            name: "Edifici civili e industriali",
+            title: "Nuove costruzioni pubbliche",
             description:
-              "Costruzione, ristrutturazione e ampliamento di edifici di qualsiasi natura.",
+              "Edifici civili, scuole, strutture sanitarie e impianti sportivi realizzati in conformità al Codice dei contratti pubblici.",
+            features: [
+              "Attestazione SOA OG1 — categorie illimitate",
+              "Progettazione esecutiva integrata",
+              "Coordinamento sicurezza D.Lgs. 81/2008",
+              "Rendicontazione SAL per stazioni appaltanti",
+            ],
           },
           {
-            code: "OG2",
-            name: "Restauro e manutenzione di beni tutelati",
+            title: "Restauro e beni tutelati",
             description:
-              "Interventi su edifici sottoposti a tutela ai sensi del Codice dei beni culturali.",
+              "Interventi su edifici sottoposti a tutela ministeriale, con esperienza consolidata nei rapporti con Soprintendenze.",
+            features: [
+              "Attestazione SOA OG2",
+              "Rapporti con Soprintendenza e MiC",
+              "Tecniche conservative conformi alle NTC",
+              "Documentazione storica e rilievi stratigrafici",
+            ],
           },
           {
-            code: "OG3",
-            name: "Strade, autostrade, ponti",
+            title: "Strade e urbanizzazioni",
             description:
-              "Opere di urbanizzazione primaria, infrastrutture viarie e manufatti complementari.",
+              "Opere di urbanizzazione primaria, viabilità comunale, marciapiedi, parcheggi e manufatti complementari.",
+            features: [
+              "Attestazione SOA OG3",
+              "Interventi su rete stradale comunale",
+              "Sottoservizi e impianti interrati",
+              "Coordinamento con enti gestori (ENEL, ATO)",
+            ],
+          },
+          {
+            title: "Scuole e strutture sanitarie",
+            description:
+              "Realizzazione e adeguamento sismico di istituti scolastici, presidi sanitari e strutture socioassistenziali.",
+            features: [
+              "Adeguamento sismico edifici scolastici",
+              "Certificazioni antincendio e accessibilità",
+              "Cantieri in aree frequentate — gestione interferenze",
+              "Rendicontazione PNRR e fondi europei",
+            ],
           },
         ],
       },
