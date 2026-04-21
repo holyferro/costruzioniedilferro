@@ -20,7 +20,7 @@ export function ServicesHero({
   subtitle,
 }: ServicesHeroProps) {
   return (
-    <section className="bg-panna text-ink py-24 md:py-32">
+    <section className="bg-panna text-ink flex flex-none flex-col justify-center py-12 md:py-16">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         <div className="mx-auto max-w-3xl text-center">
           <Eyebrow>{eyebrow}</Eyebrow>

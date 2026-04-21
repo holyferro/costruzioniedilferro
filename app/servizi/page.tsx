@@ -22,8 +22,10 @@ export default function ServiziPage() {
   const { hero, targetIndex, howWeWork, faq, finalCta } = servicesContent;
   return (
     <>
-      <ServicesHero {...hero} />
-      <TargetIndex targets={targetIndex.targets} />
+      <div className="flex h-dvh flex-col">
+        <ServicesHero {...hero} />
+        <TargetIndex targets={targetIndex.targets} />
+      </div>
       {targetIndex.targets.map((target, i) => (
         <ServicesEditorialRow
           key={target.id}
