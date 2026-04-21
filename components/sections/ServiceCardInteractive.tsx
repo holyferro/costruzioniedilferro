@@ -28,8 +28,14 @@ export function ServiceCardInteractive({ cards, surface }: Props) {
       </div>
 
       {/* Expanded panel — slides in from right, absolute so height never changes */}
+      {/* Entire surface is tappable to close (same as the − button) */}
       <div
-        className={`absolute inset-0 transition-transform duration-[600ms] ease-in-out ${
+        role="button"
+        tabIndex={selected ? 0 : -1}
+        aria-label="Chiudi"
+        onClick={() => setSelectedIndex(null)}
+        onKeyDown={(e) => e.key === "Enter" && setSelectedIndex(null)}
+        className={`absolute inset-0 cursor-pointer transition-transform duration-[600ms] ease-in-out ${
           selected ? "translate-x-0" : "translate-x-[110%]"
         }`}
       >
