@@ -109,20 +109,21 @@ function SoaBadgeGrid({
   badges: readonly SoaBadge[];
   surface: "panna" | "white";
 }) {
-  // Surface contrast: badges su panna usano bg-white; badges su white usano bg-panna.
   const cardSurface = surface === "panna" ? "bg-white" : "bg-panna";
   return (
-    <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
+    <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-3">
       {badges.map((badge) => (
         <div
           key={badge.code}
-          className={`${cardSurface} border-border rounded-lg border px-5 py-4 md:px-6 md:py-5`}
+          className={`${cardSurface} border-border hover:border-ink/40 rounded-lg border p-5 transition-colors duration-200 md:p-6`}
         >
           <p className="text-brand font-[family-name:var(--font-neue-montreal)] text-xs font-semibold tracking-[0.22em] uppercase">
             {badge.code}
           </p>
-          <p className="text-ink mt-1 font-serif text-lg font-medium md:text-xl">{badge.name}</p>
-          <p className="text-ink/70 mt-1 text-sm leading-[1.55]">{badge.description}</p>
+          <p className="text-ink mt-2 font-serif text-[clamp(0.9rem,0.6rem+0.6vw,1.1rem)] leading-snug font-medium">
+            {badge.name}
+          </p>
+          <p className="text-ink/60 mt-2 line-clamp-2 text-sm leading-[1.5]">{badge.description}</p>
         </div>
       ))}
     </div>

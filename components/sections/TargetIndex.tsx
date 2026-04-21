@@ -30,7 +30,7 @@ function TargetCard({ target }: { target: ServicesTarget }) {
   return (
     <Link
       href={href}
-      className="group bg-surface border-border hover:border-ink/40 focus-visible:outline-brand block h-full border p-8 transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 md:p-10"
+      className="group bg-surface border-border hover:border-ink/40 focus-visible:outline-brand flex h-full flex-col rounded-xl border p-8 transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 md:p-10"
     >
       {/* Numbered eyebrow row */}
       <div className="mb-4 flex items-baseline gap-4">
@@ -45,11 +45,11 @@ function TargetCard({ target }: { target: ServicesTarget }) {
         {target.title}
       </h2>
 
-      {/* Inter subtitle (body shortened to first sentence visually) */}
+      {/* Inter subtitle */}
       <p className="text-ink/70 mt-4 text-base leading-[1.6]">{target.body}</p>
 
-      {/* Arrow CTA — group-hover translate (matches ServiceOverview group/cta pattern) */}
-      <span className="text-ink border-ink/35 group-hover:border-ink mt-9 inline-flex items-center gap-2.5 border-b pb-1.5 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.08em] uppercase transition-colors">
+      {/* Arrow CTA — pushed to bottom, always on one line */}
+      <span className="text-ink border-ink/35 group-hover:border-ink mt-auto inline-flex items-center gap-2.5 border-b pt-9 pb-1.5 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.08em] whitespace-nowrap uppercase transition-colors">
         {target.ctaLabel}
         <span
           aria-hidden="true"
