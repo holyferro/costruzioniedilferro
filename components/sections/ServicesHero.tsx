@@ -21,7 +21,7 @@ export function ServicesHero({
   subtitle,
 }: ServicesHeroProps) {
   return (
-    <section className="bg-panna text-ink flex h-[calc(100dvh-var(--header-height))] flex-col py-12 md:py-16">
+    <section className="bg-panna text-ink flex h-[calc(100dvh-var(--header-height))] flex-col py-10 md:py-16">
       <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-6 md:px-12">
         <div className="mx-auto max-w-3xl flex-none text-center">
           <Eyebrow>{eyebrow}</Eyebrow>
@@ -35,8 +35,8 @@ export function ServicesHero({
           </p>
         </div>
 
-        <div className="mt-10 min-h-0 flex-1">
-          <div className="relative h-[90%] overflow-hidden rounded-xl">
+        <div className="mt-8 min-h-0 flex-1 md:mt-10">
+          <div className="relative h-full overflow-hidden rounded-xl md:h-[90%]">
             <Image
               src="/images/heroservizi.webp"
               alt="Cantiere edilferro — panoramica lavori"

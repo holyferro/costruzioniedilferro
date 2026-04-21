@@ -22,8 +22,8 @@ export function ServicesEditorialRow({ id, variant, item, reverse }: ServicesEdi
     <section id={id} className={`${surfaceClass} text-ink py-20 md:py-28`}>
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         <div className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
-          {/* Text column */}
-          <div className={reverse ? "md:order-2" : "md:order-1"}>
+          {/* Text column — always below image on mobile */}
+          <div className={`order-2 ${reverse ? "md:order-2" : "md:order-1"}`}>
             <div className="mb-4 flex items-baseline gap-4">
               <span className="text-brand font-serif text-sm font-medium italic">— {item.n}</span>
               <span className="text-ink/60 text-[11px] font-semibold tracking-[0.22em] uppercase">
@@ -58,9 +58,11 @@ export function ServicesEditorialRow({ id, variant, item, reverse }: ServicesEdi
 
             <Link
               href={item.ctaHref}
-              className="text-ink border-ink/35 hover:border-ink group/cta mt-9 inline-flex items-center gap-2.5 border-b pb-1.5 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.08em] uppercase transition-colors"
+              className="text-ink group/cta mt-9 inline-flex items-center gap-2.5 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.08em] uppercase"
             >
-              {item.ctaLabel}
+              <span className="border-ink/35 group-hover/cta:border-ink border-b pb-1.5 transition-colors">
+                {item.ctaLabel}
+              </span>
               <span
                 aria-hidden="true"
                 className="inline-block transition-transform duration-300 group-hover/cta:translate-x-1.5"
@@ -70,11 +72,11 @@ export function ServicesEditorialRow({ id, variant, item, reverse }: ServicesEdi
             </Link>
           </div>
 
-          {/* Photo column */}
+          {/* Photo column — always above text on mobile, reduced height on mobile */}
           <Link
             href={item.ctaHref}
             aria-label={item.title}
-            className={`group/img relative block aspect-[5/4] overflow-hidden ${
+            className={`group/img relative order-1 block aspect-[25/16] overflow-hidden md:aspect-[5/4] ${
               reverse ? "md:order-1" : "md:order-2"
             }`}
           >

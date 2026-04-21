@@ -49,8 +49,10 @@ function TargetCard({ target }: { target: ServicesTarget }) {
       <p className="text-ink/70 mt-4 text-base leading-[1.6]">{target.body}</p>
 
       {/* Arrow CTA — pushed to bottom, always on one line */}
-      <span className="text-ink border-ink/35 group-hover:border-ink mt-auto inline-flex items-center gap-2.5 border-b pt-9 pb-1.5 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.08em] whitespace-nowrap uppercase transition-colors">
-        {target.ctaLabel}
+      <span className="text-ink mt-auto inline-flex items-center gap-2.5 pt-9 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.08em] whitespace-nowrap uppercase">
+        <span className="border-ink/35 group-hover:border-ink border-b pb-1.5 transition-colors">
+          {target.ctaLabel}
+        </span>
         <span
           aria-hidden="true"
           className="inline-block transition-transform duration-300 group-hover:translate-x-1.5"
