@@ -44,9 +44,33 @@ export function ServiceCardInteractive({ cards, surface }: Props) {
                   type="button"
                   aria-label="Chiudi"
                   onClick={() => setSelectedIndex(null)}
-                  className="text-ink/40 hover:text-ink mt-0.5 shrink-0 text-sm transition-colors"
+                  className="bg-ink/[0.07] text-ink hover:bg-ink/[0.12] flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors duration-200"
                 >
-                  ✕
+                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+                    <line
+                      x1="2"
+                      y1="7.5"
+                      x2="13"
+                      y2="7.5"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                    />
+                    <line
+                      x1="7.5"
+                      y1="2"
+                      x2="7.5"
+                      y2="13"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      style={{
+                        transformOrigin: "7.5px 7.5px",
+                        transform: "scaleY(0)",
+                        transition: "transform 600ms ease-in-out",
+                      }}
+                    />
+                  </svg>
                 </button>
               </div>
               <p className="text-ink/75 text-sm leading-[1.65]">{selected.description}</p>
