@@ -18,7 +18,7 @@ export function ServiceCardInteractive({ cards, surface }: Props) {
     <div className="relative mt-8 overflow-hidden">
       {/* Card grid — always 2×2, determines component height */}
       <div
-        className={`grid grid-cols-2 gap-3 transition-transform duration-300 ease-in-out ${
+        className={`grid grid-cols-2 gap-3 transition-transform duration-[600ms] ease-in-out ${
           selected ? "-translate-x-[110%]" : "translate-x-0"
         }`}
       >
@@ -29,7 +29,7 @@ export function ServiceCardInteractive({ cards, surface }: Props) {
 
       {/* Expanded panel — slides in from right, absolute so height never changes */}
       <div
-        className={`absolute inset-0 transition-transform duration-300 ease-in-out ${
+        className={`absolute inset-0 transition-transform duration-[600ms] ease-in-out ${
           selected ? "translate-x-0" : "translate-x-[110%]"
         }`}
       >
