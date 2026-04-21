@@ -6,6 +6,7 @@
 import { ClipboardList, Ruler, HardHat, CheckCircle2 } from "lucide-react";
 import type { ComponentType, SVGProps } from "react";
 import type { ProcessStep } from "@/content/services";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 type HowWeWorkProps = {
   eyebrow: string;
@@ -17,12 +18,14 @@ type HowWeWorkProps = {
 
 // Mapping fisso per i 4 step in ordine: Analisi, Progettazione, Realizzazione, Consegna.
 // Posizione index → icon component.
-const STEP_ICONS: ReadonlyArray<ComponentType<SVGProps<SVGSVGElement>>> = [
+type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
+
+const STEP_ICONS = [
   ClipboardList, // 01 — Analisi
   Ruler, // 02 — Progettazione
   HardHat, // 03 — Realizzazione
   CheckCircle2, // 04 — Consegna
-];
+] as const satisfies readonly [IconComponent, IconComponent, IconComponent, IconComponent];
 
 export function HowWeWork({ eyebrow, titleStart, titleAccent, titleEnd, steps }: HowWeWorkProps) {
   return (
@@ -39,7 +42,7 @@ export function HowWeWork({ eyebrow, titleStart, titleAccent, titleEnd, steps }:
 
         <div className="grid grid-cols-1 gap-10 md:grid-cols-4 md:gap-12">
           {steps.map((step, i) => {
-            const Icon = STEP_ICONS[i] ?? ClipboardList;
+            const Icon = STEP_ICONS[i as 0 | 1 | 2 | 3] ?? ClipboardList;
             return (
               <div
                 key={step.n}
@@ -59,14 +62,5 @@ export function HowWeWork({ eyebrow, titleStart, titleAccent, titleEnd, steps }:
         </div>
       </div>
     </section>
-  );
-}
-
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-ink/60 text-xs font-semibold tracking-[0.38em] uppercase">
-      <span aria-hidden="true" className="bg-ink/40 mr-3 inline-block h-px w-8 align-middle" />
-      {children}
-    </p>
   );
 }

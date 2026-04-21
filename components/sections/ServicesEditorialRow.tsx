@@ -6,7 +6,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import type { Route } from "next";
 import type { ServicesTarget, SoaBadge } from "@/content/services";
 import { ServiceCardInteractive } from "@/components/sections/ServiceCardInteractive";
 
@@ -58,7 +57,7 @@ export function ServicesEditorialRow({ id, variant, item, reverse }: ServicesEdi
             ) : null}
 
             <Link
-              href={item.ctaHref as Route<string>}
+              href={item.ctaHref}
               className="text-ink border-ink/35 hover:border-ink group/cta mt-9 inline-flex items-center gap-2.5 border-b pb-1.5 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.08em] uppercase transition-colors"
             >
               {item.ctaLabel}
@@ -73,9 +72,9 @@ export function ServicesEditorialRow({ id, variant, item, reverse }: ServicesEdi
 
           {/* Photo column */}
           <Link
-            href={item.ctaHref as Route<string>}
+            href={item.ctaHref}
             aria-label={item.title}
-            className={`group/img relative block aspect-[5/4] overflow-hidden bg-black ${
+            className={`group/img relative block aspect-[5/4] overflow-hidden ${
               reverse ? "md:order-1" : "md:order-2"
             }`}
           >

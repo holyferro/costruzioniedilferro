@@ -41,9 +41,9 @@ function TargetCard({ target }: { target: ServicesTarget }) {
       </div>
 
       {/* H3 serif card title */}
-      <h3 className="text-ink font-serif text-[clamp(1.3rem,0.6rem+1vw,1.65rem)] leading-[1.25] font-medium tracking-tight">
+      <h2 className="text-ink font-serif text-[clamp(1.3rem,0.6rem+1vw,1.65rem)] leading-[1.25] font-medium tracking-tight">
         {target.title}
-      </h3>
+      </h2>
 
       {/* Inter subtitle (body shortened to first sentence visually) */}
       <p className="text-ink/70 mt-4 text-base leading-[1.6]">{target.body}</p>

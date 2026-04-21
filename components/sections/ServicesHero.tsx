@@ -2,6 +2,8 @@
 // RSC. Hero introduttivo pagina /servizi: testuale, centrato, su bg-panna.
 // Distinto dall'HeroSection homepage (che ha sfondo dark + foto fill).
 
+import { Eyebrow } from "@/components/ui/Eyebrow";
+
 type ServicesHeroProps = {
   eyebrow: string;
   titleStart: string;
@@ -33,14 +35,5 @@ export function ServicesHero({
         </div>
       </div>
     </section>
-  );
-}
-
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-ink/60 text-xs font-semibold tracking-[0.38em] uppercase">
-      <span aria-hidden="true" className="bg-ink/40 mr-3 inline-block h-px w-8 align-middle" />
-      {children}
-    </p>
   );
 }
