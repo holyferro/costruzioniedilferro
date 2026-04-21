@@ -27,7 +27,7 @@ export function HomepageCta({
   return (
     <section
       id="contatti"
-      className="bg-brand text-panna relative overflow-hidden py-24 pb-32 md:py-28 md:pb-28"
+      className="bg-brand text-panna relative overflow-hidden py-14 pb-24 md:py-28 md:pb-28"
     >
       {/* Anelli ornamentali concentrici, top-right */}
       <span
@@ -44,15 +44,17 @@ export function HomepageCta({
       />
 
       <div className="relative mx-auto max-w-6xl px-6 md:px-12">
-        <div className="grid items-center gap-12 md:grid-cols-[1.3fr_1fr] md:gap-20">
+        <div className="grid items-center gap-8 md:grid-cols-[1.3fr_1fr] md:gap-20">
           <div>
             <DarkEyebrow>{eyebrow}</DarkEyebrow>
-            <h2 className="mt-5 max-w-[14ch] font-serif text-[clamp(2.4rem,1.4rem+3.2vw,4.5rem)] leading-[1.05] font-medium tracking-tight text-white">
+            <h2 className="mt-4 max-w-[14ch] font-serif text-[clamp(2.4rem,1.4rem+3.2vw,4.5rem)] leading-[1.05] font-medium tracking-tight text-white md:mt-5">
               {headline}
             </h2>
-            <p className="text-panna/85 mt-7 max-w-[52ch] text-lg leading-relaxed">{body}</p>
+            <p className="text-panna/85 mt-5 max-w-[52ch] text-base leading-relaxed md:mt-7 md:text-lg">
+              {body}
+            </p>
 
-            <div className="border-panna/20 mt-12 grid max-w-xl grid-cols-2 gap-x-12 gap-y-6 border-t pt-8">
+            <div className="border-panna/20 mt-8 grid max-w-xl grid-cols-2 gap-x-12 gap-y-5 border-t pt-6 md:mt-12 md:gap-y-6 md:pt-8">
               <div>
                 <p className="text-panna/60 text-[11px] tracking-[0.22em] uppercase">
                   Sede operativa
@@ -76,7 +78,7 @@ export function HomepageCta({
             </div>
           </div>
 
-          <div className="flex flex-col gap-3.5">
+          <div className="flex flex-col gap-2.5 md:gap-3.5">
             <Link
               href={primaryCta.href as Route<string>}
               className="bg-panna text-brand hover:bg-panna/90 inline-flex items-center justify-between rounded-full px-7 py-5 font-[family-name:var(--font-neue-montreal)] text-[15px] font-medium tracking-[0.04em] uppercase transition-colors"
@@ -90,7 +92,7 @@ export function HomepageCta({
               {secondaryCta.label} <span aria-hidden="true">→</span>
             </Link>
 
-            <div className="border-panna/20 mt-5 flex flex-col gap-3.5 border-t pt-6">
+            <div className="border-panna/20 mt-3 flex flex-col gap-3 border-t pt-4 md:mt-5 md:gap-3.5 md:pt-6">
               <a
                 href={`tel:${contact.phone.tel}`}
                 className="hover:text-panna flex items-baseline justify-between text-white no-underline transition-colors"
