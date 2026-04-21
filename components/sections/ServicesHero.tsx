@@ -2,6 +2,7 @@
 // RSC. Hero introduttivo pagina /servizi: testuale, centrato, su bg-panna.
 // Distinto dall'HeroSection homepage (che ha sfondo dark + foto fill).
 
+import Image from "next/image";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
 type ServicesHeroProps = {
@@ -32,6 +33,17 @@ export function ServicesHero({
           <p className="text-ink/70 mx-auto mt-7 max-w-[52ch] text-base leading-relaxed md:text-lg">
             {subtitle}
           </p>
+        </div>
+
+        <div className="mt-10 overflow-hidden rounded-xl">
+          <Image
+            src="/images/heroservizi.webp"
+            alt="Cantiere edilferro — panoramica lavori"
+            width={1152}
+            height={480}
+            className="h-[220px] w-full object-cover md:h-[320px]"
+            priority
+          />
         </div>
       </div>
     </section>
