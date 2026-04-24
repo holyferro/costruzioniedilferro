@@ -61,7 +61,7 @@ export const siteContent: SiteContent = {
     province: "RO",
     region: "Veneto",
     country: "IT",
-    googleMapsUrl: "https://maps.app.goo.gl/placeholder", // TODO cliente: URL maps definitivo
+    googleMapsUrl: "https://maps.app.goo.gl/KxQ6vAzyqzhsbh1c7",
   },
   serviceArea: ["Porto Viro", "Rovigo", "Polesine", "Veneto"],
 };
