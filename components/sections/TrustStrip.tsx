@@ -26,6 +26,13 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
             {title}
           </h2>
           <p className="text-ink/70 mt-6 max-w-[34ch] text-[15px] leading-[1.65]">{body}</p>
+          <Image
+            src="/images/anniversary_45.svg"
+            alt="45 anni di attività — Costruzioni Edilferro"
+            width={160}
+            height={160}
+            className="mt-8 h-24 w-auto mix-blend-multiply md:h-28"
+          />
         </div>
         <dl>
           {rows.map((r, i) => (
@@ -47,15 +54,6 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
             </div>
           ))}
         </dl>
-      </div>
-      <div className="mx-auto mt-14 flex max-w-6xl justify-center px-6 md:px-12">
-        <Image
-          src="/images/anniversary_45.svg"
-          alt="45 anni di attività — Costruzioni Edilferro"
-          width={160}
-          height={160}
-          className="h-28 w-auto md:h-36"
-        />
       </div>
     </section>
   );
