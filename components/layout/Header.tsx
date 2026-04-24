@@ -56,7 +56,7 @@ export function Header() {
     >
       <div
         className={`mx-auto flex max-w-screen-2xl items-center justify-between px-4 transition-[padding] duration-300 ease-in-out ${
-          scrolled ? "py-3 md:py-6" : "py-4 md:py-[26px]"
+          scrolled ? "py-3 lg:py-6" : "py-4 lg:py-[26px]"
         }`}
       >
         {/* Logo */}
@@ -78,7 +78,7 @@ export function Header() {
             width={240}
             height={60}
             className={`w-auto object-contain transition-all duration-300 ease-in-out ${
-              scrolled ? "h-9 scale-95 opacity-0 md:h-11" : "h-10 scale-100 opacity-100 md:h-13"
+              scrolled ? "h-9 scale-95 opacity-0 lg:h-11" : "h-10 scale-100 opacity-100 lg:h-13"
             }`}
             priority
           />
@@ -90,13 +90,16 @@ export function Header() {
             width={240}
             height={60}
             className={`absolute inset-0 w-auto object-contain transition-all duration-300 ease-in-out ${
-              scrolled ? "h-9 scale-100 opacity-100 md:h-11" : "h-10 scale-95 opacity-0 md:h-13"
+              scrolled ? "h-9 scale-100 opacity-100 lg:h-11" : "h-10 scale-95 opacity-0 lg:h-13"
             }`}
           />
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-14 md:flex" aria-label="Navigazione principale">
+        <nav
+          className="hidden items-center gap-6 lg:flex xl:gap-14"
+          aria-label="Navigazione principale"
+        >
           {primaryNav.map((item) => {
             const isActive =
               pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
@@ -117,7 +120,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href as Route<string>}
-                className={`group flex items-center gap-1 font-[family-name:var(--font-neue-montreal)] text-[18px] font-normal tracking-[0.015em] uppercase transition-colors duration-200 ${scrolled ? "text-white" : "hover:text-brand text-black"}`}
+                className={`group flex items-center gap-1 font-[family-name:var(--font-neue-montreal)] text-[18px] font-normal tracking-[0.015em] whitespace-nowrap uppercase transition-colors duration-200 ${scrolled ? "text-white" : "hover:text-brand text-black"}`}
               >
                 {item.label}
                 <ArrowUpRight
@@ -133,7 +136,7 @@ export function Header() {
         </nav>
 
         {/* Mobile zone — hamburger menu */}
-        <div className="flex items-center md:hidden">
+        <div className="flex items-center lg:hidden">
           <MobileMenu scrolled={scrolled} />
         </div>
       </div>

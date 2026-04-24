@@ -25,7 +25,7 @@ export function ServicesHero({
       <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-6 md:px-12">
         <div className="mx-auto max-w-3xl flex-none text-center">
           <Eyebrow>{eyebrow}</Eyebrow>
-          <h1 className="text-ink mt-5 font-serif text-[clamp(2.25rem,1.5rem+3.2vw,4rem)] leading-[1.1] font-medium tracking-tight">
+          <h1 className="text-ink mt-5 font-serif text-[clamp(2.25rem,1.5rem+3.2vw,4rem)] leading-[1.1] font-medium tracking-tight lg:text-4xl xl:text-[clamp(2.25rem,1.5rem+3.2vw,4rem)]">
             {titleStart}
             <em className="text-brand font-serif italic">{titleAccent}</em>
             {titleEnd}
@@ -36,7 +36,7 @@ export function ServicesHero({
         </div>
 
         <div className="mt-8 min-h-0 flex-1 md:mt-10">
-          <div className="relative h-full overflow-hidden rounded-xl md:h-[90%]">
+          <div className="relative h-full overflow-hidden rounded-xl md:h-[90%] lg:mx-auto lg:max-w-3xl xl:max-w-none">
             <Image
               src="/images/heroservizi.webp"
               alt="Cantiere edilferro — panoramica lavori"
