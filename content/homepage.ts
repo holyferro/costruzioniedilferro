@@ -236,7 +236,7 @@ export const homepageContent: HomepageContent = {
         imageAlt: "Ampliamento casa di cura — Porto Viro",
         tag: "Opere pubbliche",
         title: "Ampliamento casa di cura",
-        place: "Rovigo",
+        place: "Porto Viro",
         year: "2022",
         href: "/progetti",
       },
