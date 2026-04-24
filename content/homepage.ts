@@ -110,7 +110,7 @@ export type HomepageContent = {
 
 export const homepageContent: HomepageContent = {
   hero: {
-    eyebrow: "DAL 1952",
+    eyebrow: "DAL 1981",
     headline: "Costruiamo valore, qualità e fiducia nel territorio.",
     headlinePrefix: "Costruiamo",
     headlineWords: ["valore", "qualità", "fiducia nel territorio"] as const,
