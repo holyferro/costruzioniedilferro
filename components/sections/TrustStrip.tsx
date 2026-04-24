@@ -2,6 +2,7 @@
 // RSC. Sezione editoriale tabellare su panna.
 // 2 colonne desktop (titolo sticky a sinistra, righe a destra) → stack mobile.
 
+import Image from "next/image";
 import type { TrustRow } from "@/content/homepage";
 
 type TrustStripProps = {
@@ -46,6 +47,15 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
             </div>
           ))}
         </dl>
+      </div>
+      <div className="mx-auto mt-14 flex max-w-6xl justify-center px-6 md:px-12">
+        <Image
+          src="/images/anniversary_45.svg"
+          alt="45 anni di attività — Costruzioni Edilferro"
+          width={160}
+          height={160}
+          className="h-28 w-auto md:h-36"
+        />
       </div>
     </section>
   );
