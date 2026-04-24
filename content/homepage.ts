@@ -203,14 +203,14 @@ export const homepageContent: HomepageContent = {
     archiveLinkHref: "/progetti",
     feature: {
       imageSrc: "/images/design/proj-corti.webp",
-      imageAlt: "Residenze Le Corti — Rovigo",
+      imageAlt: "Studentato Universitario — Rovigo",
       tag: "Residenziale",
-      title: "Residenze Le Corti",
+      title: "Studentato Universitario",
       place: "Rovigo",
       year: "2024",
       href: "/progetti",
       description:
-        "18 unità residenziali in classe A. Progettazione antisismica, cappotto in fibra di legno, domotica di serie. Cantiere concluso con tre settimane di anticipo sul cronoprogramma.",
+        "Dispone di 100 posti letto, con alloggi temporanei da destinare agli studenti fuori sede, distribuiti in tre corpi di fabbrica ognuno di due piani. Gli edifici, di nuova costruzione e moderna progettazione, sono articolati in modo da creare tra loro aree verdi esterne vivibili.",
     },
     tiles: [
       {
