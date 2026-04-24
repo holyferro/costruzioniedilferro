@@ -124,9 +124,9 @@ export const homepageContent: HomepageContent = {
     body: "Dati verificabili, aggiornati al bilancio dell'ultimo esercizio. Nessuna stima di comodo.",
     rows: [
       {
-        value: "70+",
+        value: "45+",
         label: "anni di attività",
-        sub: "fondata nel 1952",
+        sub: "fondata nel 1981",
       },
       {
         value: "450+",
@@ -215,16 +215,16 @@ export const homepageContent: HomepageContent = {
     tiles: [
       {
         imageSrc: "/images/design/proj-villaregia.webp",
-        imageAlt: "Abbazia di Villaregia — restauro conservativo",
+        imageAlt: "Comunità Missionaria di Villaregia — restauro conservativo",
         tag: "Restauro",
-        title: "Abbazia di Villaregia",
+        title: "Comunità Missionaria di Villaregia",
         place: "Porto Viro",
         year: "2023",
         href: "/progetti",
       },
       {
         imageSrc: "/images/design/proj-passiva.webp",
-        imageAlt: "Casa passiva privata — Adria",
+        imageAlt: "Casa passiva privata — Porto Viro",
         tag: "Residenziale",
         title: "Casa passiva privata",
         place: "Adria",
@@ -233,7 +233,7 @@ export const homepageContent: HomepageContent = {
       },
       {
         imageSrc: "/images/design/proj-casa-cura.webp",
-        imageAlt: "Ampliamento casa di cura — Rovigo",
+        imageAlt: "Ampliamento casa di cura — Porto Viro",
         tag: "Opere pubbliche",
         title: "Ampliamento casa di cura",
         place: "Rovigo",

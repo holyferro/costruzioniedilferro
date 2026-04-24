@@ -42,20 +42,20 @@ export const siteContent: SiteContent = {
     name: "Edilferro",
     legalName: "Costruzioni Edilferro S.r.l.",
     tagline:
-      "Dal 1952 costruiamo valore, qualità e fiducia nel territorio. General contractor per opere residenziali, industriali e di restauro nel Polesine e in tutto il Veneto.",
-    claim: "Dal 1952 costruiamo valore, qualità e fiducia nel territorio.",
+      "Dal 1981 costruiamo valore, qualità e fiducia nel territorio. General contractor per opere residenziali, industriali e di restauro nel Polesine e in tutto il Veneto.",
+    claim: "Dal 1981 costruiamo valore, qualità e fiducia nel territorio.",
   },
   contact: {
     phone: {
-      display: "+39 0426 000 000",
-      tel: "+390426000000",
+      display: "0426 633 875",
+      tel: "+390426633875",
     },
     email: "info@costruzioniedilferro.it",
-    pec: "costruzioniedilferro@pec.it", // TODO cliente: PEC reale
-    hours: ["Lun–Ven 8:30–18:00", "Sab su appuntamento"], // TODO cliente: orari reali
+    pec: "costruzioniedilferro@pec-neispa.com",
+    hours: ["Lun–Ven 8:30 - 12:30 e 14:30 - 18:30", "Sab su appuntamento"],
   },
   address: {
-    street: "Via dell'Industria 24",
+    street: "Via dei Salici 7/9",
     zip: "45014",
     city: "Porto Viro",
     province: "RO",
