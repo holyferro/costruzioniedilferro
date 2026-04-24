@@ -63,7 +63,7 @@ export function Header() {
         <Link
           href="/"
           aria-label={`${siteContent.brand.legalName} — home`}
-          className="relative block"
+          className="relative block shrink-0"
           onClick={(e) => {
             if (pathname === "/") {
               e.preventDefault();
