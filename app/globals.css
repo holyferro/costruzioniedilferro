@@ -17,8 +17,8 @@
   --header-height: 78px;
 }
 
-/* Desktop: header grows to py-7 + h-13 logo */
-@media (min-width: 48rem) {
+/* Desktop nav (xl = 1280px+): header grows to py-[26px] + h-13 logo */
+@media (min-width: 80rem) {
   :root {
     --header-height: 116px;
   }

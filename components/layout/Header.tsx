@@ -55,8 +55,8 @@ export function Header() {
       }`}
     >
       <div
-        className={`mx-auto flex max-w-screen-2xl items-center justify-between px-4 transition-[padding] duration-300 ease-in-out ${
-          scrolled ? "py-3 lg:py-6" : "py-4 lg:py-[26px]"
+        className={`mx-auto flex max-w-screen-2xl items-center justify-between px-6 transition-[padding] duration-300 ease-in-out ${
+          scrolled ? "py-3 xl:py-6" : "py-4 xl:py-[26px]"
         }`}
       >
         {/* Logo */}
@@ -78,7 +78,7 @@ export function Header() {
             width={240}
             height={60}
             className={`w-auto object-contain transition-all duration-300 ease-in-out ${
-              scrolled ? "h-9 scale-95 opacity-0 lg:h-11" : "h-10 scale-100 opacity-100 lg:h-13"
+              scrolled ? "h-9 scale-95 opacity-0 xl:h-11" : "h-10 scale-100 opacity-100 xl:h-13"
             }`}
             priority
           />
@@ -90,14 +90,14 @@ export function Header() {
             width={240}
             height={60}
             className={`absolute inset-0 w-auto object-contain transition-all duration-300 ease-in-out ${
-              scrolled ? "h-9 scale-100 opacity-100 lg:h-11" : "h-10 scale-95 opacity-0 lg:h-13"
+              scrolled ? "h-9 scale-100 opacity-100 xl:h-11" : "h-10 scale-95 opacity-0 xl:h-13"
             }`}
           />
         </Link>
 
-        {/* Desktop nav */}
+        {/* Desktop nav — visible only at xl (1280px+) to avoid cramped layout on tablets */}
         <nav
-          className="hidden items-center gap-6 lg:flex xl:gap-14"
+          className="hidden items-center gap-8 xl:flex xl:gap-14"
           aria-label="Navigazione principale"
         >
           {primaryNav.map((item) => {
@@ -135,8 +135,8 @@ export function Header() {
           })}
         </nav>
 
-        {/* Mobile zone — hamburger menu */}
-        <div className="flex items-center lg:hidden">
+        {/* Hamburger zone — visible below xl (covers all tablet/iPad landscape sizes) */}
+        <div className="flex items-center xl:hidden">
           <MobileMenu scrolled={scrolled} />
         </div>
       </div>
