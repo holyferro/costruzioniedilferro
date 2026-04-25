@@ -47,7 +47,7 @@ export const certificazioniContent = {
     {
       id: "iso9001",
       year: "ISO 9001:2015",
-      logoSrc: "/images/certifications/italia_Accredia-kiwa Cermet_blu 1.png",
+      logoSrc: "/images/certifications/italia_Accredia-kiwa Cermet_blu 1.webp",
       logoAlt: "Logo Kiwa Cermet Accredia — certificazione ISO 9001",
       tag: "Sistema di gestione qualità",
       title: "UNI EN ISO 9001 — Kiwa Cermet",
@@ -56,7 +56,7 @@ export const certificazioniContent = {
     {
       id: "cea",
       year: "2023",
-      logoSrc: "/images/certifications/Bollino_CEA2023.png",
+      logoSrc: "/images/certifications/Bollino_CEA2023.webp",
       logoAlt: "Bollino Cassa Edile Awards 2023",
       tag: "Riconoscimento settoriale",
       title: "Cassa Edile Awards 2023",
@@ -65,7 +65,7 @@ export const certificazioniContent = {
     {
       id: "ance",
       year: null,
-      logoSrc: "/images/certifications/ancerovigo 1.png",
+      logoSrc: "/images/certifications/ancerovigo 1.webp",
       logoAlt: "Logo ANCE Rovigo",
       tag: "Associazione di categoria",
       title: "ANCE — Costruttori Edili",
@@ -74,7 +74,7 @@ export const certificazioniContent = {
     {
       id: "asp",
       year: null,
-      logoSrc: "/images/certifications/A.S.P.Energia certif. socio Partner 1.png",
+      logoSrc: "/images/certifications/A.S.P.Energia certif. socio Partner 1.webp",
       logoAlt: "Logo ASP Energia — socio partner",
       tag: "Efficienza energetica",
       title: "A.S.P. Energia — Socio Partner Certificato",
@@ -83,7 +83,7 @@ export const certificazioniContent = {
     {
       id: "castoro",
       year: null,
-      logoSrc: "/images/certifications/castoro 1.png",
+      logoSrc: "/images/certifications/castoro 1.webp",
       logoAlt: "Logo Castoro — rating imprese edili",
       tag: "Rating qualitativo",
       title: "Castoro — Rating Imprese Edili",

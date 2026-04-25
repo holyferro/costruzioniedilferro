@@ -33,7 +33,7 @@ export function SoaSection({ eyebrow, tag, title, body, stats, commitments }: So
           <div>
             <div className="relative mb-10 h-16 w-52">
               <Image
-                src="/images/certifications/logo-cqop.png"
+                src="/images/certifications/logo-cqop.webp"
                 alt="Logo CQOP S.p.A."
                 fill
                 className="object-contain object-left brightness-0 invert"
