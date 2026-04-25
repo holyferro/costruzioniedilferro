@@ -10,10 +10,11 @@ export type RenewalRow = {
 export const certificazioniContent = {
   hero: {
     eyebrow: "Qualifiche & certificazioni",
-    title: "Qualificati per costruire, certificati per durare.",
-    body: "Ogni certificazione che portiamo è il risultato di audit esterni, di processi misurabili e di una filiera produttiva che non ha subappaltatori opachi. Non sono badge da esporre: sono impegni che rinnoviamo ogni anno.",
-    solidBadges: ["SOA OG1–OG3", "ISO 9001", "Cassa Edile Awards"],
-    outlineBadges: ["ANCE", "A.S.P. Energia"],
+    titleStart: "Qualificati per costruire, ",
+    titleAccent: "certificati",
+    titleEnd: " per durare.",
+    subtitle:
+      "Ogni certificazione che portiamo è il risultato di audit esterni, di processi misurabili e di una filiera produttiva che non ha subappaltatori opachi. Non sono badge da esporre: sono impegni che rinnoviamo ogni anno.",
   },
 
   soa: {
