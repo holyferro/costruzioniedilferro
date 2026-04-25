@@ -15,7 +15,7 @@ export function TargetIndex({ targets }: TargetIndexProps) {
   return (
     <section className="bg-panna text-ink border-border border-b py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
-        <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-3 md:gap-12">
+        <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-3 lg:gap-12">
           {targets.map((t) => (
             <TargetCard key={t.id} target={t} />
           ))}
