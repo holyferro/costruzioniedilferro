@@ -27,6 +27,7 @@ export const certificazioniContent = {
       { label: "Classifica", value: "IV" },
       { label: "Organismo", value: "CQOP S.p.A." },
     ],
+    anacLink: "https://servizi.anticorruzione.it/RicercaAttestazioniWebApp/",
     commitments: [
       {
         title: "Accesso garantito a bandi pubblici",

@@ -40,23 +40,22 @@ export type LegalContent = {
 };
 
 export const legalContent: LegalContent = {
-  // TODO cliente: tutti i campi sottostanti sono placeholder. Sostituire alla consegna.
-  ragioneSociale: "Edilferro S.r.l.",
-  piva: "00000000000", // TODO cliente: P.IVA reale (11 cifre)
-  codiceFiscale: "00000000000", // TODO cliente: C.F. reale
+  ragioneSociale: "Costruzioni Edilferro S.r.l.",
+  piva: "00580810299",
+  codiceFiscale: "00580810299",
   rea: {
-    number: "VE-000000", // TODO cliente: numero REA reale
-    chamber: "CCIAA Venezia Rovigo", // TODO cliente: conferma camera di commercio
+    number: "RO-85037",
+    chamber: "CCIAA Venezia Rovigo",
   },
   capitaleSociale: {
-    declared: "€ 100.000", // TODO cliente: capitale sociale dichiarato
-    paidUp: "€ 100.000 i.v.", // TODO cliente: capitale sociale versato
+    declared: "€ ???", // TODO cliente: confermare capitale sociale dichiarato
+    paidUp: "€ ??? i.v.", // TODO cliente: confermare capitale versato
   },
   sedeLegale: {
-    street: "Via [placeholder] 1", // TODO cliente: via + civico
-    zip: "30170", // TODO cliente: CAP
-    city: "Mestre",
-    province: "VE",
+    street: "Via dei Salici 7",
+    zip: "45014",
+    city: "Porto Viro",
+    province: "RO",
   },
   certifications: {
     soa: {

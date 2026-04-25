@@ -53,7 +53,7 @@ export function CertificazioniGrid({ certCards, eyebrow }: CertificazioniGridPro
             </div>
             <div className="mt-10 flex flex-col gap-3">
               <a
-                href="https://www.anac.gov.it"
+                href="https://servizi.anticorruzione.it/RicercaAttestazioniWebApp/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-panna text-brand flex items-center justify-between rounded-full px-6 py-4 font-[family-name:var(--font-neue-montreal)] text-[13px] font-medium tracking-[0.04em] uppercase transition-opacity hover:opacity-90"

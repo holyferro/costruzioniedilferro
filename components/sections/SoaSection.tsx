@@ -13,9 +13,18 @@ type SoaSectionProps = {
   body: string;
   stats: readonly SoaStat[];
   commitments: readonly SoaCommitment[];
+  anacLink?: string;
 };
 
-export function SoaSection({ eyebrow, tag, title, body, stats, commitments }: SoaSectionProps) {
+export function SoaSection({
+  eyebrow,
+  tag,
+  title,
+  body,
+  stats,
+  commitments,
+  anacLink,
+}: SoaSectionProps) {
   return (
     <section className="bg-panna pt-20 md:pt-28">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
@@ -62,6 +71,32 @@ export function SoaSection({ eyebrow, tag, title, body, stats, commitments }: So
                 </div>
               ))}
             </div>
+
+            {anacLink && (
+              <a
+                href={anacLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-[rgba(142,163,209,1)] uppercase transition-opacity hover:opacity-70"
+              >
+                Verifica attestazione sul portale ANAC
+                <svg
+                  aria-hidden="true"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" x2="21" y1="14" y2="3" />
+                </svg>
+              </a>
+            )}
           </div>
 
           {/* Right column — commitments */}

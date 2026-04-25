@@ -42,7 +42,7 @@ export function Footer() {
               {/* Social links */}
               <div className="mt-3 flex items-center gap-4 lg:mt-5">
                 <a
-                  href="#"
+                  href="https://www.facebook.com/costruzioniedilferro.it/"
                   aria-label="Facebook"
                   className="text-white/50 transition-colors hover:text-white"
                 >
