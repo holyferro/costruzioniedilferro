@@ -25,11 +25,6 @@ export function MobileMenu({ scrolled }: MobileMenuProps) {
   const [openSince, setOpenSince] = useState<string | null>(null);
   const isOpen = openSince === pathname;
 
-  // Suppress CSS transitions until the first open to avoid the iOS/iPadOS glitch
-  // where translate-x-full animates on initial paint. Set from the event handler
-  // so it never triggers setState-in-effect or ref-during-render lint rules.
-  const [hasOpened, setHasOpened] = useState(false);
-
   // ESC to close + focus management
   useEffect(() => {
     if (!isOpen) return;
@@ -44,18 +39,23 @@ export function MobileMenu({ scrolled }: MobileMenuProps) {
     return () => document.removeEventListener("keydown", onKey);
   }, [isOpen]);
 
-  // Lock body scroll while menu is open
+  // iOS-compatible scroll lock: position:fixed avoids the scroll-jump that
+  // overflow:hidden causes on Mobile Safari when the page is scrolled down.
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "";
+    if (!isOpen) return;
+    const scrollY = window.scrollY;
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      window.scrollTo(0, scrollY);
     };
   }, [isOpen]);
 
-  const handleOpen = () => {
-    if (!hasOpened) setHasOpened(true);
-    setOpenSince(pathname);
-  };
+  const handleOpen = () => setOpenSince(pathname);
   const handleClose = () => {
     setOpenSince(null);
     openButtonRef.current?.focus();
@@ -87,22 +87,22 @@ export function MobileMenu({ scrolled }: MobileMenuProps) {
         className={`fixed inset-0 z-50 overflow-hidden ${isOpen ? "pointer-events-auto" : "pointer-events-none"}`}
         aria-hidden={!isOpen}
       >
-        {/* Dark overlay — covers the 20% of screen not used by the panel */}
+        {/* Dark overlay */}
         <div
-          className={`absolute inset-0 bg-black/60 ${hasOpened ? "transition-opacity duration-300 ease-in-out" : ""} ${
+          className={`absolute inset-0 bg-black/60 transition-opacity duration-300 ease-in-out ${
             isOpen ? "opacity-100" : "opacity-0"
           }`}
           onClick={handleClose}
           aria-label="Chiudi menu"
         />
 
-        {/* White panel — slides in from the right, always white */}
+        {/* White panel — slides in from the right */}
         <div
           id="mobile-menu-panel"
           role="dialog"
           aria-modal="true"
           aria-label="Menu di navigazione"
-          className={`absolute top-0 right-0 flex h-full w-4/5 flex-col bg-white shadow-2xl ${hasOpened ? "transition-transform duration-300 ease-in-out" : ""} ${
+          className={`absolute top-0 right-0 flex h-full w-4/5 flex-col bg-white shadow-2xl transition-transform duration-300 ease-in-out ${
             isOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
