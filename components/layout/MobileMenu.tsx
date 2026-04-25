@@ -72,9 +72,11 @@ export function MobileMenu({ scrolled }: MobileMenuProps) {
         </span>
       </button>
 
-      {/* Full-screen container — always in DOM so transitions work correctly */}
+      {/* Full-screen container — always in DOM so transitions work correctly.
+          overflow-hidden prevents the translate-x-full panel from extending
+          the scroll area on WebKit/iPadOS during orientation change. */}
       <div
-        className={`fixed inset-0 z-50 ${isOpen ? "pointer-events-auto" : "pointer-events-none"}`}
+        className={`fixed inset-0 z-50 overflow-hidden ${isOpen ? "pointer-events-auto" : "pointer-events-none"}`}
         aria-hidden={!isOpen}
       >
         {/* Dark overlay — covers the 20% of screen not used by the panel */}

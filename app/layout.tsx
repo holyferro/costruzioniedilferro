@@ -52,7 +52,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     >
       <body className="bg-panna text-ink antialiased">
         {/* Content layer — sits ABOVE the fixed footer via z-10 */}
-        <div className="bg-panna relative z-10 flex min-h-screen flex-col">
+        <div className="bg-panna relative z-10 flex min-h-screen flex-col overflow-x-hidden">
           <Header />
           <main className="flex-1">{children}</main>
         </div>

@@ -55,6 +55,9 @@ html {
   /* D-10 — base body 17px */
   font-size: 17px;
   scroll-behavior: smooth;
+  /* Prevent horizontal scroll during iPad orientation change */
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -63,6 +66,18 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  /* Contain horizontal overflow — defensive layer for all pages */
+  overflow-x: hidden;
+  max-width: 100%;
+  position: relative;
+}
+
+/* Prevent media and embeds from overflowing their containers */
+img,
+video,
+iframe,
+svg {
+  max-width: 100%;
 }
 
 /* ---------- Scroll indicator bounce ---------- */
