@@ -1,13 +1,27 @@
 // app/certificazioni/page.tsx
-// Stub — La pagina reale arriva in una fase successiva.
+// Pagina /certificazioni — orchestratore RSC.
+import { buildMetadata } from "@/lib/seo/metadata";
+import { certificazioniContent } from "@/content/certifications";
+import { CertificazioniHero } from "@/components/sections/CertificazioniHero";
+import { SoaSection } from "@/components/sections/SoaSection";
+import { CertificazioniGrid } from "@/components/sections/CertificazioniGrid";
+import { HomepageCta } from "@/components/sections/HomepageCta";
+
+export const metadata = buildMetadata({
+  title: "Certificazioni",
+  description:
+    "Certificazioni ISO 9001, attestazione SOA OG1-OG2-OG3, affiliazioni ANCE e partner di qualità. Edilferro — qualità documentata su ogni cantiere.",
+  alternates: { canonical: "/certificazioni" },
+});
+
 export default function CertificazioniPage() {
+  const { hero, soa, certifications, finalCta } = certificazioniContent;
   return (
-    <section className="mx-auto max-w-2xl px-6 py-24">
-      <p className="text-ink/60 text-sm font-medium tracking-widest uppercase">In arrivo</p>
-      <h1 className="text-h1 text-ink font-serif leading-[1.1]">Certificazioni</h1>
-      <p className="text-ink/80 mt-6 max-w-prose text-lg">
-        La pagina delle certificazioni è in lavorazione.
-      </p>
-    </section>
+    <>
+      <CertificazioniHero {...hero} />
+      <SoaSection {...soa} />
+      <CertificazioniGrid certifications={certifications} />
+      <HomepageCta {...finalCta} />
+    </>
   );
 }
