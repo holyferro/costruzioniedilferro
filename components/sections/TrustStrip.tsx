@@ -1,6 +1,9 @@
 // components/sections/TrustStrip.tsx
 // RSC. Sezione editoriale tabellare su panna.
-// 2 colonne desktop (titolo sticky a sinistra, righe a destra) → stack mobile.
+// Layout per breakpoint:
+//   mobile (0–767px)  : stack, stats in 1 colonna
+//   tablet (768–1023px): stack, stats in griglia 2 colonne
+//   desktop (1024px+) : 2 colonne affiancate (intro sticky sx, stats dx)
 
 import Image from "next/image";
 import type { TrustRow } from "@/content/homepage";
@@ -17,10 +20,11 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
     <section
       id="contenuto"
       aria-label="Numeri chiave dell'impresa"
-      className="bg-panna border-border [scroll-margin-top:var(--header-height)] border-b py-20 md:py-28"
+      className="bg-panna border-border [scroll-margin-top:var(--header-height)] overflow-x-clip border-b py-20 md:py-28"
     >
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-[1fr_2fr] md:gap-16 md:px-12">
-        <div className="md:sticky md:top-[calc(var(--header-height)+24px)] md:self-start">
+      <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[1fr_2fr] lg:gap-16 lg:px-12">
+        {/* Intro — sticky solo su desktop lg+ */}
+        <div className="lg:sticky lg:top-[calc(var(--header-height)+24px)] lg:self-start">
           <Eyebrow>{eyebrow}</Eyebrow>
           <h2 className="text-ink mt-5 max-w-[15ch] font-serif text-[clamp(2rem,1rem+2.6vw,3.4rem)] leading-[1.12] font-medium tracking-tight">
             {title}
@@ -34,25 +38,31 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
             className="mt-8 h-24 w-auto mix-blend-multiply md:h-28"
           />
         </div>
-        <dl>
-          {rows.map((r, i) => (
-            <div
-              key={r.label}
-              className={`border-border grid grid-cols-[88px_1fr] items-baseline gap-x-5 gap-y-2 border-t py-7 sm:grid-cols-[140px_1fr_auto] sm:gap-x-8 md:grid-cols-[180px_1fr_auto] ${
-                i === rows.length - 1 ? "border-b" : ""
-              }`}
-            >
-              <dt className="text-ink font-serif text-5xl leading-none font-medium tracking-tight md:text-6xl">
-                {r.value}
-              </dt>
-              <dd className="text-ink font-serif text-lg leading-snug font-medium italic md:text-2xl">
-                {r.label}
-              </dd>
-              <dd className="text-ink/60 col-span-2 text-xs tracking-[0.12em] uppercase sm:col-span-1 sm:max-w-[28ch] sm:text-right">
-                {r.sub}
-              </dd>
-            </div>
-          ))}
+
+        {/* Stats — griglia 2 col su tablet, lista su desktop */}
+        <dl className="md:grid md:grid-cols-2 md:gap-x-8 lg:block">
+          {rows.map((r, i) => {
+            const isLast = i === rows.length - 1;
+            const isSecondToLast = i === rows.length - 2;
+            return (
+              <div
+                key={r.label}
+                className={`border-border grid grid-cols-[88px_1fr] items-baseline gap-x-5 gap-y-2 border-t py-7 sm:grid-cols-[140px_1fr_auto] sm:gap-x-8 md:grid-cols-[88px_1fr] md:items-start md:gap-x-4 md:py-6 lg:grid-cols-[180px_1fr_auto] lg:items-baseline lg:gap-x-8 lg:py-7 ${
+                  isLast ? "border-b" : isSecondToLast ? "md:border-b lg:border-b-0" : ""
+                }`}
+              >
+                <dt className="text-ink font-serif text-5xl leading-none font-medium tracking-tight lg:text-6xl">
+                  {r.value}
+                </dt>
+                <dd className="text-ink font-serif text-lg leading-snug font-medium italic md:text-xl lg:text-2xl">
+                  {r.label}
+                </dd>
+                <dd className="text-ink/60 col-span-2 text-xs tracking-[0.12em] uppercase sm:col-span-1 sm:max-w-[28ch] sm:text-right md:col-span-2 md:mt-1 md:text-left lg:col-span-1 lg:mt-0 lg:max-w-[28ch] lg:text-right">
+                  {r.sub}
+                </dd>
+              </div>
+            );
+          })}
         </dl>
       </div>
     </section>
