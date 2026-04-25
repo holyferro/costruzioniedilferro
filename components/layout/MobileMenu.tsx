@@ -25,6 +25,11 @@ export function MobileMenu({ scrolled }: MobileMenuProps) {
   const [openSince, setOpenSince] = useState<string | null>(null);
   const isOpen = openSince === pathname;
 
+  // Suppress CSS transitions until the first open to avoid the iOS/iPadOS glitch
+  // where translate-x-full animates on initial paint. Set from the event handler
+  // so it never triggers setState-in-effect or ref-during-render lint rules.
+  const [hasOpened, setHasOpened] = useState(false);
+
   // ESC to close + focus management
   useEffect(() => {
     if (!isOpen) return;
@@ -47,7 +52,10 @@ export function MobileMenu({ scrolled }: MobileMenuProps) {
     };
   }, [isOpen]);
 
-  const handleOpen = () => setOpenSince(pathname);
+  const handleOpen = () => {
+    if (!hasOpened) setHasOpened(true);
+    setOpenSince(pathname);
+  };
   const handleClose = () => {
     setOpenSince(null);
     openButtonRef.current?.focus();
@@ -81,7 +89,7 @@ export function MobileMenu({ scrolled }: MobileMenuProps) {
       >
         {/* Dark overlay — covers the 20% of screen not used by the panel */}
         <div
-          className={`absolute inset-0 bg-black/60 transition-opacity duration-300 ease-in-out ${
+          className={`absolute inset-0 bg-black/60 ${hasOpened ? "transition-opacity duration-300 ease-in-out" : ""} ${
             isOpen ? "opacity-100" : "opacity-0"
           }`}
           onClick={handleClose}
@@ -94,7 +102,7 @@ export function MobileMenu({ scrolled }: MobileMenuProps) {
           role="dialog"
           aria-modal="true"
           aria-label="Menu di navigazione"
-          className={`absolute top-0 right-0 flex h-full w-4/5 flex-col bg-white shadow-2xl transition-transform duration-300 ease-in-out ${
+          className={`absolute top-0 right-0 flex h-full w-4/5 flex-col bg-white shadow-2xl ${hasOpened ? "transition-transform duration-300 ease-in-out" : ""} ${
             isOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
