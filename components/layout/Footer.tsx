@@ -13,11 +13,11 @@ export function Footer() {
 
   return (
     <footer className="border-brand border-t-2 bg-black text-white">
-      <div className="mx-auto max-w-screen-2xl px-4 py-6 md:py-10">
+      <div className="mx-auto max-w-screen-2xl px-4 py-6 lg:py-10">
         {/* Main area: content + rotated phone strip */}
         <div className="flex gap-8">
           {/* Content grid */}
-          <div className="grid flex-1 grid-cols-2 gap-5 md:grid-cols-4 md:gap-8">
+          <div className="grid flex-1 grid-cols-2 gap-5 lg:grid-cols-4 lg:gap-8">
             {/* Col 1 — Identity */}
             <div>
               <div className="flex items-center gap-5">
@@ -40,7 +40,7 @@ export function Footer() {
               </p>
 
               {/* Social links */}
-              <div className="mt-3 flex items-center gap-4 md:mt-5">
+              <div className="mt-3 flex items-center gap-4 lg:mt-5">
                 <a
                   href="#"
                   aria-label="Facebook"
@@ -102,7 +102,7 @@ export function Footer() {
               <h2 className="text-xs font-semibold tracking-widest text-white/40 uppercase">
                 Sezioni
               </h2>
-              <ul className="mt-2 space-y-1.5 md:mt-3 md:space-y-2">
+              <ul className="mt-2 space-y-1.5 lg:mt-3 lg:space-y-2">
                 {primaryNav.map((item) => (
                   <li key={item.href}>
                     <FooterLink
@@ -121,7 +121,7 @@ export function Footer() {
               <h2 className="text-xs font-semibold tracking-widest text-white/40 uppercase">
                 Contatti
               </h2>
-              <ul className="mt-2 space-y-1.5 text-xs text-white/70 md:mt-3 md:space-y-2 md:text-sm">
+              <ul className="mt-2 space-y-1.5 text-xs text-white/70 lg:mt-3 lg:space-y-2 lg:text-sm">
                 <li>
                   <a href={`tel:${siteContent.contact.phone.tel}`} className="hover:text-white">
                     {siteContent.contact.phone.display}
@@ -150,7 +150,7 @@ export function Footer() {
               <h2 className="text-xs font-semibold tracking-widest text-white/40 uppercase">
                 Dati legali
               </h2>
-              <ul className="mt-2 space-y-1 text-xs text-white/50 md:mt-3">
+              <ul className="mt-2 space-y-1 text-xs text-white/50 lg:mt-3">
                 <li>
                   {legalContent.sedeLegale.street}, {legalContent.sedeLegale.zip}{" "}
                   {legalContent.sedeLegale.city} ({legalContent.sedeLegale.province})
@@ -165,15 +165,15 @@ export function Footer() {
                   {legalContent.capitaleSociale.paidUp})
                 </li>
               </ul>
-              <div className="mt-3 flex gap-2 text-xs md:mt-4">
+              <div className="mt-3 flex gap-2 text-xs lg:mt-4">
                 <span className="bg-brand rounded px-2 py-1 font-semibold text-white">SOA</span>
                 <span className="bg-brand rounded px-2 py-1 font-semibold text-white">ISO</span>
               </div>
             </div>
           </div>
 
-          {/* Rotated phone strip — desktop only */}
-          <div className="hidden items-center justify-center border-l border-white/10 pr-0 pl-4 md:flex">
+          {/* Rotated phone strip — desktop only (lg+) */}
+          <div className="hidden items-center justify-center border-l border-white/10 pr-0 pl-4 lg:flex">
             <a
               href={`tel:${siteContent.contact.phone.tel}`}
               aria-label={`Chiama ${siteContent.brand.name}`}
@@ -185,8 +185,8 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Mobile phone — shown below content on small screens */}
-        <div className="mt-4 flex justify-center border-t border-white/10 pt-4 md:hidden">
+        {/* Mobile/tablet phone — shown below content below lg */}
+        <div className="mt-4 flex justify-center border-t border-white/10 pt-4 lg:hidden">
           <a
             href={`tel:${siteContent.contact.phone.tel}`}
             className="text-xl font-bold tracking-wider text-white/80 hover:text-white"
@@ -196,7 +196,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-4 flex flex-col gap-3 border-t border-white/10 pt-4 text-xs text-white/40 md:mt-8 md:flex-row md:items-center md:justify-between md:gap-4 md:pt-6">
+        <div className="mt-4 flex flex-col gap-3 border-t border-white/10 pt-4 text-xs text-white/40 lg:mt-8 lg:flex-row lg:items-center lg:justify-between lg:gap-4 lg:pt-6">
           <p>
             © {new Date().getFullYear()} {legalContent.ragioneSociale}. Tutti i diritti riservati.
           </p>
