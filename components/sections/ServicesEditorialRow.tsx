@@ -21,9 +21,9 @@ export function ServicesEditorialRow({ id, variant, item, reverse }: ServicesEdi
   return (
     <section id={id} className={`${surfaceClass} text-ink py-20 md:py-28`}>
       <div className="mx-auto max-w-6xl px-6 md:px-12">
-        <div className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           {/* Text column — always below image on mobile */}
-          <div className={`order-2 ${reverse ? "md:order-2" : "md:order-1"}`}>
+          <div className={`order-2 ${reverse ? "lg:order-2" : "lg:order-1"}`}>
             <div className="mb-4 flex items-baseline gap-4">
               <span className="text-brand font-serif text-sm font-medium italic">— {item.n}</span>
               <span className="text-ink/60 text-[11px] font-semibold tracking-[0.22em] uppercase">
@@ -76,15 +76,15 @@ export function ServicesEditorialRow({ id, variant, item, reverse }: ServicesEdi
           <Link
             href={item.ctaHref}
             aria-label={item.title}
-            className={`group/img relative order-1 block aspect-[25/16] overflow-hidden md:aspect-[5/4] ${
-              reverse ? "md:order-1" : "md:order-2"
+            className={`group/img relative order-1 block aspect-[25/16] overflow-hidden lg:aspect-[5/4] ${
+              reverse ? "lg:order-1" : "lg:order-2"
             }`}
           >
             <Image
               src={item.imageSrc}
               alt={item.imageAlt}
               fill
-              sizes="(min-width: 768px) 50vw, 100vw"
+              sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover transition-transform duration-700 ease-out group-hover/img:scale-[1.04]"
             />
             <div
@@ -113,7 +113,7 @@ function SoaBadgeGrid({
 }) {
   const cardSurface = surface === "panna" ? "bg-white" : "bg-panna";
   return (
-    <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-3">
+    <div className="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-3">
       {badges.map((badge) => (
         <div
           key={badge.code}
