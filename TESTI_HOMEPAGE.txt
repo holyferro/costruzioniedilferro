@@ -1,0 +1,177 @@
+========================================
+TESTI HOMEPAGE — Costruzioni Edilferro
+========================================
+Modifica i testi che vuoi, poi ricarica questo file.
+NON cambiare le etichette (es. "hero.eyebrow:") — servono per identificare le voci.
+
+
+--- BRAND (content/site.ts) ---
+
+brand.name:             Edilferro
+brand.legalName:        Costruzioni Edilferro S.r.l.
+brand.tagline:          Dal 1981 costruiamo valore, qualità e fiducia nel territorio. General contractor per opere residenziali, industriali e di restauro nel Polesine e in tutto il Veneto.
+brand.claim:            Dal 1981 costruiamo valore, qualità e fiducia nel territorio.
+
+contact.phone:          0426 633 875
+contact.email:          info@costruzioniedilferro.it
+contact.pec:            costruzioniedilferro@pec-neispa.com
+contact.hours[0]:       Lun–Ven 8:30 - 12:30 e 14:30 - 18:30
+contact.hours[1]:       Sab su appuntamento
+
+address.street:         Via dei Salici 7/9
+address.zip:            45014
+address.city:           Porto Viro
+
+
+--- HERO (prima sezione, immagine scura) ---
+
+hero.eyebrow:           DAL 1952
+hero.headline:          Costruiamo valore, qualità e fiducia nel territorio.
+hero.headlinePrefix:    Costruiamo
+hero.headlineWords[0]:  valore
+hero.headlineWords[1]:  qualità
+hero.headlineWords[2]:  fiducia nel territorio
+hero.subheadline:       Radicati nel territorio,\ncostruiamo con esperienza e continuità.
+hero.imageAlt:          Cantiere residenze universitarie Rovigo — Costruzioni Edilferro
+
+
+--- TRUST STRIP (numeri / statistiche) ---
+
+trustStrip.eyebrow:     Affidabilità misurabile
+trustStrip.title:       Quattro numeri, oltre settant'anni di lavoro.
+trustStrip.body:        Dati verificabili, aggiornati al bilancio dell'ultimo esercizio. Nessuna stima di comodo.
+
+trustStrip.rows[0].value:   45+
+trustStrip.rows[0].label:   anni di attività
+trustStrip.rows[0].sub:     fondata nel 1981
+
+trustStrip.rows[1].value:   450+
+trustStrip.rows[1].label:   cantieri completati
+trustStrip.rows[1].sub:     residenziale · pubblico · industriale
+
+trustStrip.rows[2].value:   35
+trustStrip.rows[2].label:   tra tecnici e maestranze
+trustStrip.rows[2].sub:     squadra diretta, zero subappalti opachi
+
+trustStrip.rows[3].value:   SOA
+trustStrip.rows[3].label:   OG1 · OG2 · OG3
+trustStrip.rows[3].sub:     qualificazione opere pubbliche
+
+
+--- SERVIZI (sezione tre card) ---
+
+services.eyebrow:       Cosa realizziamo
+services.titleStart:    Un'impresa edile,
+services.titleAccent:   tre committenze
+services.titleEnd:       distinte.
+services.body:          Metodi, strumenti e referenti dedicati per chi costruisce una casa, per chi gestisce un patrimonio pubblico, per chi deve far lavorare un capannone domani mattina.
+services.indexLinkLabel: Tutti i servizi
+
+  -- Card 01 --
+  services.items[0].kicker:   Privati
+  services.items[0].title:    Case che invecchiano bene.
+  services.items[0].body:     Villette singole, palazzine e ville di pregio. Dalla nuova costruzione antisismica alla ristrutturazione chiavi in mano, con direzione lavori interna e un unico referente dal preventivo alla consegna.
+  services.items[0].tags:     Nuove costruzioni | Ristrutturazioni complete | Case passive NZEB | Chiavi in mano
+  services.items[0].ctaLabel: Servizi per privati
+
+  -- Card 02 --
+  services.items[1].kicker:   Settore Pubblico
+  services.items[1].title:    Opere in cui la comunità investe.
+  services.items[1].body:     Affianchiamo Comuni, ASL ed enti del territorio nella realizzazione di scuole, edifici sanitari e restauro conservativo. Attestazione SOA OG1–OG2–OG3, esperienza consolidata nei rapporti con Soprintendenze e stazioni appaltanti.
+  services.items[1].tags:     Appalti SOA | Restauro conservativo | Scuole e ASL | Direzione lavori
+  services.items[1].ctaLabel: Opere pubbliche
+
+  -- Card 03 --
+  services.items[2].kicker:   Aziende & Professionisti
+  services.items[2].title:    Spazi che lavorano con te.
+  services.items[2].body:     Capannoni industriali, sedi direzionali, strutture commerciali. Tempistiche contrattuali, manutenzione programmata e cantieri che non fermano la tua attività. Collaboriamo con studi di architettura e ingegneria come impresa generale di fiducia.
+  services.items[2].tags:     Capannoni | Sedi direzionali | General contractor | Manutenzione programmata
+  services.items[2].ctaLabel: Soluzioni per aziende
+
+
+--- PROGETTI IN EVIDENZA ---
+
+featuredProjects.eyebrow:       Selezione lavori
+featuredProjects.titleStart:    Cantieri recenti
+featuredProjects.titleAccent:   dal Polesine
+featuredProjects.titleEnd:       al resto del Veneto.
+featuredProjects.archiveLinkLabel: Archivio progetti
+
+  -- Progetto principale --
+  feature.tag:         Residenziale
+  feature.title:       Residenze Le Corti
+  feature.place:       Rovigo
+  feature.year:        2024
+  feature.description: 18 unità residenziali in classe A. Progettazione antisismica, cappotto in fibra di legno, domotica di serie. Cantiere concluso con tre settimane di anticipo sul cronoprogramma.
+  feature.imageAlt:    Residenze Le Corti — Rovigo
+
+  -- Tile 1 --
+  tiles[0].tag:        Restauro
+  tiles[0].title:      Comunità Missionaria di Villaregia
+  tiles[0].place:      Porto Viro
+  tiles[0].year:       2023
+  tiles[0].imageAlt:   Comunità Missionaria di Villaregia — restauro conservativo
+
+  -- Tile 2 --
+  tiles[1].tag:        Residenziale
+  tiles[1].title:      Casa passiva privata
+  tiles[1].place:      Adria
+  tiles[1].year:       2024
+  tiles[1].imageAlt:   Casa passiva privata — Porto Viro
+
+  -- Tile 3 --
+  tiles[2].tag:        Opere pubbliche
+  tiles[2].title:      Ampliamento casa di cura
+  tiles[2].place:      Rovigo
+  tiles[2].year:       2022
+  tiles[2].imageAlt:   Ampliamento casa di cura — Porto Viro
+
+
+--- VALORI (perché sceglierci) ---
+
+values.eyebrow:      Perché sceglierci
+values.titleStart:   Quattro promesse
+values.titleAccent:  che manteniamo
+values.titleEnd:      da cantiere a cantiere.
+values.body:         Non le chiamiamo valori. Sono il modo in cui lavoriamo da settant'anni, e il motivo per cui i nostri clienti tornano.
+
+  -- Principio 01 --
+  principles[0].title: Un unico interlocutore, dal preventivo al collaudo.
+  principles[0].body:  Il direttore di cantiere che incontri al sopralluogo è lo stesso che firma la consegna. Niente passaggi di mano, niente catena di subappalti da rincorrere.
+
+  -- Principio 02 --
+  principles[1].title: Preventivi chiusi, senza varianti a sorpresa.
+  principles[1].body:  Lavoriamo a corpo. Il prezzo pattuito è il prezzo finale, salvo modifiche esplicitamente richieste dal committente e sempre preventivate per iscritto.
+
+  -- Principio 03 --
+  principles[2].title: Maestranze dirette, non agenzie interinali.
+  principles[2].body:  Trentacinque persone in organico, contratti Cassa Edile. La qualità di una finitura dipende da chi la posa: per questo non esternalizziamo il mestiere.
+
+  -- Principio 04 --
+  principles[3].title: Cantieri puliti, consegne puntuali.
+  principles[3].body:  Sicurezza sul lavoro certificata ISO 45001, piani operativi aggiornati settimanalmente. Nel 2024 il 96% dei nostri cantieri è stato consegnato entro la data contrattuale.
+
+
+--- AREA DI SERVIZIO (dove operiamo) ---
+
+serviceArea.eyebrow:     Dove operiamo
+serviceArea.titleStart:  Radicati nel Polesine,
+serviceArea.titleAccent: presenti in tutto il Veneto.
+serviceArea.body:        Sede storica nel cuore del Polesine, una rete di fornitori consolidati e squadre pronte a intervenire in giornata sui cantieri continuativi. Per commesse di rilievo raggiungiamo Padova, Ferrara e Venezia.
+
+  zones[0]:  Porto Viro     | Sede operativa         | 0 km
+  zones[1]:  Rovigo         | Cantieri continuativi  | 28 km
+  zones[2]:  Adria          | Cantieri continuativi  | 18 km
+  zones[3]:  Chioggia       | Cantieri continuativi  | 35 km
+  zones[4]:  Padova         | Commesse selezionate   | 62 km
+  zones[5]:  Ferrara        | Commesse selezionate   | 54 km
+  zones[6]:  Venezia        | Commesse selezionate   | 75 km
+
+
+--- CTA FINALE (iniziamo a parlarne) ---
+
+finalCta.eyebrow:           Iniziamo a parlarne
+finalCta.headline:          Ogni progetto comincia con un sopralluogo in cantiere.
+finalCta.body:              Raccontaci l'opera. Veniamo sul posto, valutiamo fattibilità e tempi, e prepariamo un'offerta dettagliata entro dieci giorni lavorativi. Nessun costo, nessun impegno.
+finalCta.primaryCta.label:  Richiedi un sopralluogo
+finalCta.secondaryCta.label: Richiedi un preventivo
