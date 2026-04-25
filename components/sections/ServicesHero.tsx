@@ -38,7 +38,7 @@ export function ServicesHero({
         <div className="mt-8 min-h-0 flex-1 md:mt-10">
           <div className="relative h-full overflow-hidden rounded-xl md:h-[90%] lg:mx-auto lg:max-w-3xl xl:max-w-none">
             <Image
-              src="/images/heroservizi.webp"
+              src="/images/heroservizi2.webp"
               alt="Cantiere edilferro — panoramica lavori"
               fill
               className="object-cover"
