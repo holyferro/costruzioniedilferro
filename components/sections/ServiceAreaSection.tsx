@@ -1,7 +1,9 @@
 // components/sections/ServiceAreaSection.tsx
 // RSC. Su bg-ink: testo+lista zone a sinistra, mappa schematica SVG a destra.
-// Mappa stilizzata (NON geografica reale, NON Google Maps): griglia di puntini +
-// markers etichettati per le zone operative. Niente iframe, niente link a Google.
+// Layout per breakpoint:
+//   mobile  (0–767px)  : stack verticale — intro, mappa, zone list 1-col
+//   tablet  (768–1023px): stack verticale — intro, mappa centrata max-620px, zone list 2-col
+//   desktop (1024px+)  : 2 colonne — [intro / zone-list] | [mappa row-span-2]
 
 import type { Zone } from "@/content/homepage";
 
@@ -21,9 +23,15 @@ export function ServiceAreaSection({
   zones,
 }: ServiceAreaSectionProps) {
   return (
-    <section className="bg-ink text-panna relative overflow-hidden py-20 md:py-28">
+    <section className="bg-ink text-panna relative overflow-x-clip py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
-        <div className="grid items-center gap-12 md:grid-cols-[1fr_1.15fr] md:gap-16">
+        {/*
+          Outer grid:
+          - mobile/tablet: single column (items stack: intro → map → zones)
+          - desktop lg+: 2 col, map spans both rows on the right
+        */}
+        <div className="grid gap-10 md:gap-8 lg:grid-cols-[1fr_1.15fr] lg:items-start lg:gap-x-16 lg:gap-y-10">
+          {/* ① Intro — first on all sizes; left col row 1 on desktop */}
           <div>
             <DarkEyebrow>{eyebrow}</DarkEyebrow>
             <h2 className="text-panna mt-5 max-w-[16ch] font-serif text-[clamp(2rem,1rem+2.6vw,3.4rem)] leading-[1.12] font-medium tracking-tight">
@@ -31,43 +39,63 @@ export function ServiceAreaSection({
               <em className="text-panna/65 font-serif italic">{titleAccent}</em>
             </h2>
             <p className="text-panna/70 mt-6 max-w-[48ch] text-base leading-[1.65]">{body}</p>
-
-            <div className="mt-10 grid grid-cols-[auto_1fr_auto] gap-x-6">
-              {zones.map((z, i) => (
-                <ZoneRow key={z.name} zone={z} last={i === zones.length - 1} />
-              ))}
-            </div>
           </div>
 
-          <TerritoryMap zones={zones} />
+          {/* ② Map — middle on tablet (centered, max-w-620px); right col rows 1-2 on desktop */}
+          <div className="mx-auto w-full max-w-[620px] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:max-w-none">
+            <TerritoryMap zones={zones} />
+          </div>
+
+          {/* ③ Zone list — bottom on tablet (2-col grid); left col row 2 on desktop */}
+          <div className="lg:col-start-1 lg:row-start-2">
+            <div className="grid md:grid-cols-2 md:gap-x-6 lg:block">
+              {zones.map((z, i) => {
+                const isLast = i === zones.length - 1;
+                const isSecondToLast = i === zones.length - 2;
+                return (
+                  <ZoneRow key={z.name} zone={z} isLast={isLast} isSecondToLast={isSecondToLast} />
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function ZoneRow({ zone, last }: { zone: Zone; last: boolean }) {
-  const cellBorder = `border-panna/12 border-t py-4 md:py-[18px] ${last ? "border-b" : ""}`;
+type ZoneRowProps = {
+  zone: Zone;
+  isLast: boolean;
+  isSecondToLast: boolean;
+};
+
+function ZoneRow({ zone, isLast, isSecondToLast }: ZoneRowProps) {
+  const borderBottom = isLast ? "border-b" : isSecondToLast ? "md:border-b lg:border-b-0" : "";
+
   return (
-    <>
-      <div className={`${cellBorder} flex items-center gap-3.5`}>
+    <div
+      className={`border-panna/12 flex items-center justify-between gap-4 border-t py-4 lg:py-[18px] ${borderBottom}`}
+    >
+      {/* Left: dot + city name */}
+      <div className="flex items-center gap-3">
         <span
           aria-hidden="true"
-          className={`inline-block h-2 w-2 rounded-full ${
+          className={`inline-block h-2 w-2 shrink-0 rounded-full ${
             zone.primary ? "bg-panna/85" : "border-panna/35 border bg-transparent"
           }`}
         />
-        <span className="text-panna font-serif text-lg font-medium md:text-[22px]">
+        <span className="text-panna font-serif text-base font-medium md:text-lg lg:text-[22px]">
           {zone.name}
         </span>
       </div>
-      <div className={`${cellBorder} flex items-center`}>
-        <span className="text-panna/60 text-[11px] tracking-[0.12em] uppercase">{zone.role}</span>
-      </div>
-      <div className={`${cellBorder} flex items-center`}>
+
+      {/* Right: role + km */}
+      <div className="flex shrink-0 flex-col items-end gap-0.5">
+        <span className="text-panna/60 text-[10px] tracking-[0.12em] uppercase">{zone.role}</span>
         <span className="text-panna/55 font-serif text-sm italic">{zone.km}</span>
       </div>
-    </>
+    </div>
   );
 }
 
