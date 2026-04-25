@@ -55,8 +55,9 @@ html {
   /* D-10 — base body 17px */
   font-size: 17px;
   scroll-behavior: smooth;
-  /* Prevent horizontal scroll during iPad orientation change */
-  overflow-x: hidden;
+  /* overflow-x: clip clips horizontally without creating a scroll container,
+     so position:sticky on descendants keeps working (unlike overflow:hidden). */
+  overflow-x: clip;
   max-width: 100%;
 }
 
@@ -66,8 +67,7 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  /* Contain horizontal overflow — defensive layer for all pages */
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
   position: relative;
 }
