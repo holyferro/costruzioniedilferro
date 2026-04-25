@@ -47,7 +47,7 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
             return (
               <div
                 key={r.label}
-                className={`border-border grid grid-cols-[88px_1fr] items-baseline gap-x-5 gap-y-2 border-t py-7 sm:grid-cols-[140px_1fr_auto] sm:gap-x-8 md:grid-cols-[88px_1fr] md:items-start md:gap-x-4 md:py-6 lg:grid-cols-[180px_1fr_auto] lg:items-baseline lg:gap-x-8 lg:py-7 ${
+                className={`border-border grid grid-cols-[auto_1fr] items-baseline gap-x-6 gap-y-2 border-t py-7 sm:grid-cols-[140px_1fr_auto] sm:gap-x-8 md:grid-cols-[auto_1fr] md:items-start md:gap-x-5 md:py-6 lg:grid-cols-[180px_1fr_auto] lg:items-baseline lg:gap-x-8 lg:py-7 ${
                   isLast ? "border-b" : isSecondToLast ? "md:border-b lg:border-b-0" : ""
                 }`}
               >
