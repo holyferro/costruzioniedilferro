@@ -1,39 +1,72 @@
 // components/sections/CertificazioniGrid.tsx
-// RSC. Griglia certificazioni e affiliazioni su bg-panna.
-// Prima riga: certificazioni di qualità (card grandi con logo + testo).
-// Seconda riga: affiliazioni (card logo + nome, più compatte).
+// RSC. Griglia 3-col: 5 cert cards + 1 CTA card brand. Gap 1px su bg-border.
 
 import Image from "next/image";
-import type { Certification } from "@/content/certifications";
+import Link from "next/link";
 
-type CertificazioniGridProps = {
-  certifications: readonly Certification[];
+type CertCard = {
+  id: string;
+  year: string | null;
+  logoSrc: string;
+  logoAlt: string;
+  tag: string;
+  title: string;
+  body: string;
 };
 
-export function CertificazioniGrid({ certifications }: CertificazioniGridProps) {
-  const qualita = certifications.filter((c) => c.category === "qualita");
-  const affiliazioni = certifications.filter((c) => c.category !== "qualita");
+type CertificazioniGridProps = {
+  certCards: readonly CertCard[];
+  eyebrow: string;
+};
 
+export function CertificazioniGrid({ certCards, eyebrow }: CertificazioniGridProps) {
   return (
-    <section className="bg-panna text-ink py-20 md:py-28">
+    <section className="bg-panna py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
-        {/* Certificazioni di qualità — card editoriali */}
-        <div className="mb-16 md:mb-20">
-          <SectionLabel>Certificazioni di qualità</SectionLabel>
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
-            {qualita.map((cert) => (
-              <QualitaCard key={cert.id} cert={cert} />
-            ))}
-          </div>
-        </div>
+        <p className="text-ink/60 mb-12 text-xs font-semibold tracking-[0.38em] uppercase">
+          <span
+            aria-hidden="true"
+            className="bg-ink/35 mr-3.5 inline-block h-px w-8 align-middle"
+          />
+          {eyebrow}
+        </p>
 
-        {/* Affiliazioni e riconoscimenti — logo grid */}
-        <div>
-          <SectionLabel>Affiliazioni e riconoscimenti</SectionLabel>
-          <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5">
-            {affiliazioni.map((cert) => (
-              <AffiliationCard key={cert.id} cert={cert} />
-            ))}
+        {/* 1px-gap grid trick: background is the border color */}
+        <div className="border-border bg-[var(--color-border,theme(colors.border))] grid grid-cols-1 gap-px border md:grid-cols-2 lg:grid-cols-3">
+          {certCards.map((card) => (
+            <CertCard key={card.id} card={card} />
+          ))}
+
+          {/* CTA card — brand blue */}
+          <div className="bg-brand flex flex-col justify-between p-10 md:p-12">
+            <div>
+              <p className="text-panna/60 mb-6 font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold tracking-[0.22em] uppercase">
+                Vuoi verificare le nostre qualifiche?
+              </p>
+              <h3 className="mb-4 max-w-[22ch] font-serif text-[26px] leading-[1.3] font-medium tracking-[-0.01em] text-white">
+                Tutte le nostre attestazioni sono pubbliche e consultabili.
+              </h3>
+              <p className="text-panna/80 text-[15px] leading-[1.65]">
+                L&apos;attestazione SOA è verificabile sul portale ANAC. Le certificazioni ISO sono
+                registrate sul sito Accredia. Nessuna autocertificazione.
+              </p>
+            </div>
+            <div className="mt-10 flex flex-col gap-3">
+              <a
+                href="https://www.anac.gov.it"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-panna text-brand flex items-center justify-between rounded-full px-6 py-4 font-[family-name:var(--font-neue-montreal)] text-[13px] font-medium tracking-[0.04em] uppercase transition-opacity hover:opacity-90"
+              >
+                Portale ANAC <span aria-hidden="true">↗</span>
+              </a>
+              <Link
+                href="/contatti"
+                className="border-panna/35 flex items-center justify-between rounded-full border px-6 py-4 font-[family-name:var(--font-neue-montreal)] text-[13px] font-medium tracking-[0.04em] text-white uppercase transition-colors hover:bg-white/10"
+              >
+                Richiedi documentazione <span aria-hidden="true">→</span>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -41,68 +74,37 @@ export function CertificazioniGrid({ certifications }: CertificazioniGridProps) 
   );
 }
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
+function CertCard({ card }: { card: CertCard }) {
   return (
-    <p className="text-ink/50 text-[11px] font-semibold tracking-[0.28em] uppercase">
-      <span aria-hidden="true" className="bg-ink/30 mr-3 inline-block h-px w-6 align-middle" />
-      {children}
-    </p>
-  );
-}
+    <article className="group relative flex flex-col bg-white p-10 transition-shadow duration-300 hover:shadow-[0_12px_48px_rgba(10,42,107,0.10)] md:p-12">
+      {card.year && (
+        <span className="text-ink/40 absolute top-7 right-7 font-serif text-sm italic">
+          {card.year}
+        </span>
+      )}
 
-function QualitaCard({ cert }: { cert: Certification }) {
-  return (
-    <article className="border-border hover:border-ink/30 flex flex-col gap-6 rounded-xl border bg-white p-7 transition-colors duration-200 md:flex-row md:items-start md:gap-8 md:p-8">
       {/* Logo */}
-      <div className="flex h-16 w-32 shrink-0 items-center">
-        <div className="relative h-14 w-28">
+      <div className="mb-8 flex h-24 items-center">
+        <div className="relative h-full w-48">
           <Image
-            src={cert.logoSrc}
-            alt={cert.logoAlt}
+            src={card.logoSrc}
+            alt={card.logoAlt}
             fill
             className="object-contain object-left"
-            sizes="112px"
+            sizes="192px"
           />
         </div>
       </div>
 
-      {/* Testo */}
-      <div className="flex-1">
-        <div className="mb-3 flex flex-wrap items-center gap-3">
-          <h3 className="text-ink font-serif text-xl leading-snug font-medium">{cert.name}</h3>
-          {cert.badgeLabel && (
-            <span className="bg-brand/10 text-brand rounded-full px-2.5 py-0.5 font-[family-name:var(--font-neue-montreal)] text-[10px] font-semibold tracking-[0.16em] uppercase">
-              {cert.badgeLabel}
-            </span>
-          )}
-        </div>
-        <p className="text-ink/55 mb-3 text-[11px] font-semibold tracking-[0.2em] uppercase">
-          {cert.issuer}
-        </p>
-        <p className="text-ink/75 text-sm leading-[1.65]">{cert.description}</p>
-      </div>
-    </article>
-  );
-}
+      {/* Tag */}
+      <span className="border-brand/25 text-brand mb-4 self-start rounded-full border px-3 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[10px] font-semibold tracking-[0.22em] uppercase">
+        {card.tag}
+      </span>
 
-function AffiliationCard({ cert }: { cert: Certification }) {
-  return (
-    <article className="border-border hover:border-ink/30 flex flex-col items-center gap-5 rounded-xl border bg-white p-6 text-center transition-colors duration-200">
-      <div className="relative h-16 w-full">
-        <Image
-          src={cert.logoSrc}
-          alt={cert.logoAlt}
-          fill
-          className="object-contain"
-          sizes="(min-width: 768px) 25vw, 50vw"
-        />
-      </div>
-      <div>
-        <p className="text-ink font-serif text-sm leading-snug font-medium">{cert.name}</p>
-        <p className="text-ink/50 mt-1 text-[10px] font-semibold tracking-[0.16em] uppercase">
-          {cert.issuer}
-        </p>
-      </div>
+      <h3 className="text-ink mb-3.5 font-serif text-[22px] leading-[1.3] font-medium tracking-[-0.01em]">
+        {card.title}
+      </h3>
+      <p className="text-ink/70 text-[15px] leading-[1.65]">{card.body}</p>
     </article>
   );
 }

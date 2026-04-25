@@ -5,6 +5,7 @@ import { certificazioniContent } from "@/content/certifications";
 import { CertificazioniHero } from "@/components/sections/CertificazioniHero";
 import { SoaSection } from "@/components/sections/SoaSection";
 import { CertificazioniGrid } from "@/components/sections/CertificazioniGrid";
+import { RinnoviSection } from "@/components/sections/RinnoviSection";
 import { HomepageCta } from "@/components/sections/HomepageCta";
 
 export const metadata = buildMetadata({
@@ -15,12 +16,13 @@ export const metadata = buildMetadata({
 });
 
 export default function CertificazioniPage() {
-  const { hero, soa, certifications, finalCta } = certificazioniContent;
+  const { hero, soa, certCards, rinnovi, finalCta } = certificazioniContent;
   return (
     <>
       <CertificazioniHero {...hero} />
       <SoaSection {...soa} />
-      <CertificazioniGrid certifications={certifications} />
+      <CertificazioniGrid certCards={certCards} eyebrow="Altre qualifiche e affiliazioni" />
+      <RinnoviSection {...rinnovi} />
       <HomepageCta {...finalCta} />
     </>
   );
