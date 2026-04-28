@@ -20,7 +20,7 @@ export function CertificazioniHero({
   subtitle,
 }: CertificazioniHeroProps) {
   return (
-    <section className="bg-panna text-ink flex h-[calc(100dvh-var(--header-height))] flex-col py-10 md:py-16">
+    <section className="bg-panna text-ink flex h-[calc(100svh-var(--header-height))] flex-col py-10 md:py-16">
       <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-6 md:px-12">
         <div className="mx-auto max-w-3xl flex-none text-center">
           <Eyebrow>{eyebrow}</Eyebrow>
