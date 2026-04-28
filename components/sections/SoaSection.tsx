@@ -61,16 +61,18 @@ export function SoaSection({
             <p className="text-panna/78 mt-5 max-w-[52ch] text-base leading-[1.7]">{body}</p>
 
             {/* Stat boxes */}
-            <div className="mt-8 flex gap-3.5">
+            <div className="mt-8 grid grid-cols-3 gap-2 sm:gap-3.5">
               {stats.map((s) => (
                 <div
                   key={s.label}
-                  className="border-panna/15 min-w-0 flex-1 rounded-md border px-3 py-4 sm:px-5"
+                  className="border-panna/15 rounded-md border px-2.5 py-3 sm:px-5 sm:py-4"
                 >
-                  <p className="text-panna/55 mb-1.5 text-[10px] tracking-[0.2em] uppercase">
+                  <p className="text-panna/55 mb-1 text-[8px] leading-tight tracking-[0.06em] uppercase sm:text-[10px] sm:tracking-[0.2em]">
                     {s.label}
                   </p>
-                  <p className="font-serif text-lg font-medium text-white">{s.value}</p>
+                  <p className="font-serif text-sm leading-snug font-medium text-white sm:text-lg">
+                    {s.value}
+                  </p>
                 </div>
               ))}
             </div>
