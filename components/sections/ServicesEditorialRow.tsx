@@ -22,8 +22,8 @@ export function ServicesEditorialRow({ id, variant, item, reverse }: ServicesEdi
     <section id={id} className={`${surfaceClass} text-ink py-20 md:py-28`}>
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          {/* Text column — always below image on mobile */}
-          <div className={`order-2 ${reverse ? "lg:order-2" : "lg:order-1"}`}>
+          {/* Text column — first on mobile, position driven by reverse on lg */}
+          <div className={`order-1 ${reverse ? "lg:order-2" : "lg:order-1"}`}>
             <div className="mb-4 flex items-baseline gap-4">
               <span className="text-brand font-serif text-sm font-medium italic">— {item.n}</span>
               <span className="text-ink/60 text-[11px] font-semibold tracking-[0.22em] uppercase">
@@ -72,11 +72,11 @@ export function ServicesEditorialRow({ id, variant, item, reverse }: ServicesEdi
             </Link>
           </div>
 
-          {/* Photo column — always above text on mobile, reduced height on mobile */}
+          {/* Photo column — last on mobile, position driven by reverse on lg */}
           <Link
             href={item.ctaHref}
             aria-label={item.title}
-            className={`group/img relative order-1 block aspect-[25/16] overflow-hidden lg:aspect-[5/4] ${
+            className={`group/img relative order-2 block aspect-[25/16] overflow-hidden lg:aspect-[5/4] ${
               reverse ? "lg:order-1" : "lg:order-2"
             }`}
           >
