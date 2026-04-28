@@ -4,10 +4,10 @@
 // Aggiunge slot SOA badges per la sezione Enti Pubblici (D-08 — differenziatore critico SRV-03).
 // L'attributo `id` sul <section> è il target degli ancori da TargetIndex (`/servizi#privati` etc.).
 
-import Image from "next/image";
 import Link from "next/link";
 import type { ServicesTarget, SoaBadge } from "@/content/services";
 import { ServiceCardInteractive } from "@/components/sections/ServiceCardInteractive";
+import { ServicePhotoInteractive } from "@/components/sections/ServicePhotoInteractive";
 
 type ServicesEditorialRowProps = {
   id: string; // "privati" | "pubblico" | "professionisti" — anchor target
@@ -73,31 +73,15 @@ export function ServicesEditorialRow({ id, variant, item, reverse }: ServicesEdi
           </div>
 
           {/* Photo column — last on mobile, position driven by reverse on lg */}
-          <Link
-            href={item.ctaHref}
-            aria-label={item.title}
-            className={`group/img relative order-2 block aspect-[25/16] overflow-hidden lg:aspect-[5/4] ${
+          <ServicePhotoInteractive
+            src={item.imageSrc}
+            alt={item.imageAlt}
+            caption={item.imageCaption}
+            number={item.n}
+            className={`order-2 aspect-[25/16] cursor-pointer lg:aspect-[5/4] ${
               reverse ? "lg:order-1" : "lg:order-2"
             }`}
-          >
-            <Image
-              src={item.imageSrc}
-              alt={item.imageAlt}
-              fill
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover transition-transform duration-700 ease-out group-hover/img:scale-[1.04]"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40"
-            />
-            <span
-              aria-hidden="true"
-              className="absolute top-4 left-5 font-serif text-6xl leading-none font-medium tracking-tight text-white/85 [text-shadow:0_2px_20px_rgba(0,0,0,0.4)] md:text-7xl"
-            >
-              {item.n}
-            </span>
-          </Link>
+          />
         </div>
       </div>
     </section>

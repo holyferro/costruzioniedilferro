@@ -25,6 +25,7 @@ export type ServicesTarget = {
   readonly body: string;
   readonly imageSrc: string;
   readonly imageAlt: string;
+  readonly imageCaption?: string; // nome progetto mostrato sull'immagine a hover/tap
   readonly tags: readonly string[];
   readonly ctaLabel: string;
   readonly ctaHref: Route<"/contatti" | "/servizi">;
@@ -97,6 +98,7 @@ export const servicesContent: ServicesContent = {
         body: "Costruiamo e ristrutturiamo abitazioni con progettazione antisismica, materiali certificati e un unico interlocutore dal preventivo alla consegna. Direzione lavori interna, niente catena di subappalti.",
         imageSrc: "/images/design/img-residenziale.webp",
         imageAlt: "Cantiere residenziale — villa di pregio",
+        imageCaption: "Villa residenziale, Rovigo",
         tags: [
           "Nuove costruzioni antisismica",
           "Ristrutturazioni di pregio",
@@ -161,6 +163,7 @@ export const servicesContent: ServicesContent = {
         body: "Affianchiamo Comuni, ASL ed enti del territorio nella realizzazione di opere pubbliche, scuole, strutture sanitarie e restauro conservativo. Esperienza consolidata nei rapporti con Soprintendenze e stazioni appaltanti.",
         imageSrc: "/images/design/img-pubblico.webp",
         imageAlt: "Cantiere pubblico — restauro istituzionale",
+        imageCaption: "Restauro istituzionale, Polesine",
         tags: [
           "Appalti pubblici SOA",
           "Restauro conservativo",
@@ -225,6 +228,7 @@ export const servicesContent: ServicesContent = {
         body: "Capannoni industriali, sedi direzionali, strutture commerciali. Tempistiche contrattuali, manutenzione programmata e cantieri che non fermano la tua attività. Collaboriamo con studi di architettura e ingegneria come general contractor di fiducia.",
         imageSrc: "/images/design/img-industriale.webp",
         imageAlt: "Cantiere industriale — capannone produttivo",
+        imageCaption: "Polo produttivo, Veneto",
         tags: [
           "General contractor",
           "Capannoni e strutture industriali",
