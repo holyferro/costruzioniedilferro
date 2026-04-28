@@ -14,7 +14,7 @@ export const certificazioniContent = {
     titleAccent: "certificati",
     titleEnd: " per durare.",
     subtitle:
-      "Ogni certificazione che portiamo è il risultato di audit esterni, di processi misurabili e di una filiera produttiva che non ha subappaltatori opachi. Non sono badge da esporre: sono impegni che rinnoviamo ogni anno.",
+      "Ogni certificazione che portiamo è il risultato di audit esterni, di processi misurabili e di una filiera produttiva che non ha subappaltatori opachi.",
   },
 
   soa: {
