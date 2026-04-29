@@ -1,4 +1,10 @@
+"use client";
+
+import { useState } from "react";
+
 export function AziendaValori() {
+  const [active, setActive] = useState(0);
+
   return (
     <section className="bg-ink text-panna relative overflow-hidden py-24 md:py-[120px]">
       {/* Dot texture */}
@@ -48,60 +54,69 @@ export function AziendaValori() {
 
         {/* 4 pillar cards */}
         <div className="grid grid-cols-1 gap-px bg-white/10 sm:grid-cols-2 xl:grid-cols-4">
-          <ValueCard
-            n="01"
-            pillar="Primo pilastro"
-            title="Tradizione"
-            accent="brand"
-            body="Fondata nel 1978, l'impresa porta con sé il sapere artigianale di tre generazioni. Ogni cantiere è eseguito con tecniche consolidate, materiali conosciuti e una cultura del lavoro tramandata dall'interno."
-          />
-          <ValueCard
-            n="02"
-            pillar="Secondo pilastro"
-            title="Qualità"
-            accent="highlight"
-            body="Certificazione ISO 9001, qualificazione SOA classifica IV, audit annuali indipendenti. La qualità non è uno slogan: è un sistema verificabile da chiunque, in ogni fase del cantiere."
-          />
-          <ValueCard
-            n="03"
-            pillar="Terzo pilastro"
-            title="Aggiornamento continuo"
-            accent="brand"
-            body="Normative, materiali, tecnologie costruttive: il settore evolve e l'impresa si aggiorna. Dall'efficienza energetica NZEB alle nuove categorie SOA, investiamo ogni anno in conoscenza tecnica applicata."
-          />
-          <ValueCard
-            n="04"
-            pillar="Quarto pilastro"
-            title="Formazione delle maestranze"
-            accent="brand"
-            body="Quarantadue operai in organico diretto, contratti Cassa Edile, percorsi formativi interni. Chi lavora con noi cresce con noi: la competenza è un patrimonio collettivo, non individuale."
-          />
+          {PILLARS.map((card, i) => (
+            <ValueCard
+              key={card.n}
+              {...card}
+              isActive={active === i}
+              onClick={() => setActive(i)}
+            />
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
+const PILLARS = [
+  {
+    n: "01",
+    pillar: "Primo pilastro",
+    title: "Tradizione",
+    body: "Fondata nel 1978, l'impresa porta con sé il sapere artigianale di tre generazioni. Ogni cantiere è eseguito con tecniche consolidate, materiali conosciuti e una cultura del lavoro tramandata dall'interno.",
+  },
+  {
+    n: "02",
+    pillar: "Secondo pilastro",
+    title: "Qualità",
+    body: "Certificazione ISO 9001, qualificazione SOA classifica IV, audit annuali indipendenti. La qualità non è uno slogan: è un sistema verificabile da chiunque, in ogni fase del cantiere.",
+  },
+  {
+    n: "03",
+    pillar: "Terzo pilastro",
+    title: "Aggiornamento continuo",
+    body: "Normative, materiali, tecnologie costruttive: il settore evolve e l'impresa si aggiorna. Dall'efficienza energetica NZEB alle nuove categorie SOA, investiamo ogni anno in conoscenza tecnica applicata.",
+  },
+  {
+    n: "04",
+    pillar: "Quarto pilastro",
+    title: "Formazione delle maestranze",
+    body: "Quarantadue operai in organico diretto, contratti Cassa Edile, percorsi formativi interni. Chi lavora con noi cresce con noi: la competenza è un patrimonio collettivo, non individuale.",
+  },
+];
+
 type ValueCardProps = {
   n: string;
   pillar: string;
   title: string;
-  accent: "brand" | "highlight";
   body: string;
+  isActive: boolean;
+  onClick: () => void;
 };
 
-function ValueCard({ n, pillar, title, accent, body }: ValueCardProps) {
-  const isHighlight = accent === "highlight";
+function ValueCard({ n, pillar, title, body, isActive, onClick }: ValueCardProps) {
   return (
-    <div
-      className={`relative flex flex-col gap-7 px-10 py-[52px] pb-14 ${
-        isHighlight ? "bg-brand" : "bg-ink"
+    <button
+      type="button"
+      onClick={onClick}
+      className={`relative flex w-full cursor-pointer flex-col gap-7 px-10 py-[52px] pb-14 text-left transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:outline-none ${
+        isActive ? "bg-brand" : "bg-ink hover:bg-white/5"
       }`}
     >
       <span
         aria-hidden="true"
         className={`pointer-events-none absolute top-9 right-8 font-serif text-[72px] leading-none font-medium tracking-[-0.04em] italic ${
-          isHighlight ? "text-panna/15" : "text-brand/35"
+          isActive ? "text-panna/15" : "text-brand/35"
         }`}
       >
         {n}
@@ -109,7 +124,7 @@ function ValueCard({ n, pillar, title, accent, body }: ValueCardProps) {
       <div>
         <p
           className={`mb-4 text-[10px] font-semibold tracking-[0.28em] uppercase ${
-            isHighlight ? "text-panna/55" : "text-panna/40"
+            isActive ? "text-panna/55" : "text-panna/40"
           }`}
         >
           {pillar}
@@ -118,10 +133,10 @@ function ValueCard({ n, pillar, title, accent, body }: ValueCardProps) {
           {title}
         </h3>
       </div>
-      <p className={`text-sm leading-[1.75] ${isHighlight ? "text-panna/82" : "text-panna/65"}`}>
+      <p className={`text-sm leading-[1.75] ${isActive ? "text-panna/82" : "text-panna/65"}`}>
         {body}
       </p>
-      <div className={`mt-auto h-px w-8 ${isHighlight ? "bg-panna/50" : "bg-brand"}`} />
-    </div>
+      <div className={`mt-auto h-px w-8 ${isActive ? "bg-panna/50" : "bg-brand"}`} />
+    </button>
   );
 }
