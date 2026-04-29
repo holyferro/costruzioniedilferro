@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { flushSync } from "react-dom";
 import Image from "next/image";
 
 /* ---- Types ---- */
@@ -519,12 +520,43 @@ function ProgettoModal({
 export function ProgettiGrid() {
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [activeKey, setActiveKey] = useState<string | null>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  const handleFilterChange = useCallback((filter: string) => {
+    const el = gridRef.current;
+    if (!el) {
+      setActiveFilter(filter);
+      return;
+    }
+    const currentHeight = el.offsetHeight;
+    el.style.transition = "none";
+    el.style.height = `${currentHeight}px`;
+    flushSync(() => setActiveFilter(filter));
+    requestAnimationFrame(() => {
+      const newHeight = el.scrollHeight;
+      el.style.transition = "height 480ms cubic-bezier(0.16,1,0.3,1)";
+      el.style.height = `${newHeight}px`;
+    });
+  }, []);
+
+  const handleTransitionEnd = useCallback((e: React.TransitionEvent<HTMLDivElement>) => {
+    if (e.propertyName === "height" && gridRef.current) {
+      gridRef.current.style.height = "";
+      gridRef.current.style.transition = "";
+    }
+  }, []);
 
   const visibleCards = CARDS.filter((c) => activeFilter === "all" || c.cat === activeFilter);
   const count = visibleCards.length;
 
   return (
     <>
+      <style>{`
+        @keyframes cardFadeIn {
+          from { opacity: 0; transform: translateY(8px); }
+          to   { opacity: 1; transform: none; }
+        }
+      `}</style>
       <section className="bg-surface py-[100px]">
         <div className="mx-auto max-w-6xl px-6 md:px-12">
           {/* Header */}
@@ -554,7 +586,7 @@ export function ProgettiGrid() {
             {FILTER_OPTIONS.map((opt) => (
               <button
                 key={opt.value}
-                onClick={() => setActiveFilter(opt.value)}
+                onClick={() => handleFilterChange(opt.value)}
                 className="cursor-pointer rounded-full border px-[18px] py-[9px] font-[family-name:var(--font-neue-montreal)] text-[12px] font-medium tracking-[0.14em] uppercase transition-colors"
                 style={{
                   background: activeFilter === opt.value ? "var(--color-brand)" : "transparent",
@@ -570,7 +602,11 @@ export function ProgettiGrid() {
 
           {/* Grid */}
           {count > 0 ? (
-            <div className="grid grid-cols-1 gap-[2px] sm:grid-cols-2 lg:grid-cols-3">
+            <div
+              ref={gridRef}
+              onTransitionEnd={handleTransitionEnd}
+              className="grid grid-cols-1 gap-[2px] overflow-hidden sm:grid-cols-2 lg:grid-cols-3"
+            >
               {CARDS.map((card) => {
                 const hidden = activeFilter !== "all" && card.cat !== activeFilter;
                 if (hidden) return null;
@@ -580,7 +616,16 @@ export function ProgettiGrid() {
                     onClick={() => setActiveKey(card.key)}
                     className="group relative cursor-pointer overflow-hidden bg-black"
                     style={
-                      card.wide ? { gridColumn: "span 2", minHeight: 540 } : { aspectRatio: "3/4" }
+                      card.wide
+                        ? {
+                            gridColumn: "span 2",
+                            minHeight: 540,
+                            animation: "cardFadeIn 380ms cubic-bezier(0.16,1,0.3,1) both",
+                          }
+                        : {
+                            aspectRatio: "3/4",
+                            animation: "cardFadeIn 380ms cubic-bezier(0.16,1,0.3,1) both",
+                          }
                     }
                   >
                     <Image
