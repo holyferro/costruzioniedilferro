@@ -15,7 +15,7 @@ export const primaryNav: readonly NavLink[] = [
   { href: "/servizi", label: "Servizi" },
   { href: "/progetti", label: "Lavori e Progetti" },
   { href: "/certificazioni", label: "Certificazioni" },
-  { href: "/chi-siamo", label: "L'Azienda" },
+  { href: "/azienda", label: "L'Azienda" },
   { href: "/contatti", label: "Contattaci" },
 ];
 
