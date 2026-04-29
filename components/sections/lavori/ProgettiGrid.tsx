@@ -329,7 +329,7 @@ function ProgettoModal({
 
   return (
     <div
-      className="fixed inset-0 z-[300] flex items-center justify-center p-10"
+      className="fixed inset-0 z-[300] flex items-center justify-center p-4 sm:p-10"
       style={{
         background: isOpen ? "rgba(10,14,26,0.87)" : "rgba(10,14,26,0)",
         pointerEvents: isOpen ? "all" : "none",
@@ -341,12 +341,9 @@ function ProgettoModal({
       aria-label="Scheda progetto"
     >
       <div
-        className="bg-panna grid w-full overflow-hidden"
+        className="bg-panna grid max-h-[90svh] w-full grid-cols-1 overflow-x-hidden overflow-y-auto md:h-[78vh] md:max-h-[78vh] md:grid-cols-[1.2fr_1fr] md:overflow-hidden"
         style={{
           maxWidth: 1200,
-          height: "78vh",
-          maxHeight: "78vh",
-          gridTemplateColumns: "1.2fr 1fr",
           opacity: isOpen ? 1 : 0,
           transform: isOpen ? "scale(1) translateY(0)" : "scale(0.93) translateY(24px)",
           transition:
@@ -354,7 +351,7 @@ function ProgettoModal({
         }}
       >
         {/* Left — carousel */}
-        <div className="relative flex min-h-0 flex-col overflow-hidden bg-black">
+        <div className="relative flex h-[68vw] flex-col overflow-hidden bg-black md:h-auto md:min-h-0">
           {/* Overlay */}
           <div
             className="pointer-events-none absolute inset-0 z-[4]"
@@ -467,7 +464,7 @@ function ProgettoModal({
 
         {/* Right — content */}
         {project && (
-          <div className="bg-panna flex min-h-0 flex-col overflow-y-auto px-[52px] py-[52px] pb-12">
+          <div className="bg-panna flex flex-col overflow-y-auto px-5 py-8 pb-10 md:min-h-0 md:px-[52px] md:py-[52px] md:pb-12">
             <p className="text-brand mb-5 flex items-center gap-3 text-[11px] font-semibold tracking-[0.3em] uppercase">
               <span aria-hidden="true" className="bg-brand inline-block h-px w-6" />
               {project.tag}
