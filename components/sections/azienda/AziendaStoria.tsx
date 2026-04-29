@@ -1,41 +1,70 @@
 import Image from "next/image";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { cn } from "@/lib/utils/cn";
 
 type TimelineEntry = {
   year: string;
   title: string;
+  eyebrow?: string;
   body: string;
   image?: { src: string; alt: string };
+  featured?: "generational" | "anniversary";
 };
 
 const entries: TimelineEntry[] = [
   {
-    year: "1978",
-    title: "Fondazione dell'impresa",
-    body: "Giovanni Moretti fonda l'impresa edile a Porto Viro con quattro operai e un camion. I primi cantieri sono residenziali privati nel basso Polesine. La sede è un piccolo ufficio in Via dell'Industria, dove si trova ancora oggi.",
-    image: { src: "/images/azienda/storia-1978.jpg", alt: "Fondazione 1978" },
+    year: "1952",
+    title: "Le origini",
+    body: "Mario Ferro avvia l'attività subito dopo l'alluvione del Polesine del 1951, partecipando alla ricostruzione del territorio e ponendo le basi dell'impresa.",
+    image: {
+      src: "/images/azienda/storia-1978.jpg",
+      alt: "Cantiere storico delle origini di Costruzioni Edilferro nel Polesine",
+    },
   },
   {
-    year: "1991",
-    title: "Il primo appalto pubblico",
-    body: "L'impresa ottiene la prima qualificazione SOA e vince il primo appalto pubblico per il Comune di Adria: restauro di un edificio scolastico vincolato. È l'inizio di un filone che oggi rappresenta il 30% del fatturato.",
-    image: { src: "/images/azienda/storia-1991.jpg", alt: "Appalto pubblico 1991" },
+    year: "Fine anni '50",
+    title: "Le prime grandi commesse",
+    body: "Nasce la collaborazione con Eridania di Genova per la manutenzione degli stabilimenti saccariferi: il primo grande salto industriale.",
+    image: {
+      src: "/images/azienda/storia-1991.jpg",
+      alt: "Opere industriali e stabilimenti delle prime grandi commesse Edilferro",
+    },
   },
   {
-    year: "2004",
-    title: "Il passaggio generazionale",
-    body: "Marco e Luca Moretti entrano in azienda con formazioni tecniche: uno da ingegnere strutturista, l'altro da geometra con specializzazione in efficienza energetica. L'azienda amplia l'organico a venti persone e apre la seconda sede a Rovigo.",
-    image: { src: "/images/azienda/storia-2004.jpg", alt: "Passaggio generazionale 2004" },
+    year: "1981",
+    title: "La fondazione ufficiale",
+    body: "Il 26 febbraio nasce ufficialmente Costruzioni Edilferro: l'esperienza diventa impresa strutturata. Trasformando l'esperienza costruita nei decenni precedenti in una struttura aziendale solida e organizzata.",
+    image: {
+      src: "/images/azienda/storia-2004.jpg",
+      alt: "Prima sede e fondazione ufficiale di Costruzioni Edilferro nel 1981",
+    },
+  },
+  {
+    year: "Da Mario a Luca",
+    eyebrow: "Tre generazioni, una visione",
+    title: "Continuità imprenditoriale",
+    body: "Il passaggio generazionale trasforma l'eredità familiare in continuità imprenditoriale, mantenendo intatti valori e metodo.",
+    image: {
+      src: "/images/azienda/team-luca.jpg",
+      alt: "Luca Ferro rappresenta il passaggio generazionale di Costruzioni Edilferro",
+    },
+    featured: "generational",
   },
   {
     year: "2015",
-    title: "Certificazione ISO 9001",
-    body: "L'impresa ottiene la certificazione ISO 9001 da Kiwa Cermet, formalizzando i processi di controllo qualità già in uso da anni. L'organico raggiunge le trenta persone. Vengono avviati i primi cantieri di housing in classe A.",
+    title: "La nuova sede",
+    body: "L'inaugurazione della nuova sede segna un nuovo capitolo: crescita, organizzazione e visione futura.",
+    image: {
+      src: "/images/azienda/hero-azienda.webp",
+      alt: "Nuova sede di Costruzioni Edilferro inaugurata nel 2015",
+    },
   },
   {
     year: "Oggi",
-    title: "Quarantadue persone, zero subappalti opachi",
-    body: "Impresa Edile S.r.l. conta quarantadue persone in organico diretto, qualificazione SOA OG1–OG3 classifica IV, certificazione ISO 9001 e Cassa Edile Awards 2023. Il bilancio chiude ogni anno senza contenziosi aperti con i committenti.",
+    eyebrow: "45 anni ufficiali. Oltre 70 anni di esperienza reale.",
+    title: "45 anni di storia",
+    body: "Costruzioni Edilferro celebra il suo 45° anniversario dalla fondazione ufficiale: oltre settant'anni di esperienza costruita sul campo.",
+    featured: "anniversary",
   },
 ];
 
@@ -48,12 +77,11 @@ export function AziendaStoria() {
           <div className="md:sticky md:top-[calc(var(--header-height)+2rem)]">
             <Eyebrow>La nostra storia</Eyebrow>
             <h2 className="text-ink mt-5 max-w-[14ch] font-serif text-[clamp(1.875rem,0.8rem+2.2vw,2.875rem)] leading-[1.15] font-medium tracking-[-0.018em]">
-              Tre generazioni, un unico metodo.
+              Dal 1952, una storia costruita sul campo.
             </h2>
             <p className="text-ink/60 mt-6 max-w-[34ch] text-[15px] leading-[1.7]">
-              La storia di Impresa Edile è la storia di un territorio. Ogni cantiere è radicato nel
-              Polesine, costruito con materiali locali e consegnato con la firma di chi lo ha
-              iniziato.
+              Dalle ricostruzioni del Polesine alla nuova sede, Costruzioni Edilferro ha trasformato
+              esperienza familiare, metodo e continuità in una struttura d&apos;impresa solida.
             </p>
           </div>
 
@@ -62,25 +90,64 @@ export function AziendaStoria() {
             {entries.map((entry, i) => (
               <div
                 key={entry.year}
-                className={`grid grid-cols-[100px_1px_1fr] gap-x-10 ${
-                  i < entries.length - 1 ? "pb-16" : ""
-                }`}
+                className={cn(
+                  "grid grid-cols-[72px_16px_1fr] gap-x-5 md:grid-cols-[136px_22px_1fr] md:gap-x-10",
+                  i < entries.length - 1 && "pb-14 md:pb-16",
+                )}
               >
                 {/* Year */}
-                <div className="text-ink pt-1 text-right font-serif text-[clamp(2.4rem,1rem+2vw,3.25rem)] leading-none font-medium tracking-[-0.025em]">
+                <div
+                  className={cn(
+                    "text-ink pt-1 text-right font-serif text-[clamp(1.55rem,1rem+2vw,3.25rem)] leading-[0.95] font-medium tracking-[-0.01em]",
+                    entry.featured && "text-brand",
+                  )}
+                >
                   {entry.year}
                 </div>
 
                 {/* Line + dot */}
                 <div className="relative">
                   {i < entries.length - 1 && (
-                    <div className="bg-border absolute top-3 left-1/2 h-full w-px -translate-x-1/2" />
+                    <div className="from-brand via-brand/55 to-border absolute top-4 left-1/2 h-full w-[3px] -translate-x-1/2 bg-gradient-to-b" />
                   )}
-                  <div className="bg-brand border-panna absolute top-2 left-1/2 h-2.5 w-2.5 -translate-x-1/2 rounded-full border-2 shadow-[0_0_0_1px_var(--color-brand)]" />
+                  <div
+                    className={cn(
+                      "border-panna bg-brand absolute top-2 left-1/2 h-4 w-4 -translate-x-1/2 rounded-full border-[3px] shadow-[0_0_0_3px_color-mix(in_oklab,var(--color-brand)_18%,transparent)]",
+                      entry.featured &&
+                        "h-5 w-5 shadow-[0_0_0_5px_color-mix(in_oklab,var(--color-brand)_22%,transparent)]",
+                    )}
+                  />
                 </div>
 
                 {/* Content */}
-                <div className="pt-1">
+                <div
+                  className={cn(
+                    "pt-1",
+                    entry.featured === "generational" &&
+                      "border-brand/25 bg-white/45 px-5 py-5 shadow-[inset_4px_0_0_var(--color-brand)] md:px-7",
+                    entry.featured === "anniversary" &&
+                      "border-brand/20 bg-white px-5 py-6 shadow-[inset_4px_0_0_var(--color-brand),0_20px_60px_color-mix(in_oklab,var(--color-ink)_10%,transparent)] md:px-7",
+                  )}
+                >
+                  {entry.featured === "anniversary" && (
+                    <>
+                      <Image
+                        src="/images/logo45anni.webp"
+                        alt="Logo 45 anni Costruzioni Edilferro"
+                        width={180}
+                        height={180}
+                        className="mb-4 h-auto w-28 md:w-36"
+                      />
+                      <div className="border-brand/25 text-brand mb-4 inline-flex items-center border px-3 py-1.5 text-[11px] leading-none font-semibold tracking-[0.16em] uppercase">
+                        45 Anniversary
+                      </div>
+                    </>
+                  )}
+                  {entry.eyebrow && (
+                    <p className="text-brand mb-2 max-w-[38ch] text-[12px] leading-[1.45] font-semibold tracking-[0.14em] uppercase">
+                      {entry.eyebrow}
+                    </p>
+                  )}
                   <h3 className="text-ink font-serif text-[22px] leading-[1.25] font-medium tracking-[-0.01em]">
                     {entry.title}
                   </h3>
@@ -88,13 +155,22 @@ export function AziendaStoria() {
                     {entry.body}
                   </p>
                   {entry.image && (
-                    <div className="mt-6 aspect-[16/9] max-w-[420px] overflow-hidden">
+                    <div
+                      className={cn(
+                        "mt-6 aspect-[16/9] max-w-[420px] overflow-hidden",
+                        entry.featured === "anniversary" && "max-w-[520px]",
+                      )}
+                    >
                       <Image
                         src={entry.image.src}
                         alt={entry.image.alt}
-                        width={420}
-                        height={236}
-                        className="h-full w-full object-cover saturate-[0.6] sepia-[0.15]"
+                        width={520}
+                        height={293}
+                        className={cn(
+                          "h-full w-full object-cover saturate-[0.65] sepia-[0.12]",
+                          entry.featured === "generational" && "object-top saturate-[0.8] sepia-0",
+                          entry.featured === "anniversary" && "saturate-[0.85] sepia-0",
+                        )}
                       />
                     </div>
                   )}
