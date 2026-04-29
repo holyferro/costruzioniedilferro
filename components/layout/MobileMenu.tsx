@@ -125,7 +125,15 @@ export function MobileMenu({ scrolled }: MobileMenuProps) {
                 <li key={item.href}>
                   <Link
                     href={item.href as Route<string>}
-                    onClick={handleClose}
+                    onClick={(e) => {
+                      if (isActive) {
+                        e.preventDefault();
+                        handleClose();
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      } else {
+                        handleClose();
+                      }
+                    }}
                     className={`group flex items-center justify-between border-b border-black/10 py-5 font-[family-name:var(--font-neue-montreal)] text-[22px] font-normal tracking-[0.01em] uppercase transition-colors duration-150 ${
                       isActive ? "text-brand" : "hover:text-brand text-black"
                     }`}

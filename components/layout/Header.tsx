@@ -121,6 +121,12 @@ export function Header() {
                 key={item.href}
                 href={item.href as Route<string>}
                 className={`group flex items-center gap-1 font-[family-name:var(--font-neue-montreal)] text-[18px] font-normal tracking-[0.015em] whitespace-nowrap uppercase transition-colors duration-200 ${scrolled ? "text-white" : "hover:text-brand text-black"}`}
+                onClick={(e) => {
+                  if (isActive) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }
+                }}
               >
                 {item.label}
                 <ArrowUpRight
