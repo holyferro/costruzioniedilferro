@@ -534,7 +534,7 @@ export function ProgettiGrid() {
     flushSync(() => setActiveFilter(filter));
     requestAnimationFrame(() => {
       const newHeight = el.scrollHeight;
-      el.style.transition = "height 480ms cubic-bezier(0.16,1,0.3,1)";
+      el.style.transition = "height 960ms cubic-bezier(0.16,1,0.3,1)";
       el.style.height = `${newHeight}px`;
     });
   }, []);
