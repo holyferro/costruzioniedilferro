@@ -519,34 +519,60 @@ function ProgettoModal({
 /* ---- Main component ---- */
 export function ProgettiGrid() {
   const [activeFilter, setActiveFilter] = useState<string>("all");
+  const [displayFilter, setDisplayFilter] = useState<string>("all");
   const [activeKey, setActiveKey] = useState<string | null>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
+  const [transitioning, setTransitioning] = useState(false);
+  const outerRef = useRef<HTMLDivElement>(null); // height animation
+  const innerRef = useRef<HTMLDivElement>(null); // opacity animation
 
-  const handleFilterChange = useCallback((filter: string) => {
-    const el = gridRef.current;
-    if (!el) {
+  const handleFilterChange = useCallback(
+    (filter: string) => {
+      if (filter === activeFilter || transitioning) return;
       setActiveFilter(filter);
-      return;
-    }
-    const currentHeight = el.offsetHeight;
-    el.style.transition = "none";
-    el.style.height = `${currentHeight}px`;
-    flushSync(() => setActiveFilter(filter));
-    requestAnimationFrame(() => {
-      const newHeight = el.scrollHeight;
-      el.style.transition = "height 960ms cubic-bezier(0.16,1,0.3,1)";
-      el.style.height = `${newHeight}px`;
-    });
-  }, []);
 
-  const handleTransitionEnd = useCallback((e: React.TransitionEvent<HTMLDivElement>) => {
-    if (e.propertyName === "height" && gridRef.current) {
-      gridRef.current.style.height = "";
-      gridRef.current.style.transition = "";
-    }
-  }, []);
+      const outer = outerRef.current;
+      const inner = innerRef.current;
+      if (!outer || !inner) {
+        setDisplayFilter(filter);
+        return;
+      }
 
-  const visibleCards = CARDS.filter((c) => activeFilter === "all" || c.cat === activeFilter);
+      setTransitioning(true);
+
+      // Phase 1: fade out cards
+      inner.style.transition = "opacity 180ms ease";
+      inner.style.opacity = "0";
+
+      setTimeout(() => {
+        // Phase 2: lock height, swap cards, animate height
+        const currentHeight = outer.offsetHeight;
+        outer.style.transition = "none";
+        outer.style.height = `${currentHeight}px`;
+        flushSync(() => setDisplayFilter(filter));
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            const newHeight = outer.scrollHeight;
+            outer.style.transition = "height 700ms cubic-bezier(0.16,1,0.3,1)";
+            outer.style.height = `${newHeight}px`;
+            // Phase 3: fade in cards after short delay
+            inner.style.transition = "opacity 300ms ease 120ms";
+            inner.style.opacity = "1";
+          });
+        });
+
+        setTimeout(() => {
+          outer.style.height = "";
+          outer.style.transition = "";
+          inner.style.transition = "";
+          setTransitioning(false);
+        }, 900);
+      }, 190);
+    },
+    [activeFilter, transitioning],
+  );
+
+  const visibleCards = CARDS.filter((c) => displayFilter === "all" || c.cat === displayFilter);
   const count = visibleCards.length;
 
   return (
@@ -601,14 +627,13 @@ export function ProgettiGrid() {
           </div>
 
           {/* Grid */}
-          {count > 0 ? (
+          <div ref={outerRef} className="overflow-hidden">
             <div
-              ref={gridRef}
-              onTransitionEnd={handleTransitionEnd}
-              className="grid grid-cols-1 gap-[2px] overflow-hidden sm:grid-cols-2 lg:grid-cols-3"
+              ref={innerRef}
+              className="grid grid-cols-1 gap-[2px] sm:grid-cols-2 lg:grid-cols-3"
             >
               {CARDS.map((card) => {
-                const hidden = activeFilter !== "all" && card.cat !== activeFilter;
+                const hidden = displayFilter !== "all" && card.cat !== displayFilter;
                 if (hidden) return null;
                 return (
                   <div
@@ -679,13 +704,7 @@ export function ProgettiGrid() {
                 );
               })}
             </div>
-          ) : (
-            <div className="py-20 text-center">
-              <p className="font-serif text-[22px] text-black/60 italic">
-                Nessun progetto in questa categoria al momento.
-              </p>
-            </div>
-          )}
+          </div>
         </div>
       </section>
 
