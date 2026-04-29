@@ -1,53 +1,33 @@
-// RSC — Hero sezione Lavori e Progetti
+// RSC — Hero pagina Lavori e Progetti. Struttura identica a ServicesHero.
+import Image from "next/image";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+
 export function LavoriHero() {
   return (
-    <section className="bg-ink text-panna relative overflow-hidden py-[110px] pb-[100px]">
-      {/* Dot texture */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern
-              id="dots-lavori"
-              x="0"
-              y="0"
-              width="24"
-              height="24"
-              patternUnits="userSpaceOnUse"
-            >
-              <circle cx="1.5" cy="1.5" r="1" fill="rgba(255,255,255,0.07)" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#dots-lavori)" />
-        </svg>
-      </div>
-
-      <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-end gap-12 px-6 md:grid-cols-[1.2fr_1fr] md:gap-20 md:px-12">
-        <div>
-          <p className="text-panna/60 flex items-center gap-3 text-xs font-semibold tracking-[0.38em] uppercase">
-            <span aria-hidden="true" className="bg-panna/35 inline-block h-px w-8 flex-shrink-0" />
-            Lavori e Progetti
-          </p>
-          <h1 className="mt-6 max-w-[16ch] font-serif text-[clamp(2.625rem,1.4rem+3.2vw,4.375rem)] leading-[1.06] font-medium tracking-[-0.025em] text-white">
-            Quattro decenni di cantieri. Ogni opera è una firma.
+    <section className="bg-panna text-ink flex h-[calc(100svh-var(--header-height))] flex-col py-10 md:py-16">
+      <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-6 md:px-12">
+        <div className="mx-auto max-w-3xl flex-none text-center">
+          <Eyebrow>Lavori e Progetti</Eyebrow>
+          <h1 className="text-ink mt-5 font-serif text-[clamp(2.25rem,1.5rem+3.2vw,4rem)] leading-[1.1] font-medium tracking-tight lg:text-4xl xl:text-[clamp(2.25rem,1.5rem+3.2vw,4rem)]">
+            Quattro decenni di cantieri.{" "}
+            <em className="text-brand font-serif italic">Ogni opera è una firma.</em>
           </h1>
-        </div>
-
-        <div>
-          <p className="text-panna/82 text-[17px] leading-[1.7]" style={{ maxWidth: "44ch" }}>
+          <p className="text-ink/70 mx-auto mt-7 max-w-[52ch] text-base leading-relaxed md:text-lg">
             Dall&apos;edificio residenziale chiavi in mano al restauro conservativo su bene
             vincolato, dall&apos;appalto pubblico al capannone industriale: ogni lavoro porta la
             stessa attenzione alla tecnica e alla continuità del rapporto con il committente.
           </p>
-          <div className="mt-8 flex flex-wrap gap-2.5">
-            <span className="bg-brand rounded px-3.5 py-2 text-[11px] font-semibold tracking-[0.14em] text-white uppercase">
-              520+ cantieri
-            </span>
-            <span className="border-panna/30 rounded border px-3.5 py-2 text-[11px] font-semibold tracking-[0.14em] text-white/70 uppercase">
-              Dal 1978
-            </span>
-            <span className="border-panna/30 rounded border px-3.5 py-2 text-[11px] font-semibold tracking-[0.14em] text-white/70 uppercase">
-              Polesine · Veneto
-            </span>
+        </div>
+
+        <div className="mt-8 min-h-0 flex-1 md:mt-10">
+          <div className="relative h-full overflow-hidden rounded-xl md:h-[90%] lg:mx-auto lg:max-w-3xl xl:max-w-none">
+            <Image
+              src="/images/hero3.webp"
+              alt="Cantiere Impresa Edile Edilferro — archivio lavori"
+              fill
+              className="object-cover"
+              priority
+            />
           </div>
         </div>
       </div>

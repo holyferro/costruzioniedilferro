@@ -342,10 +342,10 @@ function ProgettoModal({
       <div
         className="bg-panna grid w-full overflow-hidden"
         style={{
-          maxWidth: 1040,
-          height: "88vh",
-          maxHeight: "88vh",
-          gridTemplateColumns: "1fr 1fr",
+          maxWidth: 1200,
+          height: "78vh",
+          maxHeight: "78vh",
+          gridTemplateColumns: "1.2fr 1fr",
           opacity: isOpen ? 1 : 0,
           transform: isOpen ? "scale(1) translateY(0)" : "scale(0.93) translateY(24px)",
           transition:
@@ -402,7 +402,7 @@ function ProgettoModal({
                   alt={`Foto ${i + 1}`}
                   fill
                   className="object-cover"
-                  sizes="520px"
+                  sizes="660px"
                 />
               </div>
             ))}
