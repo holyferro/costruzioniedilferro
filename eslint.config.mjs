@@ -12,7 +12,12 @@ const eslintConfig = defineConfig([
   // Applied only to app source files — intentionally excludes eslint.config.mjs
   // and scripts/check-*.mjs which reference forbidden patterns as data, not usage.
   {
-    files: ["app/**/*.{ts,tsx,js,jsx}", "components/**/*.{ts,tsx,js,jsx}", "lib/**/*.{ts,tsx,js,jsx}", "content/**/*.{ts,tsx,js,jsx}"],
+    files: [
+      "app/**/*.{ts,tsx,js,jsx}",
+      "components/**/*.{ts,tsx,js,jsx}",
+      "lib/**/*.{ts,tsx,js,jsx}",
+      "content/**/*.{ts,tsx,js,jsx}",
+    ],
     rules: {
       "no-restricted-syntax": [
         "error",
@@ -57,7 +62,7 @@ const eslintConfig = defineConfig([
   // prettier LAST
   prettier,
 
-  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts", "_design/**"]),
+  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts", "_design/**", "public/**"]),
 ]);
 
 export default eslintConfig;
