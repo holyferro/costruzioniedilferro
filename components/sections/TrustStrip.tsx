@@ -31,7 +31,7 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
           </h2>
           <p className="text-ink/70 mt-6 max-w-[34ch] text-[15px] leading-[1.65]">{body}</p>
           <Image
-            src="/images/anniversary_45.svg"
+            src="/images/logo45anni.webp"
             alt="45 anni di attività — Costruzioni Edilferro"
             width={160}
             height={160}

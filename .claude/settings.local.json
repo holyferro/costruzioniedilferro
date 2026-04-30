@@ -109,7 +109,12 @@
       "Bash($PYTHON *)",
       "Skill(gsd-discuss-phase)",
       "Skill(gsd-code-review)",
-      "Bash(awk '{print $2}' wc -l /tmp/recent_transcripts.txt)"
+      "Bash(awk '{print $2}' wc -l /tmp/recent_transcripts.txt)",
+      "Bash(mkdir -p \"C:/Users/Ale/Documents/CostruzioniEdilferro/public/images/azienda\")",
+      "Bash(cp \"C:/Users/Ale/Documents/CostruzioniEdilferro/public/sezione azienda da claude design/sezioni-sito-web/project/assets/hero-azienda.webp\" \"C:/Users/Ale/Documents/CostruzioniEdilferro/public/images/azienda/hero-azienda.webp\")",
+      "Bash(cp \"C:/Users/Ale/Documents/CostruzioniEdilferro/public/sezione azienda da claude design/sezioni-sito-web/project/assets/storia-anni-50.jpg\" \"C:/Users/Ale/Documents/CostruzioniEdilferro/public/images/azienda/storia-1978.jpg\")",
+      "Bash(cp \"C:/Users/Ale/Documents/CostruzioniEdilferro/public/sezione azienda da claude design/sezioni-sito-web/project/assets/storia-anni-80.jpg\" \"C:/Users/Ale/Documents/CostruzioniEdilferro/public/images/azienda/storia-1991.jpg\")",
+      "Bash(cp \"C:/Users/Ale/Documents/CostruzioniEdilferro/public/sezione azienda da claude design/sezioni-sito-web/project/assets/storia-anni-90.jpg\" \"C:/Users/Ale/Documents/CostruzioniEdilferro/public/images/azienda/storia-2004.jpg\")"
     ]
   }
 }

@@ -4,6 +4,7 @@ import { AziendaStoria } from "@/components/sections/azienda/AziendaStoria";
 import { AziendaValori } from "@/components/sections/azienda/AziendaValori";
 import { AziendaNumeri } from "@/components/sections/azienda/AziendaNumeri";
 import { AziendaCertificazioni } from "@/components/sections/azienda/AziendaCertificazioni";
+import { AziendaAttrezzature } from "@/components/sections/azienda/AziendaAttrezzature";
 import { AziendaTeam } from "@/components/sections/azienda/AziendaTeam";
 import { HomepageCta } from "@/components/sections/HomepageCta";
 
@@ -22,6 +23,7 @@ export default function AziendaPage() {
       <AziendaValori />
       <AziendaNumeri />
       <AziendaCertificazioni />
+      <AziendaAttrezzature />
       <AziendaTeam />
       <HomepageCta
         eyebrow="Iniziamo a parlarne"
