@@ -11,6 +11,7 @@ type CertCard = {
   logoAlt: string;
   logo2Src?: string;
   logo2Alt?: string;
+  logo2ClassName?: string;
   tag: string;
   title: string;
   body: string;
@@ -90,28 +91,24 @@ function CertCard({ card }: { card: CertCard }) {
       )}
 
       {/* Logo(s) */}
-      <div className="mb-8 flex h-20 items-center gap-6">
-        <div className="relative h-full w-40 shrink-0">
-          <Image
-            src={card.logoSrc}
-            alt={card.logoAlt}
-            fill
-            className="object-contain object-left"
-            sizes="160px"
-          />
-        </div>
+      <div className="mb-8 flex h-20 items-center gap-3">
+        <Image
+          src={card.logoSrc}
+          alt={card.logoAlt}
+          height={80}
+          width={200}
+          className="h-full w-auto object-contain object-left"
+        />
         {card.logo2Src && (
           <>
             <span className="bg-ink/15 h-10 w-px shrink-0" aria-hidden="true" />
-            <div className="relative h-full w-28 shrink-0">
-              <Image
-                src={card.logo2Src}
-                alt={card.logo2Alt ?? ""}
-                fill
-                className="object-contain object-left"
-                sizes="112px"
-              />
-            </div>
+            <Image
+              src={card.logo2Src}
+              alt={card.logo2Alt ?? ""}
+              height={80}
+              width={200}
+              className={card.logo2ClassName ?? "h-full w-auto object-contain object-left"}
+            />
           </>
         )}
       </div>
