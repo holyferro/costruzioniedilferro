@@ -109,10 +109,8 @@ function ServiceRow({
         </Link>
       </div>
 
-      <Link
-        href={item.ctaHref as Route<string>}
-        aria-label={item.title}
-        className={`group/img relative block aspect-[5/4] overflow-hidden bg-black ${
+      <div
+        className={`relative aspect-[5/4] overflow-hidden bg-black ${
           reverse ? "md:order-1" : "md:order-2"
         }`}
       >
@@ -121,7 +119,7 @@ function ServiceRow({
           alt={item.imageAlt}
           fill
           sizes="(min-width: 768px) 50vw, 100vw"
-          className="object-cover transition-transform duration-700 ease-out group-hover/img:scale-[1.04]"
+          className="object-cover"
         />
         <div
           aria-hidden="true"
@@ -133,7 +131,7 @@ function ServiceRow({
         >
           {item.n}
         </span>
-      </Link>
+      </div>
     </div>
   );
 }

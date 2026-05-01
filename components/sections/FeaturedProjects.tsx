@@ -1,11 +1,14 @@
-// components/sections/FeaturedProjects.tsx
-// RSC. Griglia editoriale 1+3: una scheda principale a sinistra, tre tile a destra.
-// Su bg-surface (bianco), titoli serif, tag a capsula, anno in italic.
+"use client";
 
+// components/sections/FeaturedProjects.tsx
+// Client component: le card aprono il ProgettoModal identico all'archivio lavori.
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Route } from "next";
 import type { FeaturedProject, ProjectTile } from "@/content/homepage";
+import { ProgettoModal } from "@/components/sections/lavori/ProgettoModal";
 
 type FeaturedProjectsProps = {
   eyebrow: string;
@@ -28,45 +31,58 @@ export function FeaturedProjects({
   feature,
   tiles,
 }: FeaturedProjectsProps) {
-  return (
-    <section className="bg-surface text-ink py-20 md:py-28">
-      <div className="mx-auto max-w-6xl px-6 md:px-12">
-        <div className="mb-12 flex flex-wrap items-end justify-between gap-8 md:mb-16">
-          <div className="max-w-[34ch]">
-            <Eyebrow>{eyebrow}</Eyebrow>
-            <h2 className="text-ink mt-5 max-w-[22ch] font-serif text-[clamp(2rem,1rem+2.4vw,3.1rem)] leading-[1.12] font-medium tracking-tight">
-              {titleStart}
-              <em className="text-brand font-serif italic">{titleAccent}</em>
-              {titleEnd}
-            </h2>
-          </div>
-          <Link
-            href={archiveLinkHref as Route<string>}
-            className="text-brand border-brand inline-flex items-center gap-2 border-b pb-1.5 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.08em] uppercase"
-          >
-            {archiveLinkLabel} <span aria-hidden="true">→</span>
-          </Link>
-        </div>
+  const [activeKey, setActiveKey] = useState<string | null>(null);
 
-        <div className="grid gap-6 md:grid-cols-[1.5fr_1fr]">
-          <FeatureCard item={feature} />
-          <div className="grid gap-6 md:grid-rows-3">
-            {tiles.map((t) => (
-              <MiniProject key={t.title} item={t} />
-            ))}
+  return (
+    <>
+      <section className="bg-surface text-ink py-20 md:py-28">
+        <div className="mx-auto max-w-6xl px-6 md:px-12">
+          <div className="mb-12 flex flex-wrap items-end justify-between gap-8 md:mb-16">
+            <div className="max-w-[34ch]">
+              <Eyebrow>{eyebrow}</Eyebrow>
+              <h2 className="text-ink mt-5 max-w-[22ch] font-serif text-[clamp(2rem,1rem+2.4vw,3.1rem)] leading-[1.12] font-medium tracking-tight">
+                {titleStart}
+                <em className="text-brand font-serif italic">{titleAccent}</em>
+                {titleEnd}
+              </h2>
+            </div>
+            <Link
+              href={archiveLinkHref as Route<string>}
+              className="text-brand border-brand inline-flex items-center gap-2 border-b pb-1.5 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.08em] uppercase"
+            >
+              {archiveLinkLabel} <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-[1.5fr_1fr]">
+            <FeatureCard item={feature} onOpen={() => setActiveKey(feature.projectKey ?? null)} />
+            <div className="grid gap-6 md:grid-rows-3">
+              {tiles.map((t) => (
+                <MiniProject
+                  key={t.title}
+                  item={t}
+                  onOpen={() => setActiveKey(t.projectKey ?? null)}
+                />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <ProgettoModal projectKey={activeKey} onClose={() => setActiveKey(null)} />
+    </>
   );
 }
 
-function FeatureCard({ item }: { item: FeaturedProject }) {
+function FeatureCard({ item, onOpen }: { item: FeaturedProject; onOpen: () => void }) {
   return (
-    <Link
-      href={item.href as Route<string>}
-      className="group/feature relative block aspect-[4/5] overflow-hidden bg-black text-white"
+    <div
+      onClick={onOpen}
+      className="group/feature relative block aspect-[4/5] cursor-pointer overflow-hidden bg-black text-white"
+      role="button"
+      tabIndex={0}
       aria-label={item.title}
+      onKeyDown={(e) => e.key === "Enter" && onOpen()}
     >
       <Image
         src={item.imageSrc}
@@ -103,16 +119,19 @@ function FeatureCard({ item }: { item: FeaturedProject }) {
           </span>
         </span>
       </div>
-    </Link>
+    </div>
   );
 }
 
-function MiniProject({ item }: { item: ProjectTile }) {
+function MiniProject({ item, onOpen }: { item: ProjectTile; onOpen: () => void }) {
   return (
-    <Link
-      href={item.href as Route<string>}
-      className="group/mini relative block min-h-[220px] overflow-hidden bg-black text-white"
+    <div
+      onClick={onOpen}
+      className="group/mini relative block min-h-[220px] cursor-pointer overflow-hidden bg-black text-white"
+      role="button"
+      tabIndex={0}
       aria-label={item.title}
+      onKeyDown={(e) => e.key === "Enter" && onOpen()}
     >
       <Image
         src={item.imageSrc}
@@ -137,7 +156,7 @@ function MiniProject({ item }: { item: ProjectTile }) {
         </h3>
         <p className="mt-1.5 text-[11px] tracking-[0.2em] text-white/70 uppercase">{item.place}</p>
       </div>
-    </Link>
+    </div>
   );
 }
 

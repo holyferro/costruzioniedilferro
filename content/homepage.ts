@@ -29,6 +29,7 @@ export type ProjectTile = {
   readonly place: string;
   readonly year: string;
   readonly href: string;
+  readonly projectKey?: string;
 };
 
 export type FeaturedProject = ProjectTile & {
@@ -129,12 +130,7 @@ export const homepageContent: HomepageContent = {
         sub: "fondata nel 1981",
       },
       {
-        value: "450+",
-        label: "cantieri completati",
-        sub: "residenziale · pubblico · industriale",
-      },
-      {
-        value: "35",
+        value: "30",
         label: "tra tecnici e maestranze",
         sub: "squadra diretta, zero subappalti opachi",
       },
@@ -209,6 +205,7 @@ export const homepageContent: HomepageContent = {
       place: "Rovigo",
       year: "2024",
       href: "/progetti",
+      projectKey: "studentato-universitario",
       description:
         "Dispone di 100 posti letto, con alloggi temporanei da destinare agli studenti fuori sede, distribuiti in tre corpi di fabbrica ognuno di due piani. Gli edifici, di nuova costruzione e moderna progettazione, sono articolati in modo da creare tra loro aree verdi esterne vivibili.",
     },
@@ -221,6 +218,7 @@ export const homepageContent: HomepageContent = {
         place: "Porto Viro",
         year: "2023",
         href: "/progetti",
+        projectKey: "abbazia-villaregia",
       },
       {
         imageSrc: "/images/design/proj-passiva.webp",
@@ -230,6 +228,7 @@ export const homepageContent: HomepageContent = {
         place: "Adria",
         year: "2024",
         href: "/progetti",
+        projectKey: "casa-passiva",
       },
       {
         imageSrc: "/images/design/proj-casa-cura.webp",
@@ -239,6 +238,7 @@ export const homepageContent: HomepageContent = {
         place: "Porto Viro",
         year: "2022",
         href: "/progetti",
+        projectKey: "casa-di-cura",
       },
     ],
   },
