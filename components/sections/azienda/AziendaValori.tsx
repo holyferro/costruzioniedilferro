@@ -73,13 +73,13 @@ const PILLARS = [
     n: "01",
     pillar: "Primo pilastro",
     title: "Tradizione",
-    body: "Fondata nel 1978, l'impresa porta con sé il sapere artigianale di tre generazioni. Ogni cantiere è eseguito con tecniche consolidate, materiali conosciuti e una cultura del lavoro tramandata dall'interno.",
+    body: "Fondata nel 1981, l'impresa porta con sé il sapere artigianale di tre generazioni. Ogni cantiere è eseguito con tecniche consolidate, materiali conosciuti e una cultura del lavoro tramandata dall'interno.",
   },
   {
     n: "02",
     pillar: "Secondo pilastro",
     title: "Qualità",
-    body: "Certificazione ISO 9001, qualificazione SOA classifica IV, audit annuali indipendenti. La qualità non è uno slogan: è un sistema verificabile da chiunque, in ogni fase del cantiere.",
+    body: "ISO 9001:2015 e ISO 14001:2015 (Kiwa Cermet, accreditato Accredia), qualificazione SOA OG1·OG2·OG3·OG11 fino alla Classe VI (CQOP S.p.A.), Cassa Edile Awards 2023, ANCE Rovigo e Socio Partner A.S.P. Energia. La qualità non è uno slogan: è un sistema verificabile da chiunque, in ogni fase del cantiere.",
   },
   {
     n: "03",
@@ -91,7 +91,7 @@ const PILLARS = [
     n: "04",
     pillar: "Quarto pilastro",
     title: "Formazione delle maestranze",
-    body: "Quarantadue operai in organico diretto, contratti Cassa Edile, percorsi formativi interni. Chi lavora con noi cresce con noi: la competenza è un patrimonio collettivo, non individuale.",
+    body: "Una trentina tra operai, staff, progettisti, architetti e geometri. Contratti Cassa Edile, percorsi formativi interni. Chi lavora con noi cresce con noi: la competenza è un patrimonio collettivo, non individuale.",
   },
 ];
 

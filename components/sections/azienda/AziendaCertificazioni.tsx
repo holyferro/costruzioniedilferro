@@ -4,6 +4,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 
 type CertCard = {
   logo: { src: string; alt: string };
+  logo2?: { src: string; alt: string; className?: string };
   title: string;
   body: string;
 };
@@ -11,18 +12,26 @@ type CertCard = {
 const certs: CertCard[] = [
   {
     logo: { src: "/images/azienda/cert-cqop.png", alt: "CQOP SOA" },
-    title: "SOA OG1 · OG2 · OG3 · OG11 — Classifica IV",
-    body: "Qualificazione per appalti pubblici rilasciata da CQOP S.p.A., organismo vigilato da ANAC. Copre edifici civili, restauro conservativo e opere stradali fino a €5.165.000.",
+    title: "SOA OG1 · OG2 · OG3 · OG11 — fino alla Classe VI",
+    body: "Attestazione SOA rilasciata da CQOP S.p.A. (organismo vigilato da ANAC). OG1 Classe VI, OG2 Classe IV-bis, OG3 Classe III-bis, OG11 Classe III. Attestazione n. 74915/10/00, valida fino al 2028.",
   },
   {
-    logo: { src: "/images/azienda/cert-accredia.png", alt: "Accredia · Kiwa Cermet ISO 9001" },
-    title: "ISO 9001:2015 — Kiwa Cermet",
-    body: "Sistema di gestione qualità certificato e sottoposto ad audit annuale. Copre tutti i processi aziendali dalla progettazione alla consegna. Accreditamento Accredia, riconoscimento europeo.",
+    logo: {
+      src: "/images/certifications/castoro 1.webp",
+      alt: "Logo Castoro — rating imprese edili",
+    },
+    logo2: {
+      src: "/images/certifications/italia_Accredia-kiwa Cermet_blu 1.webp",
+      alt: "Logo Kiwa Cermet accreditato Accredia",
+      className: "h-[130%] w-auto object-contain object-left",
+    },
+    title: "ISO 9001:2015 e ISO 14001:2015 — Kiwa Cermet",
+    body: "Sistemi di gestione qualità e ambientale certificati da Kiwa Cermet, accreditato Accredia. Coprono tutte le attività di costruzione e ristrutturazione di edifici civili. Audit di sorveglianza annuale.",
   },
   {
-    logo: { src: "/images/azienda/cert-cassa-edile.png", alt: "Cassa Edile Awards 2023" },
+    logo: { src: "/images/certifications/Bollino_CEA2023.webp", alt: "Cassa Edile Awards 2023" },
     title: "Cassa Edile Awards 2023",
-    body: "Riconoscimento assegnato dalla Cassa Edile di Rovigo per regolarità contributiva, sicurezza sul lavoro e continuità occupazionale. Rinnovato ogni anno senza interruzioni dal 2018.",
+    body: "Riconoscimento della Cassa Edile Interprovinciale del Veneto nelle categorie Top Player Impresa e Dream Team, per correttezza, affidabilità, sicurezza sul lavoro e continuità occupazionale.",
   },
 ];
 
@@ -48,14 +57,25 @@ export function AziendaCertificazioni() {
         <div className="border-border grid grid-cols-1 gap-px bg-[var(--color-border)] md:grid-cols-3">
           {certs.map((cert) => (
             <div key={cert.title} className="flex flex-col gap-5 bg-white px-10 py-11">
-              <div className="flex h-16 items-center">
+              <div className="flex h-16 items-center gap-4">
                 <Image
                   src={cert.logo.src}
                   alt={cert.logo.alt}
                   width={180}
                   height={64}
-                  className="max-h-16 w-auto max-w-[180px] object-contain"
+                  className="max-h-16 w-auto max-w-[120px] object-contain"
                 />
+                {cert.logo2 && (
+                  <Image
+                    src={cert.logo2.src}
+                    alt={cert.logo2.alt}
+                    width={180}
+                    height={64}
+                    className={
+                      cert.logo2.className ?? "max-h-16 w-auto max-w-[120px] object-contain"
+                    }
+                  />
+                )}
               </div>
               <h3 className="text-ink font-serif text-[19px] leading-[1.3] font-medium tracking-[-0.01em]">
                 {cert.title}

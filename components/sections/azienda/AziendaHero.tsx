@@ -39,25 +39,24 @@ export function AziendaHero() {
             L&apos;Azienda
           </p>
           <h1 className="mt-5 max-w-[16ch] font-serif text-[clamp(2.6rem,1.4rem+3.2vw,4.375rem)] leading-[1.06] font-medium tracking-[-0.025em] text-white">
-            Quarantasei anni di cantieri. Una sola parola data.
+            Da una storia familiare, un&apos;impresa che costruisce futuro.
           </h1>
         </div>
 
         <div>
           <p className="text-panna/82 max-w-[44ch] text-[17px] leading-[1.7]">
-            Fondata nel 1978 a Porto Viro, Impresa Edile S.r.l. è oggi un punto di riferimento nel
-            Polesine per la realizzazione di opere residenziali, industriali e pubbliche. Tre
-            generazioni di imprenditori, quarantadue persone in organico, nessun subappalto opaco.
+            Esperienza sul campo, attenzione ai dettagli e un impegno costante verso qualità,
+            sicurezza e risultati concreti.
           </p>
           <div className="mt-8 flex flex-wrap gap-2.5">
             <span className="bg-brand rounded-[4px] px-3.5 py-2 text-[11px] font-semibold tracking-[0.14em] text-white uppercase">
-              Dal 1978
+              Dal 1981
             </span>
             <span className="text-panna/70 border-panna/30 rounded-[4px] border bg-transparent px-3.5 py-2 text-[11px] font-semibold tracking-[0.14em] uppercase">
-              Porto Viro · Polesine
+              Porto Viro · Rovigo
             </span>
             <span className="text-panna/70 border-panna/30 rounded-[4px] border bg-transparent px-3.5 py-2 text-[11px] font-semibold tracking-[0.14em] uppercase">
-              Impresa familiare
+              Impresa famigliare
             </span>
           </div>
         </div>

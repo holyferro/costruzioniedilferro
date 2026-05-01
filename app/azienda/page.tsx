@@ -4,7 +4,6 @@ import { AziendaStoria } from "@/components/sections/azienda/AziendaStoria";
 import { AziendaValori } from "@/components/sections/azienda/AziendaValori";
 import { AziendaCertificazioni } from "@/components/sections/azienda/AziendaCertificazioni";
 import { AziendaAttrezzature } from "@/components/sections/azienda/AziendaAttrezzature";
-import { AziendaTeam } from "@/components/sections/azienda/AziendaTeam";
 import { HomepageCta } from "@/components/sections/HomepageCta";
 
 export const metadata = buildMetadata({
@@ -22,7 +21,6 @@ export default function AziendaPage() {
       <AziendaValori />
       <AziendaCertificazioni />
       <AziendaAttrezzature />
-      <AziendaTeam />
       <HomepageCta
         eyebrow="Iniziamo a parlarne"
         headline="Un'impresa con cui vale la pena lavorare."

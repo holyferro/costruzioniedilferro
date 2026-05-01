@@ -6,6 +6,7 @@
 //   desktop (1024px+) : 2 colonne affiancate (intro sticky sx, stats dx)
 
 import Image from "next/image";
+import { CountUpNumber } from "@/components/ui/CountUpNumber";
 import type { TrustRow } from "@/content/homepage";
 
 type TrustStripProps = {
@@ -61,7 +62,7 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
                 }`}
               >
                 <dt className="text-ink font-serif text-5xl leading-none font-medium tracking-tight lg:text-6xl">
-                  {r.value}
+                  <CountUpNumber value={r.value} />
                 </dt>
                 <dd className="text-ink font-serif text-lg leading-snug font-medium italic md:text-xl lg:text-2xl">
                   {r.label}

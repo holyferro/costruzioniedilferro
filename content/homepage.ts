@@ -155,8 +155,8 @@ export const homepageContent: HomepageContent = {
         kicker: "Privati",
         title: "Case che invecchiano bene.",
         body: "Villette singole, palazzine e ville di pregio. Dalla nuova costruzione antisismica alla ristrutturazione chiavi in mano, con direzione lavori interna e un unico referente dal preventivo alla consegna.",
-        imageSrc: "/images/design/img-residenziale.webp",
-        imageAlt: "Cantiere residenziale — villa di pregio",
+        imageSrc: "/images/design/proj-passiva.webp",
+        imageAlt: "Interno abitazione residenziale — casa passiva",
         tags: [
           "Nuove costruzioni",
           "Ristrutturazioni complete",

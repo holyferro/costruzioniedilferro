@@ -50,7 +50,7 @@ export const siteContent: SiteContent = {
       display: "0426 633 875",
       tel: "+390426633875",
     },
-    email: "info@costruzioniedilferro.it",
+    email: "info@costruzioniedilferro.com",
     pec: "costruzioniedilferro@pec-neispa.com",
     hours: ["Lun–Ven 8:30 - 12:30 e 14:30 - 18:30", "Sab su appuntamento"],
   },
