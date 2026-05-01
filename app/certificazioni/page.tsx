@@ -11,7 +11,7 @@ import { HomepageCta } from "@/components/sections/HomepageCta";
 export const metadata = buildMetadata({
   title: "Certificazioni",
   description:
-    "Certificazioni ISO 9001, attestazione SOA OG1-OG2-OG3, affiliazioni ANCE e partner di qualità. Edilferro — qualità documentata su ogni cantiere.",
+    "Certificazioni ISO 9001, attestazione SOA OG1-OG2-OG3-OG11, affiliazioni ANCE e partner di qualità. Edilferro — qualità documentata su ogni cantiere.",
   alternates: { canonical: "/certificazioni" },
 });
 

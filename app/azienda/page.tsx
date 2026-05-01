@@ -2,7 +2,6 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import { AziendaHero } from "@/components/sections/azienda/AziendaHero";
 import { AziendaStoria } from "@/components/sections/azienda/AziendaStoria";
 import { AziendaValori } from "@/components/sections/azienda/AziendaValori";
-import { AziendaNumeri } from "@/components/sections/azienda/AziendaNumeri";
 import { AziendaCertificazioni } from "@/components/sections/azienda/AziendaCertificazioni";
 import { AziendaAttrezzature } from "@/components/sections/azienda/AziendaAttrezzature";
 import { AziendaTeam } from "@/components/sections/azienda/AziendaTeam";
@@ -21,7 +20,6 @@ export default function AziendaPage() {
       <AziendaHero />
       <AziendaStoria />
       <AziendaValori />
-      <AziendaNumeri />
       <AziendaCertificazioni />
       <AziendaAttrezzature />
       <AziendaTeam />

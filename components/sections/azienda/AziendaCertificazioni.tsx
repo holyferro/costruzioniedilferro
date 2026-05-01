@@ -11,7 +11,7 @@ type CertCard = {
 const certs: CertCard[] = [
   {
     logo: { src: "/images/azienda/cert-cqop.png", alt: "CQOP SOA" },
-    title: "SOA OG1 · OG2 · OG3 — Classifica IV",
+    title: "SOA OG1 · OG2 · OG3 · OG11 — Classifica IV",
     body: "Qualificazione per appalti pubblici rilasciata da CQOP S.p.A., organismo vigilato da ANAC. Copre edifici civili, restauro conservativo e opere stradali fino a €5.165.000.",
   },
   {

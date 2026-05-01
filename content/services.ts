@@ -346,7 +346,7 @@ export const servicesContent: ServicesContent = {
       },
       {
         q: "Cosa significa avere l'attestazione SOA e perché è importante?",
-        a: "L'attestazione SOA (Società Organismo di Attestazione) certifica che un'impresa edile ha i requisiti tecnici, economici e organizzativi per eseguire lavori pubblici. Le nostre qualifiche OG1 (edifici civili), OG2 (restauro beni tutelati) e OG3 (strade e urbanizzazioni) ci abilitano a partecipare a gare d'appalto pubbliche. Per i privati è un segnale di solidità: attestano che l'impresa è stata verificata da un organismo terzo accreditato.",
+        a: "L'attestazione SOA (Società Organismo di Attestazione) certifica che un'impresa edile ha i requisiti tecnici, economici e organizzativi per eseguire lavori pubblici. Le nostre qualifiche OG1 (edifici civili), OG2 (restauro beni tutelati), OG3 (strade e urbanizzazioni) e OG11 (impianti tecnologici) ci abilitano a partecipare a gare d'appalto pubbliche. Per i privati è un segnale di solidità: attestano che l'impresa è stata verificata da un organismo terzo accreditato.",
       },
     ],
   },

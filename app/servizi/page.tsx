@@ -14,7 +14,7 @@ import { HomepageCta } from "@/components/sections/HomepageCta";
 export const metadata = buildMetadata({
   title: "Servizi",
   description:
-    "Soluzioni edilizie per privati, enti pubblici e aziende. Attestazione SOA OG1-OG2-OG3. Porto Viro, Rovigo, Veneto.",
+    "Soluzioni edilizie per privati, enti pubblici e aziende. Attestazione SOA OG1-OG2-OG3-OG11. Porto Viro, Rovigo, Veneto.",
   alternates: { canonical: "/servizi" },
 });
 

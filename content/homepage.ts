@@ -140,7 +140,7 @@ export const homepageContent: HomepageContent = {
       },
       {
         value: "SOA",
-        label: "OG1 · OG2 · OG3",
+        label: "OG1 · OG2 · OG3 · OG11",
         sub: "qualificazione opere pubbliche",
       },
     ],
@@ -174,7 +174,7 @@ export const homepageContent: HomepageContent = {
         n: "02",
         kicker: "Settore Pubblico",
         title: "Opere in cui la comunità investe.",
-        body: "Affianchiamo Comuni, ASL ed enti del territorio nella realizzazione di scuole, edifici sanitari e restauro conservativo. Attestazione SOA OG1–OG2–OG3, esperienza consolidata nei rapporti con Soprintendenze e stazioni appaltanti.",
+        body: "Affianchiamo Comuni, ASL ed enti del territorio nella realizzazione di scuole, edifici sanitari e restauro conservativo. Attestazione SOA OG1–OG2–OG3–OG11, esperienza consolidata nei rapporti con Soprintendenze e stazioni appaltanti.",
         imageSrc: "/images/design/img-pubblico.webp",
         imageAlt: "Cantiere pubblico — restauro istituzionale",
         tags: ["Appalti SOA", "Restauro conservativo", "Scuole e ASL", "Direzione lavori"],

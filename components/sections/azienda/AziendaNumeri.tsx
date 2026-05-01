@@ -12,7 +12,12 @@ const stats: StatCell[] = [
   { n: "46", label: "anni di attività", sub: "Fondata nel 1978" },
   { n: "520", suffix: "+", label: "cantieri completati", sub: "Dal 1978 ad oggi", variant: "dark" },
   { n: "42", label: "persone in organico", sub: "Contratti Cassa Edile · nessuna interinale" },
-  { n: "IV", label: "Classifica SOA", sub: "OG1 · OG2 · OG3 · fino a €5,1M", variant: "brand" },
+  {
+    n: "IV",
+    label: "Classifica SOA",
+    sub: "OG1 · OG2 · OG3 · OG11 · fino a €5,1M",
+    variant: "brand",
+  },
   { n: "2", label: "sedi operative", sub: "Porto Viro e Rovigo" },
   { n: "18", label: "appalti pubblici", sub: "Ultimi 3 anni · fonte ANAC" },
   { n: "96", suffix: "%", label: "consegne puntuali", sub: "Anno 2024", variant: "dark" },

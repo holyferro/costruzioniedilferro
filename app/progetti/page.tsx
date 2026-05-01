@@ -3,7 +3,6 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import { LavoriHero } from "@/components/sections/lavori/LavoriHero";
 import { LavoriManifesto } from "@/components/sections/lavori/LavoriManifesto";
 import { ProgettiGrid } from "@/components/sections/lavori/ProgettiGrid";
-import { LavoriStats } from "@/components/sections/lavori/LavoriStats";
 import { HomepageCta } from "@/components/sections/HomepageCta";
 
 export const metadata = buildMetadata({
@@ -19,7 +18,6 @@ export default function ProgettiPage() {
       <LavoriHero />
       <LavoriManifesto />
       <ProgettiGrid />
-      <LavoriStats />
       <HomepageCta
         eyebrow="Iniziamo a parlarne"
         headline="Il prossimo cantiere può essere il vostro."

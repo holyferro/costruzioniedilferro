@@ -1,10 +1,11 @@
 // components/sections/SoaSection.tsx
-// RSC. Feature card scura SOA/CQOP dentro sezione bg-panna. Design 2-col: info+stats | commitments.
+// RSC. Feature card SOA/CQOP dentro sezione bg-panna. Design 2-col: info+stats | commitments.
 
 import Image from "next/image";
 
-type SoaStat = { label: string; value: string };
+type SoaStat = { label: string; value: string; sub?: string };
 type SoaCommitment = { title: string; body: string };
+type SoaCategory = { code: string; name: string; classifica: string };
 
 type SoaSectionProps = {
   eyebrow: string;
@@ -12,6 +13,7 @@ type SoaSectionProps = {
   title: string;
   body: string;
   stats: readonly SoaStat[];
+  categories?: readonly SoaCategory[];
   commitments: readonly SoaCommitment[];
   anacLink?: string;
 };
@@ -22,6 +24,7 @@ export function SoaSection({
   title,
   body,
   stats,
+  categories,
   commitments,
   anacLink,
 }: SoaSectionProps) {
@@ -36,8 +39,8 @@ export function SoaSection({
           {eyebrow}
         </p>
 
-        {/* Dark feature card */}
-        <div className="grid items-start gap-12 bg-[#0A1830] px-8 py-12 md:px-14 md:py-16 lg:grid-cols-2 lg:gap-20">
+        {/* Brand-color feature card */}
+        <div className="bg-brand grid items-start gap-12 px-8 py-12 md:px-14 md:py-16 lg:grid-cols-2 lg:gap-20">
           {/* Left column */}
           <div>
             <div className="relative mb-10 h-16 w-52">
@@ -50,7 +53,7 @@ export function SoaSection({
               />
             </div>
 
-            <span className="mb-5 inline-block rounded-full border border-[rgba(142,163,209,0.4)] px-3 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[10px] font-semibold tracking-[0.22em] text-[rgba(142,163,209,1)] uppercase">
+            <span className="mb-5 inline-block rounded-full border border-white/30 px-3 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[10px] font-semibold tracking-[0.22em] text-white/70 uppercase">
               {tag}
             </span>
 
@@ -58,31 +61,35 @@ export function SoaSection({
               {title}
             </h2>
 
-            <p className="text-panna/78 mt-5 max-w-[52ch] text-base leading-[1.7]">{body}</p>
+            <p className="mt-5 max-w-[52ch] text-base leading-[1.7] whitespace-pre-line text-white/75">
+              {body}
+            </p>
 
-            {/* Stat boxes */}
-            <div className="mt-8 grid grid-cols-3 gap-2 sm:gap-3.5">
-              {stats.map((s) => (
-                <div
-                  key={s.label}
-                  className="border-panna/15 rounded-md border px-2.5 py-3 sm:px-5 sm:py-4"
-                >
-                  <p className="text-panna/55 mb-1 text-[8px] leading-tight tracking-[0.06em] uppercase sm:text-[10px] sm:tracking-[0.2em]">
-                    {s.label}
-                  </p>
-                  <p className="font-serif text-sm leading-snug font-medium text-white sm:text-lg">
-                    {s.value}
-                  </p>
-                </div>
-              ))}
-            </div>
+            {/* Categories list */}
+            {categories && categories.length > 0 && (
+              <div className="mt-7 divide-y divide-white/10">
+                {categories.map((cat) => (
+                  <div key={cat.code} className="flex items-baseline justify-between gap-4 py-2.5">
+                    <div className="flex items-baseline gap-2.5">
+                      <span className="font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold tracking-[0.18em] text-white/90 uppercase">
+                        {cat.code}
+                      </span>
+                      <span className="text-[13px] text-white/60">{cat.name}</span>
+                    </div>
+                    <span className="shrink-0 font-[family-name:var(--font-neue-montreal)] text-[11px] tracking-[0.08em] text-white/50">
+                      {cat.classifica}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
 
             {anacLink && (
               <a
                 href={anacLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-[rgba(142,163,209,1)] uppercase transition-opacity hover:opacity-70"
+                className="mt-6 inline-flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-white/60 uppercase transition-opacity hover:opacity-70"
               >
                 Verifica attestazione sul portale ANAC
                 <svg
@@ -104,21 +111,43 @@ export function SoaSection({
             )}
           </div>
 
-          {/* Right column — commitments */}
+          {/* Right column — commitments + stat boxes */}
           <div>
-            <p className="text-panna/50 mb-6 text-[11px] tracking-[0.2em] uppercase">
+            <p className="mb-6 text-[11px] tracking-[0.2em] text-white/50 uppercase">
               Cosa significa per il committente
             </p>
             <div className="flex flex-col">
               {commitments.map((c, i) => (
                 <div
                   key={c.title}
-                  className={`border-panna/12 border-t py-6 ${i === commitments.length - 1 ? "border-b" : ""}`}
+                  className={`border-t border-white/12 py-6 ${i === commitments.length - 1 ? "border-b" : ""}`}
                 >
                   <h3 className="mb-2.5 font-serif text-[18px] leading-[1.3] font-medium text-white">
                     {c.title}
                   </h3>
-                  <p className="text-panna/70 text-sm leading-[1.65]">{c.body}</p>
+                  <p className="text-sm leading-[1.65] text-white/70">{c.body}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Stat boxes */}
+            <div className="mt-8 grid grid-cols-3 gap-2 sm:gap-3.5">
+              {stats.map((s) => (
+                <div
+                  key={s.label}
+                  className="rounded-md border border-white/15 px-2.5 py-3 sm:px-5 sm:py-4"
+                >
+                  <p className="mb-1 text-[8px] leading-tight tracking-[0.06em] text-white/50 uppercase sm:text-[10px] sm:tracking-[0.2em]">
+                    {s.label}
+                  </p>
+                  <p className="font-serif text-[11px] leading-snug font-medium whitespace-pre-line text-white sm:text-sm">
+                    {s.value}
+                  </p>
+                  {s.sub && (
+                    <p className="mt-0.5 text-[9px] leading-tight text-white/40 sm:text-[10px]">
+                      {s.sub}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
