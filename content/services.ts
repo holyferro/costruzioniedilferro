@@ -3,8 +3,6 @@
 // Importato da app/servizi/page.tsx e passato come props alle sezioni.
 // Nessun import esterno — puro TypeScript, no JSX, no React.
 
-import type { Route } from "next";
-
 export type SoaBadge = {
   readonly code: string; // "OG1" | "OG2" | "OG3"
   readonly name: string; // "Edifici civili e industriali"
@@ -28,7 +26,7 @@ export type ServicesTarget = {
   readonly imageCaption?: string; // nome progetto mostrato sull'immagine a hover/tap
   readonly tags: readonly string[];
   readonly ctaLabel: string;
-  readonly ctaHref: Route<"/contatti" | "/servizi">;
+  readonly ctaHref: string;
   readonly soaBadges?: readonly SoaBadge[]; // SOLO per target "pubblico"
   readonly serviceCards?: readonly ServiceCard[];
 };
@@ -106,7 +104,7 @@ export const servicesContent: ServicesContent = {
           "Direzione lavori interna",
         ],
         ctaLabel: "Scopri i servizi per privati",
-        ctaHref: "/contatti",
+        ctaHref: "/servizi/privati",
         serviceCards: [
           {
             title: "Nuove costruzioni antisismiche",
@@ -171,7 +169,7 @@ export const servicesContent: ServicesContent = {
           "Urbanizzazioni",
         ],
         ctaLabel: "Scopri i servizi per enti pubblici",
-        ctaHref: "/contatti",
+        ctaHref: "/servizi/pubblico",
         serviceCards: [
           {
             title: "Nuove costruzioni pubbliche",
@@ -236,7 +234,7 @@ export const servicesContent: ServicesContent = {
           "Manutenzione programmata",
         ],
         ctaLabel: "Scopri i servizi per aziende",
-        ctaHref: "/contatti",
+        ctaHref: "/servizi/aziende",
         serviceCards: [
           {
             title: "General contractor",

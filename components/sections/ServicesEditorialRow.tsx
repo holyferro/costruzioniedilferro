@@ -5,6 +5,7 @@
 // L'attributo `id` sul <section> è il target degli ancori da TargetIndex (`/servizi#privati` etc.).
 
 import Link from "next/link";
+import type { Route } from "next";
 import type { ServicesTarget, SoaBadge } from "@/content/services";
 import { ServiceCardInteractive } from "@/components/sections/ServiceCardInteractive";
 import { ServicePhotoInteractive } from "@/components/sections/ServicePhotoInteractive";
@@ -57,7 +58,7 @@ export function ServicesEditorialRow({ id, variant, item, reverse }: ServicesEdi
             ) : null}
 
             <Link
-              href={item.ctaHref}
+              href={item.ctaHref as Route<string>}
               className="text-ink group/cta mt-9 inline-flex items-center gap-2.5 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.08em] uppercase"
             >
               <span className="border-ink/35 group-hover/cta:border-ink border-b pb-1.5 transition-colors">
