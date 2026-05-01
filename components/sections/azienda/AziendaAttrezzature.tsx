@@ -152,10 +152,11 @@ export function AziendaAttrezzature() {
         {/* intestazione */}
         <div className="mb-20 grid items-end gap-10 md:grid-cols-[1fr_1.5fr] md:gap-20">
           <div>
-            <p
-              className="text-[10px] font-semibold tracking-[0.28em] uppercase"
-              style={{ color: "rgba(248,245,238,0.4)" }}
-            >
+            <p className="text-panna/55 text-xs font-semibold tracking-[0.38em] uppercase">
+              <span
+                aria-hidden="true"
+                className="bg-panna/40 mr-3 inline-block h-px w-8 align-middle"
+              />
               Attrezzature
             </p>
             <h2
@@ -248,8 +249,8 @@ function CardMezzo({
   onClick,
   icona,
 }: MezzoCard & { isActive: boolean; onClick: () => void }) {
-  const bg = isActive ? "#0A2A6B" : "#111111";
-  const iconColor = isActive ? "rgba(248,245,238,0.9)" : "#0A2A6B";
+  const bg = isActive ? "var(--color-brand)" : "#111111";
+  const iconColor = isActive ? "rgba(248,245,238,0.9)" : "var(--color-brand)";
   const labelColor = isActive ? "rgba(248,245,238,0.9)" : "rgba(248,245,238,0.8)";
   const subColor = isActive ? "rgba(248,245,238,0.55)" : "rgba(248,245,238,0.35)";
   const iconOpacity = isActive ? 0.7 : 0.55;
