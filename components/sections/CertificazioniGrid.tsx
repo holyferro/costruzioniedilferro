@@ -9,9 +9,15 @@ type CertCard = {
   year: string | null;
   logoSrc: string;
   logoAlt: string;
+  logo2Src?: string;
+  logo2Alt?: string;
   tag: string;
   title: string;
   body: string;
+  registrations?: readonly string[];
+  pdfHref?: string;
+  pdfLabel?: string;
+  pdfNote?: string;
 };
 
 type CertificazioniGridProps = {
@@ -83,17 +89,31 @@ function CertCard({ card }: { card: CertCard }) {
         </span>
       )}
 
-      {/* Logo */}
-      <div className="mb-8 flex h-24 items-center">
-        <div className="relative h-full w-48">
+      {/* Logo(s) */}
+      <div className="mb-8 flex h-20 items-center gap-6">
+        <div className="relative h-full w-40 shrink-0">
           <Image
             src={card.logoSrc}
             alt={card.logoAlt}
             fill
             className="object-contain object-left"
-            sizes="192px"
+            sizes="160px"
           />
         </div>
+        {card.logo2Src && (
+          <>
+            <span className="bg-ink/15 h-10 w-px shrink-0" aria-hidden="true" />
+            <div className="relative h-full w-28 shrink-0">
+              <Image
+                src={card.logo2Src}
+                alt={card.logo2Alt ?? ""}
+                fill
+                className="object-contain object-left"
+                sizes="112px"
+              />
+            </div>
+          </>
+        )}
       </div>
 
       {/* Tag */}
@@ -104,7 +124,40 @@ function CertCard({ card }: { card: CertCard }) {
       <h3 className="text-ink mb-3.5 font-serif text-[22px] leading-[1.3] font-medium tracking-[-0.01em]">
         {card.title}
       </h3>
-      <p className="text-ink/70 text-[15px] leading-[1.65]">{card.body}</p>
+      <p className="text-ink/70 text-[15px] leading-[1.65]" style={{ whiteSpace: "pre-line" }}>
+        {card.body}
+      </p>
+
+      {card.registrations && card.registrations.length > 0 && (
+        <ul className="border-ink/10 mt-5 space-y-1.5 border-t pt-4">
+          {card.registrations.map((reg) => (
+            <li
+              key={reg}
+              className="text-ink/50 font-[family-name:var(--font-neue-montreal)] text-[11px] tracking-[0.02em]"
+            >
+              {reg}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {card.pdfHref && (
+        <div className="mt-6">
+          <a
+            href={card.pdfHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border-brand/30 text-brand hover:bg-brand/5 inline-flex items-center gap-2 rounded-full border px-5 py-2.5 font-[family-name:var(--font-neue-montreal)] text-[12px] font-medium tracking-[0.04em] uppercase transition-colors"
+          >
+            {card.pdfLabel ?? "Consulta il certificato"} <span aria-hidden="true">↗</span>
+          </a>
+          {card.pdfNote && (
+            <p className="text-ink/40 mt-2 font-[family-name:var(--font-neue-montreal)] text-[11px]">
+              {card.pdfNote}
+            </p>
+          )}
+        </div>
+      )}
     </article>
   );
 }

@@ -7,6 +7,12 @@ export type RenewalRow = {
   detail: string;
 };
 
+export type SoaCategory = {
+  code: string;
+  name: string;
+  classifica: string;
+};
+
 export const certificazioniContent = {
   hero: {
     eyebrow: "Qualifiche & certificazioni",
@@ -20,26 +26,36 @@ export const certificazioniContent = {
   soa: {
     eyebrow: "Qualificazione opere pubbliche",
     tag: "Qualificazione SOA",
-    title: "Costruttori Qualificati Opere Pubbliche — Classifica IV",
-    body: "L'attestazione SOA (rilasciata da CQOP S.p.A., organismo di attestazione vigilato da ANAC) certifica la nostra idoneità a partecipare ad appalti pubblici per le categorie OG1 (Edifici civili e industriali), OG2 (Restauro e manutenzione dei beni immobili sottoposti a tutela) e OG3 (Strade, autostrade, ponti) fino alla classifica IV.",
+    title: "Qualificazione SOA fino alla Classe VI",
+    body: "L'attestazione SOA certifica l'idoneità di Costruzioni Edilferro S.r.l. a partecipare ed eseguire lavori pubblici, attestando requisiti tecnici, organizzativi ed economico-finanziari verificati da organismi autorizzati.\n\nL'impresa è qualificata nelle principali categorie del settore edilizio, infrastrutturale e impiantistico, con capacità operativa su opere pubbliche di elevata complessità.",
     stats: [
-      { label: "Categoria", value: "OG1 · OG2 · OG3" },
-      { label: "Classifica", value: "IV" },
+      { label: "Categorie SOA", value: "OG1 · OG2\nOG3 · OG11" },
+      { label: "Qualificazione principale", value: "Classe VI", sub: "fino a oltre 10 milioni €" },
       { label: "Organismo", value: "CQOP S.p.A." },
     ],
+    categories: [
+      { code: "OG1", name: "Edifici civili e industriali", classifica: "Classifica VI" },
+      {
+        code: "OG2",
+        name: "Restauro e manutenzione beni sottoposti a tutela",
+        classifica: "Classifica IV-bis",
+      },
+      { code: "OG3", name: "Strade, autostrade, ponti", classifica: "Classifica III-bis" },
+      { code: "OG11", name: "Impianti tecnologici", classifica: "Classifica III" },
+    ] satisfies SoaCategory[],
     anacLink: "https://servizi.anticorruzione.it/RicercaAttestazioniWebApp/",
     commitments: [
       {
-        title: "Accesso garantito a bandi pubblici",
-        body: "Possiamo partecipare a gare d'appalto indette da Comuni, ASL, enti locali e pubbliche amministrazioni senza limitazioni di importo fino alla classifica IV.",
+        title: "Accesso qualificato agli appalti pubblici",
+        body: "L'attestazione SOA consente all'impresa di partecipare a gare pubbliche per lavori di importo rilevante, in base alle categorie e classifiche ottenute.",
       },
       {
         title: "Verifica ANAC trasparente",
-        body: "L'attestazione è pubblica e consultabile sul sito ANAC. Nessuna autocertificazione: terzi verificano competenze, mezzi d'opera e solidità patrimoniale ogni tre anni.",
+        body: "L'attestazione è pubblica e verificabile attraverso i canali ufficiali ANAC, offrendo a committenti, enti e professionisti un riscontro oggettivo sui requisiti dell'impresa.",
       },
       {
-        title: "Garanzia finanziaria inclusa",
-        body: "La classifica IV copre importi fino a 5.165.000 €. Per opere di maggiore entità lavoriamo in ATI con imprese complementari, garantendo sempre la stazione appaltante.",
+        title: "Solidità tecnica e organizzativa",
+        body: "Le qualificazioni ottenute confermano una struttura aziendale adeguata alla gestione di cantieri complessi, opere pubbliche e interventi multidisciplinari.",
       },
     ],
   },
@@ -47,12 +63,19 @@ export const certificazioniContent = {
   certCards: [
     {
       id: "iso9001",
-      year: "ISO 9001:2015",
+      year: null,
       logoSrc: "/images/certifications/italia_Accredia-kiwa Cermet_blu 1.webp",
-      logoAlt: "Logo Kiwa Cermet Accredia — certificazione ISO 9001",
-      tag: "Sistema di gestione qualità",
-      title: "UNI EN ISO 9001 — Kiwa Cermet",
-      body: "Il sistema di gestione della qualità dell'impresa è certificato secondo la norma ISO 9001:2015, verificato annualmente da Kiwa Cermet (ente accreditato Accredia). Coprono tutti i processi: dalla progettazione del cantiere alla consegna delle chiavi, fino alla gestione dei fornitori.",
+      logoAlt: "Logo Kiwa Cermet accreditato Accredia — certificazioni ISO 9001 e ISO 14001",
+      tag: "Sistemi di gestione certificati",
+      title: "ISO 9001 e ISO 14001 — Kiwa Cermet",
+      body: "Costruzioni Edilferro S.r.l. adotta sistemi di gestione certificati secondo le norme ISO 9001:2015 e ISO 14001:2015, rilasciati da Kiwa Cermet e accreditati da Accredia.\n\nLa certificazione ISO 9001 attesta un sistema di gestione orientato alla qualità, al controllo dei processi e al miglioramento continuo. La certificazione ISO 14001 conferma l'impegno dell'impresa nella gestione ambientale delle proprie attività.\n\nEntrambe le certificazioni sono riferite alle attività di costruzione e ristrutturazione di edifici civili.",
+      registrations: [
+        "ISO 9001:2015 — Reg. n. 6170-A — Scadenza 19/10/2024",
+        "ISO 14001:2015 — Reg. n. 6170-E — Scadenza 11/11/2024",
+      ],
+      pdfHref: "/images/certifications/edilferro-iso-kiwa-cermet.pdf",
+      pdfLabel: "Consulta i certificati PDF",
+      pdfNote: "Documento completo disponibile in PDF.",
     },
     {
       id: "cea",
@@ -86,6 +109,8 @@ export const certificazioniContent = {
       year: null,
       logoSrc: "/images/certifications/castoro 1.webp",
       logoAlt: "Logo Castoro — rating imprese edili",
+      logo2Src: "/images/certifications/italia_Accredia-kiwa Cermet_blu 1.webp",
+      logo2Alt: "Logo Kiwa Cermet accreditato Accredia",
       tag: "Rating qualitativo",
       title: "Castoro — Rating Imprese Edili",
       body: "Riconoscimento riservato alle imprese edili che dimostrano continuità operativa, affidabilità finanziaria e qualità esecutiva nel tempo. Assegnato sulla base di parametri oggettivi verificati annualmente.",
@@ -99,8 +124,8 @@ export const certificazioniContent = {
     rows: [
       {
         label: "SOA",
-        title: "Rinnovo triennale + verifica annuale",
-        detail: "Prossimo rinnovo: 2026 · Organismo: CQOP S.p.A.",
+        title: "Validità quinquennale — scadenza 2028",
+        detail: "Attestazione n. 74915/10/00 · rilascio 06/11/2024 · Organismo: CQOP S.p.A.",
       },
       {
         label: "ISO 9001",
