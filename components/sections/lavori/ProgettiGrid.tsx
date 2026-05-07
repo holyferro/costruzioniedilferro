@@ -11,94 +11,19 @@ type CardDef = {
   cat: string;
   wide?: boolean;
   delay?: number;
-  label: string;
-  year: string;
-  place: string;
-  img: string;
-  imgAlt: string;
 };
 
 /* ---- Data ---- */
 const CARDS: CardDef[] = [
-  {
-    key: "residenze-le-corti",
-    cat: "residenziale",
-    wide: true,
-    label: "Residenze Le Corti",
-    year: "2024",
-    place: "Rovigo",
-    img: "/images/design/proj-corti.webp",
-    imgAlt: "Residenze Le Corti, Rovigo",
-  },
-  {
-    key: "casa-passiva",
-    cat: "residenziale",
-    delay: 80,
-    label: "Casa passiva privata",
-    year: "2024",
-    place: "Adria (RO)",
-    img: "/images/design/proj-passiva.webp",
-    imgAlt: "Casa passiva, Adria",
-  },
-  {
-    key: "abbazia-villaregia",
-    cat: "restauro",
-    label: "Abbazia di Villaregia",
-    year: "2023",
-    place: "Porto Viro (RO)",
-    img: "/images/design/proj-villaregia.webp",
-    imgAlt: "Abbazia di Villaregia",
-  },
-  {
-    key: "stabilimento-produttivo",
-    cat: "industriale",
-    delay: 80,
-    label: "Stabilimento produttivo",
-    year: "2023",
-    place: "Polesine",
-    img: "/images/design/img-industriale.webp",
-    imgAlt: "Capannone industriale",
-  },
-  {
-    key: "casa-di-cura",
-    cat: "pubblico",
-    wide: true,
-    delay: 160,
-    label: "Ampliamento casa di cura",
-    year: "2022",
-    place: "Rovigo",
-    img: "/images/design/proj-casa-cura.webp",
-    imgAlt: "Ampliamento casa di cura, Rovigo",
-  },
-  {
-    key: "restauro-palazzo",
-    cat: "restauro",
-    label: "Restauro palazzo storico",
-    year: "2022",
-    place: "Adria (RO)",
-    img: "/images/design/img-pubblico.webp",
-    imgAlt: "Restauro palazzo storico, Adria",
-  },
-  {
-    key: "efficientamento",
-    cat: "efficientamento",
-    delay: 80,
-    label: "Riqualificazione condominio",
-    year: "2024",
-    place: "Rovigo",
-    img: "/images/cantieri/efficientamento-energetico/01.webp",
-    imgAlt: "Riqualificazione condominio",
-  },
-  {
-    key: "villetta-bifamiliare",
-    cat: "residenziale",
-    delay: 160,
-    label: "Villetta bifamiliare",
-    year: "2023",
-    place: "Porto Viro (RO)",
-    img: "/images/cantieri/casa-passiva-porto-viro/03.webp",
-    imgAlt: "Villetta bifamiliare",
-  },
+  { key: "studentato-universitario", cat: "residenziale" },
+  { key: "residenze-le-corti", cat: "residenziale", wide: true },
+  { key: "casa-passiva", cat: "residenziale", delay: 80 },
+  { key: "abbazia-villaregia", cat: "restauro" },
+  { key: "stabilimento-produttivo", cat: "industriale", delay: 80 },
+  { key: "casa-di-cura", cat: "pubblico", wide: true, delay: 160 },
+  { key: "restauro-palazzo", cat: "restauro" },
+  { key: "efficientamento", cat: "efficientamento", delay: 80 },
+  { key: "villetta-bifamiliare", cat: "residenziale", delay: 160 },
 ];
 
 const FILTER_OPTIONS = [
@@ -223,6 +148,10 @@ export function ProgettiGrid() {
               {CARDS.map((card) => {
                 const hidden = displayFilter !== "all" && card.cat !== displayFilter;
                 if (hidden) return null;
+                const p = PROJECTS[card.key];
+                const img = p?.imgs[0];
+                if (!p || !img) return null;
+                const imgAlt = `${p.title} — ${p.place}`;
                 return (
                   <div
                     key={card.key}
@@ -234,16 +163,18 @@ export function ProgettiGrid() {
                             gridColumn: "span 2",
                             minHeight: 540,
                             animation: "cardFadeIn 380ms cubic-bezier(0.16,1,0.3,1) both",
+                            animationDelay: `${card.delay ?? 0}ms`,
                           }
                         : {
                             aspectRatio: "3/4",
                             animation: "cardFadeIn 380ms cubic-bezier(0.16,1,0.3,1) both",
+                            animationDelay: `${card.delay ?? 0}ms`,
                           }
                     }
                   >
                     <Image
-                      src={card.img}
-                      alt={card.imgAlt}
+                      src={img}
+                      alt={imgAlt}
                       fill
                       className="object-cover transition-transform duration-[900ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
                       sizes={
@@ -261,10 +192,10 @@ export function ProgettiGrid() {
                       }}
                     />
                     <span className="absolute top-[18px] left-[18px] rounded-full border border-white/22 bg-white/15 px-3 py-1.5 text-[10px] font-semibold tracking-[0.2em] text-white uppercase backdrop-blur-[8px]">
-                      {PROJECTS[card.key]?.tag}
+                      {p.tag}
                     </span>
                     <span className="absolute top-[18px] right-[18px] font-serif text-[15px] font-medium text-white/95 italic">
-                      {card.year}
+                      {p.year}
                     </span>
                     <div className="absolute right-6 bottom-6 left-6 text-white">
                       <h3
@@ -275,10 +206,10 @@ export function ProgettiGrid() {
                             : "1.25rem",
                         }}
                       >
-                        {card.label}
+                        {p.title}
                       </h3>
                       <p className="mt-2 text-[11px] tracking-[0.2em] text-white/70 uppercase">
-                        {card.place}
+                        {p.place}
                       </p>
                       <span className="mt-4 inline-block text-[18px] transition-transform duration-[250ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[5px] group-hover:-translate-y-[5px]">
                         ↗

@@ -28,7 +28,6 @@ export type ProjectTile = {
   readonly title: string;
   readonly place: string;
   readonly year: string;
-  readonly href: string;
   readonly projectKey?: string;
 };
 
@@ -198,13 +197,12 @@ export const homepageContent: HomepageContent = {
     archiveLinkLabel: "Archivio progetti",
     archiveLinkHref: "/progetti",
     feature: {
-      imageSrc: "/images/design/proj-corti.webp",
-      imageAlt: "Studentato Universitario — Rovigo",
+      imageSrc: "/images/cantieri/studentato rovigo/2021-04-02_08-49-18_099.webp",
+      imageAlt: "Studentato Universitario a Rovigo in fase di cantiere",
       tag: "Residenziale",
       title: "Studentato Universitario",
       place: "Rovigo",
       year: "2024",
-      href: "/progetti",
       projectKey: "studentato-universitario",
       description:
         "Dispone di 100 posti letto, con alloggi temporanei da destinare agli studenti fuori sede, distribuiti in tre corpi di fabbrica ognuno di due piani. Gli edifici, di nuova costruzione e moderna progettazione, sono articolati in modo da creare tra loro aree verdi esterne vivibili.",
@@ -212,12 +210,11 @@ export const homepageContent: HomepageContent = {
     tiles: [
       {
         imageSrc: "/images/design/proj-villaregia.webp",
-        imageAlt: "Comunità Missionaria di Villaregia — restauro conservativo",
+        imageAlt: "Abbazia di Villaregia — restauro conservativo",
         tag: "Restauro",
-        title: "Comunità Missionaria di Villaregia",
+        title: "Abbazia di Villaregia",
         place: "Porto Viro",
         year: "2023",
-        href: "/progetti",
         projectKey: "abbazia-villaregia",
       },
       {
@@ -227,17 +224,15 @@ export const homepageContent: HomepageContent = {
         title: "Casa passiva privata",
         place: "Adria",
         year: "2024",
-        href: "/progetti",
         projectKey: "casa-passiva",
       },
       {
         imageSrc: "/images/design/proj-casa-cura.webp",
-        imageAlt: "Ampliamento casa di cura — Porto Viro",
+        imageAlt: "Ampliamento casa di cura — Rovigo",
         tag: "Opere pubbliche",
         title: "Ampliamento casa di cura",
-        place: "Porto Viro",
+        place: "Rovigo",
         year: "2022",
-        href: "/progetti",
         projectKey: "casa-di-cura",
       },
     ],

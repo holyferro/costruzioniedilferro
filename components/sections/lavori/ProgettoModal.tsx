@@ -20,9 +20,9 @@ export type Project = {
 export const PROJECTS: Record<string, Project> = {
   "studentato-universitario": {
     imgs: [
-      "/images/design/proj-corti.webp",
-      "/images/design/img-residenziale.webp",
-      "/images/design/proj-passiva.webp",
+      "/images/cantieri/studentato rovigo/2021-04-02_08-49-18_099.webp",
+      "/images/cantieri/studentato rovigo/2021-04-02_08-46-36_360.webp",
+      "/images/cantieri/studentato rovigo/WhatsApp Image 2020-10-21 at 17.47.42.webp",
     ],
     tag: "Residenziale",
     year: "2024",
@@ -307,8 +307,9 @@ export function ProgettoModal({
                   src={src}
                   alt={`Foto ${i + 1}`}
                   fill
+                  quality={92}
                   className="object-cover"
-                  sizes="660px"
+                  sizes="(min-width: 768px) 660px, 100vw"
                 />
               </div>
             ))}
