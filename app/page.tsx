@@ -8,7 +8,7 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { ServiceOverview } from "@/components/sections/ServiceOverview";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
-import { Values } from "@/components/sections/Values";
+import { NewsUpdatesSection } from "@/components/sections/NewsUpdatesSection";
 import { ServiceAreaSection } from "@/components/sections/ServiceAreaSection";
 import { HomepageCta } from "@/components/sections/HomepageCta";
 
@@ -25,7 +25,7 @@ export default function Home() {
       <TrustStrip {...homepageContent.trustStrip} />
       <ServiceOverview {...homepageContent.services} />
       <FeaturedProjects {...homepageContent.featuredProjects} />
-      <Values {...homepageContent.values} />
+      <NewsUpdatesSection {...homepageContent.newsUpdates} />
       <ServiceAreaSection {...homepageContent.serviceArea} />
       <HomepageCta {...homepageContent.finalCta} />
     </>

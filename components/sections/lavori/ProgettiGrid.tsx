@@ -99,7 +99,7 @@ export function ProgettiGrid() {
           to   { opacity: 1; transform: none; }
         }
       `}</style>
-      <section className="bg-surface py-[100px]">
+      <section id="archivio-lavori" className="bg-surface py-[100px]">
         <div className="mx-auto max-w-6xl px-6 md:px-12">
           <div className="mb-12 flex flex-wrap items-end justify-between gap-8">
             <div>

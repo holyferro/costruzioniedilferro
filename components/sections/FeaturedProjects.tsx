@@ -88,6 +88,7 @@ function FeatureCard({ item, onOpen }: { item: FeaturedProject; onOpen: () => vo
         src={item.imageSrc}
         alt={item.imageAlt}
         fill
+        quality={92}
         sizes="(min-width: 768px) 60vw, 100vw"
         className="object-cover transition-transform duration-[1000ms] ease-out group-hover/feature:scale-[1.04]"
       />
@@ -137,6 +138,7 @@ function MiniProject({ item, onOpen }: { item: ProjectTile; onOpen: () => void }
         src={item.imageSrc}
         alt={item.imageAlt}
         fill
+        quality={90}
         sizes="(min-width: 768px) 33vw, 100vw"
         className="object-cover transition-transform duration-700 ease-out group-hover/mini:scale-[1.05]"
       />

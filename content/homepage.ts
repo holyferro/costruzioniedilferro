@@ -48,7 +48,27 @@ export type Zone = {
   readonly primary: boolean;
 };
 
+export type NewsItem = {
+  readonly imageSrc: string;
+  readonly imageAlt: string;
+  readonly tag: string;
+  readonly date: string;
+  readonly title: string;
+  readonly desc: string;
+  readonly readMin: number;
+  readonly href?: string;
+};
+
 export type HomepageContent = {
+  readonly newsUpdates: {
+    readonly eyebrow: string;
+    readonly titleStart: string;
+    readonly titleAccent: string;
+    readonly body: string;
+    readonly allNewsLabel: string;
+    readonly allNewsHref: string;
+    readonly items: readonly NewsItem[];
+  };
   readonly hero: {
     readonly eyebrow?: string;
     readonly headline: string;
@@ -109,6 +129,79 @@ export type HomepageContent = {
 };
 
 export const homepageContent: HomepageContent = {
+  newsUpdates: {
+    eyebrow: "News & Aggiornamenti",
+    titleStart: "Dal cantiere all'azienda: ",
+    titleAccent: "le ultime novità.",
+    body: "Aggiornamenti, progetti e iniziative che raccontano il nostro modo di costruire — un cantiere alla volta.",
+    allNewsLabel: "Vedi tutte le news",
+    allNewsHref: "/news",
+    items: [
+      {
+        imageSrc: "/images/design/proj-passiva.webp",
+        imageAlt: "Cantiere residenze Adria — nuova costruzione classe A4",
+        tag: "Cantieri",
+        date: "28 Apr 2026",
+        title: "Posata la prima pietra delle Residenze del Naviglio, Adria",
+        desc: "Avviato il cantiere per 24 unità in classe A4. Cappotto in fibra di legno e tetto ventilato, consegna prevista per primavera 2027.",
+        readMin: 4,
+      },
+      {
+        imageSrc: "/images/certifications/italia_Accredia-kiwa Cermet_blu 1.webp",
+        imageAlt: "Certificazione ISO 45001 — Kiwa Cermet",
+        tag: "Certificazioni",
+        date: "12 Apr 2026",
+        title: "Rinnovata la certificazione ISO 45001 per il quinto anno consecutivo",
+        desc: "L'audit Kiwa Cermet ha confermato l'allineamento dei nostri processi di sicurezza ai più alti standard di settore.",
+        readMin: 3,
+      },
+      {
+        imageSrc: "/images/design/proj-villaregia.webp",
+        imageAlt: "Abbazia di Villaregia — restauro conservativo completato",
+        tag: "Restauro",
+        date: "02 Apr 2026",
+        title: "Abbazia di Villaregia: completato il consolidamento strutturale",
+        desc: "Conclusa la fase di consolidamento delle volte e ripristino dei paramenti murari originali. Aperta al pubblico nel weekend di Pentecoste.",
+        readMin: 6,
+      },
+      {
+        imageSrc: "/images/design/proj-corti.webp",
+        imageAlt: "Ufficio tecnico Costruzioni Edilferro",
+        tag: "Azienda",
+        date: "20 Mar 2026",
+        title: "Tre nuovi geometri entrano nell'ufficio tecnico",
+        desc: "L'organico tecnico cresce a 14 figure dedicate alla progettazione esecutiva, computi metrici e direzione lavori interna.",
+        readMin: 2,
+      },
+      {
+        imageSrc: "/images/cantieri/efficientamento-energetico/01.webp",
+        imageAlt: "Open day cantiere efficientamento energetico — Rovigo",
+        tag: "Eventi",
+        date: "08 Mar 2026",
+        title: "Open day di cantiere a Rovigo: oltre 80 visitatori in due giorni",
+        desc: "Apertura straordinaria del cantiere di efficientamento energetico in via Mazzini. Il prossimo open day è previsto a settembre.",
+        readMin: 3,
+      },
+      {
+        imageSrc: "/images/design/proj-casa-cura.webp",
+        imageAlt: "Cantiere ampliamento casa di cura San Bortolo — Rovigo",
+        tag: "Opere pubbliche",
+        date: "24 Feb 2026",
+        title: "Aggiudicato l'ampliamento della casa di cura San Bortolo",
+        desc: "Gara vinta in raggruppamento temporaneo di imprese. Progetto da 4.200 mq con criteri NZEB e sale operatorie ibride.",
+        readMin: 5,
+      },
+      {
+        imageSrc: "/images/cantieri/casa-passiva-porto-viro/03.webp",
+        imageAlt: "Casa passiva privata Adria — fase cappotto e tetto",
+        tag: "Cantieri",
+        date: "10 Feb 2026",
+        title: "Casa passiva privata di Adria: tetto e cappotto completati",
+        desc: "Test blower-door superato con n50 = 0,28. Fase finale di posa serramenti triplo vetro a taglio termico.",
+        readMin: 4,
+      },
+    ],
+  },
   hero: {
     eyebrow: "DAL 1981",
     headline: "Costruiamo valore, qualità e fiducia nel territorio.",
@@ -194,8 +287,8 @@ export const homepageContent: HomepageContent = {
     titleStart: "Cantieri recenti ",
     titleAccent: "dal Polesine",
     titleEnd: " al resto del Veneto.",
-    archiveLinkLabel: "Archivio progetti",
-    archiveLinkHref: "/progetti",
+    archiveLinkLabel: "Archivio lavori",
+    archiveLinkHref: "/progetti#archivio-lavori",
     feature: {
       imageSrc: "/images/cantieri/studentato rovigo/2021-04-02_08-49-18_099.webp",
       imageAlt: "Studentato Universitario a Rovigo in fase di cantiere",
