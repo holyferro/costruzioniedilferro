@@ -42,6 +42,20 @@ export function ArticleReader({ open, onClose }: ArticleReaderProps) {
     return () => document.removeEventListener("keydown", handler);
   }, [open, onClose]);
 
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: WheelEvent) => {
+      const el = scrollRef.current;
+      if (!el) return;
+      // Only redirect if the wheel event target is outside the scroll container
+      if (el.contains(e.target as Node)) return;
+      e.preventDefault();
+      el.scrollBy({ top: e.deltaY, behavior: "auto" });
+    };
+    window.addEventListener("wheel", handler, { passive: false });
+    return () => window.removeEventListener("wheel", handler);
+  }, [open]);
+
   const handleScroll = () => {
     const el = scrollRef.current;
     if (!el) return;
