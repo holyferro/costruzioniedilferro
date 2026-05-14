@@ -68,6 +68,8 @@ export function Header() {
             if (pathname === "/") {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
+            } else {
+              window.scrollTo({ top: 0, behavior: "instant" });
             }
           }}
         >

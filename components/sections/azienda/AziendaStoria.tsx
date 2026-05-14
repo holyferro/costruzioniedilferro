@@ -40,7 +40,7 @@ const entries: TimelineEntry[] = [
     },
   },
   {
-    year: "Da Mario a Luca",
+    year: "Passaggio di generazione",
     eyebrow: "Tre generazioni, una visione",
     title: "Continuità imprenditoriale",
     body: "Il passaggio generazionale trasforma l'eredità familiare in continuità imprenditoriale, mantenendo intatti valori e metodo.",
@@ -52,11 +52,11 @@ const entries: TimelineEntry[] = [
   },
   {
     year: "2015",
-    title: "La nuova sede",
-    body: "L'inaugurazione della nuova sede segna un nuovo capitolo: crescita, organizzazione e visione futura.",
+    title: "Ampliamento e rinnovo della sede",
+    body: "La sede storica viene ampliata: rifacimento completo della facciata e modernizzazione degli spazi interni, senza cambiare radici.",
     image: {
       src: "/images/azienda/hero-azienda.webp",
-      alt: "Nuova sede di Costruzioni Edilferro inaugurata nel 2015",
+      alt: "Sede di Costruzioni Edilferro dopo il rinnovo e ampliamento del 2015",
     },
   },
   {

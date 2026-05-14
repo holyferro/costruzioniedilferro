@@ -37,25 +37,6 @@ export const PROJECTS: Record<string, Project> = {
       ["Consegna", "2024"],
     ],
   },
-  "residenze-le-corti": {
-    imgs: [
-      "/images/design/proj-corti.webp",
-      "/images/design/img-residenziale.webp",
-      "/images/cantieri/casa-passiva-porto-viro/03.webp",
-    ],
-    tag: "Residenziale",
-    year: "2024",
-    title: "Residenze Le Corti",
-    place: "Rovigo (RO)",
-    desc: "18 unità residenziali in classe energetica A, su lotto di 4.200 mq. Struttura in calcestruzzo armato con progettazione antisismica, cappotto termico in fibra di legno, domotica di serie in ogni appartamento. Cantiere consegnato con tre settimane di anticipo rispetto ai termini contrattuali.",
-    rows: [
-      ["Committente", "Privato (su autorizzazione)"],
-      ["Importo lavori", "€ 3.200.000"],
-      ["Durata cantiere", "18 mesi"],
-      ["Classe energetica", "A · NZEB"],
-      ["Consegna", "Anticipata — marzo 2024"],
-    ],
-  },
   "casa-passiva": {
     imgs: [
       "/images/design/proj-passiva.webp",

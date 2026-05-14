@@ -160,10 +160,6 @@ export function Footer() {
                 <li>
                   REA {legalContent.rea.number} — {legalContent.rea.chamber}
                 </li>
-                <li>
-                  Capitale sociale {legalContent.capitaleSociale.declared} (
-                  {legalContent.capitaleSociale.paidUp})
-                </li>
               </ul>
               <div className="mt-3 flex gap-2 text-xs lg:mt-4">
                 <span className="bg-brand rounded px-2 py-1 font-semibold text-white">SOA</span>

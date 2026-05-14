@@ -110,7 +110,7 @@ function ServiceRow({
       </div>
 
       <div
-        className={`relative aspect-[5/4] overflow-hidden bg-black ${
+        className={`group/img relative aspect-[5/4] overflow-hidden bg-black ${
           reverse ? "md:order-1" : "md:order-2"
         }`}
       >
@@ -119,7 +119,7 @@ function ServiceRow({
           alt={item.imageAlt}
           fill
           sizes="(min-width: 768px) 50vw, 100vw"
-          className="object-cover"
+          className="object-cover transition-transform duration-700 ease-out group-hover/img:scale-[1.04]"
         />
         <div
           aria-hidden="true"
@@ -131,6 +131,12 @@ function ServiceRow({
         >
           {item.n}
         </span>
+        <p
+          aria-hidden="true"
+          className="absolute right-5 bottom-4 font-serif text-[11px] tracking-wide text-white/70 italic opacity-0 transition-opacity duration-500 group-hover/img:opacity-100"
+        >
+          {item.title}
+        </p>
       </div>
     </div>
   );
