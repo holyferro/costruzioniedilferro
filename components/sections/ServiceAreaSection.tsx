@@ -9,7 +9,7 @@ import { MapPin } from "lucide-react";
 import type { Zone } from "@/content/homepage";
 
 const MAPS_EMBED_URL =
-  "https://maps.google.com/maps?q=45.0225155,12.2300243&output=embed&hl=it&z=17";
+  "https://maps.google.com/maps?q=45.0225155,12.2300243&output=embed&hl=it&z=10";
 const MAPS_LINK_URL = "https://maps.app.goo.gl/KxQ6vAzyqzhsbh1c7";
 
 type ServiceAreaSectionProps = {
@@ -35,15 +35,15 @@ export function ServiceAreaSection({
           - mobile/tablet: single column (items stack: intro → map → zones)
           - desktop lg+: 2 col, map spans both rows on the right
         */}
-        <div className="grid gap-10 md:gap-8 lg:grid-cols-[1fr_1.15fr] lg:items-start lg:gap-x-16 lg:gap-y-10">
+        <div className="grid gap-10 md:gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-x-16 lg:gap-y-6">
           {/* ① Intro — first on all sizes; left col row 1 on desktop */}
-          <div>
+          <div className="lg:self-start">
             <DarkEyebrow>{eyebrow}</DarkEyebrow>
             <h2 className="text-panna mt-5 max-w-[16ch] font-serif text-[clamp(2rem,1rem+2.6vw,3.4rem)] leading-[1.12] font-medium tracking-tight">
               {titleStart}
               <em className="text-panna/65 font-serif italic">{titleAccent}</em>
             </h2>
-            <p className="text-panna/70 mt-6 max-w-[48ch] text-base leading-[1.65]">{body}</p>
+            <p className="text-panna/70 mt-4 max-w-[48ch] text-base leading-[1.65]">{body}</p>
           </div>
 
           {/* ② Map — middle on tablet (centered, max-w-620px); right col rows 1-2 on desktop */}
@@ -54,7 +54,7 @@ export function ServiceAreaSection({
                 title="Sede Costruzioni Edilferro — Via dei Salici 7/9, Porto Viro (RO)"
                 width="100%"
                 height="100%"
-                style={{ minHeight: "420px", border: 0, display: "block" }}
+                style={{ minHeight: "480px", border: 0, display: "block" }}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
@@ -72,7 +72,7 @@ export function ServiceAreaSection({
           </div>
 
           {/* ③ Zone list — bottom on tablet (2-col grid); left col row 2 on desktop */}
-          <div className="lg:col-start-1 lg:row-start-2">
+          <div className="lg:col-start-1 lg:row-start-2 lg:self-start">
             <div className="grid md:grid-cols-2 md:gap-x-6 lg:block">
               {zones.map((z, i) => {
                 const isLast = i === zones.length - 1;
@@ -100,7 +100,7 @@ function ZoneRow({ zone, isLast, isSecondToLast }: ZoneRowProps) {
 
   return (
     <div
-      className={`border-panna/12 flex items-center justify-between gap-4 border-t py-4 lg:py-[18px] ${borderBottom}`}
+      className={`border-panna/12 flex items-center justify-between gap-4 border-t py-3 lg:py-[13px] ${borderBottom}`}
     >
       {/* Left: dot + city name */}
       <div className="flex items-center gap-3">

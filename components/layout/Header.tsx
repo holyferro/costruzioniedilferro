@@ -99,7 +99,7 @@ export function Header() {
 
         {/* Desktop nav — visible only at xl (1280px+) to avoid cramped layout on tablets */}
         <nav
-          className="hidden items-center gap-8 xl:flex xl:gap-14"
+          className="hidden items-center gap-5 xl:flex 2xl:gap-10"
           aria-label="Navigazione principale"
         >
           {primaryNav.map((item) => {
@@ -111,7 +111,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href as Route<string>}
-                  className="bg-brand text-panna hover:bg-brand/85 inline-flex items-center rounded-full px-5 py-2 font-[family-name:var(--font-neue-montreal)] text-[15px] font-medium tracking-[0.015em] uppercase transition-colors"
+                  className="bg-brand text-panna hover:bg-brand/85 inline-flex items-center rounded-full px-4 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[13px] font-medium tracking-[0.015em] uppercase transition-colors 2xl:px-5 2xl:py-2 2xl:text-[15px]"
                 >
                   {item.label}
                 </Link>
@@ -122,7 +122,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href as Route<string>}
-                className={`group flex items-center gap-1 font-[family-name:var(--font-neue-montreal)] text-[18px] font-normal tracking-[0.015em] whitespace-nowrap uppercase transition-colors duration-200 ${scrolled ? "text-white" : "hover:text-brand text-black"}`}
+                className={`group flex items-center gap-1 font-[family-name:var(--font-neue-montreal)] text-[16px] font-normal tracking-[0.015em] whitespace-nowrap uppercase transition-colors duration-200 2xl:text-[18px] ${scrolled ? "text-white" : "hover:text-brand text-black"}`}
                 onClick={(e) => {
                   if (isActive) {
                     e.preventDefault();
@@ -132,9 +132,8 @@ export function Header() {
               >
                 {item.label}
                 <ArrowUpRight
-                  size={22}
-                  strokeWidth={1}
-                  className={`transition-opacity duration-200 ${
+                  strokeWidth={1.5}
+                  className={`h-3.5 w-3.5 transition-opacity duration-200 2xl:h-4 2xl:w-4 ${
                     isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                   } ${scrolled ? "text-white" : "text-brand"}`}
                 />
