@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Route } from "next";
 import type { NewsItem } from "@/content/homepage";
+import { ArticleReader } from "@/components/news/ArticleReader";
 
 type NewsUpdatesSectionProps = {
   eyebrow: string;
@@ -73,6 +74,8 @@ export function NewsUpdatesSection({
     el.scrollBy({ left: dir * step, behavior: "smooth" });
   };
 
+  const [readerOpen, setReaderOpen] = useState(false);
+
   const currentCard = Math.min(
     items.length,
     Math.round(scrollState.progress * (items.length - 1)) + 1,
@@ -125,9 +128,13 @@ export function NewsUpdatesSection({
           paddingRight: "max(24px, calc((100vw - 1152px) / 2 + 24px))",
         }}
       >
-        {items.map((item, i) => (
-          <NewsCard key={i} item={item} isFirst={i === 0} />
-        ))}
+        {items.map((item, i) =>
+          item.isPlaceholder ? (
+            <PlaceholderCard key={i} opacity={1 - (i - 1) * 0.3} />
+          ) : (
+            <NewsCard key={i} item={item} isFirst={i === 0} onOpen={() => setReaderOpen(true)} />
+          ),
+        )}
         <ArchiveCard href={allNewsHref} />
       </div>
 
@@ -145,15 +152,33 @@ export function NewsUpdatesSection({
           <span className="text-ink/40 tabular-nums">{String(items.length).padStart(2, "0")}</span>
         </span>
       </div>
+
+      <ArticleReader open={readerOpen} onClose={() => setReaderOpen(false)} />
     </section>
   );
 }
 
-function NewsCard({ item, isFirst }: { item: NewsItem; isFirst: boolean }) {
+function NewsCard({
+  item,
+  isFirst,
+  onOpen,
+}: {
+  item: NewsItem;
+  isFirst: boolean;
+  onOpen?: () => void;
+}) {
   return (
     <a
       data-news-card=""
       href={item.href ?? "#"}
+      onClick={
+        onOpen
+          ? (e) => {
+              e.preventDefault();
+              onOpen();
+            }
+          : undefined
+      }
       className="group flex w-[clamp(280px,28vw,420px)] shrink-0 snap-start flex-col no-underline"
     >
       <div className="border-border bg-surface flex w-full flex-col border transition-[transform,box-shadow] duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1 group-hover:shadow-[0_12px_32px_rgba(10,24,48,0.10)]">
@@ -183,8 +208,6 @@ function NewsCard({ item, isFirst }: { item: NewsItem; isFirst: boolean }) {
           {/* Meta */}
           <div className="text-ink/60 flex items-center gap-3 text-[12px] tracking-[0.06em] uppercase">
             <span>{item.date}</span>
-            <span className="bg-ink/40 inline-block h-[3px] w-[3px] rounded-full" />
-            <span>{item.readMin} min di lettura</span>
           </div>
 
           {/* Titolo */}
@@ -208,6 +231,29 @@ function NewsCard({ item, isFirst }: { item: NewsItem; isFirst: boolean }) {
         </div>
       </div>
     </a>
+  );
+}
+
+function PlaceholderCard({ opacity = 1 }: { opacity?: number }) {
+  return (
+    <div
+      data-news-card=""
+      className="flex w-[clamp(280px,28vw,420px)] shrink-0 snap-start flex-col"
+      style={{ opacity }}
+    >
+      <div className="border-border bg-surface flex w-full flex-col border">
+        <div className="bg-ink/[0.05] aspect-[4/3] w-full" />
+        <div className="flex flex-col gap-3 p-6 pb-[26px]">
+          <div className="bg-ink/[0.07] h-3 w-20 rounded-full" />
+          <div className="bg-ink/[0.09] h-5 w-3/4 rounded-full" />
+          <div className="bg-ink/[0.06] h-4 w-full rounded-full" />
+          <div className="bg-ink/[0.06] h-4 w-2/3 rounded-full" />
+          <div className="border-border mt-auto border-t pt-[18px]">
+            <div className="bg-ink/[0.06] h-3 w-24 rounded-full" />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

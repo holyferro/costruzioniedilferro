@@ -42,6 +42,10 @@ export function NewsArchiveClient() {
   const openArticle = ALL_ARTICLES.find((a) => a.slug === openSlug) ?? null;
   const close = useCallback(() => setOpenSlug(null), []);
 
+  if (NEWS_ARTICLES.length === 0) {
+    return <NewsPlaceholder />;
+  }
+
   return (
     <>
       <FilterBar
@@ -63,6 +67,34 @@ export function NewsArchiveClient() {
       />
       <NewsModal article={openArticle} onClose={close} />
     </>
+  );
+}
+
+/* ---- Placeholder ---- */
+function NewsPlaceholder() {
+  return (
+    <section className="bg-panna py-24 pb-32">
+      <div className="mx-auto max-w-[1280px] px-6 md:px-12">
+        <div className="border-border grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+          {[0, 1, 2].map((i) => (
+            <div
+              key={i}
+              className="border-border flex flex-col border"
+              style={{ opacity: 1 - i * 0.25 }}
+            >
+              <div className="bg-ink/[0.04] aspect-[4/3] w-full" />
+              <div className="flex flex-col gap-3 p-6 pb-7">
+                <div className="bg-ink/[0.06] h-3 w-20 rounded-full" />
+                <div className="bg-ink/[0.08] h-5 w-3/4 rounded-full" />
+                <div className="bg-ink/[0.06] h-4 w-full rounded-full" />
+                <div className="bg-ink/[0.06] h-4 w-2/3 rounded-full" />
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="text-ink/50 mt-12 font-serif text-base italic">Nuovi articoli in arrivo.</p>
+      </div>
+    </section>
   );
 }
 
@@ -153,12 +185,6 @@ function NewsModal({ article, onClose }: { article: NewsArticle | null; onClose:
 
             <div className="text-ink/50 mt-4 mb-8 flex flex-wrap items-center gap-3 font-[family-name:var(--font-neue-montreal)] text-[11px] tracking-[0.1em] uppercase">
               <span>{article.date}</span>
-              {article.readMin > 0 && (
-                <>
-                  <span className="bg-ink/30 inline-block h-[3px] w-[3px] rounded-full" />
-                  <span>{article.readMin} min di lettura</span>
-                </>
-              )}
               {article.author && (
                 <>
                   <span className="bg-ink/30 inline-block h-[3px] w-[3px] rounded-full" />
@@ -303,8 +329,6 @@ function ArchiveCard({
       <div className="flex flex-1 flex-col gap-3 p-6 pb-[26px]">
         <div className="text-ink/60 flex items-center gap-2.5 font-[family-name:var(--font-neue-montreal)] text-[11px] tracking-[0.06em] uppercase">
           <span>{item.date}</span>
-          <span className="bg-ink/40 inline-block h-[3px] w-[3px] rounded-full" />
-          <span>{item.readMin} min</span>
         </div>
         <h3 className="text-ink line-clamp-2 font-serif text-[21px] leading-[1.25] font-medium tracking-[-0.01em]">
           {item.title}

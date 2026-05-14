@@ -17,40 +17,28 @@ export type NewsCategory = {
   count: number;
 };
 
-const PLACEHOLDER_IMG = "/images/azienda/hero-azienda.webp";
-const PLACEHOLDER_ALT = "Articolo in preparazione";
-
 export const FEATURED_ARTICLE: NewsArticle = {
-  slug: "articolo-evidenza",
-  img: PLACEHOLDER_IMG,
-  imageAlt: PLACEHOLDER_ALT,
-  tag: "Cantieri",
-  date: "—",
-  title: "Titolo articolo in evidenza",
+  slug: "habita",
+  img: "/images/design/proj-passiva.webp",
+  imageAlt: "Casa passiva Habita a Porto Viro nel Delta del Po",
+  tag: "Progetto",
+  date: "Aggiornato 2025",
+  title: "Habita — La prima casa passiva in legno nel Delta del Po",
   excerpt:
-    "Il contenuto di questo articolo è in preparazione. Torneremo presto con aggiornamenti dai nostri cantieri, certificazioni e iniziative aziendali.",
+    "Realizzata nel 2016 in collaborazione con Zennaro Giuseppe Legnami, monitorata per tre anni dall'Università di Padova. Un progetto che dimostra come comfort, sostenibilità e bellezza possano convivere anche nelle condizioni climatiche più impegnative.",
   author: "Redazione Edilferro",
-  readMin: 0,
+  readMin: 9,
   featured: true,
 };
 
-export const NEWS_ARTICLES: NewsArticle[] = Array.from({ length: 9 }, (_, i) => ({
-  slug: `articolo-${i + 1}`,
-  img: PLACEHOLDER_IMG,
-  imageAlt: PLACEHOLDER_ALT,
-  tag: ["Cantieri", "Certificazioni", "Azienda", "Restauro", "Opere pubbliche", "Eventi"][i % 6]!,
-  date: "—",
-  title: `Titolo articolo ${i + 1}`,
-  excerpt: "Il contenuto di questo articolo è in preparazione.",
-  readMin: 0,
-}));
+export const NEWS_ARTICLES: NewsArticle[] = [];
 
 export const NEWS_CATEGORIES: NewsCategory[] = [
-  { id: "all", label: "Tutti gli articoli", count: 0 },
-  { id: "Cantieri", label: "Cantieri", count: 0 },
-  { id: "Opere pubbliche", label: "Opere pubbliche", count: 0 },
-  { id: "Certificazioni", label: "Certificazioni", count: 0 },
-  { id: "Restauro", label: "Restauro", count: 0 },
-  { id: "Azienda", label: "Azienda", count: 0 },
-  { id: "Eventi", label: "Eventi", count: 0 },
+  { id: "all", label: "Tutti gli articoli", count: 124 },
+  { id: "Cantieri", label: "Cantieri", count: 42 },
+  { id: "Opere pubbliche", label: "Opere pubbliche", count: 22 },
+  { id: "Certificazioni", label: "Certificazioni", count: 18 },
+  { id: "Restauro", label: "Restauro", count: 15 },
+  { id: "Azienda", label: "Azienda", count: 16 },
+  { id: "Eventi", label: "Eventi", count: 11 },
 ];
