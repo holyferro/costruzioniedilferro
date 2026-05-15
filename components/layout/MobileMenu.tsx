@@ -3,7 +3,7 @@
 // components/layout/MobileMenu.tsx
 // Mobile-only slide-in navigation panel. Desktop nav is handled in Header.tsx.
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import type { Route } from "next";
 import Link from "next/link";
@@ -18,6 +18,10 @@ export function MobileMenu({ scrolled }: MobileMenuProps) {
   const pathname = usePathname();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const openButtonRef = useRef<HTMLButtonElement>(null);
+  const pathnameRef = useRef(pathname);
+  useLayoutEffect(() => {
+    pathnameRef.current = pathname;
+  });
 
   // Derive open state from the pathname at which the menu was opened.
   // When the user navigates, pathname changes → isOpen becomes false automatically
@@ -44,6 +48,7 @@ export function MobileMenu({ scrolled }: MobileMenuProps) {
   useEffect(() => {
     if (!isOpen) return;
     const scrollY = window.scrollY;
+    const openedAt = pathnameRef.current;
     document.body.style.position = "fixed";
     document.body.style.top = `-${scrollY}px`;
     document.body.style.width = "100%";
@@ -51,7 +56,9 @@ export function MobileMenu({ scrolled }: MobileMenuProps) {
       document.body.style.position = "";
       document.body.style.top = "";
       document.body.style.width = "";
-      window.scrollTo(0, scrollY);
+      if (pathnameRef.current === openedAt) {
+        window.scrollTo(0, scrollY);
+      }
     };
   }, [isOpen]);
 
