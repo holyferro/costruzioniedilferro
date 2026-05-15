@@ -240,7 +240,7 @@ export const homepageContent: HomepageContent = {
         tags: [
           "Appalti SOA OG1–OG11",
           "Restauro monumentale",
-          "Ospedali e strutture sanitarie",
+          "Strutture ospedaliere",
           "Edifici di culto",
         ],
         ctaLabel: "Opere pubbliche",
@@ -257,7 +257,7 @@ export const homepageContent: HomepageContent = {
           "Capannoni e stabilimenti",
           "Sedi aziendali",
           "Riconversioni industriali",
-          "Manutenzione programmata",
+          "Manutenzione",
         ],
         ctaLabel: "Soluzioni per aziende",
         ctaHref: "/servizi/aziende",
