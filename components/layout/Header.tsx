@@ -17,11 +17,17 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const headerRef = useRef<HTMLElement>(null);
+  // Prevents the scroll listener from mutating header state during the
+  // smooth-scroll animation triggered by Next.js on page navigation.
+  // A DOM mutation mid-animation causes the browser to abort the scroll,
+  // leaving the user stranded at the EXIT threshold (~Y=30) instead of Y=0.
+  const isNavigating = useRef(false);
 
   useEffect(() => {
     const ENTER = 120;
     const EXIT = 30;
     const onScroll = () => {
+      if (isNavigating.current) return;
       const y = window.scrollY;
       setScrolled((prev) => {
         if (!prev && y > ENTER) return true;
@@ -32,6 +38,41 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // On route change: pre-switch the header to its top-of-page state and hold
+  // the scroll listener until the animation completes (Y < 5).
+  // setScrolled is deferred one RAF tick to satisfy the no-sync-setState-in-effect
+  // lint rule while remaining effectively instant.
+  useEffect(() => {
+    isNavigating.current = true;
+
+    let rafId: number;
+
+    const checkDone = () => {
+      if (window.scrollY < 5) {
+        isNavigating.current = false;
+      } else {
+        rafId = requestAnimationFrame(checkDone);
+      }
+    };
+
+    rafId = requestAnimationFrame(() => {
+      setScrolled(false);
+      rafId = requestAnimationFrame(checkDone);
+    });
+
+    // Safety net: release the lock after 1500 ms regardless
+    const timeout = setTimeout(() => {
+      cancelAnimationFrame(rafId);
+      isNavigating.current = false;
+    }, 1500);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      clearTimeout(timeout);
+      isNavigating.current = false;
+    };
+  }, [pathname]);
 
   // Sync --header-height CSS variable to actual rendered height
   useEffect(() => {
