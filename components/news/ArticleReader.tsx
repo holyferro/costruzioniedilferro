@@ -2,14 +2,20 @@
 
 import { useEffect, useRef, useState } from "react";
 import { HabitaArticleBody } from "./HabitaArticleBody";
-import { FEATURED_ARTICLE } from "@/content/news";
+import { PalestraGramsciArticleBody } from "./PalestraGramsciArticleBody";
+import { FEATURED_ARTICLE, NEWS_ARTICLES } from "@/content/news";
+
+const ALL_ARTICLES = [FEATURED_ARTICLE, ...NEWS_ARTICLES];
 
 interface ArticleReaderProps {
-  open: boolean;
+  slug: string | null;
   onClose: () => void;
 }
 
-export function ArticleReader({ open, onClose }: ArticleReaderProps) {
+export function ArticleReader({ slug, onClose }: ArticleReaderProps) {
+  const open = slug !== null;
+  const article = ALL_ARTICLES.find((a) => a.slug === slug) ?? FEATURED_ARTICLE;
+
   const scrollRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
   // Show condensed title in header only after scrolling past the hero
@@ -111,7 +117,7 @@ export function ArticleReader({ open, onClose }: ArticleReaderProps) {
                 opacity: pastHero ? 1 : 1,
               }}
             >
-              {pastHero ? FEATURED_ARTICLE.tag : "Articolo · In evidenza"}
+              {pastHero ? article.tag : "Articolo · In evidenza"}
             </p>
             <p
               className="mt-0.5 truncate text-[13px] leading-[1.3] transition-all duration-300"
@@ -122,7 +128,7 @@ export function ArticleReader({ open, onClose }: ArticleReaderProps) {
                 overflow: "hidden",
               }}
             >
-              {FEATURED_ARTICLE.title}
+              {article.title}
             </p>
           </div>
 
@@ -167,7 +173,7 @@ export function ArticleReader({ open, onClose }: ArticleReaderProps) {
           onScroll={handleScroll}
           className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto"
         >
-          <HabitaArticleBody />
+          {slug === "palestra-gramsci" ? <PalestraGramsciArticleBody /> : <HabitaArticleBody />}
         </div>
       </div>
     </div>

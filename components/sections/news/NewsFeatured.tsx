@@ -7,7 +7,7 @@ import { ArticleReader } from "@/components/news/ArticleReader";
 import { FEATURED_ARTICLE } from "@/content/news";
 
 export function NewsFeatured() {
-  const [readerOpen, setReaderOpen] = useState(false);
+  const [readerSlug, setReaderSlug] = useState<string | null>(null);
 
   return (
     <>
@@ -21,7 +21,7 @@ export function NewsFeatured() {
           </div>
 
           <button
-            onClick={() => setReaderOpen(true)}
+            onClick={() => setReaderSlug(FEATURED_ARTICLE.slug)}
             className="group border-border bg-surface grid w-full cursor-pointer overflow-hidden border text-left md:grid-cols-[1.35fr_1fr]"
             style={{
               transition:
@@ -85,7 +85,7 @@ export function NewsFeatured() {
         </div>
       </section>
 
-      <ArticleReader open={readerOpen} onClose={() => setReaderOpen(false)} />
+      <ArticleReader slug={readerSlug} onClose={() => setReaderSlug(null)} />
     </>
   );
 }

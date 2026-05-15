@@ -74,7 +74,7 @@ export function NewsUpdatesSection({
     el.scrollBy({ left: dir * step, behavior: "smooth" });
   };
 
-  const [readerOpen, setReaderOpen] = useState(false);
+  const [readerSlug, setReaderSlug] = useState<string | null>(null);
 
   const currentCard = Math.min(
     items.length,
@@ -132,7 +132,12 @@ export function NewsUpdatesSection({
           item.isPlaceholder ? (
             <PlaceholderCard key={i} opacity={1 - (i - 1) * 0.3} />
           ) : (
-            <NewsCard key={i} item={item} isFirst={i === 0} onOpen={() => setReaderOpen(true)} />
+            <NewsCard
+              key={i}
+              item={item}
+              isFirst={i === 0}
+              onOpen={item.slug ? () => setReaderSlug(item.slug!) : undefined}
+            />
           ),
         )}
         <ArchiveCard href={allNewsHref} />
@@ -153,7 +158,7 @@ export function NewsUpdatesSection({
         </span>
       </div>
 
-      <ArticleReader open={readerOpen} onClose={() => setReaderOpen(false)} />
+      <ArticleReader slug={readerSlug} onClose={() => setReaderSlug(null)} />
     </section>
   );
 }

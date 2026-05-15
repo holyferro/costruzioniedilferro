@@ -18,20 +18,33 @@ export type NewsCategory = {
 };
 
 export const FEATURED_ARTICLE: NewsArticle = {
-  slug: "habita",
-  img: "/images/design/proj-passiva.webp",
-  imageAlt: "Casa passiva Habita a Porto Viro nel Delta del Po",
-  tag: "Progetto",
-  date: "Aggiornato 2025",
-  title: "Habita — La prima casa passiva in legno nel Delta del Po",
+  slug: "palestra-gramsci",
+  img: "/images/prima-pietra-palestra-gramsci.webp",
+  imageAlt: "Cerimonia della prima pietra — nuova palestra Liceo Morin e Istituto Gramsci, Mestre",
+  tag: "Opere pubbliche",
+  date: "24 Marzo 2026",
+  title: "Al via i lavori della nuova palestra al polo scolastico della Gazzera, Mestre",
   excerpt:
-    "Realizzata nel 2016 in collaborazione con Zennaro Giuseppe Legnami, monitorata per tre anni dall'Università di Padova. Un progetto che dimostra come comfort, sostenibilità e bellezza possano convivere anche nelle condizioni climatiche più impegnative.",
+    "Costruzioni Edilferro Srl è la ditta incaricata di realizzare la nuova palestra del Liceo Morin e dell'Istituto Gramsci/Luzzatti. Un investimento da 3,5 milioni di euro della Città Metropolitana di Venezia, con consegna prevista entro novembre 2026.",
   author: "Redazione Edilferro",
-  readMin: 9,
+  readMin: 4,
   featured: true,
 };
 
-export const NEWS_ARTICLES: NewsArticle[] = [];
+export const NEWS_ARTICLES: NewsArticle[] = [
+  {
+    slug: "habita",
+    img: "/images/design/proj-passiva.webp",
+    imageAlt: "Casa passiva Habita a Porto Viro nel Delta del Po",
+    tag: "Progetto",
+    date: "Aggiornato 2025",
+    title: "Habita — La prima casa passiva in legno nel Delta del Po",
+    excerpt:
+      "Realizzata nel 2016 in collaborazione con Zennaro Giuseppe Legnami, monitorata per tre anni dall'Università di Padova.",
+    author: "Redazione Edilferro",
+    readMin: 9,
+  },
+];
 
 export const NEWS_CATEGORIES: NewsCategory[] = [
   { id: "all", label: "Tutti gli articoli", count: 124 },

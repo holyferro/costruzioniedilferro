@@ -57,6 +57,7 @@ export type NewsItem = {
   readonly desc: string;
   readonly readMin: number;
   readonly href?: string;
+  readonly slug?: string;
   readonly isPlaceholder?: boolean;
 };
 
@@ -139,6 +140,18 @@ export const homepageContent: HomepageContent = {
     allNewsHref: "/news",
     items: [
       {
+        imageSrc: "/images/prima-pietra-palestra-gramsci.webp",
+        imageAlt:
+          "Cerimonia della prima pietra — nuova palestra Liceo Morin e Istituto Gramsci, Mestre",
+        tag: "Opere pubbliche",
+        date: "24 Marzo 2026",
+        title: "Al via i lavori della nuova palestra al polo scolastico della Gazzera, Mestre",
+        desc: "Un investimento da 3,5 milioni di euro della Città Metropolitana di Venezia. Consegna prevista novembre 2026.",
+        readMin: 4,
+        href: "/news",
+        slug: "palestra-gramsci",
+      },
+      {
         imageSrc: "/images/design/proj-passiva.webp",
         imageAlt: "Casa passiva Habita a Porto Viro nel Delta del Po",
         tag: "Progetto",
@@ -147,16 +160,7 @@ export const homepageContent: HomepageContent = {
         desc: "Realizzata nel 2016 in collaborazione con Zennaro Giuseppe Legnami, monitorata per tre anni dall'Università di Padova.",
         readMin: 9,
         href: "/news",
-      },
-      {
-        imageSrc: "/images/azienda/hero-azienda.webp",
-        imageAlt: "Articolo in preparazione",
-        tag: "Prossimamente",
-        date: "—",
-        title: "Prossimamente",
-        desc: "",
-        readMin: 0,
-        isPlaceholder: true,
+        slug: "habita",
       },
       {
         imageSrc: "/images/azienda/hero-azienda.webp",

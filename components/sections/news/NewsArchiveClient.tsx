@@ -4,8 +4,10 @@ import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { NEWS_ARTICLES, NEWS_CATEGORIES, FEATURED_ARTICLE, type NewsArticle } from "@/content/news";
+import { ArticleReader } from "@/components/news/ArticleReader";
 
 const ALL_ARTICLES = [FEATURED_ARTICLE, ...NEWS_ARTICLES];
+const RICH_SLUGS = new Set(["habita", "palestra-gramsci"]);
 
 const PAGE_SIZE = 9;
 
@@ -16,6 +18,12 @@ export function NewsArchiveClient() {
   const [cat, setCat] = useState("all");
   const [page, setPage] = useState(1);
   const [openSlug, setOpenSlug] = useState<string | null>(null);
+  const [richSlug, setRichSlug] = useState<string | null>(null);
+
+  const handleOpen = (slug: string) => {
+    if (RICH_SLUGS.has(slug)) setRichSlug(slug);
+    else setOpenSlug(slug);
+  };
 
   const filtered = useMemo(
     () => NEWS_ARTICLES.filter((a) => cat === "all" || a.tag === cat),
@@ -34,7 +42,7 @@ export function NewsArchiveClient() {
     const idx = NEWS_ARTICLES.findIndex((a) => a.slug === targetSlug);
     const t = setTimeout(() => {
       if (idx >= 0) setPage(Math.ceil((idx + 1) / PAGE_SIZE));
-      setOpenSlug(targetSlug);
+      handleOpen(targetSlug);
     }, 150);
     return () => clearTimeout(t);
   }, [targetSlug]);
@@ -56,7 +64,7 @@ export function NewsArchiveClient() {
         }}
         totalShown={filtered.length}
       />
-      <NewsGrid items={pageItems} onOpen={setOpenSlug} />
+      <NewsGrid items={pageItems} onOpen={handleOpen} />
       <Pagination
         page={safePage}
         totalPages={totalPages}
@@ -66,6 +74,7 @@ export function NewsArchiveClient() {
         }}
       />
       <NewsModal article={openArticle} onClose={close} />
+      <ArticleReader slug={richSlug} onClose={() => setRichSlug(null)} />
     </>
   );
 }
