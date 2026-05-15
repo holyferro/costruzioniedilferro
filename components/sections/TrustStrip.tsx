@@ -54,6 +54,7 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
           {rows.map((r, i) => {
             const isLast = i === rows.length - 1;
             const isSecondToLast = i === rows.length - 2;
+            const isText = isNaN(parseFloat(String(r.value)));
             return (
               <div
                 key={r.label}
@@ -61,10 +62,20 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
                   isLast ? "border-b" : isSecondToLast ? "md:border-b lg:border-b-0" : ""
                 }`}
               >
-                <dt className="text-ink font-serif text-5xl leading-none font-medium tracking-tight lg:text-6xl">
+                <dt
+                  className={`text-ink font-serif leading-none font-medium lg:text-6xl ${
+                    isText
+                      ? "text-2xl tracking-[0.18em] sm:text-5xl sm:tracking-tight"
+                      : "text-5xl tracking-tight"
+                  }`}
+                >
                   <CountUpNumber value={r.value} />
                 </dt>
-                <dd className="text-ink font-serif text-lg leading-snug font-medium italic md:text-xl lg:text-2xl">
+                <dd
+                  className={`text-ink font-serif leading-snug font-medium italic md:text-xl lg:text-2xl ${
+                    isText ? "text-sm whitespace-nowrap sm:text-lg" : "text-lg"
+                  }`}
+                >
                   {r.label}
                 </dd>
                 <dd className="text-ink/60 col-span-2 text-xs tracking-[0.12em] uppercase sm:col-span-1 sm:max-w-[28ch] sm:text-right md:col-span-2 md:mt-1 md:text-left lg:col-span-1 lg:mt-0 lg:max-w-[28ch] lg:text-right">
