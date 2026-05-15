@@ -21,7 +21,7 @@ export function ServicesHero({
   subtitle,
 }: ServicesHeroProps) {
   return (
-    <section className="bg-panna text-ink py-10 md:py-16">
+    <section className="bg-panna text-ink pt-8 pb-0 md:py-16">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         <div className="mx-auto max-w-3xl text-center">
           <Eyebrow>{eyebrow}</Eyebrow>
@@ -30,16 +30,13 @@ export function ServicesHero({
             <em className="text-brand font-serif italic">{titleAccent}</em>
             {titleEnd}
           </h1>
-          <p className="text-ink/70 mx-auto mt-7 max-w-[52ch] text-base leading-relaxed md:text-lg">
+          <p className="text-ink/70 mx-auto mt-4 max-w-[52ch] text-base leading-relaxed md:text-lg">
             {subtitle}
           </p>
         </div>
 
-        <div className="mt-8 md:mt-10">
-          <div
-            className="relative overflow-hidden rounded-xl lg:mx-auto lg:max-w-3xl xl:max-w-none"
-            style={{ height: "clamp(320px, 48vh, 600px)" }}
-          >
+        <div className="mt-5 md:mt-10">
+          <div className="relative aspect-[16/9] overflow-hidden rounded-xl md:aspect-auto md:h-[clamp(320px,48vh,600px)] lg:mx-auto lg:max-w-3xl xl:max-w-none">
             <Image
               src="/images/heroservizi2.webp"
               alt="Cantiere edilferro — panoramica lavori"

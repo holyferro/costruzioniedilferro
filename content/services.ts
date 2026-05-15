@@ -83,7 +83,7 @@ export const servicesContent: ServicesContent = {
     titleAccent: "per ogni esigenza",
     titleEnd: ".",
     subtitle:
-      "Dal cantiere residenziale al restauro pubblico, dal capannone industriale all'urbanizzazione. Operiamo per privati, enti pubblici e aziende nel Polesine e in tutto il Veneto.",
+      "Dal cantiere residenziale al lavoro pubblico, dal capannone industriale al restauro: un solo interlocutore, ovunque serva.",
   },
   targetIndex: {
     targets: [

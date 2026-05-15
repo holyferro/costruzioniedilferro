@@ -20,7 +20,7 @@ export const certificazioniContent = {
     titleAccent: "certificati",
     titleEnd: " per durare.",
     subtitle:
-      "Ogni certificazione che portiamo è il risultato di audit esterni, di processi misurabili e di una filiera produttiva che non ha subappaltatori opachi.",
+      "Ogni qualifica che portiamo è pubblica e verificabile sul portale ANAC. Nessuna autocertificazione.",
   },
 
   soa: {
