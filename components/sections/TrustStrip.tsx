@@ -65,7 +65,7 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
                 <dt
                   className={`text-ink font-serif leading-none font-medium lg:text-6xl ${
                     isText
-                      ? "text-2xl tracking-[0.18em] sm:text-5xl sm:tracking-tight"
+                      ? "text-4xl tracking-[0.18em] sm:text-5xl sm:tracking-tight"
                       : "text-5xl tracking-tight"
                   }`}
                 >
