@@ -237,12 +237,7 @@ export const homepageContent: HomepageContent = {
         body: "Affianchiamo Comuni, ASL ed enti del territorio nella realizzazione di scuole, edifici sanitari e restauro conservativo. Attestazione SOA OG1–OG2–OG3–OG11, esperienza consolidata nei rapporti con Soprintendenze e stazioni appaltanti.",
         imageSrc: "/images/design/img-pubblico.webp",
         imageAlt: "Cantiere pubblico — restauro istituzionale",
-        tags: [
-          "Appalti SOA OG1–OG11",
-          "Restauro monumentale",
-          "Strutture ospedaliere",
-          "Edifici di culto",
-        ],
+        tags: ["SOA OG1–OG11", "Restauro monumentale", "Strutture ospedaliere", "Edifici di culto"],
         ctaLabel: "Opere pubbliche",
         ctaHref: "/servizi/pubblico",
       },
