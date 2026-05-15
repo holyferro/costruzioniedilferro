@@ -22,10 +22,10 @@ export const FEATURED_ARTICLE: NewsArticle = {
   img: "/images/prima-pietra-palestra-gramsci.webp",
   imageAlt: "Cerimonia della prima pietra — nuova palestra Liceo Morin e Istituto Gramsci, Mestre",
   tag: "Opere pubbliche",
-  date: "24 Marzo 2026",
+  date: "14 Maggio 2026",
   title: "Al via i lavori della nuova palestra al polo scolastico della Gazzera, Mestre",
   excerpt:
-    "Costruzioni Edilferro Srl è la ditta incaricata di realizzare la nuova palestra del Liceo Morin e dell'Istituto Gramsci/Luzzatti. Un investimento da 3,5 milioni di euro della Città Metropolitana di Venezia, con consegna prevista entro novembre 2026.",
+    "Costruzioni Edilferro Srl è la ditta incaricata di realizzare la nuova palestra del Liceo Morin e dell'Istituto Gramsci/Luzzatti, commissionata dalla Città Metropolitana di Venezia. Consegna prevista entro novembre 2026.",
   author: "Redazione Edilferro",
   readMin: 4,
   featured: true,
