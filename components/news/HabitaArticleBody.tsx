@@ -37,11 +37,6 @@ export function HabitaArticleBody() {
           }}
         />
         <div className="relative mx-auto w-full max-w-[860px] px-8 pt-12 pb-14">
-          <span className="bg-panna text-brand mb-6 inline-flex items-center gap-2.5 rounded-full px-3.5 py-[7px] font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold tracking-[0.22em] uppercase">
-            <span className="bg-brand inline-block h-1.5 w-1.5 rounded-full" />
-            Progetto in evidenza
-          </span>
-
           <h1 className="m-0 max-w-[16ch] font-serif text-[clamp(2.25rem,1.4rem+2.8vw,4rem)] leading-[1.05] font-medium tracking-[-0.02em] [text-wrap:balance] text-white">
             {article.title}{" "}
             <em className="italic" style={{ color: "rgba(255,255,255,0.78)" }}>

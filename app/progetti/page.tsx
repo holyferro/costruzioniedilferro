@@ -6,7 +6,7 @@ import { ProgettiGrid } from "@/components/sections/lavori/ProgettiGrid";
 import { HomepageCta } from "@/components/sections/HomepageCta";
 
 export const metadata = buildMetadata({
-  title: "Lavori e Progetti",
+  title: "Realizzazioni",
   description:
     "Oltre 520 cantieri completati dal 1978 tra Polesine e Veneto. Residenziale, restauro, opere pubbliche, industriale, efficientamento energetico. Ogni progetto con scheda tecnica verificabile.",
   alternates: { canonical: "/progetti" },

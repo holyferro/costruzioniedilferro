@@ -40,7 +40,7 @@ const entries: TimelineEntry[] = [
     },
   },
   {
-    year: "Passaggio di generazione",
+    year: "",
     eyebrow: "Tre generazioni, una visione",
     title: "Continuità imprenditoriale",
     body: "Il passaggio generazionale trasforma l'eredità familiare in continuità imprenditoriale, mantenendo intatti valori e metodo.",

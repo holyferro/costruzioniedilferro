@@ -107,7 +107,7 @@ function FeatureCard({ item, onOpen }: { item: FeaturedProject; onOpen: () => vo
           {item.title}
         </h3>
         <p className="mt-2.5 text-[13px] tracking-[0.18em] text-white/70 uppercase">{item.place}</p>
-        <p className="mt-4 max-w-[48ch] text-[15px] leading-relaxed text-white/85">
+        <p className="mt-4 line-clamp-3 max-w-[48ch] text-[15px] leading-relaxed text-white/85 md:line-clamp-none">
           {item.description}
         </p>
         <span className="mt-6 inline-flex items-center gap-2.5 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.1em] text-white uppercase">

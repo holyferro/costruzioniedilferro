@@ -358,7 +358,7 @@ export const homepageContent: HomepageContent = {
   finalCta: {
     eyebrow: "Iniziamo a parlarne",
     headline: "Ogni progetto comincia con un sopralluogo in cantiere.",
-    body: "Raccontaci l'opera. Veniamo sul posto, valutiamo fattibilità e tempi, e prepariamo un'offerta dettagliata entro dieci giorni lavorativi. Nessun costo, nessun impegno.",
+    body: "Raccontaci l'opera. Veniamo sul posto, valutiamo fattibilità e tempi, e prepariamo un'offerta dettagliata.",
     primaryCta: { label: "Richiedi un sopralluogo", href: "/contatti" },
     secondaryCta: { label: "Richiedi un preventivo", href: "/contatti" },
   },

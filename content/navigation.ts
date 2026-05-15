@@ -13,7 +13,7 @@ export type NavGroup = {
 
 export const primaryNav: readonly NavLink[] = [
   { href: "/servizi", label: "Servizi" },
-  { href: "/progetti", label: "Lavori e Progetti" },
+  { href: "/progetti", label: "Realizzazioni" },
   { href: "/certificazioni", label: "Certificazioni" },
   { href: "/azienda", label: "L'Azienda" },
   { href: "/news", label: "News" },
