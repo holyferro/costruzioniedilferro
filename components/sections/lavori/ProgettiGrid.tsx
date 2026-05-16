@@ -159,7 +159,7 @@ export function ProgettiGrid({
                         card.wide
                           ? {
                               gridColumn: "span 2",
-                              minHeight: 540,
+                              aspectRatio: "3/2",
                               animation: "cardFadeIn 380ms cubic-bezier(0.16,1,0.3,1) both",
                               animationDelay: `${card.delay ?? 0}ms`,
                             }
