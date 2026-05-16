@@ -13,6 +13,13 @@ export const client = createClient({
   useCdn: true,
 });
 
+export const serverClient = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  apiVersion,
+  useCdn: false,
+});
+
 const builder = imageUrlBuilder(client);
 
 export function urlFor(source: SanityImageSource) {

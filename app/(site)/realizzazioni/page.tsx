@@ -3,7 +3,7 @@ import { LavoriHero } from "@/components/sections/lavori/LavoriHero";
 import { LavoriManifesto } from "@/components/sections/lavori/LavoriManifesto";
 import { ProgettiGrid } from "@/components/sections/lavori/ProgettiGrid";
 import { HomepageCta } from "@/components/sections/HomepageCta";
-import { client } from "@/sanity/lib/client";
+import { serverClient } from "@/sanity/lib/client";
 import { allRealizzazioniQuery } from "@/sanity/lib/queries";
 import { sanityToProject } from "@/sanity/lib/realizzazione-helpers";
 import { PROJECTS } from "@/components/sections/lavori/ProgettoModal";
@@ -11,7 +11,7 @@ import type { Realizzazione } from "@/sanity/lib/types";
 import type { CardDef } from "@/components/sections/lavori/ProgettiGrid";
 import type { Project } from "@/components/sections/lavori/ProgettoModal";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export const metadata = buildMetadata({
   title: "Realizzazioni",
@@ -63,7 +63,11 @@ export default async function RealizzazioniPage() {
     return <RealizzazioniLayout cards={cards} projects={projects} />;
   }
 
-  const realizzazioni = await client.fetch<Realizzazione[]>(allRealizzazioniQuery);
+  const realizzazioni = await serverClient.fetch<Realizzazione[]>(
+    allRealizzazioniQuery,
+    {},
+    { next: { tags: ["realizzazioni"] } },
+  );
   const { cards, projects } = buildFromSanity(realizzazioni);
 
   return <RealizzazioniLayout cards={cards} projects={projects} />;

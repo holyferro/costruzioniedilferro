@@ -14,7 +14,7 @@
  */
 
 import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -37,9 +37,16 @@ export async function POST(req: NextRequest) {
 
   switch (parsed._type) {
     case "realizzazione":
+      revalidateTag("realizzazioni", "default");
       revalidatePath("/realizzazioni");
-      console.log("[revalidate] /realizzazioni revalidated for", parsed._id);
-      return NextResponse.json({ revalidated: true, path: "/realizzazioni", type: parsed._type });
+      console.log(
+        "[revalidate] tag realizzazioni + path /realizzazioni revalidated for",
+        parsed._id,
+      );
+      return NextResponse.json(
+        { revalidated: true, path: "/realizzazioni", type: parsed._type },
+        { headers: { "Cache-Control": "no-store" } },
+      );
 
     case "newsArticle":
       // Gestione /news — da implementare nella fase /news
