@@ -39,37 +39,15 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // On route change: pre-switch the header to its top-of-page state and hold
-  // the scroll listener until the animation completes (Y < 5).
-  // setScrolled is deferred one RAF tick to satisfy the no-sync-setState-in-effect
-  // lint rule while remaining effectively instant.
   useEffect(() => {
     isNavigating.current = true;
-
-    let rafId: number;
-
-    const checkDone = () => {
-      if (window.scrollY < 5) {
-        isNavigating.current = false;
-      } else {
-        rafId = requestAnimationFrame(checkDone);
-      }
-    };
-
-    rafId = requestAnimationFrame(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+    const raf = requestAnimationFrame(() => {
       setScrolled(false);
-      rafId = requestAnimationFrame(checkDone);
-    });
-
-    // Safety net: release the lock after 1500 ms regardless
-    const timeout = setTimeout(() => {
-      cancelAnimationFrame(rafId);
       isNavigating.current = false;
-    }, 1500);
-
+    });
     return () => {
-      cancelAnimationFrame(rafId);
-      clearTimeout(timeout);
+      cancelAnimationFrame(raf);
       isNavigating.current = false;
     };
   }, [pathname]);

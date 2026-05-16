@@ -16,10 +16,11 @@ type CardDef = {
 /* ---- Data ---- */
 const CARDS: CardDef[] = [
   { key: "studentato-universitario", cat: "residenziale" },
-  { key: "casa-passiva", cat: "residenziale", delay: 80 },
+  { key: "habita", cat: "residenziale", delay: 80 },
   { key: "abbazia-villaregia", cat: "restauro" },
   { key: "stabilimento-produttivo", cat: "industriale", delay: 80 },
   { key: "casa-di-cura", cat: "pubblico", wide: true, delay: 160 },
+  { key: "policlinico-rovigo", cat: "pubblico", delay: 80 },
   { key: "restauro-palazzo", cat: "restauro" },
   { key: "efficientamento", cat: "efficientamento", delay: 80 },
   { key: "villetta-bifamiliare", cat: "residenziale", delay: 160 },

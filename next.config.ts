@@ -2,8 +2,18 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // typedRoutes abilita il type-checking dei <Link href>
-  // route primaryNav: /servizi /progetti /contatti
+  // route primaryNav: /servizi /realizzazioni /contatti
   typedRoutes: true,
+
+  async redirects() {
+    return [
+      {
+        source: "/progetti",
+        destination: "/realizzazioni",
+        permanent: true,
+      },
+    ];
+  },
 
   // No remote image patterns in Phase 1. Phase 4 may revisit.
 

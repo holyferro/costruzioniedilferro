@@ -98,16 +98,16 @@ export const servicesContent: ServicesContent = {
         imageAlt: "Cantiere residenziale — villa di pregio",
         imageCaption: "Villa residenziale, Rovigo",
         tags: [
-          "Nuove costruzioni antisismica",
-          "Ristrutturazioni di pregio",
+          "Nuove costruzioni",
+          "Ristrutturazioni complete",
           "Case passive NZEB",
-          "Direzione lavori interna",
+          "Recupero e risanamento",
         ],
         ctaLabel: "Scopri i servizi per privati",
         ctaHref: "/servizi/privati",
         serviceCards: [
           {
-            title: "Nuove costruzioni antisismiche",
+            title: "Nuove costruzioni",
             description:
               "Edifici residenziali conformi alle norme NTC 2018. Struttura in c.a. o acciaio certificata, dal progetto esecutivo alla consegna.",
             features: [
@@ -118,7 +118,7 @@ export const servicesContent: ServicesContent = {
             ],
           },
           {
-            title: "Ristrutturazioni di pregio",
+            title: "Ristrutturazioni complete",
             description:
               "Interventi completi sull'esistente: consolidamento strutturale, rifacimento impiantistico, rifinitura su misura.",
             features: [
@@ -129,7 +129,7 @@ export const servicesContent: ServicesContent = {
             ],
           },
           {
-            title: "Efficienza energetica NZEB",
+            title: "Case passive NZEB",
             description:
               "Case passive e nZEB con cappotto termico, serramenti ad alta prestazione e impianti a basse emissioni.",
             features: [
@@ -140,7 +140,7 @@ export const servicesContent: ServicesContent = {
             ],
           },
           {
-            title: "Direzione lavori interna",
+            title: "Recupero e risanamento",
             description:
               "Un unico referente tecnico dall'apertura cantiere alla consegna chiavi. Nessuna catena di subappalti non coordinata.",
             features: [
@@ -162,17 +162,12 @@ export const servicesContent: ServicesContent = {
         imageSrc: "/images/design/img-pubblico.webp",
         imageAlt: "Cantiere pubblico — restauro istituzionale",
         imageCaption: "Restauro istituzionale, Polesine",
-        tags: [
-          "Appalti pubblici SOA",
-          "Restauro conservativo",
-          "Scuole e strutture sanitarie",
-          "Urbanizzazioni",
-        ],
+        tags: ["SOA OG1–OG11", "Restauro monumentale", "Strutture ospedaliere", "Edifici di culto"],
         ctaLabel: "Scopri i servizi per enti pubblici",
         ctaHref: "/servizi/pubblico",
         serviceCards: [
           {
-            title: "Nuove costruzioni pubbliche",
+            title: "SOA OG1–OG11",
             description:
               "Edifici civili, scuole, strutture sanitarie e impianti sportivi realizzati in conformità al Codice dei contratti pubblici.",
             features: [
@@ -183,7 +178,7 @@ export const servicesContent: ServicesContent = {
             ],
           },
           {
-            title: "Restauro e beni tutelati",
+            title: "Restauro monumentale",
             description:
               "Interventi su edifici sottoposti a tutela ministeriale, con esperienza consolidata nei rapporti con Soprintendenze.",
             features: [
@@ -194,7 +189,7 @@ export const servicesContent: ServicesContent = {
             ],
           },
           {
-            title: "Strade e urbanizzazioni",
+            title: "Strutture ospedaliere",
             description:
               "Opere di urbanizzazione primaria, viabilità comunale, marciapiedi, parcheggi e manufatti complementari.",
             features: [
@@ -205,7 +200,7 @@ export const servicesContent: ServicesContent = {
             ],
           },
           {
-            title: "Scuole e strutture sanitarie",
+            title: "Edifici di culto",
             description:
               "Realizzazione e adeguamento sismico di istituti scolastici, presidi sanitari e strutture socioassistenziali.",
             features: [
@@ -228,16 +223,16 @@ export const servicesContent: ServicesContent = {
         imageAlt: "Cantiere industriale — capannone produttivo",
         imageCaption: "Polo produttivo, Veneto",
         tags: [
-          "General contractor",
-          "Capannoni e strutture industriali",
-          "Sedi direzionali",
-          "Manutenzione programmata",
+          "Capannoni e stabilimenti",
+          "Sedi aziendali",
+          "Riconversioni industriali",
+          "Manutenzione",
         ],
         ctaLabel: "Scopri i servizi per aziende",
         ctaHref: "/servizi/aziende",
         serviceCards: [
           {
-            title: "General contractor",
+            title: "Capannoni e stabilimenti",
             description:
               "Gestiamo l'intera filiera: progettazione esecutiva, subappaltatori specializzati, rendicontazione a corpo e cronoprogramma vincolante.",
             features: [
@@ -248,7 +243,7 @@ export const servicesContent: ServicesContent = {
             ],
           },
           {
-            title: "Strutture industriali e commerciali",
+            title: "Sedi aziendali",
             description:
               "Capannoni prefabbricati e in c.a., sedi direzionali, showroom e strutture ricettive fino a grande scala.",
             features: [
@@ -259,7 +254,7 @@ export const servicesContent: ServicesContent = {
             ],
           },
           {
-            title: "Manutenzione programmata",
+            title: "Riconversioni industriali",
             description:
               "Contratti di manutenzione ordinaria e straordinaria con intervento pianificato, reportistica e tempi garantiti.",
             features: [
@@ -270,7 +265,7 @@ export const servicesContent: ServicesContent = {
             ],
           },
           {
-            title: "Collaborazione con studi tecnici",
+            title: "Manutenzione",
             description:
               "Affiancamento a studi di architettura e ingegneria come partner realizzativo di fiducia per la fase di cantiere.",
             features: [

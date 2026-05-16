@@ -6,6 +6,12 @@ import Image from "next/image";
 /* ---- Types ---- */
 export type ProjectRow = [string, string];
 
+export type ProjectLink = {
+  label: string;
+  href: string;
+  external?: boolean;
+};
+
 export type Project = {
   imgs: string[];
   tag: string;
@@ -14,6 +20,7 @@ export type Project = {
   place: string;
   desc: string;
   rows: ProjectRow[];
+  links?: ProjectLink[];
 };
 
 /* ---- Data ---- */
@@ -36,6 +43,13 @@ export const PROJECTS: Record<string, Project> = {
       ["Classe energetica", "A"],
       ["Consegna", "2024"],
     ],
+    links: [
+      {
+        label: "Visita studentatorovigo.it",
+        href: "https://www.studentatorovigo.it/",
+        external: true,
+      },
+    ],
   },
   "casa-passiva": {
     imgs: [
@@ -54,6 +68,31 @@ export const PROJECTS: Record<string, Project> = {
       ["Standard", "Passivhaus — Classe A+"],
       ["Impianto FV", "9 kWp"],
       ["Consegna", "Giugno 2024"],
+    ],
+  },
+  habita: {
+    imgs: [
+      "/images/design/proj-passiva.webp",
+      "/images/cantieri/casa-passiva-porto-viro/habita-21.webp",
+      "/images/cantieri/casa-passiva-porto-viro/habita-14.webp",
+      "/images/cantieri/casa-passiva-porto-viro/habita-10.webp",
+    ],
+    tag: "Residenziale",
+    year: "2016",
+    title: "Habita — Casa passiva in legno",
+    place: "Porto Viro (RO)",
+    desc: "Prima casa passiva certificata nel Delta del Po, realizzata con struttura portante in pannelli X-Lam (legno lamellare incrociato). Progetto sviluppato in collaborazione con Zennaro Giuseppe Legnami e Tumiati Impianti. La struttura è stata monitorata per tre anni dall'Università degli Studi di Padova.",
+    rows: [
+      ["Anno", "2016"],
+      ["Luogo", "Porto Viro, Rovigo"],
+      ["Sistema costruttivo", "X-Lam — Cross Laminated Timber"],
+      ["Certificazione", "Casa passiva certificata"],
+      ["Partner", "Zennaro Legnami · Tumiati Impianti"],
+      ["Monitoraggio", "Università di Padova (3 anni)"],
+    ],
+    links: [
+      { label: "Leggi l'articolo completo", href: "/news/habita" },
+      { label: "Visita habita.it", href: "https://www.habita.it/", external: true },
     ],
   },
   "abbazia-villaregia": {
@@ -111,6 +150,27 @@ export const PROJECTS: Record<string, Project> = {
       ["Nuovi posti letto", "42"],
       ["Categoria SOA", "OG1 classifica IV"],
       ["Consegna", "Maggio 2022"],
+    ],
+  },
+  "policlinico-rovigo": {
+    imgs: [
+      "/images/cantieri/casa-di-cura-città-di-rovigo/foto-csa.webp",
+      "/images/cantieri/casa-di-cura-città-di-rovigo/20150403_152429.webp",
+      "/images/cantieri/casa-di-cura-città-di-rovigo/20150505_104627.webp",
+      "/images/cantieri/casa-di-cura-città-di-rovigo/20150505_104931.webp",
+    ],
+    tag: "Opere pubbliche",
+    year: "2015",
+    title: "Policlinico Città di Rovigo",
+    place: "Rovigo",
+    desc: "Costruzione del nuovo Policlinico Città di Rovigo in via Curiel, struttura sanitaria su tre piani con 220 posti letto complessivi. Opera da 25 milioni di euro interamente autofinanziata, con piano terra destinato ai servizi clinici, primo piano alla residenzialità per anziani e secondo piano all'area sanitaria con reparti di riabilitazione, lungodegenza e chirurgia.",
+    rows: [
+      ["Committente", "Casa di Cura Città di Rovigo"],
+      ["Importo lavori", "€ 25.000.000"],
+      ["Piani", "3 fuori terra"],
+      ["Capacità ricettiva", "220 posti letto"],
+      ["Categoria SOA", "OG1"],
+      ["Consegna", "2015"],
     ],
   },
   "restauro-palazzo": {
@@ -209,13 +269,10 @@ export function ProgettoModal({
   }, [project, onClose, prev, next]);
 
   useEffect(() => {
-    if (project) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    if (!project) return;
+    document.documentElement.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
   }, [project]);
 
@@ -228,6 +285,7 @@ export function ProgettoModal({
         background: isOpen ? "rgba(10,14,26,0.87)" : "rgba(10,14,26,0)",
         pointerEvents: isOpen ? "all" : "none",
         transition: "background 380ms ease",
+        touchAction: isOpen ? "none" : "auto",
       }}
       onClick={(e) => e.target === e.currentTarget && onClose()}
       role="dialog"
@@ -392,6 +450,23 @@ export function ProgettoModal({
             >
               Richiedi un preventivo simile →
             </a>
+
+            {project.links && project.links.length > 0 && (
+              <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+                {project.links.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target={link.external ? "_blank" : undefined}
+                    rel={link.external ? "noopener noreferrer" : undefined}
+                    className="text-ink/50 hover:text-ink font-[family-name:var(--font-neue-montreal)] text-[12px] tracking-[0.08em] underline underline-offset-4 transition-colors"
+                  >
+                    {link.label}
+                    {link.external && " ↗"}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>
