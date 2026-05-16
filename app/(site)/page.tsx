@@ -5,9 +5,9 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import { homepageContent } from "@/content/homepage";
 import { siteContent } from "@/content/site";
 import { serverClient } from "@/sanity/lib/client";
-import { featuredRealizzazioniQuery } from "@/sanity/lib/queries";
+import { featuredRealizzazioniQuery, homepageNewsQuery } from "@/sanity/lib/queries";
 import { buildFeaturedData } from "@/sanity/lib/realizzazione-helpers";
-import type { Realizzazione } from "@/sanity/lib/types";
+import type { Realizzazione, SanityNewsPreview } from "@/sanity/lib/types";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { ServiceOverview } from "@/components/sections/ServiceOverview";
@@ -25,13 +25,23 @@ export const metadata = buildMetadata({
 });
 
 export default async function Home() {
-  const realizzazioni = await serverClient.fetch<Realizzazione[]>(
-    featuredRealizzazioniQuery,
-    {},
-    { next: { tags: ["homepage-realizzazioni"] } },
-  );
+  const [realizzazioni, newsData] = await Promise.all([
+    serverClient.fetch<Realizzazione[]>(
+      featuredRealizzazioniQuery,
+      {},
+      { next: { tags: ["homepage-realizzazioni"] } },
+    ),
+    serverClient.fetch<{ featured: SanityNewsPreview | null; recent: SanityNewsPreview[] }>(
+      homepageNewsQuery,
+      {},
+      { next: { tags: ["homepage-news"] } },
+    ),
+  ]);
 
   const featuredData = buildFeaturedData(realizzazioni);
+  const newsItems = [newsData.featured, ...newsData.recent]
+    .filter((x): x is SanityNewsPreview => x !== null)
+    .slice(0, 4);
 
   return (
     <>
@@ -46,7 +56,9 @@ export default async function Home() {
           projectsData={featuredData.projectsData}
         />
       )}
-      <NewsUpdatesSection {...homepageContent.newsUpdates} />
+      {newsItems.length > 0 && (
+        <NewsUpdatesSection {...homepageContent.newsUpdates} items={newsItems} />
+      )}
       <ServiceAreaSection {...homepageContent.serviceArea} />
       <HomepageCta {...homepageContent.finalCta} />
     </>

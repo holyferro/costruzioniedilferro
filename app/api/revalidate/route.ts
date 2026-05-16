@@ -50,8 +50,14 @@ export async function POST(req: NextRequest) {
       );
 
     case "newsArticle":
-      // Gestione /news — da implementare nella fase /news
-      return NextResponse.json({ revalidated: false, message: "newsArticle: not handled yet" });
+      revalidateTag("news", "default");
+      revalidateTag("homepage-news", "default");
+      revalidatePath("/news");
+      console.log("[revalidate] newsArticle → /news + homepage revalidated for", parsed._id);
+      return NextResponse.json(
+        { revalidated: true, path: "/news", type: parsed._type },
+        { headers: { "Cache-Control": "no-store" } },
+      );
 
     default:
       return NextResponse.json({ revalidated: false, message: `Unknown type: ${parsed._type}` });

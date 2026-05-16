@@ -7,7 +7,8 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Route } from "next";
-import type { NewsItem } from "@/content/homepage";
+import type { SanityNewsPreview } from "@/sanity/lib/types";
+import { urlFor } from "@/sanity/lib/client";
 
 type NewsUpdatesSectionProps = {
   eyebrow: string;
@@ -16,7 +17,7 @@ type NewsUpdatesSectionProps = {
   body: string;
   allNewsLabel: string;
   allNewsHref: string;
-  items: readonly NewsItem[];
+  items: readonly SanityNewsPreview[];
 };
 
 type ScrollState = {
@@ -24,6 +25,14 @@ type ScrollState = {
   atStart: boolean;
   atEnd: boolean;
 };
+
+function formatDate(iso: string): string {
+  return new Date(iso).toLocaleDateString("it-IT", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
 
 export function NewsUpdatesSection({
   eyebrow,
@@ -78,6 +87,8 @@ export function NewsUpdatesSection({
     Math.round(scrollState.progress * (items.length - 1)) + 1,
   );
 
+  if (items.length === 0) return null;
+
   return (
     <section className="bg-panna text-ink relative overflow-hidden py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
@@ -125,13 +136,9 @@ export function NewsUpdatesSection({
           paddingRight: "max(24px, calc((100vw - 1152px) / 2 + 24px))",
         }}
       >
-        {items.map((item, i) =>
-          item.isPlaceholder ? (
-            <PlaceholderCard key={i} opacity={1 - (i - 1) * 0.3} />
-          ) : (
-            <NewsCard key={i} item={item} isFirst={i === 0} />
-          ),
-        )}
+        {items.map((item, i) => (
+          <NewsCard key={item._id} item={item} isFirst={i === 0} />
+        ))}
         <ArchiveCard href={allNewsHref} />
       </div>
 
@@ -153,8 +160,9 @@ export function NewsUpdatesSection({
   );
 }
 
-function NewsCard({ item, isFirst }: { item: NewsItem; isFirst: boolean }) {
-  const href = item.slug ? `/news?article=${item.slug}` : (item.href ?? "/news");
+function NewsCard({ item, isFirst }: { item: SanityNewsPreview; isFirst: boolean }) {
+  const href = `/news?article=${item.slug}`;
+  const imgSrc = urlFor(item.coverImage).width(840).height(630).url();
   return (
     <a
       data-news-card=""
@@ -165,8 +173,8 @@ function NewsCard({ item, isFirst }: { item: NewsItem; isFirst: boolean }) {
         {/* Immagine */}
         <div className="bg-ink relative aspect-[4/3] overflow-hidden">
           <Image
-            src={item.imageSrc}
-            alt={item.imageAlt}
+            src={imgSrc}
+            alt={item.coverImage.alt ?? item.title}
             fill
             quality={90}
             sizes="(min-width: 1024px) 28vw, (min-width: 768px) 44vw, 80vw"
@@ -174,7 +182,7 @@ function NewsCard({ item, isFirst }: { item: NewsItem; isFirst: boolean }) {
           />
           <div className="absolute top-4 left-4 flex flex-col gap-2">
             <span className="text-brand self-start rounded-full bg-white/95 px-3 py-1.5 text-[11px] font-semibold tracking-[0.2em] uppercase backdrop-blur-md">
-              {item.tag}
+              {item.category}
             </span>
             {isFirst && (
               <span className="bg-brand text-panna inline-flex items-center gap-2 self-start rounded-full px-3 py-1.5 text-[10px] font-semibold tracking-[0.22em] uppercase">
@@ -189,7 +197,7 @@ function NewsCard({ item, isFirst }: { item: NewsItem; isFirst: boolean }) {
         <div className="flex flex-1 flex-col gap-3.5 p-6 pb-[26px]">
           {/* Meta */}
           <div className="text-ink/60 flex items-center gap-3 text-[12px] tracking-[0.06em] uppercase">
-            <span>{item.date}</span>
+            <span>{formatDate(item.publishedAt)}</span>
           </div>
 
           {/* Titolo */}
@@ -198,7 +206,7 @@ function NewsCard({ item, isFirst }: { item: NewsItem; isFirst: boolean }) {
           </h3>
 
           {/* Descrizione */}
-          <p className="text-ink/70 line-clamp-3 text-[15px] leading-[1.55]">{item.desc}</p>
+          <p className="text-ink/70 line-clamp-3 text-[15px] leading-[1.55]">{item.excerpt}</p>
 
           {/* CTA */}
           <div className="border-border text-ink group-hover:text-brand mt-auto flex items-center justify-between border-t pt-[18px] font-[family-name:var(--font-neue-montreal)] text-[12px] tracking-[0.1em] uppercase transition-colors duration-[250ms]">
@@ -213,29 +221,6 @@ function NewsCard({ item, isFirst }: { item: NewsItem; isFirst: boolean }) {
         </div>
       </div>
     </a>
-  );
-}
-
-function PlaceholderCard({ opacity = 1 }: { opacity?: number }) {
-  return (
-    <div
-      data-news-card=""
-      className="flex w-[clamp(280px,28vw,420px)] shrink-0 snap-start flex-col"
-      style={{ opacity }}
-    >
-      <div className="border-border bg-surface flex w-full flex-col border">
-        <div className="bg-ink/[0.05] aspect-[4/3] w-full" />
-        <div className="flex flex-col gap-3 p-6 pb-[26px]">
-          <div className="bg-ink/[0.07] h-3 w-20 rounded-full" />
-          <div className="bg-ink/[0.09] h-5 w-3/4 rounded-full" />
-          <div className="bg-ink/[0.06] h-4 w-full rounded-full" />
-          <div className="bg-ink/[0.06] h-4 w-2/3 rounded-full" />
-          <div className="border-border mt-auto border-t pt-[18px]">
-            <div className="bg-ink/[0.06] h-3 w-24 rounded-full" />
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }
 

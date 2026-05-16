@@ -48,19 +48,6 @@ export type Zone = {
   readonly primary: boolean;
 };
 
-export type NewsItem = {
-  readonly imageSrc: string;
-  readonly imageAlt: string;
-  readonly tag: string;
-  readonly date: string;
-  readonly title: string;
-  readonly desc: string;
-  readonly readMin: number;
-  readonly href?: string;
-  readonly slug?: string;
-  readonly isPlaceholder?: boolean;
-};
-
 export type HomepageContent = {
   readonly newsUpdates: {
     readonly eyebrow: string;
@@ -69,7 +56,6 @@ export type HomepageContent = {
     readonly body: string;
     readonly allNewsLabel: string;
     readonly allNewsHref: string;
-    readonly items: readonly NewsItem[];
   };
   readonly hero: {
     readonly eyebrow?: string;
@@ -138,41 +124,6 @@ export const homepageContent: HomepageContent = {
     body: "Aggiornamenti, progetti e iniziative che raccontano il nostro modo di costruire — un cantiere alla volta.",
     allNewsLabel: "Vedi tutte le news",
     allNewsHref: "/news",
-    items: [
-      {
-        imageSrc: "/images/prima-pietra-palestra-gramsci.webp",
-        imageAlt:
-          "Cerimonia della prima pietra — nuova palestra Liceo Morin e Istituto Gramsci, Mestre",
-        tag: "Opere pubbliche",
-        date: "24 Marzo 2026",
-        title: "Al via i lavori della nuova palestra al polo scolastico della Gazzera, Mestre",
-        desc: "Un investimento da 3,5 milioni di euro della Città Metropolitana di Venezia. Consegna prevista novembre 2026.",
-        readMin: 4,
-        href: "/news",
-        slug: "palestra-gramsci",
-      },
-      {
-        imageSrc: "/images/design/proj-passiva.webp",
-        imageAlt: "Casa passiva Habita a Porto Viro nel Delta del Po",
-        tag: "Progetto",
-        date: "Aggiornato 2025",
-        title: "Habita — La prima casa passiva in legno nel Delta del Po",
-        desc: "Realizzata nel 2016 in collaborazione con Zennaro Giuseppe Legnami, monitorata per tre anni dall'Università di Padova.",
-        readMin: 9,
-        href: "/news",
-        slug: "habita",
-      },
-      {
-        imageSrc: "/images/azienda/hero-azienda.webp",
-        imageAlt: "Articolo in preparazione",
-        tag: "Prossimamente",
-        date: "—",
-        title: "Prossimamente",
-        desc: "",
-        readMin: 0,
-        isPlaceholder: true,
-      },
-    ],
   },
   hero: {
     eyebrow: "DAL 1981",
