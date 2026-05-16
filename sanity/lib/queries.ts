@@ -37,9 +37,8 @@ export const realizzazioneBySlugQuery = /* groq */ `
   }
 ` as unknown as string & { __type: Realizzazione };
 
-// Pronta per la fase homepage — non usata in questa fase
 export const featuredRealizzazioniQuery = /* groq */ `
-  *[_type == "realizzazione" && featured == true] | order(order asc) [0...6] {
+  *[_type == "realizzazione" && featured == true] | order(order asc) [0...4] {
     ${REALIZZAZIONE_FIELDS}
   }
 ` as unknown as string & { __type: Realizzazione[] };

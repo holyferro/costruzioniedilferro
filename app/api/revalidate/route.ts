@@ -38,9 +38,10 @@ export async function POST(req: NextRequest) {
   switch (parsed._type) {
     case "realizzazione":
       revalidateTag("realizzazioni", "default");
+      revalidateTag("homepage-realizzazioni", "default");
       revalidatePath("/realizzazioni");
       console.log(
-        "[revalidate] tag realizzazioni + path /realizzazioni revalidated for",
+        "[revalidate] realizzazione → /realizzazioni + homepage revalidated for",
         parsed._id,
       );
       return NextResponse.json(

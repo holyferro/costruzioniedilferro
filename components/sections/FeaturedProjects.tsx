@@ -9,6 +9,7 @@ import Link from "next/link";
 import type { Route } from "next";
 import type { FeaturedProject, ProjectTile } from "@/content/homepage";
 import { ProgettoModal } from "@/components/sections/lavori/ProgettoModal";
+import type { Project } from "@/components/sections/lavori/ProgettoModal";
 
 type FeaturedProjectsProps = {
   eyebrow: string;
@@ -19,6 +20,7 @@ type FeaturedProjectsProps = {
   archiveLinkHref: string;
   feature: FeaturedProject;
   tiles: readonly ProjectTile[];
+  projectsData?: Readonly<Record<string, Project>>;
 };
 
 export function FeaturedProjects({
@@ -30,6 +32,7 @@ export function FeaturedProjects({
   archiveLinkHref,
   feature,
   tiles,
+  projectsData,
 }: FeaturedProjectsProps) {
   const [activeKey, setActiveKey] = useState<string | null>(null);
 
@@ -54,22 +57,28 @@ export function FeaturedProjects({
             </Link>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-[1.5fr_1fr]">
+          <div className={`grid gap-6${tiles.length > 0 ? "md:grid-cols-[1.5fr_1fr]" : ""}`}>
             <FeatureCard item={feature} onOpen={() => setActiveKey(feature.projectKey ?? null)} />
-            <div className="grid gap-6 md:grid-rows-3">
-              {tiles.map((t) => (
-                <MiniProject
-                  key={t.title}
-                  item={t}
-                  onOpen={() => setActiveKey(t.projectKey ?? null)}
-                />
-              ))}
-            </div>
+            {tiles.length > 0 && (
+              <div className="grid gap-6 md:grid-rows-3">
+                {tiles.map((t) => (
+                  <MiniProject
+                    key={t.title}
+                    item={t}
+                    onOpen={() => setActiveKey(t.projectKey ?? null)}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>
 
-      <ProgettoModal projectKey={activeKey} onClose={() => setActiveKey(null)} />
+      <ProgettoModal
+        projectKey={activeKey}
+        onClose={() => setActiveKey(null)}
+        projects={projectsData}
+      />
     </>
   );
 }

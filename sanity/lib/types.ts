@@ -48,6 +48,22 @@ export type Realizzazione = {
   order?: number;
 };
 
+export type FeaturedRealizzazione = Pick<
+  Realizzazione,
+  | "_id"
+  | "title"
+  | "slug"
+  | "category"
+  | "anno"
+  | "luogo"
+  | "descrizione"
+  | "immagini"
+  | "righe"
+  | "link"
+  | "featured"
+  | "order"
+>;
+
 export type NewsArticle = {
   _id: string;
   _type: "newsArticle";
