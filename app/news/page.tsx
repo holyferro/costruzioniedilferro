@@ -3,7 +3,6 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import { NewsHero } from "@/components/sections/news/NewsHero";
 import { NewsFeatured } from "@/components/sections/news/NewsFeatured";
 import { NewsArchiveClient } from "@/components/sections/news/NewsArchiveClient";
-import { NewsletterCta } from "@/components/sections/news/NewsletterCta";
 import { HomepageCta } from "@/components/sections/HomepageCta";
 
 export const metadata = buildMetadata({
@@ -21,7 +20,6 @@ export default function NewsPage() {
       <Suspense>
         <NewsArchiveClient />
       </Suspense>
-      <NewsletterCta />
       <HomepageCta
         eyebrow="Lavoriamo insieme"
         headline="Hai un progetto in mente?"

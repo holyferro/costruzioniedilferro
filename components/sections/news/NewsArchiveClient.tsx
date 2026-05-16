@@ -25,10 +25,7 @@ export function NewsArchiveClient() {
     else setOpenSlug(slug);
   };
 
-  const filtered = useMemo(
-    () => NEWS_ARTICLES.filter((a) => cat === "all" || a.tag === cat),
-    [cat],
-  );
+  const filtered = useMemo(() => ALL_ARTICLES.filter((a) => cat === "all" || a.tag === cat), [cat]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
@@ -241,6 +238,24 @@ function FilterBar({
     return () => io.disconnect();
   }, []);
 
+  // Compute counts dynamically from all articles (including featured)
+  const counts = useMemo(() => {
+    const map: Record<string, number> = { all: ALL_ARTICLES.length };
+    for (const a of ALL_ARTICLES) {
+      map[a.tag] = (map[a.tag] ?? 0) + 1;
+    }
+    return map;
+  }, []);
+
+  // Build category list: "all" + each tag that has at least one article
+  const categories = useMemo(() => {
+    const tagCategories = NEWS_CATEGORIES.filter((c) => c.id !== "all" && (counts[c.id] ?? 0) > 0);
+    const knownIds = new Set(NEWS_CATEGORIES.map((c) => c.id));
+    const extraTags = ALL_ARTICLES.map((a) => a.tag).filter((t) => !knownIds.has(t));
+    const uniqueExtras = [...new Set(extraTags)].map((t) => ({ id: t, label: t }));
+    return [{ id: "all", label: "Tutti gli articoli" }, ...tagCategories, ...uniqueExtras];
+  }, [counts]);
+
   return (
     <>
       <div ref={sentinelRef} />
@@ -253,7 +268,7 @@ function FilterBar({
       >
         <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-4 px-6 py-5 md:px-12">
           <div className="flex flex-wrap gap-1.5">
-            {NEWS_CATEGORIES.map((c) => (
+            {categories.map((c) => (
               <button
                 key={c.id}
                 onClick={() => onChange(c.id)}
@@ -267,7 +282,7 @@ function FilterBar({
                 <span
                   className={`font-serif text-[12px] italic ${active === c.id ? "text-panna/70" : "text-ink/60"}`}
                 >
-                  {c.count}
+                  {counts[c.id] ?? 0}
                 </span>
               </button>
             ))}

@@ -29,7 +29,7 @@ export default function ServiziPage() {
           key={target.id}
           id={target.id}
           item={target}
-          variant={i % 2 === 0 ? "panna" : "white"}
+          variant={i % 2 === 0 ? "white" : "panna"}
           reverse={i % 2 === 1}
         />
       ))}

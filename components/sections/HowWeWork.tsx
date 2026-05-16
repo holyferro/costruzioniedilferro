@@ -29,13 +29,13 @@ const STEP_ICONS = [
 
 export function HowWeWork({ eyebrow, titleStart, titleAccent, titleEnd, steps }: HowWeWorkProps) {
   return (
-    <section className="text-ink bg-white py-20 md:py-28">
+    <section className="bg-ink text-panna py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         <div className="mb-14 max-w-[34ch] md:mb-20">
-          <Eyebrow>{eyebrow}</Eyebrow>
-          <h2 className="text-ink mt-5 font-serif text-[clamp(2rem,1rem+2.6vw,3.4rem)] leading-[1.12] font-medium tracking-tight">
+          <Eyebrow dark>{eyebrow}</Eyebrow>
+          <h2 className="text-panna mt-5 font-serif text-[clamp(2rem,1rem+2.6vw,3.4rem)] leading-[1.12] font-medium tracking-tight">
             {titleStart}
-            <em className="text-brand font-serif italic">{titleAccent}</em>
+            <em className="text-panna/70 font-serif italic">{titleAccent}</em>
             {titleEnd}
           </h2>
         </div>
@@ -46,16 +46,16 @@ export function HowWeWork({ eyebrow, titleStart, titleAccent, titleEnd, steps }:
             return (
               <div
                 key={step.n}
-                className="md:border-border md:border-l md:pl-6 md:first:border-l-0 md:first:pl-0"
+                className="md:border-panna/15 md:border-l md:pl-6 md:first:border-l-0 md:first:pl-0"
               >
-                <span className="text-brand font-serif text-base font-medium italic">
+                <span className="text-panna/60 font-serif text-base font-medium italic">
                   — {step.n}
                 </span>
-                <Icon aria-hidden="true" className="text-ink mt-3 h-7 w-7" strokeWidth={1.5} />
-                <h3 className="text-ink mt-4 font-serif text-xl leading-tight font-medium">
+                <Icon aria-hidden="true" className="text-panna mt-3 h-7 w-7" strokeWidth={1.5} />
+                <h3 className="text-panna mt-4 font-serif text-xl leading-tight font-medium">
                   {step.title}
                 </h3>
-                <p className="text-ink/70 mt-2 text-base leading-[1.6]">{step.description}</p>
+                <p className="text-panna/70 mt-2 text-base leading-[1.6]">{step.description}</p>
               </div>
             );
           })}

@@ -9,9 +9,17 @@ type Props = {
   caption?: string;
   number: string;
   className?: string;
+  variant?: "panna" | "white";
 };
 
-export function ServicePhotoInteractive({ src, alt, caption, number, className = "" }: Props) {
+export function ServicePhotoInteractive({
+  src,
+  alt,
+  caption,
+  number,
+  className = "",
+  variant = "white",
+}: Props) {
   const [shown, setShown] = useState(false);
 
   return (
@@ -34,7 +42,7 @@ export function ServicePhotoInteractive({ src, alt, caption, number, className =
       />
       <span
         aria-hidden="true"
-        className="absolute top-4 left-5 font-serif text-6xl leading-none font-medium tracking-tight text-white/85 [text-shadow:0_2px_20px_rgba(0,0,0,0.4)] md:text-7xl"
+        className={`absolute top-4 left-5 font-serif text-6xl leading-none font-medium tracking-tight [text-shadow:0_2px_20px_rgba(0,0,0,0.4)] md:text-7xl ${variant === "panna" ? "text-panna/85" : "text-white/85"}`}
       >
         {number}
       </span>

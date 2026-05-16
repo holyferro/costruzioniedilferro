@@ -8,8 +8,12 @@ export function NewsHero() {
           {/* Left */}
           <div>
             <Eyebrow>Aggiornamenti</Eyebrow>
-            <h1 className="text-ink mt-6 max-w-[16ch] font-serif text-[clamp(2.75rem,1.4rem+3.4vw,5rem)] leading-[1.06] font-medium tracking-[-0.02em]">
-              News, cantieri <em className="text-brand italic">e racconti</em> dall&apos;impresa.
+            <h1 className="text-ink mt-6 font-serif text-[clamp(2.75rem,1.4rem+3.4vw,5rem)] leading-[1.06] font-medium tracking-[-0.02em]">
+              News, cantieri
+              <br />
+              <em className="text-brand italic">e racconti</em>
+              <br />
+              dall&apos;impresa.
             </h1>
           </div>
 

@@ -346,9 +346,10 @@ export function ProgettoModal({
                   src={src}
                   alt={`Foto ${i + 1}`}
                   fill
-                  quality={92}
+                  quality={100}
+                  loading="eager"
                   className="object-cover"
-                  sizes="(min-width: 768px) 660px, 100vw"
+                  sizes="(max-width: 768px) 100vw, 60vw"
                 />
               </div>
             ))}

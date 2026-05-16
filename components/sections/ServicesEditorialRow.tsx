@@ -79,6 +79,7 @@ export function ServicesEditorialRow({ id, variant, item, reverse }: ServicesEdi
             alt={item.imageAlt}
             caption={item.imageCaption}
             number={item.n}
+            variant={variant}
             className={`order-2 aspect-[25/16] cursor-pointer lg:aspect-[5/4] ${
               reverse ? "lg:order-1" : "lg:order-2"
             }`}
