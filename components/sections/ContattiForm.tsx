@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
-import { submitContattiForm, type ContattiFormState } from "@/app/contatti/actions";
+import { submitContattiForm, type ContattiFormState } from "@/app/(site)/contatti/actions";
 
 const initialState: ContattiFormState = { status: "idle" };
 

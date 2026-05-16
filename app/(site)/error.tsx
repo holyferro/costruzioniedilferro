@@ -23,22 +23,20 @@ export default function Error({
 
   return (
     <section className="mx-auto flex max-w-2xl flex-1 flex-col items-start justify-center gap-6 px-6 py-24">
-      <p className="text-sm font-medium uppercase tracking-widest text-ink/60">
-        Errore
-      </p>
-      <h1 className="font-serif text-h1 text-ink">{errorContent.title}</h1>
-      <p className="max-w-prose text-lg text-ink/80">{errorContent.body}</p>
+      <p className="text-ink/60 text-sm font-medium tracking-widest uppercase">Errore</p>
+      <h1 className="text-h1 text-ink font-serif">{errorContent.title}</h1>
+      <p className="text-ink/80 max-w-prose text-lg">{errorContent.body}</p>
       <div className="flex flex-wrap gap-4 pt-2">
         <button
           type="button"
           onClick={() => unstable_retry()}
-          className="inline-flex items-center rounded-full bg-brand px-6 py-3 text-panna transition-colors hover:bg-brand/90"
+          className="bg-brand text-panna hover:bg-brand/90 inline-flex items-center rounded-full px-6 py-3 transition-colors"
         >
           {errorContent.ctaRetryLabel}
         </button>
         <Link
           href="/"
-          className="inline-flex items-center rounded-full border border-ink/20 px-6 py-3 text-ink transition-colors hover:border-ink/60"
+          className="border-ink/20 text-ink hover:border-ink/60 inline-flex items-center rounded-full border px-6 py-3 transition-colors"
         >
           {errorContent.ctaHomeLabel}
         </Link>
