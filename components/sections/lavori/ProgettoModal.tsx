@@ -281,6 +281,12 @@ export function ProgettoModal({
     };
   }, [project]);
 
+  // Reset carousel to first image whenever a different project is opened
+  useEffect(() => {
+    goTo(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [projectKey]);
+
   const isOpen = !!project;
 
   return (
