@@ -27,6 +27,6 @@ export async function submitContattiForm(
   }
 
   // TODO Phase 6: integrare Resend per l'invio email.
-  // await resend.emails.send({ from: "noreply@edilferro.it", to: "info@...", ... });
+  // await resend.emails.send({ from: "noreply@costruzioniedilferro.com", to: "info@...", ... });
   return { status: "success" };
 }
