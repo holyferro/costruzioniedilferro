@@ -64,11 +64,47 @@ export type FeaturedRealizzazione = Pick<
   | "order"
 >;
 
-export type NewsArticle = {
-  _id: string;
-  _type: "newsArticle";
-  title: string;
-  slug: { current: string };
-  coverImage?: SanityImage;
-  publishedAt?: string;
+export type NewsArticleCategory =
+  | "Progetto"
+  | "Cantieri"
+  | "Opere pubbliche"
+  | "Certificazioni"
+  | "Restauro"
+  | "Azienda"
+  | "Eventi";
+
+export type NewsHeroMeta = {
+  label: string;
+  valore: string;
 };
+
+export type SanityNewsArticle = {
+  _id: string;
+  title: string;
+  titleItalic?: string;
+  slug: string;
+  coverImage: SanityImage;
+  category: NewsArticleCategory;
+  publishedAt: string;
+  updatedAt?: string;
+  author: string;
+  readTime?: string;
+  excerpt: string;
+  heroSubtitle: string;
+  heroMeta: NewsHeroMeta[];
+  body: unknown[];
+  featured?: boolean;
+};
+
+export type SanityNewsPreview = Pick<
+  SanityNewsArticle,
+  | "_id"
+  | "title"
+  | "slug"
+  | "coverImage"
+  | "category"
+  | "publishedAt"
+  | "excerpt"
+  | "readTime"
+  | "featured"
+>;

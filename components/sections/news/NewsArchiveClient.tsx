@@ -3,51 +3,69 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
-import { NEWS_ARTICLES, NEWS_CATEGORIES, FEATURED_ARTICLE, type NewsArticle } from "@/content/news";
+import { urlFor } from "@/sanity/lib/client";
+import type { SanityNewsArticle } from "@/sanity/lib/types";
 import { ArticleReader } from "@/components/news/ArticleReader";
-
-const ALL_ARTICLES = [FEATURED_ARTICLE, ...NEWS_ARTICLES];
-const RICH_SLUGS = new Set(["habita", "palestra-gramsci"]);
 
 const PAGE_SIZE = 9;
 
-export function NewsArchiveClient() {
+const CATEGORY_ORDER = [
+  "Cantieri",
+  "Opere pubbliche",
+  "Certificazioni",
+  "Restauro",
+  "Azienda",
+  "Progetto",
+  "Eventi",
+];
+
+function formatDate(iso: string): string {
+  return new Date(iso).toLocaleDateString("it-IT", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
+
+interface NewsArchiveClientProps {
+  articles: SanityNewsArticle[];
+  categoryCounts: Record<string, number>;
+}
+
+export function NewsArchiveClient({ articles, categoryCounts }: NewsArchiveClientProps) {
   const searchParams = useSearchParams();
   const targetSlug = searchParams.get("article");
 
   const [cat, setCat] = useState("all");
   const [page, setPage] = useState(1);
-  const [openSlug, setOpenSlug] = useState<string | null>(null);
-  const [richSlug, setRichSlug] = useState<string | null>(null);
+  const [openArticle, setOpenArticle] = useState<SanityNewsArticle | null>(null);
 
-  const handleOpen = (slug: string) => {
-    if (RICH_SLUGS.has(slug)) setRichSlug(slug);
-    else setOpenSlug(slug);
-  };
+  const handleOpen = useCallback((article: SanityNewsArticle) => setOpenArticle(article), []);
+  const handleClose = useCallback(() => setOpenArticle(null), []);
 
-  const filtered = useMemo(() => ALL_ARTICLES.filter((a) => cat === "all" || a.tag === cat), [cat]);
+  const filtered = useMemo(
+    () => articles.filter((a) => cat === "all" || a.category === cat),
+    [cat, articles],
+  );
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
   const pageItems = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
 
-  // On mount: if a target slug is in the URL, open that article's modal
+  // Open article from URL param on mount
   useEffect(() => {
     if (!targetSlug) return;
-    const exists = ALL_ARTICLES.some((a) => a.slug === targetSlug);
-    if (!exists) return;
-    const idx = NEWS_ARTICLES.findIndex((a) => a.slug === targetSlug);
+    const article = articles.find((a) => a.slug === targetSlug);
+    if (!article) return;
+    const idx = articles.findIndex((a) => a.slug === targetSlug);
     const t = setTimeout(() => {
       if (idx >= 0) setPage(Math.ceil((idx + 1) / PAGE_SIZE));
-      handleOpen(targetSlug);
+      setOpenArticle(article);
     }, 150);
     return () => clearTimeout(t);
-  }, [targetSlug]);
+  }, [targetSlug, articles]);
 
-  const openArticle = ALL_ARTICLES.find((a) => a.slug === openSlug) ?? null;
-  const close = useCallback(() => setOpenSlug(null), []);
-
-  if (NEWS_ARTICLES.length === 0) {
+  if (articles.length === 0) {
     return <NewsPlaceholder />;
   }
 
@@ -59,6 +77,7 @@ export function NewsArchiveClient() {
           setCat(v);
           setPage(1);
         }}
+        categoryCounts={categoryCounts}
         totalShown={filtered.length}
       />
       <NewsGrid items={pageItems} onOpen={handleOpen} />
@@ -70,8 +89,7 @@ export function NewsArchiveClient() {
           window.scrollTo({ top: 500, behavior: "smooth" });
         }}
       />
-      <NewsModal article={openArticle} onClose={close} />
-      <ArticleReader slug={richSlug} onClose={() => setRichSlug(null)} />
+      <ArticleReader article={openArticle} onClose={handleClose} />
     </>
   );
 }
@@ -104,124 +122,16 @@ function NewsPlaceholder() {
   );
 }
 
-/* ---- Modal ---- */
-function NewsModal({ article, onClose }: { article: NewsArticle | null; onClose: () => void }) {
-  const isOpen = !!article;
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isOpen]);
-
-  useEffect(() => {
-    if (!isOpen) return;
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", handler);
-    return () => document.removeEventListener("keydown", handler);
-  }, [isOpen, onClose]);
-
-  return (
-    <div
-      className="fixed inset-0 z-[300] flex items-center justify-center p-4 sm:p-10"
-      style={{
-        background: isOpen ? "rgba(10,14,26,0.87)" : "rgba(10,14,26,0)",
-        pointerEvents: isOpen ? "all" : "none",
-        transition: "background 380ms ease",
-      }}
-      onClick={(e) => e.target === e.currentTarget && onClose()}
-      role="dialog"
-      aria-modal="true"
-      aria-label="Articolo"
-    >
-      <div
-        className="bg-panna grid max-h-[90svh] w-full overflow-y-auto md:max-h-[80vh] md:grid-cols-[1.2fr_1fr] md:overflow-hidden"
-        style={{
-          maxWidth: 1100,
-          opacity: isOpen ? 1 : 0,
-          transform: isOpen ? "scale(1) translateY(0)" : "scale(0.93) translateY(24px)",
-          transition:
-            "opacity 400ms cubic-bezier(0.16,1,0.3,1), transform 400ms cubic-bezier(0.16,1,0.3,1)",
-        }}
-      >
-        {/* Left — immagine */}
-        <div className="relative aspect-[4/3] overflow-hidden bg-[#0a1830] md:aspect-auto md:min-h-0">
-          {article && (
-            <Image
-              src={article.img}
-              alt={article.imageAlt}
-              fill
-              quality={90}
-              sizes="(min-width: 768px) 55vw, 100vw"
-              className="object-cover saturate-95"
-            />
-          )}
-          {article && (
-            <span className="text-brand absolute top-5 left-5 rounded-full bg-white/95 px-3.5 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold tracking-[0.22em] uppercase">
-              {article.tag}
-            </span>
-          )}
-          <button
-            onClick={onClose}
-            aria-label="Chiudi"
-            className="absolute top-4 right-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/15 text-white backdrop-blur-sm transition-colors hover:bg-white/30"
-          >
-            ✕
-          </button>
-        </div>
-
-        {/* Right — contenuto */}
-        {article && (
-          <div className="bg-panna flex flex-col overflow-y-auto px-8 py-10 md:px-12 md:py-12">
-            <p className="text-brand mb-5 flex items-center gap-3 font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold tracking-[0.3em] uppercase">
-              <span aria-hidden className="bg-brand inline-block h-px w-6" />
-              {article.tag}
-            </p>
-
-            <h2 className="text-ink font-serif text-[clamp(1.5rem,0.8rem+1.6vw,2.25rem)] leading-[1.15] font-medium tracking-[-0.015em]">
-              {article.title}
-            </h2>
-
-            <div className="text-ink/50 mt-4 mb-8 flex flex-wrap items-center gap-3 font-[family-name:var(--font-neue-montreal)] text-[11px] tracking-[0.1em] uppercase">
-              <span>{article.date}</span>
-              {article.author && (
-                <>
-                  <span className="bg-ink/30 inline-block h-[3px] w-[3px] rounded-full" />
-                  <span>{article.author}</span>
-                </>
-              )}
-            </div>
-
-            <p className="text-ink/70 text-[15px] leading-[1.7]">{article.excerpt}</p>
-
-            <a
-              href="/contatti#form"
-              className="bg-brand text-panna mt-10 inline-flex items-center gap-3 self-start rounded-full px-6 py-[15px] font-[family-name:var(--font-neue-montreal)] text-[13px] font-medium tracking-[0.06em] uppercase transition-colors hover:bg-[#1a1a6b]"
-            >
-              Richiedi un sopralluogo →
-            </a>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
 /* ---- Filter Bar ---- */
 function FilterBar({
   active,
   onChange,
+  categoryCounts,
   totalShown,
 }: {
   active: string;
   onChange: (v: string) => void;
+  categoryCounts: Record<string, number>;
   totalShown: number;
 }) {
   const [stuck, setStuck] = useState(false);
@@ -238,23 +148,19 @@ function FilterBar({
     return () => io.disconnect();
   }, []);
 
-  // Compute counts dynamically from all articles (including featured)
-  const counts = useMemo(() => {
-    const map: Record<string, number> = { all: ALL_ARTICLES.length };
-    for (const a of ALL_ARTICLES) {
-      map[a.tag] = (map[a.tag] ?? 0) + 1;
-    }
-    return map;
-  }, []);
-
-  // Build category list: "all" + each tag that has at least one article
+  // Build ordered category list from counts
   const categories = useMemo(() => {
-    const tagCategories = NEWS_CATEGORIES.filter((c) => c.id !== "all" && (counts[c.id] ?? 0) > 0);
-    const knownIds = new Set(NEWS_CATEGORIES.map((c) => c.id));
-    const extraTags = ALL_ARTICLES.map((a) => a.tag).filter((t) => !knownIds.has(t));
-    const uniqueExtras = [...new Set(extraTags)].map((t) => ({ id: t, label: t }));
-    return [{ id: "all", label: "Tutti gli articoli" }, ...tagCategories, ...uniqueExtras];
-  }, [counts]);
+    const ordered = CATEGORY_ORDER.filter((id) => (categoryCounts[id] ?? 0) > 0);
+    const known = new Set(CATEGORY_ORDER);
+    const extras = Object.keys(categoryCounts).filter(
+      (k) => k !== "all" && !known.has(k) && (categoryCounts[k] ?? 0) > 0,
+    );
+    return [
+      { id: "all", label: "Tutti gli articoli" },
+      ...ordered.map((id) => ({ id, label: id })),
+      ...extras.map((id) => ({ id, label: id })),
+    ];
+  }, [categoryCounts]);
 
   return (
     <>
@@ -282,7 +188,7 @@ function FilterBar({
                 <span
                   className={`font-serif text-[12px] italic ${active === c.id ? "text-panna/70" : "text-ink/60"}`}
                 >
-                  {counts[c.id] ?? 0}
+                  {categoryCounts[c.id] ?? 0}
                 </span>
               </button>
             ))}
@@ -297,7 +203,13 @@ function FilterBar({
 }
 
 /* ---- Grid ---- */
-function NewsGrid({ items, onOpen }: { items: NewsArticle[]; onOpen: (slug: string) => void }) {
+function NewsGrid({
+  items,
+  onOpen,
+}: {
+  items: SanityNewsArticle[];
+  onOpen: (article: SanityNewsArticle) => void;
+}) {
   if (items.length === 0) {
     return (
       <div className="bg-panna py-32 text-center">
@@ -312,7 +224,7 @@ function NewsGrid({ items, onOpen }: { items: NewsArticle[]; onOpen: (slug: stri
       <div className="mx-auto max-w-[1280px] px-6 md:px-12">
         <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((a, i) => (
-            <ArchiveCard key={a.slug} item={a} index={i} onOpen={onOpen} />
+            <ArchiveCard key={a._id} item={a} index={i} onOpen={onOpen} />
           ))}
         </div>
       </div>
@@ -325,34 +237,36 @@ function ArchiveCard({
   index,
   onOpen,
 }: {
-  item: NewsArticle;
+  item: SanityNewsArticle;
   index: number;
-  onOpen: (slug: string) => void;
+  onOpen: (article: SanityNewsArticle) => void;
 }) {
+  const imgUrl = urlFor(item.coverImage).width(900).url();
+
   return (
     <button
       id={`article-${item.slug}`}
-      onClick={() => onOpen(item.slug)}
+      onClick={() => onOpen(item)}
       className="group border-border bg-surface flex flex-col border text-left transition-[transform,box-shadow] duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(10,24,48,0.10)]"
       style={{ animationDelay: `${(index % 6) * 50}ms` }}
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#0a1830]">
         <Image
-          src={item.img}
-          alt={item.imageAlt}
+          src={imgUrl}
+          alt={item.coverImage.alt}
           fill
           quality={85}
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="object-cover saturate-95 transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
         />
         <span className="text-brand absolute top-3.5 left-3.5 rounded-full bg-white/95 px-3 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[10px] font-semibold tracking-[0.22em] uppercase">
-          {item.tag}
+          {item.category}
         </span>
       </div>
 
       <div className="flex flex-1 flex-col gap-3 p-6 pb-[26px]">
         <div className="text-ink/60 flex items-center gap-2.5 font-[family-name:var(--font-neue-montreal)] text-[11px] tracking-[0.06em] uppercase">
-          <span>{item.date}</span>
+          <span>{formatDate(item.publishedAt)}</span>
         </div>
         <h3 className="text-ink line-clamp-2 font-serif text-[21px] leading-[1.25] font-medium tracking-[-0.01em]">
           {item.title}

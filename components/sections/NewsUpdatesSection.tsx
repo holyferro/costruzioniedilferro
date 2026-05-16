@@ -8,7 +8,6 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Route } from "next";
 import type { NewsItem } from "@/content/homepage";
-import { ArticleReader } from "@/components/news/ArticleReader";
 
 type NewsUpdatesSectionProps = {
   eyebrow: string;
@@ -74,8 +73,6 @@ export function NewsUpdatesSection({
     el.scrollBy({ left: dir * step, behavior: "smooth" });
   };
 
-  const [readerSlug, setReaderSlug] = useState<string | null>(null);
-
   const currentCard = Math.min(
     items.length,
     Math.round(scrollState.progress * (items.length - 1)) + 1,
@@ -132,12 +129,7 @@ export function NewsUpdatesSection({
           item.isPlaceholder ? (
             <PlaceholderCard key={i} opacity={1 - (i - 1) * 0.3} />
           ) : (
-            <NewsCard
-              key={i}
-              item={item}
-              isFirst={i === 0}
-              onOpen={item.slug ? () => setReaderSlug(item.slug!) : undefined}
-            />
+            <NewsCard key={i} item={item} isFirst={i === 0} />
           ),
         )}
         <ArchiveCard href={allNewsHref} />
@@ -157,33 +149,16 @@ export function NewsUpdatesSection({
           <span className="text-ink/40 tabular-nums">{String(items.length).padStart(2, "0")}</span>
         </span>
       </div>
-
-      <ArticleReader slug={readerSlug} onClose={() => setReaderSlug(null)} />
     </section>
   );
 }
 
-function NewsCard({
-  item,
-  isFirst,
-  onOpen,
-}: {
-  item: NewsItem;
-  isFirst: boolean;
-  onOpen?: () => void;
-}) {
+function NewsCard({ item, isFirst }: { item: NewsItem; isFirst: boolean }) {
+  const href = item.slug ? `/news?article=${item.slug}` : (item.href ?? "/news");
   return (
     <a
       data-news-card=""
-      href={item.href ?? "#"}
-      onClick={
-        onOpen
-          ? (e) => {
-              e.preventDefault();
-              onOpen();
-            }
-          : undefined
-      }
+      href={href}
       className="group flex w-[clamp(280px,28vw,420px)] shrink-0 snap-start flex-col no-underline"
     >
       <div className="border-border bg-surface flex w-full flex-col border transition-[transform,box-shadow] duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1 group-hover:shadow-[0_12px_32px_rgba(10,24,48,0.10)]">

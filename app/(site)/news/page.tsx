@@ -1,9 +1,14 @@
 import { Suspense } from "react";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { serverClient } from "@/sanity/lib/client";
+import { allNewsQuery } from "@/sanity/lib/queries";
+import type { SanityNewsArticle } from "@/sanity/lib/types";
 import { NewsHero } from "@/components/sections/news/NewsHero";
 import { NewsFeatured } from "@/components/sections/news/NewsFeatured";
 import { NewsArchiveClient } from "@/components/sections/news/NewsArchiveClient";
 import { HomepageCta } from "@/components/sections/HomepageCta";
+
+export const revalidate = 3600;
 
 export const metadata = buildMetadata({
   title: "News & Aggiornamenti",
@@ -12,13 +17,28 @@ export const metadata = buildMetadata({
   alternates: { canonical: "/news" },
 });
 
-export default function NewsPage() {
+export default async function NewsPage() {
+  const articles = await serverClient.fetch<SanityNewsArticle[]>(
+    allNewsQuery,
+    {},
+    { next: { tags: ["news"] } },
+  );
+
+  // Featured: first article with featured == true, fallback to most recent
+  const featuredArticle = articles.find((a) => a.featured === true) ?? articles[0] ?? null;
+
+  // Count per category for the filter bar
+  const categoryCounts: Record<string, number> = { all: articles.length };
+  for (const a of articles) {
+    categoryCounts[a.category] = (categoryCounts[a.category] ?? 0) + 1;
+  }
+
   return (
     <>
       <NewsHero />
-      <NewsFeatured />
+      {featuredArticle && <NewsFeatured article={featuredArticle} />}
       <Suspense>
-        <NewsArchiveClient />
+        <NewsArchiveClient articles={articles} categoryCounts={categoryCounts} />
       </Suspense>
       <HomepageCta
         eyebrow="Lavoriamo insieme"
