@@ -3,28 +3,17 @@
 import { useState, useCallback, useRef } from "react";
 import { flushSync } from "react-dom";
 import Image from "next/image";
-import { PROJECTS, ProgettoModal } from "./ProgettoModal";
+import { ProgettoModal } from "./ProgettoModal";
+import { RealizzazioniEmptyState } from "./RealizzazioniEmptyState";
+import type { Project } from "./ProgettoModal";
 
 /* ---- Types ---- */
-type CardDef = {
+export type CardDef = {
   key: string;
   cat: string;
   wide?: boolean;
   delay?: number;
 };
-
-/* ---- Data ---- */
-const CARDS: CardDef[] = [
-  { key: "studentato-universitario", cat: "residenziale" },
-  { key: "habita", cat: "residenziale", delay: 80 },
-  { key: "abbazia-villaregia", cat: "restauro" },
-  { key: "stabilimento-produttivo", cat: "industriale", delay: 80 },
-  { key: "casa-di-cura", cat: "pubblico", wide: true, delay: 160 },
-  { key: "policlinico-rovigo", cat: "pubblico", delay: 80 },
-  { key: "restauro-palazzo", cat: "restauro" },
-  { key: "efficientamento", cat: "efficientamento", delay: 80 },
-  { key: "villetta-bifamiliare", cat: "residenziale", delay: 160 },
-];
 
 const FILTER_OPTIONS = [
   { value: "all", label: "Tutti" },
@@ -36,7 +25,13 @@ const FILTER_OPTIONS = [
 ] as const;
 
 /* ---- Main component ---- */
-export function ProgettiGrid() {
+export function ProgettiGrid({
+  cards,
+  projects,
+}: {
+  cards: ReadonlyArray<CardDef>;
+  projects: Readonly<Record<string, Project>>;
+}) {
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [displayFilter, setDisplayFilter] = useState<string>("all");
   const [activeKey, setActiveKey] = useState<string | null>(null);
@@ -88,7 +83,7 @@ export function ProgettiGrid() {
     [activeFilter, transitioning],
   );
 
-  const visibleCards = CARDS.filter((c) => displayFilter === "all" || c.cat === displayFilter);
+  const visibleCards = cards.filter((c) => displayFilter === "all" || c.cat === displayFilter);
   const count = visibleCards.length;
 
   return (
@@ -140,90 +135,98 @@ export function ProgettiGrid() {
             ))}
           </div>
 
-          <div ref={outerRef} className="overflow-hidden">
-            <div
-              ref={innerRef}
-              className="grid grid-cols-1 gap-[2px] sm:grid-cols-2 lg:grid-cols-3"
-            >
-              {CARDS.map((card) => {
-                const hidden = displayFilter !== "all" && card.cat !== displayFilter;
-                if (hidden) return null;
-                const p = PROJECTS[card.key];
-                const img = p?.imgs[0];
-                if (!p || !img) return null;
-                const imgAlt = `${p.title} — ${p.place}`;
-                return (
-                  <div
-                    key={card.key}
-                    onClick={() => setActiveKey(card.key)}
-                    className="group relative cursor-pointer overflow-hidden bg-black"
-                    style={
-                      card.wide
-                        ? {
-                            gridColumn: "span 2",
-                            minHeight: 540,
-                            animation: "cardFadeIn 380ms cubic-bezier(0.16,1,0.3,1) both",
-                            animationDelay: `${card.delay ?? 0}ms`,
-                          }
-                        : {
-                            aspectRatio: "3/4",
-                            animation: "cardFadeIn 380ms cubic-bezier(0.16,1,0.3,1) both",
-                            animationDelay: `${card.delay ?? 0}ms`,
-                          }
-                    }
-                  >
-                    <Image
-                      src={img}
-                      alt={imgAlt}
-                      fill
-                      className="object-cover transition-transform duration-[900ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
-                      sizes={
-                        card.wide
-                          ? "(max-width: 768px) 100vw, 66vw"
-                          : "(max-width: 768px) 100vw, 33vw"
-                      }
-                      style={{ filter: "saturate(0.95) contrast(1.02)" }}
-                    />
+          {cards.length === 0 ? (
+            <RealizzazioniEmptyState />
+          ) : (
+            <div ref={outerRef} className="overflow-hidden">
+              <div
+                ref={innerRef}
+                className="grid grid-cols-1 gap-[2px] sm:grid-cols-2 lg:grid-cols-3"
+              >
+                {cards.map((card) => {
+                  const hidden = displayFilter !== "all" && card.cat !== displayFilter;
+                  if (hidden) return null;
+                  const p = projects[card.key];
+                  const img = p?.imgs[0];
+                  if (!p || !img) return null;
+                  const imgAlt = `${p.title} — ${p.place}`;
+                  return (
                     <div
-                      className="pointer-events-none absolute inset-0"
-                      style={{
-                        background:
-                          "linear-gradient(180deg, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.72))",
-                      }}
-                    />
-                    <span className="absolute top-[18px] left-[18px] rounded-full border border-white/22 bg-white/15 px-3 py-1.5 text-[10px] font-semibold tracking-[0.2em] text-white uppercase backdrop-blur-[8px]">
-                      {p.tag}
-                    </span>
-                    <span className="absolute top-[18px] right-[18px] font-serif text-[15px] font-medium text-white/95 italic">
-                      {p.year}
-                    </span>
-                    <div className="absolute right-6 bottom-6 left-6 text-white">
-                      <h3
-                        className="font-serif leading-[1.2] font-medium tracking-[-0.01em] text-white"
+                      key={card.key}
+                      onClick={() => setActiveKey(card.key)}
+                      className="group relative cursor-pointer overflow-hidden bg-black"
+                      style={
+                        card.wide
+                          ? {
+                              gridColumn: "span 2",
+                              minHeight: 540,
+                              animation: "cardFadeIn 380ms cubic-bezier(0.16,1,0.3,1) both",
+                              animationDelay: `${card.delay ?? 0}ms`,
+                            }
+                          : {
+                              aspectRatio: "3/4",
+                              animation: "cardFadeIn 380ms cubic-bezier(0.16,1,0.3,1) both",
+                              animationDelay: `${card.delay ?? 0}ms`,
+                            }
+                      }
+                    >
+                      <Image
+                        src={img}
+                        alt={imgAlt}
+                        fill
+                        className="object-cover transition-transform duration-[900ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
+                        sizes={
+                          card.wide
+                            ? "(max-width: 768px) 100vw, 66vw"
+                            : "(max-width: 768px) 100vw, 33vw"
+                        }
+                        style={{ filter: "saturate(0.95) contrast(1.02)" }}
+                      />
+                      <div
+                        className="pointer-events-none absolute inset-0"
                         style={{
-                          fontSize: card.wide
-                            ? "clamp(1.5rem, 0.6rem + 1.4vw, 2.125rem)"
-                            : "1.25rem",
+                          background:
+                            "linear-gradient(180deg, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.72))",
                         }}
-                      >
-                        {p.title}
-                      </h3>
-                      <p className="mt-2 text-[11px] tracking-[0.2em] text-white/70 uppercase">
-                        {p.place}
-                      </p>
-                      <span className="mt-4 inline-block text-[18px] transition-transform duration-[250ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[5px] group-hover:-translate-y-[5px]">
-                        ↗
+                      />
+                      <span className="absolute top-[18px] left-[18px] rounded-full border border-white/22 bg-white/15 px-3 py-1.5 text-[10px] font-semibold tracking-[0.2em] text-white uppercase backdrop-blur-[8px]">
+                        {p.tag}
                       </span>
+                      <span className="absolute top-[18px] right-[18px] font-serif text-[15px] font-medium text-white/95 italic">
+                        {p.year}
+                      </span>
+                      <div className="absolute right-6 bottom-6 left-6 text-white">
+                        <h3
+                          className="font-serif leading-[1.2] font-medium tracking-[-0.01em] text-white"
+                          style={{
+                            fontSize: card.wide
+                              ? "clamp(1.5rem, 0.6rem + 1.4vw, 2.125rem)"
+                              : "1.25rem",
+                          }}
+                        >
+                          {p.title}
+                        </h3>
+                        <p className="mt-2 text-[11px] tracking-[0.2em] text-white/70 uppercase">
+                          {p.place}
+                        </p>
+                        <span className="mt-4 inline-block text-[18px] transition-transform duration-[250ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[5px] group-hover:-translate-y-[5px]">
+                          ↗
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
 
-      <ProgettoModal projectKey={activeKey} onClose={() => setActiveKey(null)} />
+      <ProgettoModal
+        projectKey={activeKey}
+        onClose={() => setActiveKey(null)}
+        projects={projects}
+      />
     </>
   );
 }

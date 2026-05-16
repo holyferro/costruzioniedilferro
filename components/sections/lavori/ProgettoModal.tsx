@@ -24,6 +24,8 @@ export type Project = {
 };
 
 /* ---- Data ---- */
+// LEGACY: questi dati sono stati migrati a Sanity. Mantenuti come
+// fallback temporaneo, da rimuovere dopo validazione in produzione.
 export const PROJECTS: Record<string, Project> = {
   "studentato-universitario": {
     imgs: [
@@ -250,11 +252,14 @@ export function useCarousel(imgs: string[]) {
 export function ProgettoModal({
   projectKey,
   onClose,
+  projects: projectsOverride,
 }: {
   projectKey: string | null;
   onClose: () => void;
+  projects?: Readonly<Record<string, Project>>;
 }) {
-  const project = projectKey ? PROJECTS[projectKey] : null;
+  const projectSource = projectsOverride ?? PROJECTS;
+  const project = projectKey ? (projectSource[projectKey] ?? null) : null;
   const { idx, goTo, prev, next } = useCarousel(project?.imgs ?? []);
 
   useEffect(() => {

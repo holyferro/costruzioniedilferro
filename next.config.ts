@@ -15,7 +15,15 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // No remote image patterns in Phase 1. Phase 4 may revisit.
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        pathname: "/images/**",
+      },
+    ],
+  },
 
   // No `eslint` block — `next lint` is removed in Next 16.
 };
