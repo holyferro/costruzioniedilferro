@@ -6,41 +6,46 @@
  *   Trigger: on Create / Update / Delete
  *   Filter:  _type == 'realizzazione'
  *   Method:  POST
- *   Secret:  stesso valore di SANITY_REVALIDATE_SECRET (.env.local)
+ *   Secret:  stesso valore di SANITY_REVALIDATE_SECRET (.env.local / Vercel env vars)
  *
- * Per test locale usa ngrok: ngrok http 3000
- * poi imposta l'URL ngrok nel webhook Sanity temporaneamente.
+ * Sanity firma il body con HMAC SHA-256 e invia la firma nell'header
+ * "sanity-webhook-signature" (formato: t=<timestamp>,v1=<digest>).
+ * La verifica avviene tramite isValidSignature() di @sanity/webhook.
  */
 
+import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
 import { revalidatePath } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
-  const secret = req.headers.get("x-sanity-webhook-secret");
+  const signature = req.headers.get(SIGNATURE_HEADER_NAME);
+  const body = await req.text();
 
-  if (secret !== process.env.SANITY_REVALIDATE_SECRET) {
+  const secret = process.env.SANITY_REVALIDATE_SECRET;
+  if (!secret || !signature || !(await isValidSignature(body, signature, secret))) {
     return NextResponse.json({ message: "Invalid secret" }, { status: 401 });
   }
 
-  let body: { _type?: string; _id?: string };
+  let parsed: { _type?: string; _id?: string };
   try {
-    body = (await req.json()) as { _type?: string; _id?: string };
+    parsed = JSON.parse(body) as { _type?: string; _id?: string };
   } catch {
     return NextResponse.json({ message: "Invalid JSON payload" }, { status: 400 });
   }
 
-  const type = body._type;
+  console.log("[revalidate] webhook received, type:", parsed._type);
 
-  switch (type) {
+  switch (parsed._type) {
     case "realizzazione":
       revalidatePath("/realizzazioni");
-      return NextResponse.json({ revalidated: true, path: "/realizzazioni", type });
+      console.log("[revalidate] /realizzazioni revalidated for", parsed._id);
+      return NextResponse.json({ revalidated: true, path: "/realizzazioni", type: parsed._type });
 
     case "newsArticle":
       // Gestione /news — da implementare nella fase /news
       return NextResponse.json({ revalidated: false, message: "newsArticle: not handled yet" });
 
     default:
-      return NextResponse.json({ revalidated: false, message: `Unknown type: ${type}` });
+      return NextResponse.json({ revalidated: false, message: `Unknown type: ${parsed._type}` });
   }
 }
