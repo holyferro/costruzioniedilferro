@@ -5,10 +5,10 @@ export const structure: StructureResolver = (S) =>
     .title("Contenuti")
     .items([
       S.listItem()
-        .title("Progetti")
+        .title("Realizzazioni")
         .child(
-          S.documentTypeList("project")
-            .title("Progetti")
+          S.documentTypeList("realizzazione")
+            .title("Realizzazioni")
             .defaultOrdering([{ field: "order", direction: "asc" }]),
         ),
       S.listItem()
@@ -17,12 +17,5 @@ export const structure: StructureResolver = (S) =>
           S.documentTypeList("newsArticle")
             .title("Articoli News")
             .defaultOrdering([{ field: "publishedAt", direction: "desc" }]),
-        ),
-      S.listItem()
-        .title("Team")
-        .child(
-          S.documentTypeList("teamMember")
-            .title("Membro del team")
-            .defaultOrdering([{ field: "order", direction: "asc" }]),
         ),
     ]);

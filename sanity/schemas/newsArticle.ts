@@ -101,6 +101,12 @@ export const newsArticle = defineType({
       title: "Metadati hero",
       description: "Coppie etichetta/valore mostrate nell'hero (es. Committente, Anno, Luogo)",
       type: "array",
+      initialValue: [
+        { label: "Committente", valore: "" },
+        { label: "Luogo", valore: "" },
+        { label: "Inizio lavori", valore: "" },
+        { label: "Consegna prevista", valore: "" },
+      ],
       of: [
         defineArrayMember({
           type: "object",

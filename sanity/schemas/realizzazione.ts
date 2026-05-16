@@ -1,9 +1,16 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
 
-export const project = defineType({
-  name: "project",
-  title: "Progetto",
+export const realizzazione = defineType({
+  name: "realizzazione",
+  title: "Realizzazione",
   type: "document",
+  fieldsets: [
+    {
+      name: "visualizzazione",
+      title: "Visualizzazione",
+      options: { collapsible: true, collapsed: false },
+    },
+  ],
   fields: [
     defineField({
       name: "title",
@@ -61,6 +68,12 @@ export const project = defineType({
       title: "Specifiche tecniche",
       description: "Righe etichetta/valore mostrate nella scheda tecnica del modal",
       type: "array",
+      initialValue: [
+        { label: "Committente", valore: "" },
+        { label: "Tipologia intervento", valore: "" },
+        { label: "Superficie", valore: "" },
+        { label: "Classe energetica", valore: "" },
+      ],
       of: [
         defineArrayMember({
           type: "object",
@@ -143,17 +156,28 @@ export const project = defineType({
       ],
     }),
     defineField({
-      name: "featured",
-      title: "In evidenza",
-      description: "Mostra il progetto in primo piano nella homepage",
+      name: "wide",
+      title: "Card larga in griglia",
+      description:
+        "Se attivo, la card occupa 2 colonne nella griglia /realizzazioni per dare ritmo visivo",
       type: "boolean",
       initialValue: false,
+      fieldset: "visualizzazione",
+    }),
+    defineField({
+      name: "featured",
+      title: "In evidenza",
+      description: "Mostra la realizzazione in primo piano nella homepage",
+      type: "boolean",
+      initialValue: false,
+      fieldset: "visualizzazione",
     }),
     defineField({
       name: "order",
       title: "Ordine",
       description: "Valori più bassi appaiono prima nella griglia",
       type: "number",
+      fieldset: "visualizzazione",
     }),
   ],
   preview: {
