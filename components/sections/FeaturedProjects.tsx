@@ -57,7 +57,7 @@ export function FeaturedProjects({
             </Link>
           </div>
 
-          <div className={`grid gap-6${tiles.length > 0 ? "md:grid-cols-[1.5fr_1fr]" : ""}`}>
+          <div className={tiles.length > 0 ? "grid gap-6 md:grid-cols-[1.5fr_1fr]" : "grid gap-6"}>
             <FeatureCard item={feature} onOpen={() => setActiveKey(feature.projectKey ?? null)} />
             {tiles.length > 0 && (
               <div className="grid gap-6 md:grid-rows-3">
