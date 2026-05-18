@@ -207,22 +207,19 @@ export function ArticleReader({ article, onClose }: ArticleReaderProps) {
 
                   {article.heroMeta.length > 0 && (
                     <div
-                      className="mt-10 grid gap-5 border-t pt-6"
-                      style={{
-                        gridTemplateColumns: `repeat(${Math.min(article.heroMeta.length, 4)}, 1fr)`,
-                        borderColor: "rgba(255,255,255,0.18)",
-                      }}
+                      className="mt-10 flex flex-wrap gap-x-4 gap-y-3 border-t pt-6"
+                      style={{ borderColor: "rgba(255,255,255,0.18)" }}
                     >
                       {article.heroMeta.map((m) => (
-                        <div key={m.label}>
+                        <div key={m.label} className="min-w-[120px]">
                           <p
-                            className="m-0 mb-1.5 font-[family-name:var(--font-neue-montreal)] text-[10px] tracking-[0.22em] uppercase"
+                            className="m-0 mb-1.5 font-[family-name:var(--font-neue-montreal)] text-[10px] tracking-[0.22em] uppercase md:text-[11px]"
                             style={{ color: "rgba(255,255,255,0.55)" }}
                           >
                             {m.label}
                           </p>
                           <p
-                            className="m-0 font-serif text-[16px] leading-[1.3] font-medium"
+                            className="m-0 font-serif text-[13px] leading-[1.3] font-medium md:text-[16px]"
                             style={{ color: "#fff" }}
                           >
                             {m.valore}

@@ -166,7 +166,7 @@ function FilterBar({
     <>
       <div ref={sentinelRef} />
       <div
-        className="border-border bg-panna sticky z-30 border-b transition-shadow duration-[250ms]"
+        className="border-border bg-panna z-30 border-b transition-shadow duration-[250ms] md:sticky"
         style={{
           top: "var(--header-height, 78px)",
           boxShadow: stuck ? "0 4px 18px rgba(10,24,48,0.06)" : "none",

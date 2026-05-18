@@ -11,7 +11,9 @@ export function NewsFeatured({ article }: NewsFeaturedProps) {
     <section className="bg-panna py-20 pb-[100px]">
       <div className="mx-auto max-w-[1280px] px-6 md:px-12">
         <div className="mb-8 flex items-baseline justify-between">
-          <Eyebrow>In evidenza</Eyebrow>
+          <div className="whitespace-nowrap">
+            <Eyebrow>In evidenza</Eyebrow>
+          </div>
           <span className="text-ink/60 font-serif text-base italic">
             L&apos;ultima dal cantiere
           </span>

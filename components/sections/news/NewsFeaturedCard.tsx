@@ -46,17 +46,19 @@ export function NewsFeaturedCard({ article }: { article: SanityNewsArticle }) {
               background: "linear-gradient(to top, rgba(10,24,48,0.55) 0%, rgba(10,24,48,0) 50%)",
             }}
           />
-          <span className="text-brand absolute top-6 left-6 rounded-full bg-white/95 px-3.5 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold tracking-[0.22em] uppercase">
-            {article.category}
-          </span>
-          <span className="bg-brand text-panna absolute top-6 right-6 inline-flex items-center gap-2 rounded-full px-3 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[10px] font-semibold tracking-[0.24em] uppercase">
-            <span className="bg-panna inline-block h-1.5 w-1.5 rounded-full" />
-            In evidenza
-          </span>
+          <div className="absolute top-4 right-4 left-4 flex items-center justify-between gap-2 md:contents">
+            <span className="text-brand rounded-full bg-white/95 px-3.5 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold tracking-[0.22em] uppercase md:absolute md:top-6 md:left-6">
+              {article.category}
+            </span>
+            <span className="bg-brand text-panna inline-flex items-center gap-2 rounded-full px-3 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[10px] font-semibold tracking-[0.24em] uppercase md:absolute md:top-6 md:right-6">
+              <span className="bg-panna inline-block h-1.5 w-1.5 rounded-full" />
+              In evidenza
+            </span>
+          </div>
         </div>
 
         {/* Corpo */}
-        <div className="flex flex-col justify-center gap-6 p-12 md:px-[52px] md:py-12">
+        <div className="flex flex-col justify-center gap-6 p-6 md:px-[52px] md:py-12">
           <div className="text-ink/60 flex flex-wrap items-center gap-3.5 font-[family-name:var(--font-neue-montreal)] text-[12px] tracking-[0.06em] uppercase">
             <span>{formatDate(article.publishedAt)}</span>
           </div>
