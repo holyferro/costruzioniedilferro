@@ -42,9 +42,9 @@ export function InternalHero({
       {/* ── MOBILE: blocco testo ─────────────────────────────────────── */}
       <div className="px-[26px] py-8 md:hidden">
         <HeroEyebrow text={eyebrow} />
-        <h1 className="font-neue-montreal text-ink mt-4 text-[36px] leading-[1.05] font-bold tracking-[-0.025em]">
+        <h1 className="text-ink mt-4 font-serif text-[36px] leading-[1.06] font-medium tracking-[-0.02em]">
           {titleStart}
-          <em className="text-brand font-serif italic">{titleAccent}</em>
+          <em className="text-brand italic">{titleAccent}</em>
           {titleEnd}
         </h1>
         <p className="mt-4 text-[15px] leading-[1.7] text-[#7A746A]">{subtitle}</p>
@@ -58,9 +58,9 @@ export function InternalHero({
         <div className="flex w-[55%] flex-col justify-between px-12 py-14 xl:px-20 xl:py-16">
           <div>
             <HeroEyebrow text={eyebrow} />
-            <h1 className="font-neue-montreal text-ink mt-6 text-[clamp(2.75rem,1.8rem+2.5vw,5rem)] leading-[1.02] font-bold tracking-[-0.025em]">
+            <h1 className="text-ink mt-6 font-serif text-[clamp(2.75rem,1.4rem+3.4vw,5rem)] leading-[1.06] font-medium tracking-[-0.02em]">
               {titleStart}
-              <em className="text-brand font-serif italic">{titleAccent}</em>
+              <em className="text-brand italic">{titleAccent}</em>
               {titleEnd}
             </h1>
             <p className="mt-5 max-w-[44ch] text-[15px] leading-[1.7] text-[#7A746A]">{subtitle}</p>
