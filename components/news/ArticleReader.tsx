@@ -207,11 +207,14 @@ export function ArticleReader({ article, onClose }: ArticleReaderProps) {
 
                   {article.heroMeta.length > 0 && (
                     <div
-                      className="mt-10 flex flex-wrap gap-x-4 gap-y-3 border-t pt-6"
+                      className="mt-10 flex flex-wrap gap-y-4 border-t pt-6 md:flex-nowrap"
                       style={{ borderColor: "rgba(255,255,255,0.18)" }}
                     >
                       {article.heroMeta.map((m) => (
-                        <div key={m.label} className="min-w-[120px]">
+                        <div
+                          key={m.label}
+                          className="w-1/2 min-w-0 pr-4 md:w-auto md:flex-1 md:pr-8 md:last:pr-0"
+                        >
                           <p
                             className="m-0 mb-1.5 font-[family-name:var(--font-neue-montreal)] text-[10px] tracking-[0.22em] uppercase md:text-[11px]"
                             style={{ color: "rgba(255,255,255,0.55)" }}

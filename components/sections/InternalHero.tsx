@@ -64,7 +64,7 @@ export function InternalHero({
             <p className="mt-5 max-w-[44ch] text-[15px] leading-[1.7] text-[#7A746A]">{subtitle}</p>
             {badges && badges.length > 0 && <BadgeRow badges={badges} className="mt-6" />}
           </div>
-          <HeroBreadcrumb page={breadcrumbPage} className="pt-8" showScroll />
+          <HeroBreadcrumb page={breadcrumbPage} className="pt-8" />
         </div>
 
         {/* Destra — immagine con clip geometrico */}
@@ -86,9 +86,6 @@ export function InternalHero({
                 <PlaceholderIcon size={48} />
               </div>
             )}
-            <span className="absolute right-5 bottom-5 z-10 text-[11px] font-semibold tracking-[0.1em] text-white/60">
-              01 / 24
-            </span>
           </div>
         </div>
       </div>

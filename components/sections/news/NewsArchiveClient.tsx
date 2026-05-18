@@ -173,23 +173,19 @@ function FilterBar({
         }}
       >
         <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-4 px-6 py-5 md:px-12">
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-2">
             {categories.map((c) => (
               <button
                 key={c.id}
                 onClick={() => onChange(c.id)}
-                className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 font-[family-name:var(--font-neue-montreal)] text-[13px] transition-all duration-[220ms] ${
-                  active === c.id
-                    ? "bg-brand text-panna border-brand"
-                    : "border-border text-ink hover:border-ink/40"
-                }`}
+                className="cursor-pointer rounded-full border px-[18px] py-[9px] font-[family-name:var(--font-neue-montreal)] text-[12px] font-medium tracking-[0.14em] uppercase transition-colors"
+                style={{
+                  background: active === c.id ? "var(--color-brand)" : "transparent",
+                  color: active === c.id ? "var(--color-panna)" : "rgba(26,26,26,0.7)",
+                  borderColor: active === c.id ? "var(--color-brand)" : "var(--color-border)",
+                }}
               >
-                <span>{c.label}</span>
-                <span
-                  className={`font-serif text-[12px] italic ${active === c.id ? "text-panna/70" : "text-ink/60"}`}
-                >
-                  {categoryCounts[c.id] ?? 0}
-                </span>
+                {c.label}
               </button>
             ))}
           </div>
