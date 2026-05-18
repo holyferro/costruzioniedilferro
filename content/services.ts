@@ -314,20 +314,12 @@ export const servicesContent: ServicesContent = {
     titleEnd: " ai tuoi dubbi.",
     items: [
       {
-        q: "Quanto tempo passa dal primo contatto all'inizio del cantiere?",
-        a: "Dopo il sopralluogo elaboriamo il preventivo entro 10 giorni lavorativi. Una volta accettato, i tempi di avvio dipendono dalle pratiche edilizie necessarie: per interventi in manutenzione ordinaria si può partire in 2–4 settimane, per nuove costruzioni con permesso di costruire si calcolano 60–90 giorni per l'iter autorizzativo.",
-      },
-      {
         q: "Operate solo nel Polesine o anche in altre province del Veneto?",
         a: "Operiamo principalmente nel Polesine (Rovigo e provincia) e nelle aree limitrofe del Veneto. Per opere pubbliche e commesse di importo rilevante siamo disponibili su tutto il territorio regionale. Contattaci per valutare insieme la fattibilità logistica del tuo progetto.",
       },
       {
-        q: "Rilasciate garanzie sui lavori eseguiti?",
-        a: "Sì. Emettiamo garanzia post-consegna su tutti i lavori eseguiti direttamente dalle nostre maestranze. Per le nuove costruzioni la garanzia decennale è obbligatoria per legge (art. 1669 c.c.) e copre vizi strutturali. Per ristrutturazioni e interventi di manutenzione applichiamo una garanzia contrattuale specifica, concordata caso per caso.",
-      },
-      {
-        q: "Come si struttura il preventivo? Lavorate a misura o a corpo?",
-        a: "Lavoriamo preferibilmente a corpo con computo metrico dettagliato allegato al contratto: il prezzo concordato è fisso e non varia al variare delle quantità. Questo elimina le sorprese a fine lavori. Su richiesta è possibile strutturare il contratto a misura per interventi particolarmente complessi o con variabili difficilmente prevedibili in fase progettuale.",
+        q: "Come posso richiedere un preventivo?",
+        a: "Puoi contattarci tramite il modulo online, per telefono o via email. Dopo un sopralluogo gratuito in loco valutiamo il progetto e prepariamo un'offerta dettagliata. Nessun costo, nessun impegno.",
       },
       {
         q: "Gestite anche le pratiche edilizie e i rapporti con il Comune?",
