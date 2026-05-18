@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 type InternalHeroProps = {
   eyebrow: string;
@@ -41,7 +42,7 @@ export function InternalHero({
 
       {/* ── MOBILE: blocco testo ─────────────────────────────────────── */}
       <div className="px-[26px] py-8 md:hidden">
-        <HeroEyebrow text={eyebrow} />
+        <Eyebrow>{eyebrow}</Eyebrow>
         <h1 className="text-ink mt-4 font-serif text-[36px] leading-[1.06] font-medium tracking-[-0.02em]">
           {titleStart}
           <em className="text-brand italic">{titleAccent}</em>
@@ -57,7 +58,7 @@ export function InternalHero({
         {/* Sinistra — testo */}
         <div className="flex w-[55%] flex-col justify-between px-12 py-14 xl:px-20 xl:py-16">
           <div>
-            <HeroEyebrow text={eyebrow} />
+            <Eyebrow>{eyebrow}</Eyebrow>
             <h1 className="text-ink mt-6 font-serif text-[clamp(2.75rem,1.4rem+3.4vw,5rem)] leading-[1.06] font-medium tracking-[-0.02em]">
               {titleStart}
               <em className="text-brand italic">{titleAccent}</em>
@@ -98,15 +99,6 @@ export function InternalHero({
         </div>
       </div>
     </section>
-  );
-}
-
-function HeroEyebrow({ text }: { text: string }) {
-  return (
-    <p className="text-brand flex items-center gap-3 text-[11px] font-semibold tracking-[0.22em] uppercase">
-      <span className="bg-brand h-px w-8" aria-hidden="true" />
-      {text}
-    </p>
   );
 }
 
