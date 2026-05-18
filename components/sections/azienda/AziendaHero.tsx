@@ -11,7 +11,6 @@ export function AziendaHero() {
       breadcrumbPage="L'Azienda"
       imageSrc="/images/azienda/hero-azienda.webp"
       imageAlt="Cantiere Edilferro — dettaglio lavorazione"
-      badges={["Dal 1981", "Porto Viro · Rovigo", "Impresa famigliare"]}
     />
   );
 }
