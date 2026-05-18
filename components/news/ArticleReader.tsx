@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/client";
 import type { SanityNewsArticle } from "@/sanity/lib/types";
@@ -15,18 +15,16 @@ export function ArticleReader({ article, onClose }: ArticleReaderProps) {
   const open = article !== null;
 
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState(0);
+  const progressBarRef = useRef<HTMLDivElement>(null);
   const [pastHero, setPastHero] = useState(false);
 
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
       requestAnimationFrame(() => {
-        if (scrollRef.current) {
-          scrollRef.current.scrollTop = 0;
-          setProgress(0);
-          setPastHero(false);
-        }
+        if (scrollRef.current) scrollRef.current.scrollTop = 0;
+        if (progressBarRef.current) progressBarRef.current.style.width = "0%";
+        setPastHero(false);
       });
     } else {
       document.body.style.overflow = "";
@@ -58,13 +56,15 @@ export function ArticleReader({ article, onClose }: ArticleReaderProps) {
     return () => window.removeEventListener("wheel", handler);
   }, [open]);
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     const el = scrollRef.current;
     if (!el) return;
     const max = el.scrollHeight - el.clientHeight;
-    setProgress(max > 0 ? el.scrollTop / max : 0);
+    if (progressBarRef.current) {
+      progressBarRef.current.style.width = `${max > 0 ? (el.scrollTop / max) * 100 : 0}%`;
+    }
     setPastHero(el.scrollTop > 460);
-  };
+  }, []);
 
   const coverUrl = article?.coverImage ? urlFor(article.coverImage).width(1600).url() : "";
 
@@ -150,10 +150,7 @@ export function ArticleReader({ article, onClose }: ArticleReaderProps) {
             className="absolute right-0 bottom-0 left-0 h-[2px]"
             style={{ background: pastHero ? "var(--color-border)" : "rgba(255,255,255,0.1)" }}
           >
-            <div
-              className="bg-brand h-full transition-[width] duration-75 ease-linear"
-              style={{ width: `${progress * 100}%` }}
-            />
+            <div ref={progressBarRef} className="bg-brand h-full" style={{ width: "0%" }} />
           </div>
         </header>
 
