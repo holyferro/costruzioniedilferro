@@ -7,8 +7,10 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Route } from "next";
-import type { SanityNewsPreview } from "@/sanity/lib/types";
-import { urlFor } from "@/sanity/lib/client";
+import type { SanityNewsPreview, SanityNewsArticle } from "@/sanity/lib/types";
+import { urlFor, client } from "@/sanity/lib/client";
+import { newsBySlugQuery } from "@/sanity/lib/queries";
+import { ArticleReader } from "@/components/news/ArticleReader";
 
 type NewsUpdatesSectionProps = {
   eyebrow: string;
@@ -50,6 +52,32 @@ export function NewsUpdatesSection({
     atEnd: false,
   });
 
+  const [openArticle, setOpenArticle] = useState<SanityNewsArticle | null>(null);
+  const [loadingSlug, setLoadingSlug] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (openArticle !== null) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [openArticle]);
+
+  async function openBySlug(slug: string) {
+    setLoadingSlug(slug);
+    try {
+      const article = await client.fetch<SanityNewsArticle>(newsBySlugQuery, { slug });
+      setOpenArticle(article);
+    } catch (err) {
+      console.error("[NewsUpdatesSection] fetch articolo fallito:", err);
+    } finally {
+      setLoadingSlug(null);
+    }
+  }
+
   const updateScroll = useCallback(() => {
     const el = trackRef.current;
     if (!el) return;
@@ -90,84 +118,108 @@ export function NewsUpdatesSection({
   if (items.length === 0) return null;
 
   return (
-    <section className="bg-panna text-ink relative overflow-hidden py-24 md:py-32">
-      <div className="mx-auto max-w-6xl px-6 md:px-12">
-        {/* Header */}
-        <div className="mb-14 grid items-end gap-10 md:grid-cols-[1.2fr_1fr] md:gap-16">
-          <div>
-            <Eyebrow>{eyebrow}</Eyebrow>
-            <h2 className="text-ink mt-5 max-w-[20ch] font-serif text-[clamp(2rem,1rem+2.6vw,3.4rem)] leading-[1.12] font-medium tracking-tight">
-              {titleStart}
-              <em className="text-brand font-serif italic">{titleAccent}</em>
-            </h2>
-          </div>
+    <>
+      <section className="bg-panna text-ink relative overflow-hidden py-24 md:py-32">
+        <div className="mx-auto max-w-6xl px-6 md:px-12">
+          {/* Header */}
+          <div className="mb-14 grid items-end gap-10 md:grid-cols-[1.2fr_1fr] md:gap-16">
+            <div>
+              <Eyebrow>{eyebrow}</Eyebrow>
+              <h2 className="text-ink mt-5 max-w-[20ch] font-serif text-[clamp(2rem,1rem+2.6vw,3.4rem)] leading-[1.12] font-medium tracking-tight">
+                {titleStart}
+                <em className="text-brand font-serif italic">{titleAccent}</em>
+              </h2>
+            </div>
 
-          <div className="flex flex-col gap-6 pb-1">
-            <p className="text-ink/70 max-w-[44ch] text-base leading-[1.65]">{body}</p>
+            <div className="flex flex-col gap-6 pb-1">
+              <p className="text-ink/70 max-w-[44ch] text-base leading-[1.65]">{body}</p>
 
-            <div className="flex flex-wrap items-center justify-between gap-5">
-              <Link
-                href={allNewsHref as Route<string>}
-                className="text-brand border-brand inline-flex items-center gap-2.5 border-b pb-1.5 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.08em] uppercase"
-              >
-                {allNewsLabel} <span aria-hidden="true">→</span>
-              </Link>
+              <div className="flex flex-wrap items-center justify-between gap-5">
+                <Link
+                  href={allNewsHref as Route<string>}
+                  className="text-brand border-brand inline-flex items-center gap-2.5 border-b pb-1.5 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.08em] uppercase"
+                >
+                  {allNewsLabel} <span aria-hidden="true">→</span>
+                </Link>
 
-              <div className="hidden items-center gap-2.5 md:flex">
-                <NavArrow
-                  dir="prev"
-                  disabled={scrollState.atStart}
-                  onClick={() => scrollByCard(-1)}
-                />
-                <NavArrow dir="next" disabled={scrollState.atEnd} onClick={() => scrollByCard(1)} />
+                <div className="hidden items-center gap-2.5 md:flex">
+                  <NavArrow
+                    dir="prev"
+                    disabled={scrollState.atStart}
+                    onClick={() => scrollByCard(-1)}
+                  />
+                  <NavArrow
+                    dir="next"
+                    disabled={scrollState.atEnd}
+                    onClick={() => scrollByCard(1)}
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Track — full-bleed con padding interno che rispetta il max-width del contenitore */}
-      <div
-        ref={trackRef}
-        className="flex snap-x snap-mandatory gap-6 overflow-x-auto overflow-y-hidden py-2 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        style={{
-          scrollPaddingLeft: "max(24px, calc((100vw - 1152px) / 2 + 24px))",
-          paddingLeft: "max(24px, calc((100vw - 1152px) / 2 + 24px))",
-          paddingRight: "max(24px, calc((100vw - 1152px) / 2 + 24px))",
-        }}
-      >
-        {items.map((item, i) => (
-          <NewsCard key={item._id} item={item} isFirst={i === 0} />
-        ))}
-        <ArchiveCard href={allNewsHref} />
-      </div>
-
-      {/* Progress bar */}
-      <div className="mx-auto mt-8 flex max-w-6xl items-center gap-6 px-6 md:px-12">
-        <div className="bg-ink/20 relative h-px flex-1 overflow-hidden">
-          <div
-            className="bg-brand absolute inset-y-0 w-[30%] transition-[left] duration-[250ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
-            style={{ left: `${scrollState.progress * 70}%` }}
-          />
+        {/* Track — full-bleed con padding interno che rispetta il max-width del contenitore */}
+        <div
+          ref={trackRef}
+          className="flex snap-x snap-mandatory gap-6 overflow-x-auto overflow-y-hidden py-2 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          style={{
+            scrollPaddingLeft: "max(24px, calc((100vw - 1152px) / 2 + 24px))",
+            paddingLeft: "max(24px, calc((100vw - 1152px) / 2 + 24px))",
+            paddingRight: "max(24px, calc((100vw - 1152px) / 2 + 24px))",
+          }}
+        >
+          {items.map((item, i) => (
+            <NewsCard
+              key={item._id}
+              item={item}
+              isFirst={i === 0}
+              isLoading={loadingSlug === item.slug}
+              onOpen={() => openBySlug(item.slug)}
+            />
+          ))}
+          <ArchiveCard href={allNewsHref} />
         </div>
-        <span className="text-ink/60 font-serif text-sm whitespace-nowrap italic">
-          <span className="tabular-nums">{String(currentCard).padStart(2, "0")}</span>
-          <span className="text-ink/40 mx-1.5">/</span>
-          <span className="text-ink/40 tabular-nums">{String(items.length).padStart(2, "0")}</span>
-        </span>
-      </div>
-    </section>
+
+        {/* Progress bar */}
+        <div className="mx-auto mt-8 flex max-w-6xl items-center gap-6 px-6 md:px-12">
+          <div className="bg-ink/20 relative h-px flex-1 overflow-hidden">
+            <div
+              className="bg-brand absolute inset-y-0 w-[30%] transition-[left] duration-[250ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+              style={{ left: `${scrollState.progress * 70}%` }}
+            />
+          </div>
+          <span className="text-ink/60 font-serif text-sm whitespace-nowrap italic">
+            <span className="tabular-nums">{String(currentCard).padStart(2, "0")}</span>
+            <span className="text-ink/40 mx-1.5">/</span>
+            <span className="text-ink/40 tabular-nums">
+              {String(items.length).padStart(2, "0")}
+            </span>
+          </span>
+        </div>
+      </section>
+
+      <ArticleReader article={openArticle} onClose={() => setOpenArticle(null)} />
+    </>
   );
 }
 
-function NewsCard({ item, isFirst }: { item: SanityNewsPreview; isFirst: boolean }) {
-  const href = `/news?article=${item.slug}`;
+type NewsCardProps = {
+  item: SanityNewsPreview;
+  isFirst: boolean;
+  isLoading: boolean;
+  onOpen: () => void;
+};
+
+function NewsCard({ item, isFirst, isLoading, onOpen }: NewsCardProps) {
   const imgSrc = urlFor(item.coverImage).width(840).height(630).url();
   return (
-    <a
+    <button
+      type="button"
       data-news-card=""
-      href={href}
-      className="group flex w-[clamp(280px,28vw,420px)] shrink-0 snap-start flex-col no-underline"
+      onClick={onOpen}
+      disabled={isLoading}
+      className="group flex w-[clamp(280px,28vw,420px)] shrink-0 snap-start flex-col text-left no-underline disabled:cursor-wait"
     >
       <div className="border-border bg-surface flex w-full flex-col border transition-[transform,box-shadow] duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1 group-hover:shadow-[0_12px_32px_rgba(10,24,48,0.10)]">
         {/* Immagine */}
@@ -210,17 +262,17 @@ function NewsCard({ item, isFirst }: { item: SanityNewsPreview; isFirst: boolean
 
           {/* CTA */}
           <div className="border-border text-ink group-hover:text-brand mt-auto flex items-center justify-between border-t pt-[18px] font-[family-name:var(--font-neue-montreal)] text-[12px] tracking-[0.1em] uppercase transition-colors duration-[250ms]">
-            Leggi di più
+            {isLoading ? "Caricamento…" : "Leggi di più"}
             <span
               aria-hidden="true"
               className="border-border text-ink group-hover:border-brand group-hover:bg-brand group-hover:text-panna inline-flex h-8 w-8 items-center justify-center rounded-full border bg-transparent transition-[transform,background-color,border-color,color] duration-[300ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-1"
             >
-              <ArrowUpRight />
+              {isLoading ? <SpinnerIcon /> : <ArrowUpRight />}
             </span>
           </div>
         </div>
       </div>
-    </a>
+    </button>
   );
 }
 
@@ -291,6 +343,27 @@ function ArrowUpRight({ size = 14 }: { size?: number }) {
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function SpinnerIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      aria-hidden="true"
+      className="animate-spin"
+    >
+      <circle cx="7" cy="7" r="5.5" stroke="currentColor" strokeWidth="1.5" strokeOpacity="0.25" />
+      <path
+        d="M7 1.5A5.5 5.5 0 0 1 12.5 7"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
     </svg>
   );
