@@ -17,8 +17,6 @@ export type ServiceItem = {
   readonly imageSrc: string;
   readonly imageAlt: string;
   readonly tags: readonly string[];
-  readonly ctaLabel: string;
-  readonly ctaHref: string;
 };
 
 export type ProjectTile = {
@@ -178,8 +176,6 @@ export const homepageContent: HomepageContent = {
           "Case passive NZEB",
           "Recupero e risanamento",
         ],
-        ctaLabel: "Servizi per privati",
-        ctaHref: "/servizi/privati",
       },
       {
         n: "02",
@@ -189,8 +185,6 @@ export const homepageContent: HomepageContent = {
         imageSrc: "/images/design/img-pubblico.webp",
         imageAlt: "Cantiere pubblico — restauro istituzionale",
         tags: ["SOA OG1–OG11", "Restauro monumentale", "Strutture ospedaliere", "Edifici di culto"],
-        ctaLabel: "Opere pubbliche",
-        ctaHref: "/servizi/pubblico",
       },
       {
         n: "03",
@@ -205,8 +199,6 @@ export const homepageContent: HomepageContent = {
           "Riconversioni industriali",
           "Manutenzione",
         ],
-        ctaLabel: "Soluzioni per aziende",
-        ctaHref: "/servizi/aziende",
       },
     ],
   },

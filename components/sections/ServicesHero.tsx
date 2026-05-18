@@ -23,7 +23,7 @@ export function ServicesHero({
       titleEnd={titleEnd}
       subtitle={subtitle}
       breadcrumbPage="Servizi"
-      imageSrc="/images/heroservizi2.webp"
+      imageSrc="/images/azienda/hero-azienda.webp"
       imageAlt="Cantiere edilferro — panoramica lavori"
     />
   );

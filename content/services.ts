@@ -26,7 +26,6 @@ export type ServicesTarget = {
   readonly imageCaption?: string; // nome progetto mostrato sull'immagine a hover/tap
   readonly tags: readonly string[];
   readonly ctaLabel: string;
-  readonly ctaHref: string;
   readonly soaBadges?: readonly SoaBadge[]; // SOLO per target "pubblico"
   readonly serviceCards?: readonly ServiceCard[];
 };
@@ -104,7 +103,6 @@ export const servicesContent: ServicesContent = {
           "Recupero e risanamento",
         ],
         ctaLabel: "Scopri i servizi per privati",
-        ctaHref: "/servizi/privati",
         serviceCards: [
           {
             title: "Nuove costruzioni",
@@ -164,7 +162,6 @@ export const servicesContent: ServicesContent = {
         imageCaption: "Restauro istituzionale, Polesine",
         tags: ["SOA OG1–OG11", "Restauro monumentale", "Strutture ospedaliere", "Edifici di culto"],
         ctaLabel: "Scopri i servizi per enti pubblici",
-        ctaHref: "/servizi/pubblico",
         serviceCards: [
           {
             title: "SOA OG1–OG11",
@@ -229,7 +226,6 @@ export const servicesContent: ServicesContent = {
           "Manutenzione",
         ],
         ctaLabel: "Scopri i servizi per aziende",
-        ctaHref: "/servizi/aziende",
         serviceCards: [
           {
             title: "Capannoni e stabilimenti",

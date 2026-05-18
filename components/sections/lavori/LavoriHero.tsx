@@ -8,7 +8,7 @@ export function LavoriHero() {
       titleAccent="Ogni opera è una firma."
       subtitle="Edifici residenziali, opere pubbliche, restauri, capannoni. Una selezione dei cantieri che raccontano il nostro metodo."
       breadcrumbPage="Realizzazioni"
-      imageSrc="/images/hero3.webp"
+      imageSrc="/images/azienda/hero-azienda.webp"
       imageAlt="Cantiere Impresa Edile Edilferro — archivio lavori"
     />
   );

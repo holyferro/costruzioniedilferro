@@ -95,18 +95,6 @@ function ServiceRow({
             </li>
           ))}
         </ul>
-        <Link
-          href={item.ctaHref as Route<string>}
-          className="text-panna border-panna/35 hover:border-panna group/cta mt-9 inline-flex items-center gap-2.5 border-b pb-1.5 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.08em] uppercase transition-colors"
-        >
-          {item.ctaLabel}
-          <span
-            aria-hidden="true"
-            className="inline-block transition-transform duration-300 group-hover/cta:translate-x-1.5"
-          >
-            →
-          </span>
-        </Link>
       </div>
 
       <div

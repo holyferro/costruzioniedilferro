@@ -35,9 +35,6 @@ export function InternalHero({
             <PlaceholderIcon size={40} />
           </div>
         )}
-        <span className="absolute top-4 left-[26px] z-10 text-[10px] font-semibold tracking-[0.2em] text-white/80 uppercase">
-          IMG · CANTIERE PRINCIPALE
-        </span>
       </div>
 
       {/* ── MOBILE: blocco testo ─────────────────────────────────────── */}
@@ -89,9 +86,6 @@ export function InternalHero({
                 <PlaceholderIcon size={48} />
               </div>
             )}
-            <span className="absolute top-5 left-5 z-10 text-[10px] font-semibold tracking-[0.2em] text-white/80 uppercase">
-              IMG · CANTIERE PRINCIPALE
-            </span>
             <span className="absolute right-5 bottom-5 z-10 text-[11px] font-semibold tracking-[0.1em] text-white/60">
               01 / 24
             </span>

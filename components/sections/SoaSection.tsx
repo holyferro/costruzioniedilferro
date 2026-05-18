@@ -29,7 +29,7 @@ export function SoaSection({
   anacLink,
 }: SoaSectionProps) {
   return (
-    <section className="bg-panna pt-20 md:pt-28">
+    <section className="bg-white pt-20 pb-20 md:pt-28 md:pb-28">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         <p className="text-ink/60 mb-14 text-xs font-semibold tracking-[0.38em] uppercase">
           <span

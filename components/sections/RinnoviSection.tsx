@@ -12,7 +12,7 @@ type RinnoviSectionProps = {
 
 export function RinnoviSection({ eyebrow, title, body, rows }: RinnoviSectionProps) {
   return (
-    <section className="border-border border-t border-b bg-white py-20 md:py-28">
+    <section className="border-border bg-panna border-t border-b py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           {/* Editoriale */}
