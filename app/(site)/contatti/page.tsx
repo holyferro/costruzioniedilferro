@@ -11,9 +11,7 @@ export const metadata = buildMetadata({
   alternates: { canonical: "/contatti" },
 });
 
-// Indirizzo per l'embed Google Maps (nessuna API key richiesta con ?output=embed).
-const MAPS_EMBED_URL =
-  "https://maps.google.com/maps?q=45.0225155,12.2300243&output=embed&hl=it&z=17";
+const MAPS_QUERY_URL = "https://maps.google.com/?q=Via+dei+Salici+7,+Porto+Viro+RO";
 
 export default function ContattiPage() {
   const { contact, address } = siteContent;
@@ -65,30 +63,36 @@ export default function ContattiPage() {
               <ContattiForm />
             </div>
 
-            {/* Mappa Google Maps — iframe embed, nessuna API key */}
+            {/* Mappa statica */}
             <div className="flex flex-col">
               <h2 className="text-ink mb-8 font-serif text-2xl font-medium">Dove siamo</h2>
-              <div className="border-border flex-1 overflow-hidden rounded-sm border">
-                <iframe
-                  src={MAPS_EMBED_URL}
-                  title="Sede Costruzioni Edilferro — Via dei Salici 7/9, Porto Viro (RO)"
-                  width="100%"
-                  height="100%"
-                  style={{ minHeight: "360px", border: 0 }}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  allowFullScreen
-                />
+              <div className="border-border flex h-full flex-1 flex-col overflow-hidden rounded-sm border bg-white">
+                <div className="relative min-h-0 flex-1" style={{ minHeight: "280px" }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`https://maps.googleapis.com/maps/api/staticmap?center=Via+dei+Salici+7,+Porto+Viro,+RO,+Italy&zoom=15&size=800x450&scale=2&markers=color:red%7CVia+dei+Salici+7,+Porto+Viro,+RO,+Italy&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_STATIC_KEY}`}
+                    alt="Mappa sede Costruzioni Edilferro - Via dei Salici 7, Porto Viro"
+                    width={800}
+                    height={450}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                </div>
+                <div className="flex shrink-0 flex-col items-center gap-3 px-6 py-5">
+                  <div className="text-center">
+                    <p className="text-ink font-serif text-base font-medium">Via dei Salici 7</p>
+                    <p className="text-ink/70 mt-0.5 text-sm">45014 Porto Viro (RO) — Veneto</p>
+                  </div>
+                  <a
+                    href={MAPS_QUERY_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-brand text-panna inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium tracking-wide transition-opacity hover:opacity-90"
+                  >
+                    <MapPin className="h-4 w-4" aria-hidden="true" />
+                    Apri in Google Maps
+                  </a>
+                </div>
               </div>
-              <a
-                href={address.googleMapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="border-border hover:bg-ink hover:text-panna text-ink mt-4 inline-flex items-center gap-2 self-start rounded-full border px-5 py-3 text-sm font-medium tracking-wide transition-colors"
-              >
-                <MapPin className="h-4 w-4" aria-hidden="true" />
-                Apri in Google Maps
-              </a>
             </div>
           </div>
         </div>
