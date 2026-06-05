@@ -1,4 +1,5 @@
 import { buildMetadata } from "@/lib/seo/metadata";
+import { ScrollToHash } from "@/components/ui/ScrollToHash";
 import { LavoriHero } from "@/components/sections/lavori/LavoriHero";
 import { LavoriManifesto } from "@/components/sections/lavori/LavoriManifesto";
 import { ProgettiGrid } from "@/components/sections/lavori/ProgettiGrid";
@@ -82,6 +83,7 @@ function RealizzazioniLayout({
 }) {
   return (
     <>
+      <ScrollToHash />
       <LavoriHero />
       <LavoriManifesto />
       <ProgettiGrid cards={cards} projects={projects} />

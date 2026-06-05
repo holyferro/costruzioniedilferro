@@ -235,8 +235,9 @@ export const PROJECTS: Record<string, Project> = {
 };
 
 /* ---- Carousel hook ---- */
-export function useCarousel(imgs: string[]) {
+export function useCarousel(imgs: string[], active: boolean) {
   const [idx, setIdx] = useState(0);
+  const [paused, setPaused] = useState(false);
 
   const goTo = useCallback(
     (i: number) => setIdx(((i % imgs.length) + imgs.length) % imgs.length),
@@ -245,7 +246,15 @@ export function useCarousel(imgs: string[]) {
   const prev = useCallback(() => goTo(idx - 1), [idx, goTo]);
   const next = useCallback(() => goTo(idx + 1), [idx, goTo]);
 
-  return { idx, goTo, prev, next };
+  useEffect(() => {
+    if (!active || imgs.length < 2 || paused) return;
+    const id = setInterval(() => {
+      setIdx((i) => (i + 1) % imgs.length);
+    }, 5000);
+    return () => clearInterval(id);
+  }, [active, imgs.length, paused, idx]);
+
+  return { idx, goTo, prev, next, setPaused, paused };
 }
 
 /* ---- Modal ---- */
@@ -260,7 +269,7 @@ export function ProgettoModal({
 }) {
   const projectSource = projectsOverride ?? PROJECTS;
   const project = projectKey ? (projectSource[projectKey] ?? null) : null;
-  const { idx, goTo, prev, next } = useCarousel(project?.imgs ?? []);
+  const { idx, goTo, prev, next, setPaused, paused } = useCarousel(project?.imgs ?? [], !!project);
 
   useEffect(() => {
     if (!project) return;
@@ -281,9 +290,10 @@ export function ProgettoModal({
     };
   }, [project]);
 
-  // Reset carousel to first image whenever a different project is opened
+  // Reset carousel and paused state whenever a different project is opened
   useEffect(() => {
     goTo(0);
+    setPaused(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projectKey]);
 
@@ -314,7 +324,11 @@ export function ProgettoModal({
         }}
       >
         {/* Left — carousel */}
-        <div className="relative flex h-[68vw] flex-col overflow-hidden bg-black md:h-auto md:min-h-0">
+        <div
+          className="relative flex h-[68vw] flex-col overflow-hidden bg-black md:h-auto md:min-h-0"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
           <div
             className="pointer-events-none absolute inset-0 z-[4]"
             style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.55))" }}
@@ -380,6 +394,12 @@ export function ProgettoModal({
               ›
             </button>
 
+            <style>{`
+              @keyframes dotProgress {
+                from { transform: scaleX(0); }
+                to   { transform: scaleX(1); }
+              }
+            `}</style>
             <div className="absolute bottom-[80px] left-1/2 z-[5] flex -translate-x-1/2 gap-1.5">
               {project?.imgs.map((_, i) => (
                 <button
@@ -387,16 +407,34 @@ export function ProgettoModal({
                   onClick={() => goTo(i)}
                   aria-label={`Foto ${i + 1}`}
                   style={{
+                    position: "relative",
+                    overflow: "hidden",
                     width: i === idx ? 20 : 6,
                     height: 6,
                     borderRadius: 9999,
-                    background: i === idx ? "#fff" : "rgba(255,255,255,0.4)",
+                    background: i === idx ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.4)",
                     border: "none",
                     padding: 0,
                     cursor: "pointer",
-                    transition: "background 200ms, width 200ms",
+                    transition: "width 200ms",
+                    flexShrink: 0,
                   }}
-                />
+                >
+                  {i === idx && (project?.imgs.length ?? 0) >= 2 && (
+                    <span
+                      key={idx}
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        background: "#fff",
+                        borderRadius: 9999,
+                        transformOrigin: "left center",
+                        animation: "dotProgress 5000ms linear forwards",
+                        animationPlayState: paused ? "paused" : "running",
+                      }}
+                    />
+                  )}
+                </button>
               ))}
             </div>
           </div>

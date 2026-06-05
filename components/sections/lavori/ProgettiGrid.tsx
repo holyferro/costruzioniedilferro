@@ -94,10 +94,10 @@ export function ProgettiGrid({
           to   { opacity: 1; transform: none; }
         }
       `}</style>
-      <section id="archivio-lavori" className="bg-surface py-[100px]">
+      <section className="bg-surface py-[100px]">
         <div className="mx-auto max-w-6xl px-6 md:px-12">
           <div className="mb-12 flex flex-wrap items-end justify-between gap-8">
-            <div>
+            <div id="archivio-lavori" className="scroll-mt-20 xl:scroll-mt-28">
               <p className="text-ink/60 flex items-center gap-3 text-xs font-semibold tracking-[0.38em] uppercase">
                 <span
                   aria-hidden="true"
