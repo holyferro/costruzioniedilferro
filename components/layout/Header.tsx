@@ -28,6 +28,7 @@ export function Header() {
     const EXIT = 30;
     const onScroll = () => {
       if (isNavigating.current) return;
+      if (document.body.style.position === "fixed") return;
       const y = window.scrollY;
       setScrolled((prev) => {
         if (!prev && y > ENTER) return true;
