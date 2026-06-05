@@ -10,10 +10,6 @@ export type LegalContent = {
     readonly number: string;
     readonly chamber: string;
   };
-  readonly capitaleSociale: {
-    readonly declared: string;
-    readonly paidUp: string;
-  };
   readonly sedeLegale: {
     readonly street: string;
     readonly zip: string;
@@ -46,10 +42,6 @@ export const legalContent: LegalContent = {
   rea: {
     number: "RO-85037",
     chamber: "CCIAA Venezia Rovigo",
-  },
-  capitaleSociale: {
-    declared: "€ ???", // TODO cliente: confermare capitale sociale dichiarato
-    paidUp: "€ ??? i.v.", // TODO cliente: confermare capitale versato
   },
   sedeLegale: {
     street: "Via dei Salici 7",
