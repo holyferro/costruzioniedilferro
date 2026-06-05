@@ -15,7 +15,7 @@ export function TargetIndex({ targets }: TargetIndexProps) {
   return (
     <section className="bg-panna text-ink border-border border-b py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
-        <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-3 lg:gap-12">
+        <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-3 lg:gap-6 xl:gap-12">
           {targets.map((t) => (
             <TargetCard key={t.id} target={t} />
           ))}
@@ -46,10 +46,12 @@ function TargetCard({ target }: { target: ServicesTarget }) {
       </h2>
 
       {/* Inter subtitle */}
-      <p className="text-ink/70 mt-4 text-base leading-[1.6]">{target.body}</p>
+      <p className="text-ink/70 mt-4 text-base leading-[1.6] lg:text-sm xl:text-base">
+        {target.body}
+      </p>
 
       {/* Arrow CTA — pushed to bottom, always on one line */}
-      <span className="text-ink mt-auto inline-flex items-center gap-2.5 pt-9 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.08em] whitespace-nowrap uppercase">
+      <span className="text-ink mt-auto inline-flex items-center gap-2.5 pt-6 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.08em] whitespace-nowrap uppercase xl:pt-9">
         <span className="border-ink/35 group-hover:border-ink border-b pb-1.5 transition-colors">
           {target.ctaLabel}
         </span>
