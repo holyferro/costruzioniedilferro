@@ -19,9 +19,15 @@ import { HomepageCta } from "@/components/sections/HomepageCta";
 export const revalidate = 3600;
 
 export const metadata = buildMetadata({
-  title: "Impresa Edile — Porto Viro, Rovigo, Veneto",
-  description: siteContent.brand.tagline,
+  title: { absolute: "Costruzioni Edilferro S.r.l. — Impresa edile a Porto Viro (RO)" },
+  description:
+    "Costruzioni Edilferro S.r.l., impresa edile con 45 anni di attività a Porto Viro (RO). Edilizia residenziale, opere pubbliche, restauro e capannoni industriali.",
   alternates: { canonical: "/" },
+  openGraph: {
+    title: "Costruzioni Edilferro S.r.l. — Impresa edile a Porto Viro (RO)",
+    description:
+      "Costruzioni Edilferro S.r.l., impresa edile con 45 anni di attività a Porto Viro (RO). Edilizia residenziale, opere pubbliche, restauro e capannoni industriali.",
+  },
 });
 
 export default async function Home() {
