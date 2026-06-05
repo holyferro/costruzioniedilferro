@@ -30,7 +30,7 @@ export default function PrivacyPolicyPage() {
         <p className="text-ink/75 mt-4 text-base leading-relaxed">
           ai sensi del Regolamento UE 2016/679 — GDPR e del D.Lgs. 196/2003
         </p>
-        <p className="text-ink/40 mt-2 text-sm">Ultimo aggiornamento: Giugno 2025</p>
+        <p className="text-ink/40 mt-2 text-sm">Ultimo aggiornamento: 5 giugno 2026</p>
 
         {/* 1. Titolare */}
         <Section number="1" title="Titolare del trattamento">
