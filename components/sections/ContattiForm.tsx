@@ -90,7 +90,10 @@ export function ContattiForm() {
         />
         <label htmlFor="privacy" className="text-ink/65 cursor-pointer text-sm leading-relaxed">
           Ho letto e accetto l&apos;
-          <a href="/privacy" className="text-ink hover:text-brand underline underline-offset-2">
+          <a
+            href="/privacy-policy"
+            className="text-ink hover:text-brand underline underline-offset-2"
+          >
             informativa sulla privacy
           </a>
           . Acconsento al trattamento dei miei dati personali per rispondere alla mia richiesta.

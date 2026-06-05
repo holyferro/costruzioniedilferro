@@ -32,6 +32,6 @@ export const footerNav: readonly NavGroup[] = [
   },
   {
     title: "Legale",
-    items: [{ href: "/privacy", label: "Privacy policy" }],
+    items: [{ href: "/privacy-policy", label: "Privacy policy" }],
   },
 ];
