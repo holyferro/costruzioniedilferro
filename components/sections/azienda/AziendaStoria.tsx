@@ -34,10 +34,6 @@ const entries: TimelineEntry[] = [
     year: "1981",
     title: "La fondazione ufficiale",
     body: "Il 26 febbraio nasce ufficialmente Costruzioni Edilferro: l'esperienza diventa impresa strutturata. Trasformando l'esperienza costruita nei decenni precedenti in una struttura aziendale solida e organizzata.",
-    image: {
-      src: "/images/azienda/storia-2004.jpg",
-      alt: "Prima sede e fondazione ufficiale di Costruzioni Edilferro nel 1981",
-    },
   },
   {
     year: "",
