@@ -6,8 +6,7 @@ import { siteContent } from "@/content/site";
  * Falls back to localhost during dev so Next doesn't throw on relative URLs
  * in openGraph.images (see: https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase).
  */
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 const metadataBase = new URL(SITE_URL);
 
@@ -17,8 +16,8 @@ const metadataBase = new URL(SITE_URL);
 export const defaultMetadata: Metadata = {
   metadataBase,
   title: {
-    default: siteContent.brand.name,
-    template: `%s — ${siteContent.brand.name}`,
+    default: siteContent.brand.legalName,
+    template: `%s — ${siteContent.brand.legalName}`,
   },
   description: siteContent.brand.tagline,
   applicationName: siteContent.brand.name,
