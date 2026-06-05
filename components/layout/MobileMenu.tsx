@@ -50,11 +50,12 @@ export function MobileMenu({ scrolled }: MobileMenuProps) {
     document.body.style.top = `-${scrollY}px`;
     document.body.style.width = "100%";
     return () => {
+      const savedY = Math.abs(parseInt(document.body.style.top || "0", 10));
       document.body.style.position = "";
       document.body.style.top = "";
       document.body.style.width = "";
       if (!isNavigatingRef.current) {
-        window.scrollTo(0, scrollY);
+        window.scrollTo({ top: savedY, behavior: "instant" });
       }
     };
   }, [isOpen]);
