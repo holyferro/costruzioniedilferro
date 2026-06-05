@@ -23,7 +23,7 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
       aria-label="Numeri chiave dell'impresa"
       className="bg-panna border-border [scroll-margin-top:var(--header-height)] overflow-x-clip border-b py-20 md:py-28"
     >
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[1fr_2fr] lg:gap-x-6 lg:px-12 xl:gap-x-12">
+      <div className="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-2 lg:gap-x-6 lg:px-12 xl:grid-cols-[1fr_2fr] xl:gap-x-12">
         {/* Intro — sticky solo su desktop lg+ */}
         <div className="lg:sticky lg:top-[calc(var(--header-height)+24px)] lg:self-start">
           <Eyebrow>{eyebrow}</Eyebrow>
@@ -78,7 +78,7 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
                 >
                   {r.label}
                 </dd>
-                <dd className="text-ink/60 col-span-2 text-xs tracking-[0.12em] uppercase sm:col-span-1 sm:max-w-[28ch] sm:text-right md:col-span-2 md:mt-1 md:text-left lg:col-span-1 lg:mt-0 lg:max-w-[18ch] lg:overflow-hidden lg:text-right lg:text-[10px] lg:text-ellipsis lg:whitespace-nowrap xl:max-w-[28ch] xl:overflow-visible xl:text-xs xl:whitespace-normal">
+                <dd className="text-ink/60 col-span-2 text-xs tracking-[0.12em] uppercase sm:col-span-1 sm:max-w-[28ch] sm:text-right md:col-span-2 md:mt-1 md:text-left lg:col-span-1 lg:mt-0 lg:max-w-[28ch] lg:text-right lg:text-[10px]">
                   {r.sub}
                 </dd>
               </div>

@@ -87,7 +87,7 @@ function FeatureCard({ item, onOpen }: { item: FeaturedProject; onOpen: () => vo
   return (
     <div
       onClick={onOpen}
-      className="group/feature relative block aspect-[4/5] cursor-pointer overflow-hidden bg-black text-white"
+      className="group/feature relative block aspect-[4/5] cursor-pointer overflow-hidden bg-black text-white md:aspect-auto md:h-full"
       role="button"
       tabIndex={0}
       aria-label={item.title}

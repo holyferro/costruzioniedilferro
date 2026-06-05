@@ -3,6 +3,7 @@
 // Layout: main 4-col grid + rotated phone strip on desktop.
 
 import Image from "next/image";
+import Link from "next/link";
 import { siteContent } from "@/content/site";
 import { legalContent } from "@/content/legal";
 import { primaryNav, footerNav } from "@/content/navigation";
@@ -207,6 +208,15 @@ export function Footer() {
                   iconSize={13}
                 />
               ))}
+              <span className="text-white/20" aria-hidden="true">
+                ·
+              </span>
+              <Link
+                href={"/studio" as never}
+                className="text-white/30 transition-colors hover:text-white/60"
+              >
+                Area gestione
+              </Link>
             </nav>
           ) : null}
         </div>
