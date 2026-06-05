@@ -283,14 +283,14 @@ export const homepageContent: HomepageContent = {
     eyebrow: "Dove operiamo",
     titleStart: "Radicati nel Polesine, ",
     titleAccent: "operativi in tutto il Nord‑Est.",
-    body: "Porto Viro è la nostra base da oltre quarant'anni. Da qui copriamo con squadre proprie Veneto ed Emilia-Romagna, con la capacità di raggiungere il Trentino per commesse pubbliche e private di maggior rilievo.",
+    body: "Porto Viro è la nostra base da oltre quarant'anni. Da qui copriamo con squadre proprie Veneto ed Emilia-Romagna, con la capacità di raggiungere tutto il Nord‑Est per commesse pubbliche e private di maggior rilievo.",
     zones: [
-      { name: "Rovigo e provincia", role: "Sede operativa", km: "0 km", primary: true },
-      { name: "Ferrara e provincia", role: "Cantieri attivi", km: "~55 km", primary: true },
+      { name: "Porto Viro", role: "Sede operativa", km: "0 km", primary: true },
+      { name: "Rovigo e provincia", role: "Cantieri attivi", km: "~20 km", primary: true },
+      { name: "Ferrara e provincia", role: "Cantieri attivi", km: "~45 km", primary: true },
       { name: "Padova e provincia", role: "Cantieri attivi", km: "~60 km", primary: true },
       { name: "Venezia e provincia", role: "Cantieri attivi", km: "~80 km", primary: true },
       { name: "Bologna e provincia", role: "Su commessa", km: "~120 km", primary: false },
-      { name: "Trento e provincia", role: "Su commessa", km: "~195 km", primary: false },
     ],
   },
   finalCta: {
