@@ -14,7 +14,7 @@ export function Footer() {
 
   return (
     <footer className="border-brand border-t-2 bg-black text-white">
-      <div className="mx-auto max-w-screen-2xl px-4 py-6 lg:py-10">
+      <div className="mx-auto max-w-7xl px-6 py-6 lg:py-10">
         {/* Main area: content + rotated phone strip */}
         <div className="flex gap-8">
           {/* Content grid */}
