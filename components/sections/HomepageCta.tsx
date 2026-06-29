@@ -27,7 +27,7 @@ export function HomepageCta({
   return (
     <section
       id="contatti"
-      className="bg-brand text-panna relative overflow-hidden py-14 pb-24 md:py-28 md:pb-28"
+      className="bg-brand text-panna relative overflow-hidden py-12 pb-24 md:py-24 md:pb-24"
     >
       {/* Anelli ornamentali concentrici, top-right */}
       <span
