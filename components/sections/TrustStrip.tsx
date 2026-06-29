@@ -8,6 +8,7 @@
 
 import Image from "next/image";
 import { CountUpNumber } from "@/components/ui/CountUpNumber";
+import { Reveal } from "@/components/ui/Reveal";
 import type { TrustRow } from "@/content/homepage";
 
 type TrustStripProps = {
@@ -58,8 +59,9 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
             const isText = isNaN(parseFloat(String(r.value)));
 
             return (
-              <div
+              <Reveal
                 key={r.label}
+                delay={i * 60}
                 className={[
                   "border-border grid grid-cols-[auto_1fr] items-baseline gap-x-5 gap-y-2 border-t py-7",
                   // tablet: mantiene [auto_1fr], sub sotto span-2
@@ -98,7 +100,7 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
                 <dd className="text-ink/60 col-span-2 text-xs tracking-[0.12em] uppercase md:col-span-2 md:mt-1 lg:col-span-1 lg:mt-0 lg:max-w-[140px] lg:text-right lg:text-[10px] lg:leading-[1.45] lg:break-words xl:max-w-[200px] xl:text-[11px]">
                   {r.sub}
                 </dd>
-              </div>
+              </Reveal>
             );
           })}
         </dl>

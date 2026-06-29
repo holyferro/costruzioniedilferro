@@ -5,6 +5,7 @@
 //   desktop (1024px+)  : riga 1 → intro | mappa (50/50); riga 2 → zone list 2-col full-width
 
 import { MapPin } from "lucide-react";
+import { Reveal } from "@/components/ui/Reveal";
 import type { Zone } from "@/content/homepage";
 
 const MAPS_STATIC_URL = `https://maps.googleapis.com/maps/api/staticmap?center=44.90,12.05&zoom=9&size=800x450&scale=2&markers=color:red%7C44.9167,12.1167&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_STATIC_KEY}`;
@@ -31,17 +32,17 @@ export function ServiceAreaSection({
         {/* Riga 1: intro | mappa — 50/50 su desktop, stack su mobile */}
         <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-x-16 lg:gap-y-14">
           {/* ① Intro */}
-          <div>
+          <Reveal>
             <DarkEyebrow>{eyebrow}</DarkEyebrow>
             <h2 className="text-panna mt-5 max-w-[16ch] font-serif text-[clamp(2rem,1rem+2.6vw,3.4rem)] leading-[1.12] font-medium tracking-tight">
               {titleStart}
               <em className="text-panna/65 font-serif italic">{titleAccent}</em>
             </h2>
             <p className="text-panna/70 mt-4 max-w-[48ch] text-base leading-[1.65]">{body}</p>
-          </div>
+          </Reveal>
 
           {/* ② Mappa */}
-          <div className="flex flex-col">
+          <Reveal className="flex flex-col" delay={100}>
             <div className="border-panna/15 overflow-hidden rounded-sm border">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -61,7 +62,7 @@ export function ServiceAreaSection({
               <MapPin className="h-4 w-4" aria-hidden="true" />
               Apri in Google Maps
             </a>
-          </div>
+          </Reveal>
         </div>
 
         {/* Riga 2: lista province — 2 colonne full-width */}
@@ -71,7 +72,13 @@ export function ServiceAreaSection({
               const isLast = i === zones.length - 1;
               const isSecondToLast = i === zones.length - 2;
               return (
-                <ZoneRow key={z.name} zone={z} isLast={isLast} isSecondToLast={isSecondToLast} />
+                <ZoneRow
+                  key={z.name}
+                  zone={z}
+                  isLast={isLast}
+                  isSecondToLast={isSecondToLast}
+                  delay={i * 50}
+                />
               );
             })}
           </div>
@@ -85,13 +92,15 @@ type ZoneRowProps = {
   zone: Zone;
   isLast: boolean;
   isSecondToLast: boolean;
+  delay: number;
 };
 
-function ZoneRow({ zone, isLast, isSecondToLast }: ZoneRowProps) {
+function ZoneRow({ zone, isLast, isSecondToLast, delay }: ZoneRowProps) {
   const borderBottom = isLast ? "border-b" : isSecondToLast ? "md:border-b" : "";
 
   return (
-    <div
+    <Reveal
+      delay={delay}
       className={`border-panna/12 flex items-center justify-between gap-4 border-t py-3 lg:py-[13px] ${borderBottom}`}
     >
       {/* Left: dot + city name */}
@@ -112,7 +121,7 @@ function ZoneRow({ zone, isLast, isSecondToLast }: ZoneRowProps) {
         <span className="text-panna/60 text-[10px] tracking-[0.12em] uppercase">{zone.role}</span>
         <span className="text-panna/55 font-serif text-sm italic">{zone.km}</span>
       </div>
-    </div>
+    </Reveal>
   );
 }
 

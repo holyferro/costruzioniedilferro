@@ -5,6 +5,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Route } from "next";
+import { Reveal } from "@/components/ui/Reveal";
 import type { ServiceItem } from "@/content/homepage";
 
 type ServiceOverviewProps = {
@@ -31,7 +32,7 @@ export function ServiceOverview({
   return (
     <section className="bg-ink text-panna py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
-        <div className="mb-14 flex flex-wrap items-end justify-between gap-8 md:mb-20">
+        <Reveal className="mb-14 flex flex-wrap items-end justify-between gap-8 md:mb-20">
           <div className="max-w-3xl">
             <DarkEyebrow>{eyebrow}</DarkEyebrow>
             <h2 className="text-panna mt-5 max-w-[18ch] font-serif text-[clamp(2rem,1rem+2.6vw,3.4rem)] leading-[1.12] font-medium tracking-tight">
@@ -47,7 +48,7 @@ export function ServiceOverview({
           >
             {indexLinkLabel} <span aria-hidden="true">→</span>
           </Link>
-        </div>
+        </Reveal>
 
         <div>
           {items.map((it, i) => (
@@ -74,7 +75,10 @@ function ServiceRow({
         first ? "border-t" : ""
       }`}
     >
-      <div className={reverse ? "md:order-2" : "md:order-1"}>
+      <Reveal
+        direction={reverse ? "right" : "left"}
+        className={reverse ? "md:order-2" : "md:order-1"}
+      >
         <div className="mb-4 flex items-baseline gap-4">
           <span className="text-panna/65 font-serif text-sm font-medium italic">— {item.n}</span>
           <span className="text-panna/60 text-[11px] font-semibold tracking-[0.22em] uppercase">
@@ -95,9 +99,11 @@ function ServiceRow({
             </li>
           ))}
         </ul>
-      </div>
+      </Reveal>
 
-      <div
+      <Reveal
+        direction={reverse ? "left" : "right"}
+        delay={100}
         className={`group/img relative aspect-[5/4] overflow-hidden bg-black ${
           reverse ? "md:order-1" : "md:order-2"
         }`}
@@ -125,7 +131,7 @@ function ServiceRow({
         >
           {item.title}
         </p>
-      </div>
+      </Reveal>
     </div>
   );
 }

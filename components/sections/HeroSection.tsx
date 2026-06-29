@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { RotatingWord } from "@/components/ui/RotatingWord";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
+import { Reveal } from "@/components/ui/Reveal";
 
 type HeroSectionProps = {
   eyebrow?: string;
@@ -46,9 +47,12 @@ export function HeroSection({
       />
       <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col items-start justify-center px-6">
         {eyebrow && (
-          <p className="text-panna/90 mb-5 text-sm font-semibold tracking-[0.38em] uppercase">
+          <Reveal
+            as="p"
+            className="text-panna/90 mb-5 text-sm font-semibold tracking-[0.38em] uppercase"
+          >
             {eyebrow}
-          </p>
+          </Reveal>
         )}
         <h1 className="text-panna max-w-none font-[family-name:var(--font-neue-montreal)] text-[clamp(3.025rem,1.98rem+4.4vw,5.5rem)] leading-[1.1] font-normal">
           {headlinePrefix && headlineWords ? (
@@ -63,11 +67,17 @@ export function HeroSection({
             headline
           )}
         </h1>
-        <p className="text-panna/80 mt-5 max-w-lg text-lg leading-relaxed whitespace-pre-line">
+        <Reveal
+          as="p"
+          delay={120}
+          className="text-panna/80 mt-5 max-w-lg text-lg leading-relaxed whitespace-pre-line"
+        >
           {subheadline}
-        </p>
+        </Reveal>
 
-        <ScrollIndicator targetId="contenuto" />
+        <Reveal delay={220}>
+          <ScrollIndicator targetId="contenuto" />
+        </Reveal>
       </div>
     </section>
   );
