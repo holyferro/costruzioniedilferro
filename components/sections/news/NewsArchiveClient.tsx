@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/client";
@@ -78,7 +78,6 @@ export function NewsArchiveClient({ articles, categoryCounts }: NewsArchiveClien
           setPage(1);
         }}
         categoryCounts={categoryCounts}
-        totalShown={filtered.length}
       />
       <NewsGrid items={pageItems} onOpen={handleOpen} />
       <Pagination
@@ -97,7 +96,7 @@ export function NewsArchiveClient({ articles, categoryCounts }: NewsArchiveClien
 /* ---- Placeholder ---- */
 function NewsPlaceholder() {
   return (
-    <section className="bg-panna py-24 pb-32">
+    <section className="bg-surface py-24 pb-32">
       <div className="mx-auto max-w-[1280px] px-6 md:px-12">
         <div className="border-border grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
           {[0, 1, 2].map((i) => (
@@ -127,27 +126,11 @@ function FilterBar({
   active,
   onChange,
   categoryCounts,
-  totalShown,
 }: {
   active: string;
   onChange: (v: string) => void;
   categoryCounts: Record<string, number>;
-  totalShown: number;
 }) {
-  const [stuck, setStuck] = useState(false);
-  const sentinelRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = sentinelRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(([e]) => setStuck(!(e?.isIntersecting ?? true)), {
-      threshold: 0,
-      rootMargin: "-1px 0px 0px 0px",
-    });
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
   // Build ordered category list from counts
   const categories = useMemo(() => {
     const ordered = CATEGORY_ORDER.filter((id) => (categoryCounts[id] ?? 0) > 0);
@@ -163,38 +146,26 @@ function FilterBar({
   }, [categoryCounts]);
 
   return (
-    <>
-      <div ref={sentinelRef} />
-      <div
-        className="border-border bg-panna z-30 border-b transition-shadow duration-[250ms] md:sticky"
-        style={{
-          top: "var(--header-height, 78px)",
-          boxShadow: stuck ? "0 4px 18px rgba(10,24,48,0.06)" : "none",
-        }}
-      >
-        <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-4 px-6 py-5 md:px-12">
-          <div className="flex flex-wrap gap-2">
-            {categories.map((c) => (
-              <button
-                key={c.id}
-                onClick={() => onChange(c.id)}
-                className="cursor-pointer rounded-full border px-[18px] py-[9px] font-[family-name:var(--font-neue-montreal)] text-[12px] font-medium tracking-[0.14em] uppercase transition-colors"
-                style={{
-                  background: active === c.id ? "var(--color-brand)" : "transparent",
-                  color: active === c.id ? "var(--color-panna)" : "rgba(26,26,26,0.7)",
-                  borderColor: active === c.id ? "var(--color-brand)" : "var(--color-border)",
-                }}
-              >
-                {c.label}
-              </button>
-            ))}
-          </div>
-          <span className="text-ink/60 font-serif text-sm whitespace-nowrap italic">
-            {totalShown} {totalShown === 1 ? "articolo" : "articoli"}
-          </span>
+    <div className="bg-surface">
+      <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-4 px-6 py-5 md:px-12">
+        <div className="flex flex-wrap gap-2">
+          {categories.map((c) => (
+            <button
+              key={c.id}
+              onClick={() => onChange(c.id)}
+              className="cursor-pointer rounded-full border px-[18px] py-[9px] font-[family-name:var(--font-neue-montreal)] text-[12px] font-medium tracking-[0.14em] uppercase transition-colors"
+              style={{
+                background: active === c.id ? "var(--color-brand)" : "transparent",
+                color: active === c.id ? "var(--color-panna)" : "rgba(26,26,26,0.7)",
+                borderColor: active === c.id ? "var(--color-brand)" : "var(--color-border)",
+              }}
+            >
+              {c.label}
+            </button>
+          ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -208,7 +179,7 @@ function NewsGrid({
 }) {
   if (items.length === 0) {
     return (
-      <div className="bg-panna py-32 text-center">
+      <div className="bg-surface py-32 text-center">
         <p className="text-ink/70 font-serif text-2xl italic">
           Nessun articolo in questa categoria.
         </p>
@@ -216,7 +187,7 @@ function NewsGrid({
     );
   }
   return (
-    <section className="bg-panna py-16 pb-12">
+    <section className="bg-surface py-16 pb-12">
       <div className="mx-auto max-w-[1280px] px-6 md:px-12">
         <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((a, i) => (
@@ -243,7 +214,7 @@ function ArchiveCard({
     <button
       id={`article-${item.slug}`}
       onClick={() => onOpen(item)}
-      className="group border-border bg-surface flex flex-col border text-left transition-[transform,box-shadow] duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(10,24,48,0.10)]"
+      className="group border-border bg-surface flex flex-col border text-left"
       style={{ animationDelay: `${(index % 6) * 50}ms` }}
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#0a1830]">
@@ -255,8 +226,14 @@ function ArchiveCard({
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="object-cover saturate-95 transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
         />
-        <span className="text-brand absolute top-3.5 left-3.5 rounded-full bg-white/95 px-3 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[10px] font-semibold tracking-[0.22em] uppercase">
+        <span className="absolute top-[18px] left-[18px] rounded-full border border-white/22 bg-white/15 px-3 py-1.5 text-[10px] font-semibold tracking-[0.2em] text-white uppercase backdrop-blur-[8px]">
           {item.category}
+        </span>
+        <span
+          aria-hidden
+          className="absolute bottom-[18px] left-[18px] inline-block text-[18px] leading-none text-white transition-transform duration-[250ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[5px] group-hover:-translate-y-[5px]"
+        >
+          ↗
         </span>
       </div>
 
@@ -295,7 +272,7 @@ function Pagination({
   if (totalPages <= 1) return null;
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
   return (
-    <section className="bg-panna pb-[120px]">
+    <section className="bg-surface pb-[120px]">
       <div className="border-border mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-6 border-t px-6 pt-8 md:px-12">
         <span className="text-ink/60 font-serif text-base italic">
           Pagina <span className="text-ink">{String(page).padStart(2, "0")}</span> di{" "}

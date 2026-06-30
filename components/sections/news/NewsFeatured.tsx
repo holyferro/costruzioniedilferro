@@ -8,7 +8,7 @@ interface NewsFeaturedProps {
 
 export function NewsFeatured({ article }: NewsFeaturedProps) {
   return (
-    <section className="bg-panna py-20 pb-[100px]">
+    <section className="bg-white py-20 pb-[100px]">
       <div className="mx-auto max-w-[1280px] px-6 md:px-12">
         <div className="mb-8 flex items-baseline justify-between">
           <div className="whitespace-nowrap">

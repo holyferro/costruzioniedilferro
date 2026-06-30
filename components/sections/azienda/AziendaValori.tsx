@@ -121,7 +121,7 @@ function ValueCard({ n, pillar, title, body, isActive, onClick }: ValueCardProps
       >
         {n}
       </span>
-      <div>
+      <div className="relative z-10">
         <p
           className={`mb-4 text-[10px] font-semibold tracking-[0.28em] uppercase ${
             isActive ? "text-panna/55" : "text-panna/40"
