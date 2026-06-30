@@ -40,10 +40,6 @@ const entries: TimelineEntry[] = [
     eyebrow: "Tre generazioni, una visione",
     title: "Continuità imprenditoriale",
     body: "Il passaggio generazionale trasforma l'eredità familiare in continuità imprenditoriale, mantenendo intatti valori e metodo.",
-    image: {
-      src: "/images/azienda/team-luca.jpg",
-      alt: "Luca Ferro rappresenta il passaggio generazionale di Costruzioni Edilferro",
-    },
     featured: "generational",
   },
   {
