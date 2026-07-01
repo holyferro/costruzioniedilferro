@@ -89,7 +89,7 @@ export function HomepageCta({
             </Link>
             <Link
               href={secondaryCta.href as Route<string>}
-              className="border-panna/40 hover:bg-panna/10 inline-flex items-center justify-between rounded-full border bg-transparent px-7 py-5 font-[family-name:var(--font-neue-montreal)] text-[15px] font-medium tracking-[0.04em] text-white uppercase transition-colors"
+              className="border-panna/40 bg-brand hover:border-panna inline-flex items-center justify-between rounded-full border px-7 py-5 font-[family-name:var(--font-neue-montreal)] text-[15px] font-medium tracking-[0.04em] text-white uppercase transition-colors"
             >
               {secondaryCta.label} <span aria-hidden="true">→</span>
             </Link>

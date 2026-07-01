@@ -154,7 +154,7 @@ export function ProgettiGrid({
                     <div
                       key={card.key}
                       onClick={() => setActiveKey(card.key)}
-                      className="group relative cursor-pointer overflow-hidden bg-black"
+                      className="group relative cursor-pointer overflow-hidden bg-black transition-shadow duration-300 hover:shadow-[0_12px_48px_rgba(10,42,107,0.10)]"
                       style={
                         card.wide
                           ? {
