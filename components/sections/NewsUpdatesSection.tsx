@@ -221,7 +221,7 @@ function NewsCard({ item, isFirst, isLoading, onOpen }: NewsCardProps) {
       disabled={isLoading}
       className="group flex w-[clamp(280px,28vw,420px)] shrink-0 snap-start flex-col text-left no-underline disabled:cursor-wait"
     >
-      <div className="border-border bg-surface flex w-full flex-col border transition-[transform,box-shadow] duration-[350ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1 group-hover:shadow-[0_12px_32px_rgba(10,24,48,0.10)]">
+      <div className="border-border bg-surface flex w-full flex-col border">
         {/* Immagine */}
         <div className="bg-ink relative aspect-[4/3] overflow-hidden">
           <Image
@@ -232,17 +232,23 @@ function NewsCard({ item, isFirst, isLoading, onOpen }: NewsCardProps) {
             sizes="(min-width: 1024px) 28vw, (min-width: 768px) 44vw, 80vw"
             className="object-cover saturate-95 transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
           />
-          <div className="absolute top-4 left-4 flex flex-col gap-2">
-            <span className="text-brand self-start rounded-full bg-white/95 px-3 py-1.5 text-[11px] font-semibold tracking-[0.2em] uppercase backdrop-blur-md">
+          <div className="absolute top-[18px] left-[18px] flex flex-col gap-2">
+            <span className="self-start rounded-full border border-white/22 bg-white/15 px-3 py-1.5 text-[10px] font-semibold tracking-[0.2em] text-white uppercase backdrop-blur-[8px]">
               {item.category}
             </span>
             {isFirst && (
-              <span className="bg-brand text-panna inline-flex items-center gap-2 self-start rounded-full px-3 py-1.5 text-[10px] font-semibold tracking-[0.22em] uppercase">
+              <span className="bg-brand/85 text-panna inline-flex items-center gap-2 self-start rounded-full border border-white/22 px-3 py-1.5 text-[10px] font-semibold tracking-[0.2em] uppercase backdrop-blur-[8px]">
                 <span className="bg-panna inline-block h-1.5 w-1.5 rounded-full" />
                 Più recente
               </span>
             )}
           </div>
+          <span
+            aria-hidden="true"
+            className="absolute bottom-[18px] left-[18px] inline-block text-[18px] leading-none text-white transition-transform duration-[250ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[5px] group-hover:-translate-y-[5px]"
+          >
+            ↗
+          </span>
         </div>
 
         {/* Corpo card */}
