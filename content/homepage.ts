@@ -131,8 +131,8 @@ export const homepageContent: HomepageContent = {
   },
   trustStrip: {
     eyebrow: "Affidabilità misurabile",
-    title: "Quattro numeri, oltre quarantacinque anni di lavoro.",
-    body: "Dati verificabili, aggiornati al bilancio dell'ultimo esercizio. Nessuna stima di comodo.",
+    title: "L'esperienza si misura.",
+    body: "Dati e certificazioni verificabili, aggiornati al bilancio dell'ultimo esercizio. Nessuna stima di comodo.",
     rows: [
       {
         value: "45+",

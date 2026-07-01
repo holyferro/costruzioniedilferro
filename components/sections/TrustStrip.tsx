@@ -30,16 +30,7 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
         <div className="lg:sticky lg:top-[calc(var(--header-height)+24px)] lg:self-start">
           <Eyebrow>{eyebrow}</Eyebrow>
           <h2 className="text-ink mt-5 max-w-[15ch] font-serif text-[clamp(2rem,1rem+2.6vw,3.4rem)] leading-[1.12] font-medium tracking-tight">
-            {title.split("quarantacinque").map((part, i, arr) =>
-              i < arr.length - 1 ? (
-                <span key={i}>
-                  {part}
-                  <em className="text-brand italic">quarantacinque</em>
-                </span>
-              ) : (
-                <span key={i}>{part}</span>
-              ),
-            )}
+            {title}
           </h2>
           <p className="text-ink/70 mt-6 max-w-[34ch] text-[15px] leading-[1.65]">{body}</p>
         </div>
