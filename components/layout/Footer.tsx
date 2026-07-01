@@ -18,7 +18,7 @@ export function Footer() {
         {/* Main area: content + rotated phone strip */}
         <div className="flex gap-8">
           {/* Content grid */}
-          <div className="grid flex-1 grid-cols-2 gap-5 lg:grid-cols-4 lg:gap-8">
+          <div className="grid flex-1 grid-cols-2 gap-5 xl:grid-cols-4 xl:gap-8">
             {/* Col 1 — Identity */}
             <div>
               <div className="flex items-center gap-5">
@@ -169,8 +169,8 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Rotated phone strip — desktop only (lg+) */}
-          <div className="hidden items-center justify-center border-l border-white/10 pr-0 pl-4 lg:flex">
+          {/* Rotated phone strip — desktop only (xl+) */}
+          <div className="hidden items-center justify-center border-l border-white/10 pr-0 pl-4 xl:flex">
             <a
               href={`tel:${siteContent.contact.phone.tel}`}
               aria-label={`Chiama ${siteContent.brand.name}`}
@@ -182,8 +182,8 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Mobile/tablet phone — shown below content below lg */}
-        <div className="mt-4 flex justify-center border-t border-white/10 pt-4 lg:hidden">
+        {/* Mobile/tablet phone — shown below content below xl */}
+        <div className="mt-4 flex justify-center border-t border-white/10 pt-4 xl:hidden">
           <a
             href={`tel:${siteContent.contact.phone.tel}`}
             className="text-xl font-bold tracking-wider text-white/80 hover:text-white"
@@ -193,7 +193,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-4 flex flex-col gap-3 border-t border-white/10 pt-4 text-xs text-white/40 lg:mt-8 lg:flex-row lg:items-center lg:justify-between lg:gap-4 lg:pt-6">
+        <div className="mt-4 flex flex-col gap-3 border-t border-white/10 pt-4 text-xs text-white/40 xl:mt-8 xl:flex-row xl:items-center xl:justify-between xl:gap-4 xl:pt-6">
           <p>
             © {new Date().getFullYear()} {legalContent.ragioneSociale}. Tutti i diritti riservati.
           </p>

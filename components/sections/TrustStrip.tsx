@@ -45,10 +45,9 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
         </div>
 
         {/* Stats */}
-        <dl className="md:grid md:grid-cols-2 md:gap-x-8 lg:block">
+        <dl className="lg:block">
           {rows.map((r, i) => {
             const isLast = i === rows.length - 1;
-            const isSecondToLast = i === rows.length - 2;
             const isText = isNaN(parseFloat(String(r.value)));
             const isLogo = i === 0;
 
@@ -58,14 +57,14 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
                 delay={i * 60}
                 className={[
                   "border-border grid grid-cols-[auto_1fr] items-baseline gap-x-5 gap-y-2 border-t py-7",
-                  // tablet: mantiene [auto_1fr], sub sotto span-2
-                  "md:items-start md:gap-x-5 md:py-6",
+                  // tablet: mantiene [auto_1fr], allineamento invariato (items-baseline)
+                  "md:gap-x-5 md:py-6",
                   // iPad landscape: numero fisso + label flex + sub a destra
                   "lg:grid-cols-[120px_1fr_140px] lg:items-center lg:gap-x-6 lg:py-7",
                   // desktop
                   "xl:grid-cols-[180px_1fr_200px] xl:gap-x-8 xl:py-8",
                   // bordi separatori verticali
-                  isLast ? "border-b" : isSecondToLast ? "md:border-b lg:border-b-0" : "",
+                  isLast ? "border-b" : "",
                 ].join(" ")}
               >
                 {/* Numero grande — o logo 45° per la prima riga */}
@@ -73,7 +72,7 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
                   className={[
                     "text-ink font-serif leading-none font-medium",
                     isText
-                      ? "text-4xl tracking-[0.18em] lg:text-5xl lg:tracking-tight xl:text-6xl"
+                      ? "text-4xl tracking-tight lg:text-5xl xl:text-6xl"
                       : "text-5xl tracking-tight lg:text-6xl",
                   ].join(" ")}
                 >
@@ -83,7 +82,7 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
                       alt="45 anni di attività — Costruzioni Edilferro"
                       width={160}
                       height={160}
-                      className="-my-2 -ml-[13px] h-24 w-auto mix-blend-multiply lg:-my-3 lg:-ml-[17px] lg:h-28"
+                      className="-my-2 -ml-[13px] h-24 w-auto translate-y-[10px] mix-blend-multiply md:translate-y-0 lg:-my-3 lg:-ml-[17px] lg:h-28"
                     />
                   ) : (
                     <CountUpNumber value={r.value} />
