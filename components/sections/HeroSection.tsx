@@ -45,6 +45,11 @@ export function HeroSection({
         className="absolute inset-0 bg-gradient-to-r from-[#12142b]/80 via-[#12142b]/35 to-transparent"
         aria-hidden="true"
       />
+      {/* Scrim scuro in basso — garantisce contrasto WCAG AA alla CTA "Scopri di più" indipendentemente dalla luminosità del punto dell'immagine sottostante */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-[#12142b]/70 to-transparent"
+        aria-hidden="true"
+      />
       <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col items-start justify-center px-6">
         {eyebrow && (
           <Reveal
@@ -59,7 +64,7 @@ export function HeroSection({
             <>
               <span className="block">{headlinePrefix}</span>
               {/* Mobile: wrapping allowed, 2-line slot; desktop: nowrap, 1-line slot */}
-              <span className="-mt-[0.1em] block min-h-[2.2em] font-bold md:min-h-[1.2em] md:whitespace-nowrap">
+              <span className="-mt-[0.1em] block min-h-[2.4em] font-bold md:min-h-[1.2em] md:whitespace-nowrap">
                 <RotatingWord words={headlineWords} />
               </span>
             </>
@@ -70,7 +75,7 @@ export function HeroSection({
         <Reveal
           as="p"
           delay={120}
-          className="text-panna/80 mt-5 max-w-lg text-lg leading-relaxed whitespace-pre-line"
+          className="text-panna/80 mt-3 max-w-lg text-lg leading-relaxed whitespace-pre-line"
         >
           {subheadline}
         </Reveal>
