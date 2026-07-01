@@ -134,10 +134,7 @@ export const certificazioniContent = {
   },
 
   finalCta: {
-    eyebrow: "Iniziamo a parlarne",
     headline: "Ogni progetto comincia con un sopralluogo gratuito.",
     body: "Raccontaci l'opera. Portiamo l'esperienza di quarant'anni di cantieri e tutte le qualifiche che servono per realizzarla.",
-    primaryCta: { label: "Richiedi un sopralluogo", href: "/contatti" },
-    secondaryCta: { label: "Richiedi un preventivo", href: "/contatti" },
   },
 };

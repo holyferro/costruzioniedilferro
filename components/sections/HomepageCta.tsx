@@ -67,13 +67,15 @@ export function HomepageCta({
               </div>
               <div>
                 <p className="text-panna/60 text-[11px] tracking-[0.22em] uppercase">Orari</p>
-                <p className="mt-2.5 font-serif text-base leading-snug text-white md:text-lg">
-                  {contact.hours.map((h) => (
-                    <span key={h} className="block">
-                      {h}
-                    </span>
-                  ))}
-                </p>
+                <div className="mt-2.5 font-serif text-white">
+                  <p className="text-base leading-snug md:text-lg">{contact.schedule.weekdays}</p>
+                  <div className="mt-1 grid grid-cols-1 gap-x-4 gap-y-0.5 text-sm leading-snug sm:grid-cols-[auto_1fr] sm:items-baseline md:text-base">
+                    <span className="text-panna/60">Mattino</span>
+                    <span className="whitespace-nowrap">{contact.schedule.morning}</span>
+                    <span className="text-panna/60">Pomeriggio</span>
+                    <span className="whitespace-nowrap">{contact.schedule.afternoon}</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -95,19 +97,21 @@ export function HomepageCta({
             <div className="border-panna/20 mt-3 flex flex-col gap-3 border-t pt-4 md:mt-5 md:gap-3.5 md:pt-6">
               <a
                 href={`tel:${contact.phone.tel}`}
-                className="hover:text-panna flex items-baseline justify-between text-white no-underline transition-colors"
+                className="hover:text-panna flex flex-col text-white no-underline transition-colors"
               >
                 <span className="text-panna/60 text-[11px] tracking-[0.22em] uppercase">
                   Telefono
                 </span>
-                <span className="font-serif text-lg tracking-tight">{contact.phone.display}</span>
+                <span className="mt-1 font-serif text-lg tracking-tight">
+                  {contact.phone.display}
+                </span>
               </a>
               <a
                 href={`mailto:${contact.email}`}
-                className="hover:text-panna flex items-baseline justify-between gap-3 text-white no-underline transition-colors"
+                className="hover:text-panna flex flex-col text-white no-underline transition-colors"
               >
                 <span className="text-panna/60 text-[11px] tracking-[0.22em] uppercase">Email</span>
-                <span className="font-serif text-base tracking-tight md:text-[17px]">
+                <span className="mt-1 font-serif text-base tracking-tight md:text-[17px]">
                   {contact.email}
                 </span>
               </a>

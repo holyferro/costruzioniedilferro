@@ -4,6 +4,7 @@ import { AziendaStoria } from "@/components/sections/azienda/AziendaStoria";
 import { AziendaValori } from "@/components/sections/azienda/AziendaValori";
 import { AziendaCertificazioni } from "@/components/sections/azienda/AziendaCertificazioni";
 import { HomepageCta } from "@/components/sections/HomepageCta";
+import { defaultFinalCta } from "@/content/finalCta";
 
 export const metadata = buildMetadata({
   title: "L'Azienda",
@@ -20,11 +21,9 @@ export default function AziendaPage() {
       <AziendaValori />
       <AziendaCertificazioni />
       <HomepageCta
-        eyebrow="Iniziamo a parlarne"
+        {...defaultFinalCta}
         headline="Un'impresa con cui vale la pena lavorare."
         body="Portiamo la stessa solidità che leggete in questa pagina su ogni cantiere che accettiamo. Scriveteci, chiamateci o venite a trovarci in sede."
-        primaryCta={{ label: "Richiedi un sopralluogo", href: "/contatti" }}
-        secondaryCta={{ label: "Richiedi un preventivo", href: "/contatti" }}
       />
     </>
   );

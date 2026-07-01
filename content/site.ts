@@ -15,7 +15,15 @@ export type SiteContact = {
   };
   readonly email: string;
   readonly pec: string;
+  // hours e schedule descrivono la stessa informazione in due formati (stringa vs
+  // strutturato) — tenerli allineati quando cambiano gli orari.
   readonly hours: readonly string[];
+  readonly schedule: {
+    readonly weekdays: string;
+    readonly morning: string;
+    readonly afternoon: string;
+    readonly saturday: string;
+  };
 };
 
 export type SiteAddress = {
@@ -52,7 +60,15 @@ export const siteContent: SiteContent = {
     },
     email: "info@costruzioniedilferro.com",
     pec: "costruzioniedilferro@pec-neispa.com",
-    hours: ["Lun–Ven 8:30 - 12:30 e 14:30 - 18:30", "Sab su appuntamento"],
+    // hours e schedule descrivono la stessa informazione in due formati (stringa vs
+    // strutturato) — tenerli allineati quando cambiano gli orari.
+    hours: ["Lun–Ven 8:30–12:30 e 14:30–18:30", "Sab su appuntamento"],
+    schedule: {
+      weekdays: "Lun–Ven",
+      morning: "8:30–12:30",
+      afternoon: "14:30–18:30",
+      saturday: "su appuntamento",
+    },
   },
   address: {
     street: "Via dei Salici 7/9",

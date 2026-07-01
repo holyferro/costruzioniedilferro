@@ -4,6 +4,7 @@ import { LavoriHero } from "@/components/sections/lavori/LavoriHero";
 import { LavoriManifesto } from "@/components/sections/lavori/LavoriManifesto";
 import { ProgettiGrid } from "@/components/sections/lavori/ProgettiGrid";
 import { HomepageCta } from "@/components/sections/HomepageCta";
+import { defaultFinalCta } from "@/content/finalCta";
 import { serverClient } from "@/sanity/lib/client";
 import { allRealizzazioniQuery } from "@/sanity/lib/queries";
 import { sanityToProject } from "@/sanity/lib/realizzazione-helpers";
@@ -88,11 +89,10 @@ function RealizzazioniLayout({
       <LavoriManifesto />
       <ProgettiGrid cards={cards} projects={projects} />
       <HomepageCta
-        eyebrow="Iniziamo a parlarne"
+        {...defaultFinalCta}
         headline="Il prossimo cantiere può essere il vostro."
         body="Portiamo lo stesso metodo, la stessa squadra e la stessa attenzione al dettaglio che vedete in ogni progetto di questo archivio."
-        primaryCta={{ label: "Richiedi un sopralluogo", href: "/contatti" }}
-        secondaryCta={{ label: "Richiedi un preventivo", href: "/contatti" }}
+        secondaryCta={{ label: "Scopri i servizi", href: "/servizi" }}
       />
     </>
   );

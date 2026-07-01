@@ -67,11 +67,8 @@ export type ServicesContent = {
     readonly items: readonly FaqItem[];
   };
   readonly finalCta: {
-    readonly eyebrow: string;
     readonly headline: string;
     readonly body: string;
-    readonly primaryCta: { readonly label: string; readonly href: string };
-    readonly secondaryCta: { readonly label: string; readonly href: string };
   };
 };
 
@@ -332,10 +329,7 @@ export const servicesContent: ServicesContent = {
     ],
   },
   finalCta: {
-    eyebrow: "Iniziamo a parlarne",
     headline: "Hai un progetto? Parliamone.",
     body: "Raccontaci l'opera. Veniamo sul posto, valutiamo fattibilità e tempi, e prepariamo un'offerta dettagliata entro dieci giorni lavorativi. Nessun costo, nessun impegno.",
-    primaryCta: { label: "Richiedi un sopralluogo", href: "/contatti" },
-    secondaryCta: { label: "Richiedi un preventivo", href: "/contatti" },
   },
 } as const;

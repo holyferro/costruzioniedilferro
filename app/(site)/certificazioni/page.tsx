@@ -7,6 +7,7 @@ import { SoaSection } from "@/components/sections/SoaSection";
 import { CertificazioniGrid } from "@/components/sections/CertificazioniGrid";
 import { RinnoviSection } from "@/components/sections/RinnoviSection";
 import { HomepageCta } from "@/components/sections/HomepageCta";
+import { defaultFinalCta } from "@/content/finalCta";
 
 export const metadata = buildMetadata({
   title: "Certificazioni",
@@ -23,7 +24,7 @@ export default function CertificazioniPage() {
       <SoaSection {...soa} />
       <CertificazioniGrid certCards={certCards} eyebrow="Altre qualifiche e affiliazioni" />
       <RinnoviSection {...rinnovi} />
-      <HomepageCta {...finalCta} />
+      <HomepageCta {...defaultFinalCta} {...finalCta} />
     </>
   );
 }

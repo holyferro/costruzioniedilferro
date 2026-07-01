@@ -10,6 +10,7 @@ import { ServicesEditorialRow } from "@/components/sections/ServicesEditorialRow
 import { HowWeWork } from "@/components/sections/HowWeWork";
 import { ServicesFaq } from "@/components/sections/ServicesFaq";
 import { HomepageCta } from "@/components/sections/HomepageCta";
+import { defaultFinalCta } from "@/content/finalCta";
 
 export const metadata = buildMetadata({
   title: "Servizi",
@@ -35,7 +36,7 @@ export default function ServiziPage() {
       ))}
       <HowWeWork {...howWeWork} />
       <ServicesFaq {...faq} />
-      <HomepageCta {...finalCta} />
+      <HomepageCta {...defaultFinalCta} {...finalCta} />
     </>
   );
 }

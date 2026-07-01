@@ -7,6 +7,7 @@ import { NewsHero } from "@/components/sections/news/NewsHero";
 import { NewsFeatured } from "@/components/sections/news/NewsFeatured";
 import { NewsArchiveClient } from "@/components/sections/news/NewsArchiveClient";
 import { HomepageCta } from "@/components/sections/HomepageCta";
+import { defaultFinalCta } from "@/content/finalCta";
 
 export const revalidate = 3600;
 
@@ -41,11 +42,9 @@ export default async function NewsPage() {
         <NewsArchiveClient articles={articles} categoryCounts={categoryCounts} />
       </Suspense>
       <HomepageCta
-        eyebrow="Lavoriamo insieme"
+        {...defaultFinalCta}
         headline="Hai un progetto in mente?"
         body="Raccontaci quello che vuoi costruire. Valutiamo insieme fattibilità, tempistiche e approccio tecnico senza impegno."
-        primaryCta={{ label: "Richiedi un sopralluogo", href: "/contatti" }}
-        secondaryCta={{ label: "Guarda i nostri lavori", href: "/lavori" }}
       />
     </>
   );

@@ -15,6 +15,7 @@ import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { NewsUpdatesSection } from "@/components/sections/NewsUpdatesSection";
 import { ServiceAreaSection } from "@/components/sections/ServiceAreaSection";
 import { HomepageCta } from "@/components/sections/HomepageCta";
+import { defaultFinalCta } from "@/content/finalCta";
 
 export const revalidate = 3600;
 
@@ -66,7 +67,7 @@ export default async function Home() {
         <NewsUpdatesSection {...homepageContent.newsUpdates} items={newsItems} />
       )}
       <ServiceAreaSection {...homepageContent.serviceArea} />
-      <HomepageCta {...homepageContent.finalCta} />
+      <HomepageCta {...defaultFinalCta} {...homepageContent.finalCta} />
     </>
   );
 }
