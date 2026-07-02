@@ -90,12 +90,16 @@ function ServiceRow({
         </h3>
         <p className="text-panna/75 mt-5 max-w-[52ch] text-base leading-[1.65]">{item.body}</p>
         <ul className="mt-7 flex flex-wrap gap-2">
-          {item.tags.map((t) => (
-            <li
-              key={t}
-              className="text-panna/85 border-panna/20 rounded-full border px-3.5 py-1.5 text-xs"
-            >
-              {t}
+          {pairs(item.tags).map((pair, i) => (
+            <li key={i} className="flex gap-2">
+              {pair.map((t) => (
+                <span
+                  key={t}
+                  className="text-panna/85 border-panna/20 rounded-full border px-3.5 py-1.5 text-xs"
+                >
+                  {t}
+                </span>
+              ))}
             </li>
           ))}
         </ul>
@@ -134,6 +138,12 @@ function ServiceRow({
       </Reveal>
     </div>
   );
+}
+
+function pairs<T>(arr: readonly T[]): T[][] {
+  const out: T[][] = [];
+  for (let i = 0; i < arr.length; i += 2) out.push(arr.slice(i, i + 2));
+  return out;
 }
 
 function DarkEyebrow({ children }: { children: React.ReactNode }) {
