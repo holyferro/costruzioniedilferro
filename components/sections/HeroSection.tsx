@@ -37,7 +37,7 @@ export function HeroSection({
         fill
         priority
         sizes="100vw"
-        className="object-cover object-[68%_27%] md:object-[center_27%]"
+        className="object-cover object-[90%_27%] md:object-[center_27%]"
         quality={85}
       />
       {/* Gradiente grigio sinistra→destra */}
