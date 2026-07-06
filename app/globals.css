@@ -91,6 +91,27 @@ svg {
   }
 }
 
+/* ---------- Anelli ornamentali: respirazione lenta ---------- */
+@keyframes ringBreathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.045);
+  }
+}
+
+.animate-ring-breathe {
+  animation: ringBreathe 12s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ring-breathe {
+    animation: none;
+  }
+}
+
 /* ---------- Scrollbar ---------- */
 @supports (-moz-appearance: none) {
   html {

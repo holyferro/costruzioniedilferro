@@ -2,6 +2,7 @@
 import { buildMetadata } from "@/lib/seo/metadata";
 import { siteContent } from "@/content/site";
 import { ContattiForm } from "@/components/sections/ContattiForm";
+import { DecorativeRings } from "@/components/ui/DecorativeRings";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 export const metadata = buildMetadata({
@@ -20,19 +21,7 @@ export default function ContattiPage() {
     <>
       {/* ── Hero: bg-brand + anelli, identico a HomepageCta ── */}
       <section className="bg-brand text-panna relative overflow-hidden px-6 pt-16 pb-16 md:px-12 md:pt-20 md:pb-20">
-        {/* Anelli ornamentali concentrici — stessa grafica di HomepageCta */}
-        <span
-          aria-hidden="true"
-          className="border-panna/10 pointer-events-none absolute top-[-120px] right-[-100px] h-[520px] w-[520px] rounded-full border"
-        />
-        <span
-          aria-hidden="true"
-          className="border-panna/[0.07] pointer-events-none absolute top-[-220px] right-[-200px] h-[740px] w-[740px] rounded-full border"
-        />
-        <span
-          aria-hidden="true"
-          className="border-panna/[0.04] pointer-events-none absolute top-[-320px] right-[-300px] h-[960px] w-[960px] rounded-full border"
-        />
+        <DecorativeRings side="right" />
 
         <div className="relative mx-auto max-w-6xl">
           <p className="text-panna/55 text-xs font-semibold tracking-[0.38em] uppercase">
@@ -100,19 +89,7 @@ export default function ContattiPage() {
 
       {/* ── Fascia informazioni aziendali ── */}
       <section className="bg-brand text-panna relative overflow-hidden px-6 py-14 md:px-12 md:py-16">
-        {/* Anelli ornamentali — speculari all'hero, lato sinistro */}
-        <span
-          aria-hidden="true"
-          className="border-panna/10 pointer-events-none absolute top-[-120px] left-[-100px] h-[520px] w-[520px] rounded-full border"
-        />
-        <span
-          aria-hidden="true"
-          className="border-panna/[0.07] pointer-events-none absolute top-[-220px] left-[-200px] h-[740px] w-[740px] rounded-full border"
-        />
-        <span
-          aria-hidden="true"
-          className="border-panna/[0.04] pointer-events-none absolute top-[-320px] left-[-300px] h-[960px] w-[960px] rounded-full border"
-        />
+        <DecorativeRings side="left" />
         <div className="relative mx-auto max-w-6xl">
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-4 md:gap-8 lg:gap-12">
             <InfoBlock icon={<MapPin className="h-4 w-4" />} label="Sede operativa">

@@ -7,6 +7,7 @@
 import Link from "next/link";
 import type { Route } from "next";
 import { siteContent } from "@/content/site";
+import { DecorativeRings } from "@/components/ui/DecorativeRings";
 
 type HomepageCtaProps = {
   eyebrow: string;
@@ -29,19 +30,7 @@ export function HomepageCta({
       id="contatti"
       className="bg-brand text-panna relative overflow-hidden py-12 pb-24 md:py-24 md:pb-24"
     >
-      {/* Anelli ornamentali concentrici, top-right */}
-      <span
-        aria-hidden="true"
-        className="border-panna/10 pointer-events-none absolute top-[-120px] right-[-100px] h-[520px] w-[520px] rounded-full border"
-      />
-      <span
-        aria-hidden="true"
-        className="border-panna/[0.07] pointer-events-none absolute top-[-220px] right-[-200px] h-[740px] w-[740px] rounded-full border"
-      />
-      <span
-        aria-hidden="true"
-        className="border-panna/[0.04] pointer-events-none absolute top-[-320px] right-[-300px] h-[960px] w-[960px] rounded-full border"
-      />
+      <DecorativeRings side="right" />
 
       <div className="relative mx-auto max-w-6xl px-6 md:px-12">
         <div className="grid items-center gap-8 md:grid-cols-[1.3fr_1fr] md:gap-20">
