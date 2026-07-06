@@ -3,6 +3,7 @@ import { AziendaHero } from "@/components/sections/azienda/AziendaHero";
 import { AziendaStoria } from "@/components/sections/azienda/AziendaStoria";
 import { AziendaValori } from "@/components/sections/azienda/AziendaValori";
 import { AziendaCertificazioni } from "@/components/sections/azienda/AziendaCertificazioni";
+import { AziendaTestimonianze } from "@/components/sections/azienda/AziendaTestimonianze";
 import { HomepageCta } from "@/components/sections/HomepageCta";
 import { defaultFinalCta } from "@/content/finalCta";
 
@@ -20,6 +21,7 @@ export default function AziendaPage() {
       <AziendaStoria />
       <AziendaValori />
       <AziendaCertificazioni />
+      <AziendaTestimonianze />
       <HomepageCta
         {...defaultFinalCta}
         headline="Un'impresa con cui vale la pena lavorare."
