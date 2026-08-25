@@ -3,6 +3,7 @@ import { Inter, IBM_Plex_Serif } from "next/font/google";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { ImageProtection } from "@/components/ui/ImageProtection";
 
 const neueMontreal = localFont({
   src: [
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     >
       <body className="bg-panna text-ink antialiased">
         {children}
+        <ImageProtection />
         <Analytics />
         <SpeedInsights />
       </body>

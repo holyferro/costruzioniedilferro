@@ -80,6 +80,13 @@ svg {
   max-width: 100%;
 }
 
+/* Anchor images to the page: no drag-out, no drag-ghost, no text-selection */
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
 /* ---------- Scroll indicator bounce ---------- */
 @keyframes scrollBounce {
   0%,

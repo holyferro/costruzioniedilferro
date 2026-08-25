@@ -1,4 +1,5 @@
 // app/contatti/page.tsx
+import type { CSSProperties } from "react";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { siteContent } from "@/content/site";
 import { ContattiForm } from "@/components/sections/ContattiForm";
@@ -63,7 +64,9 @@ export default function ContattiPage() {
                     alt="Mappa sede Costruzioni Edilferro - Via dei Salici 7, Porto Viro"
                     width={800}
                     height={450}
-                    className="absolute inset-0 h-full w-full object-cover"
+                    draggable={false}
+                    className="absolute inset-0 h-full w-full scale-[1.13] object-cover select-none"
+                    style={{ WebkitUserDrag: "none" } as CSSProperties}
                   />
                 </div>
                 <div className="flex shrink-0 flex-col items-center gap-3 px-6 py-5">
