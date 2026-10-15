@@ -3,7 +3,7 @@ id: 20261015-sezione-pianta-soluzioni
 slug: sezione-pianta-soluzioni
 date: 2026-10-15
 status: complete
-commit: pending
+commit: ef4b4a6
 ---
 
 # Sezione home "Dentro il progetto"
