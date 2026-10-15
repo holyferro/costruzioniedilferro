@@ -70,6 +70,15 @@ export type HomepageContent = {
     readonly body: string;
     readonly rows: readonly TrustRow[];
   };
+  readonly fromDrawing: {
+    readonly eyebrow: string;
+    readonly title: string;
+    readonly stageStart: string; // label while the line drawing shows
+    readonly stageEnd: string; // label once the render has taken over
+    readonly drawingSrc: string;
+    readonly renderSrc: string;
+    readonly imageAlt: string;
+  };
   readonly services: {
     readonly eyebrow: string;
     readonly titleStart: string;
@@ -150,6 +159,16 @@ export const homepageContent: HomepageContent = {
         sub: "qualificazione opere pubbliche",
       },
     ],
+  },
+  fromDrawing: {
+    eyebrow: "Dal progetto all'opera",
+    title: "Ogni cantiere nasce da un disegno preciso.",
+    stageStart: "Progetto",
+    stageEnd: "Realizzazione",
+    drawingSrc: "/images/home/dal-progetto-disegno.webp",
+    renderSrc: "/images/home/dal-progetto-render.webp",
+    imageAlt:
+      "Cortile porticato con loggiato ad archi: il disegno a linee del progetto diventa, scorrendo, il render dell'edificio finito",
   },
   services: {
     eyebrow: "Cosa realizziamo",
