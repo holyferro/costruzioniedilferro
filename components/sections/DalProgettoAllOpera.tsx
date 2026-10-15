@@ -32,10 +32,13 @@ const H = (W * IMG_H) / IMG_W;
 const clamp = (v: number) => Math.min(1, Math.max(0, v));
 const smooth = (t: number) => t * t * (3 - 2 * t);
 
-/** Mask shape: everything above a curved edge that sweeps from above the top (p=0) to past the bottom (p=1). */
+/** Mask shape: everything above a curved edge that sweeps from above the top (p=0) to past the bottom (p=1).
+ * The shape overhangs the image by BLEED on the top and sides: the displacement filter also wobbles
+ * those edges, and without the overhang they bite into the picture and show the page background. */
+const BLEED = 150;
 function inkPath(p: number) {
-  const y = -80 + p * (H + 220);
-  return `M0 -10 L${W} -10 L${W} ${y} Q${W / 2} ${y + 110} 0 ${y} Z`;
+  const y = -BLEED - 40 + p * (H + BLEED + 180);
+  return `M${-BLEED} ${-BLEED} L${W + BLEED} ${-BLEED} L${W + BLEED} ${y} Q${W / 2} ${y + 110} ${-BLEED} ${y} Z`;
 }
 
 // ponytail: one optimised src per image (SVG <image> has no srcset); split per breakpoint if mobile weight matters.
