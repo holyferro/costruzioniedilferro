@@ -11,6 +11,7 @@ import type { Realizzazione, SanityNewsPreview } from "@/sanity/lib/types";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { DalProgettoAllOpera } from "@/components/sections/DalProgettoAllOpera";
+import { PiantaSoluzioni } from "@/components/sections/PiantaSoluzioni";
 import { ServiceOverview } from "@/components/sections/ServiceOverview";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { NewsUpdatesSection } from "@/components/sections/NewsUpdatesSection";
@@ -57,6 +58,7 @@ export default async function Home() {
       <TrustStrip {...homepageContent.trustStrip} />
       <DalProgettoAllOpera {...homepageContent.fromDrawing} />
       <ServiceOverview {...homepageContent.services} />
+      <PiantaSoluzioni {...homepageContent.floorPlan} />
       {featuredData && (
         <FeaturedProjects
           {...homepageContent.featuredProjects}
