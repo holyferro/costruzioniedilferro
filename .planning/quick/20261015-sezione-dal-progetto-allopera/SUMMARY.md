@@ -3,7 +3,7 @@ id: 20261015-sezione-dal-progetto-allopera
 slug: sezione-dal-progetto-allopera
 date: 2026-10-15
 status: complete
-commit: pending
+commit: b7fa076
 ---
 
 # Sezione home "Dal progetto all'opera"
