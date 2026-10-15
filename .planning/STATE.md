@@ -71,10 +71,11 @@ None yet.
 
 ### Quick Tasks Completed
 
-| #                                      | Description                                                             | Date       | Commit  | Directory                                                                                                                   |
-| -------------------------------------- | ----------------------------------------------------------------------- | ---------- | ------- | --------------------------------------------------------------------------------------------------------------------------- |
-| 260416-i4n                             | Footer reveal animation fixed behind content pattern                    | 2026-04-16 | 9487647 | [260416-i4n-footer-reveal-animation-fixed-behind-con](.planning/quick/260416-i4n-footer-reveal-animation-fixed-behind-con/) |
-| 20261015-sezione-dal-progetto-allopera | Sezione home "Dal progetto all'opera" (disegno → render con inchiostro) | 2026-10-15 | b7fa076 | [20261015-sezione-dal-progetto-allopera](.planning/quick/20261015-sezione-dal-progetto-allopera/)                           |
+| #                                      | Description                                                                       | Date       | Commit  | Directory                                                                                                                   |
+| -------------------------------------- | --------------------------------------------------------------------------------- | ---------- | ------- | --------------------------------------------------------------------------------------------------------------------------- |
+| 260416-i4n                             | Footer reveal animation fixed behind content pattern                              | 2026-04-16 | 9487647 | [260416-i4n-footer-reveal-animation-fixed-behind-con](.planning/quick/260416-i4n-footer-reveal-animation-fixed-behind-con/) |
+| 20261015-sezione-dal-progetto-allopera | Sezione home "Dal progetto all'opera" (disegno → render con inchiostro)           | 2026-10-15 | b7fa076 | [20261015-sezione-dal-progetto-allopera](.planning/quick/20261015-sezione-dal-progetto-allopera/)                           |
+| 20261015-sezione-pianta-soluzioni      | Sezione home "Dentro il progetto" (pianta che si costruisce + soluzioni con foto) | 2026-10-15 | ef4b4a6 | [20261015-sezione-pianta-soluzioni](.planning/quick/20261015-sezione-pianta-soluzioni/)                                     |
 
 ### Blockers/Concerns
 

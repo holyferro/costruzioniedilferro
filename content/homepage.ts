@@ -46,6 +46,22 @@ export type Zone = {
   readonly primary: boolean;
 };
 
+/** A technical solution pinned on the floor plan. x/y/area are in plan units (see content/piantaPontecchio.ts). */
+export type FloorPlanMarker = {
+  readonly n: string;
+  readonly title: string;
+  readonly norm: string;
+  readonly body: string;
+  readonly x: number;
+  readonly y: number;
+  readonly area: { readonly x: number; readonly y: number; readonly w: number; readonly h: number };
+  readonly photos: readonly {
+    readonly src: string;
+    readonly alt: string;
+    readonly credit?: string;
+  }[];
+};
+
 export type HomepageContent = {
   readonly newsUpdates: {
     readonly eyebrow: string;
@@ -78,6 +94,16 @@ export type HomepageContent = {
     readonly drawingSrc: string;
     readonly renderSrc: string;
     readonly imageAlt: string;
+  };
+  readonly floorPlan: {
+    readonly eyebrow: string;
+    readonly title: string;
+    readonly intro: string;
+    readonly planAlt: string;
+    readonly replayLabel: string;
+    readonly hintTouch: string;
+    readonly hintPointer: string;
+    readonly markers: readonly FloorPlanMarker[];
   };
   readonly services: {
     readonly eyebrow: string;
@@ -169,6 +195,74 @@ export const homepageContent: HomepageContent = {
     renderSrc: "/images/home/dal-progetto-render.webp",
     imageAlt:
       "Cortile porticato con loggiato ad archi: il disegno a linee del progetto diventa, scorrendo, il render dell'edificio finito",
+  },
+  floorPlan: {
+    eyebrow: "Dentro il progetto",
+    title: "Prima dei muri, le scelte che non si vedono.",
+    intro:
+      "La pianta di un nostro cantiere residenziale, costruita pezzo per pezzo: muri, aperture, quote, e i punti in cui lavoriamo oltre lo standard.",
+    planAlt:
+      "Pianta del piano tipo di un edificio residenziale a L, con muri, finestre, scale, balconi, quote e tre soluzioni tecniche evidenziate",
+    replayLabel: "Rivedi la costruzione",
+    hintTouch: "Tocca i punti della pianta per vedere le foto.",
+    hintPointer: "Passa sopra ai punti o agli elementi evidenziati per vedere le foto.",
+    // TODO(testi): titoli confermati; norme e descrizioni ancora segnaposto.
+    // TODO(foto): "segnaposto-*" sono riquadri neri (alt vuoto) in attesa delle foto di cantiere.
+    markers: [
+      {
+        n: "01",
+        title: "Cappotto di ultima generazione",
+        norm: "[Norma da confermare]",
+        body: "Testo segnaposto: isolamento termico continuo sulle facciate, senza ponti termici, per consumi da casa passiva.",
+        x: 1751,
+        y: 3330,
+        area: { x: 1690, y: 1934, w: 120, h: 2551 },
+        photos: [
+          {
+            src: "/images/cantieri/efficientamento-energetico/01.webp",
+            alt: "Edificio residenziale su ponteggio durante la posa del cappotto termico",
+          },
+          {
+            src: "/images/cantieri/casa-passiva-porto-viro/habita-14.webp",
+            alt: "Facciata finita intonacata bianca di una casa passiva a Porto Viro",
+          },
+        ],
+      },
+      {
+        n: "02",
+        title: "Elemento termoisolante portante per balconi",
+        norm: "[Norma da confermare]",
+        body: "Testo segnaposto: il balcone è collegato al solaio con un elemento che porta i carichi e interrompe il ponte termico.",
+        x: 2980,
+        y: 1400,
+        area: { x: 2830, y: 640, w: 240, h: 1530 },
+        photos: [
+          {
+            src: "/images/home/pianta/segnaposto-balcone-termoisolante.webp",
+            alt: "",
+          },
+          {
+            src: "/images/cantieri/casa-passiva-porto-viro/03.webp",
+            alt: "Casa passiva a Porto Viro con balconi in aggetto al primo piano",
+          },
+        ],
+      },
+      {
+        n: "03",
+        title: "Impianto elettrificato con pompa di calore",
+        norm: "[Norma da confermare]",
+        body: "Testo segnaposto: riscaldamento, raffrescamento e acqua calda con pompa di calore, senza gas.",
+        x: 2100,
+        y: 505,
+        area: { x: 1338, y: 405, w: 921, h: 200 },
+        photos: [
+          {
+            src: "/images/home/pianta/segnaposto-pompa-di-calore.webp",
+            alt: "",
+          },
+        ],
+      },
+    ],
   },
   services: {
     eyebrow: "Cosa realizziamo",
