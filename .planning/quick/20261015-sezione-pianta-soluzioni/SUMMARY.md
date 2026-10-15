@@ -41,11 +41,13 @@ Esc o tap fuori dalla sezione chiude. Promossa dalla variante C1 del prototipo (
 - `useStickyProgress` era stato estratto per due sezioni sticky; con la variante non sticky è tornato
   dentro `DalProgettoAllOpera` (file invariato rispetto al commit b7fa076).
 
-## Da completare prima del go-live
+## Da completare
+
+Pubblicata in produzione su richiesta del cliente con i segnaposto ancora presenti:
 
 - Norme e descrizioni dei 3 marcatori: ancora segnaposto (`[Norma da confermare]`, "Testo segnaposto").
-- Foto `riferimento-*`: segnaposto di terzi (schema del produttore fornito dal cliente; foto Wikimedia
-  Commons CC BY-SA 4.0 con marchio visibile). Sostituire con foto di cantiere Edilferro.
+- Foto `segnaposto-*` (marcatori 02 e 03): riquadri neri che hanno sostituito le immagini di terzi
+  (schema del produttore, foto Wikimedia). Sostituire con foto di cantiere Edilferro.
 - Quote: confermare la scala 1:100 con l'architetto.
 
 ## Verifica

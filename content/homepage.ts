@@ -207,8 +207,7 @@ export const homepageContent: HomepageContent = {
     hintTouch: "Tocca i punti della pianta per vedere le foto.",
     hintPointer: "Passa sopra ai punti o agli elementi evidenziati per vedere le foto.",
     // TODO(testi): titoli confermati; norme e descrizioni ancora segnaposto.
-    // TODO(foto): le immagini "riferimento-*" sono segnaposto di terzi (schema del produttore,
-    // foto Wikimedia CC BY-SA con marchio visibile): sostituire con foto di cantiere Edilferro prima del go-live.
+    // TODO(foto): "segnaposto-*" sono riquadri neri (alt vuoto) in attesa delle foto di cantiere.
     markers: [
       {
         n: "01",
@@ -239,9 +238,8 @@ export const homepageContent: HomepageContent = {
         area: { x: 2830, y: 640, w: 240, h: 1530 },
         photos: [
           {
-            src: "/images/home/pianta/riferimento-balcone-termoisolante.webp",
-            alt: "Schema di un balcone con elemento termoisolante tra solaio interno e soletta esterna",
-            credit: "Immagine di riferimento, non definitiva",
+            src: "/images/home/pianta/segnaposto-balcone-termoisolante.webp",
+            alt: "",
           },
           {
             src: "/images/cantieri/casa-passiva-porto-viro/03.webp",
@@ -259,9 +257,8 @@ export const homepageContent: HomepageContent = {
         area: { x: 1338, y: 405, w: 921, h: 200 },
         photos: [
           {
-            src: "/images/home/pianta/riferimento-pompa-di-calore.webp",
-            alt: "Unità esterna di una pompa di calore aria-acqua sotto la neve",
-            credit: "Foto: Wikimedia Commons, CC BY-SA 4.0 (segnaposto)",
+            src: "/images/home/pianta/segnaposto-pompa-di-calore.webp",
+            alt: "",
           },
         ],
       },
