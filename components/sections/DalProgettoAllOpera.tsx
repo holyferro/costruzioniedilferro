@@ -36,6 +36,8 @@ const ease = (t: number) => (t + smooth(t)) / 2;
 
 /** Ease input at which the ink's lowest point (curve bulge + displacement) touches the image bottom. */
 const INK_AT_UNSTICK = 0.78;
+/** Ease input when the section sticks: the sweep has already started while it scrolled in. */
+const INK_AT_STICK = 0.3;
 
 /** Height of the ink edge: sweeps from above the top (p=0) to just past the bottom (p=1). */
 const inkY = (p: number) => -80 + p * (H + 130);
@@ -70,7 +72,7 @@ function optimisedSrc(src: string) {
 }
 
 /** Calls onProgress with how far the section's sticky track has been scrolled: 0 when it sticks, 1 when
- * it unsticks, and on past 1 while it scrolls away. */
+ * it unsticks. Below 0 while it scrolls in, above 1 while it scrolls away. */
 function useStickyProgress(el: RefObject<HTMLElement | null>, onProgress: (p: number) => void) {
   const cb = useRef(onProgress);
   useEffect(() => {
@@ -89,7 +91,7 @@ function useStickyProgress(el: RefObject<HTMLElement | null>, onProgress: (p: nu
       const r = el.current.getBoundingClientRect();
       const travel = r.height - sticky.getBoundingClientRect().height;
       const stickAt = parseFloat(getComputedStyle(sticky).top);
-      cb.current(travel > 0 ? Math.max(0, (stickAt - r.top) / travel) : 0);
+      cb.current(travel > 0 ? (stickAt - r.top) / travel : 0);
     };
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(tick);
@@ -122,9 +124,9 @@ export function DalProgettoAllOpera({
   const id = useId().replace(/[^a-zA-Z0-9]/g, "");
 
   useStickyProgress(track, (p) => {
-    // Sweep starts as the section sticks. It unsticks (p=1) when the ink's lowest point reaches the
-    // image bottom, and the sweep finishes while the section scrolls away.
-    const ink = ease(clamp(p * INK_AT_UNSTICK));
+    // The sweep starts while the section scrolls in, continues while it is stuck, and finishes while it
+    // scrolls away: it unsticks (p=1) when the ink's lowest point reaches the image bottom.
+    const ink = ease(clamp(INK_AT_STICK + p * (INK_AT_UNSTICK - INK_AT_STICK)));
     const y = inkY(ink);
     const d = inkBand(y);
     // Skip no-op writes (every frame before and after the sweep): each write re-runs the filter.
@@ -139,7 +141,7 @@ export function DalProgettoAllOpera({
   return (
     <section aria-label={eyebrow} className="bg-panna pb-12 md:pb-20">
       {/* Track outside the bottom padding, so progress hits 1 exactly when the sticky child unsticks. */}
-      <div ref={track} className="relative h-[168vh]">
+      <div ref={track} className="relative h-[140vh]">
         <div className="sticky top-[var(--header-height)] flex h-[calc(100svh-var(--header-height))] flex-col justify-center overflow-hidden">
           <div className="mx-auto w-full max-w-6xl px-6 lg:px-12">
             <div className="mb-6 flex items-end justify-between gap-6 md:mb-10">
