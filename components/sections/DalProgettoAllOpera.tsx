@@ -31,6 +31,8 @@ const H = (W * IMG_H) / IMG_W;
 
 const clamp = (v: number) => Math.min(1, Math.max(0, v));
 const smooth = (t: number) => t * t * (3 - 2 * t);
+/** Half linear, half smoothstep: the sweep starts and stops softly without long, almost-still tails. */
+const ease = (t: number) => (t + smooth(t)) / 2;
 
 /** Height of the ink edge: sweeps from above the top (p=0) to just past the bottom (p=1). */
 const inkY = (p: number) => -80 + p * (H + 130);
@@ -78,11 +80,14 @@ function useStickyProgress(el: RefObject<HTMLElement | null>, onProgress: (p: nu
     let raf = 0;
     const tick = () => {
       raf = 0;
-      const node = el.current;
-      if (!node) return;
-      const r = node.getBoundingClientRect();
-      const travel = r.height - window.innerHeight;
-      cb.current(clamp(travel > 0 ? -r.top / travel : 0));
+      const sticky = el.current?.firstElementChild;
+      if (!el.current || !sticky) return;
+      // How far the sticky child has slid inside the section: 0 when it sticks under the header,
+      // max when it unsticks.
+      const r = el.current.getBoundingClientRect();
+      const s = sticky.getBoundingClientRect();
+      const travel = r.height - s.height;
+      cb.current(clamp(travel > 0 ? (s.top - r.top) / travel : 0));
     };
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(tick);
@@ -115,7 +120,8 @@ export function DalProgettoAllOpera({
   const id = useId().replace(/[^a-zA-Z0-9]/g, "");
 
   useStickyProgress(track, (p) => {
-    const ink = smooth(clamp((p - 0.12) / 0.7));
+    // Sweep starts as soon as the section sticks; the last 8% holds the finished render briefly.
+    const ink = ease(clamp(p / 0.92));
     const y = inkY(ink);
     const d = inkBand(y);
     // Skip no-op writes (every frame before and after the sweep): each write re-runs the filter.
@@ -128,7 +134,7 @@ export function DalProgettoAllOpera({
   });
 
   return (
-    <section ref={track} aria-label={eyebrow} className="bg-panna relative h-[260vh]">
+    <section ref={track} aria-label={eyebrow} className="bg-panna relative h-[200vh]">
       <div className="sticky top-[var(--header-height)] flex h-[calc(100svh-var(--header-height))] flex-col justify-center overflow-hidden">
         <div className="mx-auto w-full max-w-6xl px-6 lg:px-12">
           <div className="mb-6 flex items-end justify-between gap-6 md:mb-10">
