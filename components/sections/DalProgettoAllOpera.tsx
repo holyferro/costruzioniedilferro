@@ -4,8 +4,8 @@
 // Client Component (scroll-driven). Sezione sticky a tutta larghezza: scorrendo, il render del
 // progetto si sparge dall'alto sopra il disegno a linee con un bordo a inchiostro.
 // Tecnica (come heronaiapp.com, senza GSAP): due <image> in un SVG; il render è mascherato da un
-// path il cui bordo è deformato da feTurbulence + feDisplacementMap. Il path si aggiorna via ref in
-// requestAnimationFrame, nessun re-render per frame.
+// path il cui bordo è deformato da rumore (feTurbulence pre-calcolato) + feDisplacementMap. Il path
+// si aggiorna via ref in requestAnimationFrame, nessun re-render per frame.
 // prefers-reduced-motion: mostra subito il render finale.
 // Mobile (<md): ritaglio 4:3 centrato sull'angolo del portico, il 2:1 sarebbe troppo piccolo.
 
@@ -32,11 +32,26 @@ const H = (W * IMG_H) / IMG_W;
 const clamp = (v: number) => Math.min(1, Math.max(0, v));
 const smooth = (t: number) => t * t * (3 - 2 * t);
 
-/** Mask shape: everything above a curved edge that sweeps from above the top (p=0) to past the bottom (p=1). */
-function inkPath(p: number) {
-  const y = -80 + p * (H + 220);
-  return `M0 -10 L${W} -10 L${W} ${y} Q${W / 2} ${y + 110} 0 ${y} Z`;
-}
+/** Height of the ink edge: sweeps from above the top (p=0) to just past the bottom (p=1). */
+const inkY = (p: number) => -80 + p * (H + 130);
+
+/** Only a thin band along the edge is filtered: the filter's cost grows with the area it covers, and on
+ * WebKit (all iOS browsers) it runs on the CPU every frame. The band's own top edge gets ragged too,
+ * but by at most 35 (displacement scale / 2), so the solid area up to y-10 hides it. */
+const inkBand = (y: number) =>
+  `M0 ${y - 60} L${W} ${y - 60} L${W} ${y} Q${W / 2} ${y + 110} 0 ${y} Z`;
+const inkSolid = (y: number) => String(Math.max(0, y));
+
+// Noise for the ink edge, rendered once as an image and fed to the filter via <feImage>.
+// A live <feTurbulence> is recomputed on every scroll frame in WebKit (all iOS browsers), on the
+// CPU at device resolution: ~200ms frames. Same user-space box, so the edge still morphs as it moves.
+const NOISE = { x: -200, y: -300, width: 1400, height: 1200 };
+const NOISE_SRC = `data:image/svg+xml,${encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${NOISE.x} ${NOISE.y} ${NOISE.width} ${NOISE.height}" width="${NOISE.width}" height="${NOISE.height}">` +
+    `<filter id="n" filterUnits="userSpaceOnUse" x="${NOISE.x}" y="${NOISE.y}" width="${NOISE.width}" height="${NOISE.height}">` +
+    `<feTurbulence type="fractalNoise" baseFrequency="0.045 0.055" numOctaves="4" seed="5"/></filter>` +
+    `<rect x="${NOISE.x}" y="${NOISE.y}" width="${NOISE.width}" height="${NOISE.height}" filter="url(#n)"/></svg>`,
+)}`;
 
 // ponytail: one optimised src per image (SVG <image> has no srcset); split per breakpoint if mobile weight matters.
 function optimisedSrc(src: string) {
@@ -94,13 +109,20 @@ export function DalProgettoAllOpera({
 }: DalProgettoAllOperaProps) {
   const track = useRef<HTMLElement>(null);
   const mask = useRef<SVGPathElement>(null);
+  const solid = useRef<SVGRectElement>(null);
   const bar = useRef<HTMLDivElement>(null);
   const [done, setDone] = useState(false);
   const id = useId().replace(/[^a-zA-Z0-9]/g, "");
 
   useStickyProgress(track, (p) => {
     const ink = smooth(clamp((p - 0.12) / 0.7));
-    mask.current?.setAttribute("d", inkPath(ink));
+    const y = inkY(ink);
+    const d = inkBand(y);
+    // Skip no-op writes (every frame before and after the sweep): each write re-runs the filter.
+    if (mask.current?.getAttribute("d") !== d) {
+      mask.current?.setAttribute("d", d);
+      solid.current?.setAttribute("height", inkSolid(y));
+    }
     if (bar.current) bar.current.style.transform = `scaleX(${ink})`;
     setDone(ink > 0.55);
   });
@@ -131,13 +153,7 @@ export function DalProgettoAllOpera({
           >
             <defs>
               <filter id={`ink${id}`} x="-20%" y="-20%" width="140%" height="140%">
-                <feTurbulence
-                  type="fractalNoise"
-                  baseFrequency="0.045 0.055"
-                  numOctaves="4"
-                  seed="5"
-                  result="noise"
-                />
+                <feImage href={NOISE_SRC} {...NOISE} preserveAspectRatio="none" result="noise" />
                 <feDisplacementMap
                   in="SourceGraphic"
                   in2="noise"
@@ -151,7 +167,8 @@ export function DalProgettoAllOpera({
                 </feComponentTransfer>
               </filter>
               <mask id={`mask${id}`} maskUnits="userSpaceOnUse" x="0" y="0" width={W} height={H}>
-                <path ref={mask} d={inkPath(0)} fill="white" filter={`url(#ink${id})`} />
+                <rect ref={solid} x="0" y="-10" width={W} height={inkSolid(inkY(0))} fill="white" />
+                <path ref={mask} d={inkBand(inkY(0))} fill="white" filter={`url(#ink${id})`} />
               </mask>
             </defs>
             <image href={optimisedSrc(drawingSrc)} width={W} height={H} />
