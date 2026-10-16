@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePrefersReducedMotion } from "@/components/ui/Reveal";
 
 type Props = {
   value: string;
@@ -17,12 +18,13 @@ export function CountUpNumber({ value, className }: Props) {
   const target = match ? parseInt(match[1]!, 10) : null;
   const suffix = match ? (match[2] ?? "") : "";
 
+  const reduced = usePrefersReducedMotion();
   const [display, setDisplay] = useState(0);
   const [started, setStarted] = useState(false);
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (!target) return;
+    if (!target || reduced) return;
     const el = ref.current;
     if (!el) return;
     const observer = new IntersectionObserver(
@@ -37,7 +39,7 @@ export function CountUpNumber({ value, className }: Props) {
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [target]);
+  }, [target, reduced]);
 
   useEffect(() => {
     if (!started || !target) return;
@@ -53,7 +55,8 @@ export function CountUpNumber({ value, className }: Props) {
     requestAnimationFrame(tick);
   }, [started, target]);
 
-  if (!target) {
+  // prefers-reduced-motion: final value, no count-up
+  if (!target || reduced) {
     return <span className={className}>{value}</span>;
   }
 

@@ -11,7 +11,7 @@ export function RealizzazioniEmptyState() {
       >
         Stiamo aggiornando i nostri progetti
       </h3>
-      <p className="text-ink/55 mb-10 text-[15px] leading-relaxed" style={{ maxWidth: "38ch" }}>
+      <p className="text-ink/65 mb-10 text-[15px] leading-relaxed" style={{ maxWidth: "38ch" }}>
         Torna a trovarci a breve per scoprire i nuovi cantieri.
       </p>
       <a href="/contatti" className={buttonClass()}>

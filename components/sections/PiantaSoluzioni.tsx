@@ -197,7 +197,7 @@ export function PiantaSoluzioni({
                         onClick={(e) => onPick(i, e)}
                         onPointerEnter={(e) => isMouse(e) && open(i)}
                         onPointerLeave={(e) => isMouse(e) && closeSoon()}
-                        className={`bg-brand focus-visible:outline-ink grid size-9 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full font-mono text-xs font-semibold text-white shadow-md ring-4 transition-[box-shadow,transform] focus-visible:outline-2 focus-visible:outline-offset-2 ${isOpen ? "ring-brand/35 scale-110" : "ring-brand/15"}`}
+                        className={`bg-brand focus-visible:outline-ink relative grid size-9 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full font-mono text-xs font-semibold text-white shadow-md ring-4 transition-[box-shadow,transform] before:absolute before:-inset-1 before:rounded-full before:content-[''] focus-visible:outline-2 focus-visible:outline-offset-2 ${isOpen ? "ring-brand/35 scale-110" : "ring-brand/15"}`}
                       >
                         {m.n}
                       </button>
@@ -307,7 +307,7 @@ function PhotoCard({ marker }: { marker: FloorPlanMarker }) {
             </div>
           )}
           {photo?.credit && (
-            <p className="text-ink/65 text-right text-[10px] leading-tight">{photo.credit}</p>
+            <p className="text-ink/65 text-right text-[11px] leading-tight">{photo.credit}</p>
           )}
         </div>
       </div>

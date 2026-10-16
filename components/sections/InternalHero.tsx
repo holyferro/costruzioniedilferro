@@ -104,7 +104,7 @@ function HeroBreadcrumb({
 }) {
   return (
     <div className={`flex items-center justify-between ${className}`}>
-      <p className="text-ink/65 tracking-caps text-[10px] font-semibold uppercase">
+      <p className="text-ink/65 tracking-caps text-[11px] font-semibold uppercase">
         Home{" "}
         <span aria-hidden="true" className="mx-1.5 opacity-40">
           /
@@ -112,7 +112,7 @@ function HeroBreadcrumb({
         {page}
       </p>
       {showScroll && (
-        <p className="text-ink/65 tracking-caps text-[10px] font-semibold uppercase">
+        <p className="text-ink/65 tracking-caps text-[11px] font-semibold uppercase">
           Scorri per esplorare →
         </p>
       )}

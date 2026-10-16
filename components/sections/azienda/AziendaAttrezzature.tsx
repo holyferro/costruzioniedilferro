@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { FadeUp } from "@/components/ui/FadeUp";
+import { Reveal } from "@/components/ui/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
 type MezzoCard = {
@@ -180,7 +180,7 @@ export function AziendaAttrezzature() {
         </div>
 
         {/* griglia contatori mezzi */}
-        <FadeUp>
+        <Reveal>
           <div
             className="mb-px grid grid-cols-2 gap-px md:grid-cols-3 lg:grid-cols-6"
             style={{ background: "color-mix(in oklab, var(--color-panna) 8%, transparent)" }}
@@ -194,7 +194,7 @@ export function AziendaAttrezzature() {
               />
             ))}
           </div>
-        </FadeUp>
+        </Reveal>
 
         {/* nota basso impatto */}
         <div
@@ -278,7 +278,7 @@ function CardMezzo({
       <span className="font-serif text-base italic" style={{ color: labelColor }}>
         {label}
       </span>
-      <span className="tracking-caps text-[10px] uppercase" style={{ color: subColor }}>
+      <span className="tracking-caps text-[11px] uppercase" style={{ color: subColor }}>
         {sottotitolo}
       </span>
     </button>

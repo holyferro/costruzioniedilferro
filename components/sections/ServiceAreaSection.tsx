@@ -120,7 +120,7 @@ function ZoneRow({ zone, isLast, isSecondToLast, delay }: ZoneRowProps) {
 
       {/* Right: role + km */}
       <div className="flex shrink-0 flex-col items-end gap-0.5">
-        <span className="text-panna/60 tracking-caps-tight text-[10px] uppercase">{zone.role}</span>
+        <span className="text-panna/60 tracking-caps-tight text-[11px] uppercase">{zone.role}</span>
         <span className="text-panna/55 font-serif text-sm italic">{zone.km}</span>
       </div>
     </Reveal>

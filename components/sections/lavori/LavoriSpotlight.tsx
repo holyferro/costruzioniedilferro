@@ -1,6 +1,6 @@
 // RSC — Spotlight progetto di rilievo (Residenze Le Corti)
 import Image from "next/image";
-import { FadeUp } from "@/components/ui/FadeUp";
+import { Reveal } from "@/components/ui/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
 export function LavoriSpotlight() {
@@ -18,7 +18,7 @@ export function LavoriSpotlight() {
       </div>
 
       {/* Split block */}
-      <FadeUp>
+      <Reveal>
         <div className="grid grid-cols-1 bg-black lg:grid-cols-2">
           {/* Foto */}
           <div className="relative overflow-hidden" style={{ aspectRatio: "4/5" }}>
@@ -53,7 +53,7 @@ export function LavoriSpotlight() {
             {/* Badge + anno */}
             <div className="mb-8 flex items-center gap-3.5">
               <span
-                className="tracking-caps rounded-full border px-3.5 py-1.5 text-[10px] font-semibold uppercase"
+                className="tracking-caps rounded-full border px-3.5 py-1.5 text-[11px] font-semibold uppercase"
                 style={{
                   color: "color-mix(in oklab, var(--color-panna) 90%, transparent)",
                   borderColor: "color-mix(in oklab, var(--color-panna) 40%, transparent)",
@@ -124,7 +124,7 @@ export function LavoriSpotlight() {
             </a>
           </div>
         </div>
-      </FadeUp>
+      </Reveal>
     </section>
   );
 }

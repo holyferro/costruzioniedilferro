@@ -207,7 +207,7 @@ export function ArticleReader({ article, onClose }: ArticleReaderProps) {
                           className="w-1/2 min-w-0 pr-4 md:w-auto md:flex-1 md:pr-8 md:last:pr-0"
                         >
                           <p
-                            className="tracking-caps m-0 mb-1.5 font-[family-name:var(--font-neue-montreal)] text-[10px] uppercase md:text-[11px]"
+                            className="tracking-caps m-0 mb-1.5 font-[family-name:var(--font-neue-montreal)] text-[11px] uppercase md:text-[11px]"
                             style={{ color: "rgba(255,255,255,0.55)" }}
                           >
                             {m.label}

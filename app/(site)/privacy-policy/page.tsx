@@ -23,7 +23,7 @@ export default function PrivacyPolicyPage() {
       <div className="mx-auto max-w-3xl px-4 py-20 lg:py-28">
         {/* Header */}
         <Eyebrow>Informativa legale</Eyebrow>
-        <h1 className="text-ink mt-4 font-serif text-[clamp(2rem,1.2rem+2.5vw,3.5rem)] leading-[1.05] font-medium tracking-tight">
+        <h1 className="text-ink text-h1 mt-4 font-serif font-medium tracking-[-0.02em]">
           Informativa sul trattamento dei dati personali
         </h1>
         <p className="text-ink/75 mt-4 text-base leading-relaxed">

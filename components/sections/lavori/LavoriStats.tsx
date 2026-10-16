@@ -1,5 +1,5 @@
 // RSC — Sezione numeri di cantiere (4 stat box)
-import { FadeUp } from "@/components/ui/FadeUp";
+import { Reveal } from "@/components/ui/Reveal";
 
 const STATS = [
   {
@@ -41,7 +41,7 @@ export function LavoriStats() {
           style={{ background: "var(--color-border)" }}
         >
           {STATS.map((stat, i) => (
-            <FadeUp key={stat.label} delay={i * 80}>
+            <Reveal key={stat.label} delay={i * 80}>
               <div
                 className="h-full px-10 py-12"
                 style={{
@@ -84,7 +84,7 @@ export function LavoriStats() {
                   {stat.sub}
                 </p>
               </div>
-            </FadeUp>
+            </Reveal>
           ))}
         </div>
       </div>

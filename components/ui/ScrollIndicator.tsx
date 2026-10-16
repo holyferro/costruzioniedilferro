@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { ArrowDown } from "lucide-react";
 
 // easeInOutCubic: lento all'inizio, accelera al centro, rallenta alla fine
 const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
@@ -53,12 +54,7 @@ export function ScrollIndicator({ targetId }: Props) {
       <span className="tracking-caps font-[family-name:var(--font-neue-montreal)] text-sm uppercase">
         Scopri di più
       </span>
-      <span
-        className="inline-block"
-        style={{ animation: "scrollNudge 1.8s cubic-bezier(0.37, 0, 0.63, 1) infinite" }}
-      >
-        ↓
-      </span>
+      <ArrowDown aria-hidden className="animate-scroll-nudge size-4" strokeWidth={1.5} />
     </a>
   );
 }

@@ -41,11 +41,11 @@ export function Footer() {
               </p>
 
               {/* Social links */}
-              <div className="mt-3 flex items-center gap-4 lg:mt-5">
+              <div className="mt-3 -ml-[15px] flex items-center lg:mt-5">
                 <a
                   href="https://www.facebook.com/costruzioniedilferro.it/"
                   aria-label="Facebook"
-                  className="text-white/65 transition-colors hover:text-white"
+                  className="grid size-11 place-items-center text-white/65 transition-colors hover:text-white"
                 >
                   <svg
                     aria-hidden="true"
@@ -60,7 +60,7 @@ export function Footer() {
                 <a
                   href="#"
                   aria-label="Instagram"
-                  className="text-white/65 transition-colors hover:text-white"
+                  className="grid size-11 place-items-center text-white/65 transition-colors hover:text-white"
                 >
                   <svg
                     aria-hidden="true"
@@ -81,7 +81,7 @@ export function Footer() {
                 <a
                   href="#"
                   aria-label="LinkedIn"
-                  className="text-white/65 transition-colors hover:text-white"
+                  className="grid size-11 place-items-center text-white/65 transition-colors hover:text-white"
                 >
                   <svg
                     aria-hidden="true"
