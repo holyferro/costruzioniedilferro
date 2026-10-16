@@ -87,6 +87,7 @@ La strategia di business, gli obiettivi, il tone of voice e la roadmap sono defi
 - ogni milestone deve poter essere deployabile
 - ogni modifica al sito si considera finita solo quando è su `main`: commit, push, PR verso `main`, attendere il check Vercel della preview, merge. Non lasciare modifiche solo in locale o su un branch
 - da `main` il sito si aggiorna da solo in due posti: Vercel (produzione) e il macserver (`https://macserver.taild6ecf5.ts.net:8084`), che ogni 2 minuti ricostruisce il container se `origin/main` è cambiato (`scripts/macserver-deploy.sh`, log in `/opt/stacks/edilferro/deploy.log`)
+- il dominio `costruzioniedilferro.com` (il sito "vero") **non si tocca**: niente modifiche a DNS su Aruba, domini Vercel o certificati finché tutte le modifiche non sono fatte e il sito è perfettamente funzionante. Collegare il dominio è l'ultimo passo del progetto, solo su richiesta esplicita. Fino ad allora si verifica sul macserver e sui deploy Vercel (`*.vercel.app`)
 
 ## Commands
 
