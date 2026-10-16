@@ -9,7 +9,6 @@
 // prefers-reduced-motion: pianta subito completa.
 
 import Image from "next/image";
-import { X } from "lucide-react";
 import { useEffect, useId, useRef, useState, type RefObject } from "react";
 import type { FloorPlanMarker, HomepageContent } from "@/content/homepage";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -219,9 +218,9 @@ export function PiantaSoluzioni({
                             type="button"
                             aria-label="Chiudi scheda"
                             onClick={close}
-                            className="bg-surface/90 text-ink focus-visible:outline-ink absolute top-1 right-1 hidden size-10 place-items-center rounded-full shadow-md focus-visible:outline-2 pointer-coarse:grid"
+                            className="absolute top-[18px] right-[18px] z-10 hidden h-[38px] w-[38px] place-items-center rounded-full border border-white/25 bg-white/15 text-[17px] text-white backdrop-blur-[6px] transition-colors hover:bg-white/30 pointer-coarse:grid"
                           >
-                            <X aria-hidden className="size-5" />
+                            ✕
                           </button>
                         </div>
                       )}
