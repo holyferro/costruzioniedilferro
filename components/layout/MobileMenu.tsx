@@ -7,7 +7,8 @@ import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import type { Route } from "next";
 import Link from "next/link";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, ArrowUpRight } from "lucide-react";
+import { CloseButton } from "@/components/ui/CloseButton";
 import { primaryNav } from "@/content/navigation";
 
 interface MobileMenuProps {
@@ -113,14 +114,11 @@ export function MobileMenu({ scrolled }: MobileMenuProps) {
       >
         {/* Panel header — close button */}
         <div className="flex items-center justify-end px-5 py-5">
-          <button
+          <CloseButton
             ref={closeButtonRef}
-            aria-label="Chiudi menu di navigazione"
+            label="Chiudi menu di navigazione"
             onClick={handleClose}
-            className="text-brand hover:bg-brand/8 active:bg-brand/12 flex items-center justify-center rounded p-2 transition-colors"
-          >
-            <X size={24} strokeWidth={1.5} aria-hidden />
-          </button>
+          />
         </div>
 
         {/* Nav items */}

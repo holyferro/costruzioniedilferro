@@ -31,7 +31,7 @@ export function InternalHero({
         {imageSrc ? (
           <Image src={imageSrc} alt={imageAlt} fill className="object-cover" priority />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center bg-[#7A746A]/30">
+          <div className="bg-ink/15 absolute inset-0 flex items-center justify-center">
             <PlaceholderIcon size={40} />
           </div>
         )}
@@ -40,12 +40,12 @@ export function InternalHero({
       {/* ── MOBILE: blocco testo ─────────────────────────────────────── */}
       <div className="px-[26px] py-8 md:hidden">
         <Eyebrow>{eyebrow}</Eyebrow>
-        <h1 className="text-ink mt-4 font-serif text-[36px] leading-[1.06] font-medium tracking-[-0.02em]">
+        <h1 className="text-ink text-h1 mt-4 font-serif font-medium tracking-[-0.02em]">
           {titleStart}
           <em className="text-brand italic">{titleAccent}</em>
           {titleEnd}
         </h1>
-        <p className="mt-4 text-[15px] leading-[1.7] text-[#7A746A]">{subtitle}</p>
+        <p className="text-ink/70 mt-4 text-[15px] leading-[1.7]">{subtitle}</p>
         {badges && badges.length > 0 && <BadgeRow badges={badges} className="mt-5" />}
         <HeroBreadcrumb page={breadcrumbPage} className="mt-6 min-h-[44px]" />
       </div>
@@ -56,12 +56,12 @@ export function InternalHero({
         <div className="flex w-[55%] flex-col justify-between px-12 py-14 xl:px-20 xl:py-16">
           <div>
             <Eyebrow>{eyebrow}</Eyebrow>
-            <h1 className="text-ink mt-6 font-serif text-[clamp(2.75rem,1.4rem+3.4vw,5rem)] leading-[1.06] font-medium tracking-[-0.02em]">
+            <h1 className="text-ink text-h1 mt-6 font-serif font-medium tracking-[-0.02em]">
               {titleStart}
               <em className="text-brand italic">{titleAccent}</em>
               {titleEnd}
             </h1>
-            <p className="mt-5 max-w-[44ch] text-[15px] leading-[1.7] text-[#7A746A]">{subtitle}</p>
+            <p className="text-ink/70 mt-5 max-w-[44ch] text-[15px] leading-[1.7]">{subtitle}</p>
             {badges && badges.length > 0 && <BadgeRow badges={badges} className="mt-6" />}
           </div>
           <HeroBreadcrumb page={breadcrumbPage} className="pt-8" />
@@ -82,7 +82,7 @@ export function InternalHero({
             {imageSrc ? (
               <Image src={imageSrc} alt={imageAlt} fill className="object-cover" priority />
             ) : (
-              <div className="absolute inset-0 flex items-center justify-center bg-[#7A746A]/30">
+              <div className="bg-ink/15 absolute inset-0 flex items-center justify-center">
                 <PlaceholderIcon size={48} />
               </div>
             )}
@@ -104,11 +104,11 @@ function HeroBreadcrumb({
 }) {
   return (
     <div className={`flex items-center justify-between ${className}`}>
-      <p className="text-ink/50 text-[10px] font-semibold tracking-[0.22em] uppercase">
+      <p className="text-ink/65 text-[10px] font-semibold tracking-[0.22em] uppercase">
         Home <span className="mx-1.5 opacity-40">/</span> {page}
       </p>
       {showScroll && (
-        <p className="text-ink/40 text-[10px] font-semibold tracking-[0.16em] uppercase">
+        <p className="text-ink/65 text-[10px] font-semibold tracking-[0.16em] uppercase">
           Scorri per esplorare →
         </p>
       )}
@@ -124,8 +124,8 @@ function BadgeRow({ badges, className = "" }: { badges: string[]; className?: st
           key={badge}
           className={
             i === 0
-              ? "bg-brand rounded-[4px] px-3.5 py-2 text-[11px] font-semibold tracking-[0.14em] text-white uppercase"
-              : "border-ink/20 text-ink/60 rounded-[4px] border px-3.5 py-2 text-[11px] font-semibold tracking-[0.14em] uppercase"
+              ? "bg-brand rounded-full px-3.5 py-2 text-[11px] font-semibold tracking-[0.14em] text-white uppercase"
+              : "border-ink/20 text-ink/65 rounded-full border px-3.5 py-2 text-[11px] font-semibold tracking-[0.14em] uppercase"
           }
         >
           {badge}

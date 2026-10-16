@@ -2,6 +2,7 @@
 // RSC. Sezione "Il valore di una certificazione" — editoriale 2-col + timeline rinnovi.
 
 import type { RenewalRow } from "@/content/certifications";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 type RinnoviSectionProps = {
   eyebrow: string;
@@ -17,14 +18,8 @@ export function RinnoviSection({ eyebrow, title, body, rows }: RinnoviSectionPro
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           {/* Editoriale */}
           <div>
-            <p className="text-ink/60 mb-5 text-xs font-semibold tracking-[0.38em] uppercase">
-              <span
-                aria-hidden="true"
-                className="bg-ink/35 mr-3.5 inline-block h-px w-8 align-middle"
-              />
-              {eyebrow}
-            </p>
-            <h2 className="text-ink max-w-[18ch] font-serif text-[clamp(1.8rem,0.8rem+2.2vw,2.9rem)] leading-[1.15] font-medium tracking-[-0.02em]">
+            <Eyebrow className="mb-5">{eyebrow}</Eyebrow>
+            <h2 className="text-ink text-h2 max-w-[18ch] font-serif font-medium tracking-tight">
               {title}
             </h2>
             <p className="text-ink/70 mt-6 max-w-[50ch] text-[17px] leading-[1.7]">{body}</p>
@@ -44,7 +39,7 @@ export function RinnoviSection({ eyebrow, title, body, rows }: RinnoviSectionPro
                 </span>
                 <div>
                   <p className="text-ink mb-1 text-[15px] font-medium">{row.title}</p>
-                  <p className="text-ink/60 text-[13px]">{row.detail}</p>
+                  <p className="text-ink/65 text-[13px]">{row.detail}</p>
                 </div>
               </div>
             ))}

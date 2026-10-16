@@ -3,9 +3,11 @@
 import { useState, useCallback, useRef } from "react";
 import { flushSync } from "react-dom";
 import Image from "next/image";
+import { photoBadgeClass } from "@/components/ui/badge";
 import { ProgettoModal } from "./ProgettoModal";
 import { RealizzazioniEmptyState } from "./RealizzazioniEmptyState";
 import type { Project } from "./ProgettoModal";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 /* ---- Types ---- */
 export type CardDef = {
@@ -94,20 +96,14 @@ export function ProgettiGrid({
           to   { opacity: 1; transform: none; }
         }
       `}</style>
-      <section className="bg-surface py-[100px]">
+      <section className="bg-surface py-24">
         <div className="mx-auto max-w-6xl px-6 md:px-12">
           <div className="mb-12 flex flex-wrap items-end justify-between gap-8">
             <div id="archivio-lavori" className="scroll-mt-20 xl:scroll-mt-28">
-              <p className="text-ink/60 flex items-center gap-3 text-xs font-semibold tracking-[0.38em] uppercase">
-                <span
-                  aria-hidden="true"
-                  className="bg-ink/40 inline-block h-px w-8 flex-shrink-0"
-                />
-                Archivio lavori
-              </p>
+              <Eyebrow>Archivio lavori</Eyebrow>
               <h2
-                className="text-ink mt-[18px] font-serif leading-[1.18] font-medium tracking-[-0.015em]"
-                style={{ fontSize: "clamp(1.75rem, 0.6rem + 2vw, 2.5rem)", maxWidth: "22ch" }}
+                className="text-ink text-h2 mt-[18px] font-serif font-medium tracking-tight"
+                style={{ maxWidth: "22ch" }}
               >
                 Cantieri recenti per categoria
               </h2>
@@ -154,7 +150,7 @@ export function ProgettiGrid({
                     <div
                       key={card.key}
                       onClick={() => setActiveKey(card.key)}
-                      className="group relative cursor-pointer overflow-hidden bg-black transition-shadow duration-300 hover:shadow-[0_12px_48px_rgba(10,42,107,0.10)]"
+                      className="group relative cursor-pointer overflow-hidden bg-black transition-shadow duration-300 hover:shadow-[0_12px_48px_color-mix(in_oklab,var(--color-brand)_10%,transparent)]"
                       style={
                         card.wide
                           ? {
@@ -189,7 +185,7 @@ export function ProgettiGrid({
                             "linear-gradient(180deg, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.72))",
                         }}
                       />
-                      <span className="absolute top-[18px] left-[18px] rounded-full border border-white/22 bg-white/15 px-3 py-1.5 text-[10px] font-semibold tracking-[0.2em] text-white uppercase backdrop-blur-[8px]">
+                      <span className={photoBadgeClass("absolute top-[18px] left-[18px]")}>
                         {p.tag}
                       </span>
                       <span className="absolute top-[18px] right-[18px] font-serif text-[15px] font-medium text-white/95 italic">

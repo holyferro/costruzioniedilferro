@@ -42,12 +42,12 @@ export function HeroSection({
       />
       {/* Gradiente grigio sinistra→destra */}
       <div
-        className="absolute inset-0 bg-gradient-to-r from-[#12142b]/80 via-[#12142b]/35 to-transparent"
+        className="from-night/80 via-night/35 absolute inset-0 bg-gradient-to-r to-transparent"
         aria-hidden="true"
       />
       {/* Scrim scuro in basso — garantisce contrasto WCAG AA alla CTA "Scopri di più" indipendentemente dalla luminosità del punto dell'immagine sottostante */}
       <div
-        className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-[#12142b]/70 to-transparent"
+        className="from-night/70 absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t to-transparent"
         aria-hidden="true"
       />
       <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col items-start justify-center px-6">

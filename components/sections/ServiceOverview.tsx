@@ -7,6 +7,7 @@ import Link from "next/link";
 import type { Route } from "next";
 import { Reveal } from "@/components/ui/Reveal";
 import type { ServiceItem } from "@/content/homepage";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 type ServiceOverviewProps = {
   eyebrow: string;
@@ -34,8 +35,8 @@ export function ServiceOverview({
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         <Reveal className="mb-14 flex flex-wrap items-end justify-between gap-8 md:mb-20">
           <div className="max-w-3xl">
-            <DarkEyebrow>{eyebrow}</DarkEyebrow>
-            <h2 className="text-panna mt-5 max-w-[18ch] font-serif text-[clamp(2rem,1rem+2.6vw,3.4rem)] leading-[1.12] font-medium tracking-tight">
+            <Eyebrow dark>{eyebrow}</Eyebrow>
+            <h2 className="text-panna text-h2 mt-5 max-w-[18ch] font-serif font-medium tracking-tight">
               {titleStart}
               <em className="text-panna/65 font-serif italic">{titleAccent}</em>
               {titleEnd}
@@ -144,13 +145,4 @@ function pairs<T>(arr: readonly T[]): T[][] {
   const out: T[][] = [];
   for (let i = 0; i < arr.length; i += 2) out.push(arr.slice(i, i + 2));
   return out;
-}
-
-function DarkEyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-panna/55 text-xs font-semibold tracking-[0.38em] uppercase">
-      <span aria-hidden="true" className="bg-panna/40 mr-3 inline-block h-px w-8 align-middle" />
-      {children}
-    </p>
-  );
 }

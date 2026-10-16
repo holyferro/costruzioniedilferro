@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { FadeUp } from "@/components/ui/FadeUp";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 type MezzoCard = {
   numero: string;
@@ -126,7 +127,7 @@ export function AziendaAttrezzature() {
 
   return (
     <section
-      className="relative overflow-hidden py-[120px]"
+      className="relative overflow-hidden py-28"
       style={{ background: "#1a1a1a", color: "#f8f5ee" }}
     >
       {/* texture di sfondo */}
@@ -148,21 +149,14 @@ export function AziendaAttrezzature() {
         </svg>
       </div>
 
-      <div className="relative mx-auto max-w-[1280px] px-6 md:px-12">
+      <div className="relative mx-auto max-w-6xl px-6 md:px-12">
         {/* intestazione */}
         <div className="mb-20 grid items-end gap-10 md:grid-cols-[1fr_1.5fr] md:gap-20">
           <div>
-            <p className="text-panna/55 text-xs font-semibold tracking-[0.38em] uppercase">
-              <span
-                aria-hidden="true"
-                className="bg-panna/40 mr-3 inline-block h-px w-8 align-middle"
-              />
-              Attrezzature
-            </p>
+            <Eyebrow dark>Attrezzature</Eyebrow>
             <h2
-              className="mt-5 font-serif leading-[1.1] font-medium tracking-[-0.02em]"
+              className="text-h2 mt-5 font-serif font-medium tracking-tight"
               style={{
-                fontSize: "clamp(2rem, 0.8rem + 2.4vw, 3.125rem)",
                 color: "#fff",
                 maxWidth: "18ch",
               }}
@@ -215,15 +209,15 @@ export function AziendaAttrezzature() {
             className="shrink-0"
             style={{ opacity: 0.6 }}
           >
-            <circle cx="12" cy="12" r="10" stroke="#0A2A6B" strokeWidth="1.5" />
+            <circle cx="12" cy="12" r="10" stroke="var(--color-brand)" strokeWidth="1.5" />
             <path
               d="M8 14s1.5 2 4 2 4-2 4-2"
-              stroke="#0A2A6B"
+              stroke="var(--color-brand)"
               strokeWidth="1.5"
               strokeLinecap="round"
             />
-            <circle cx="9" cy="10" r="1" fill="#0A2A6B" />
-            <circle cx="15" cy="10" r="1" fill="#0A2A6B" />
+            <circle cx="9" cy="10" r="1" fill="var(--color-brand)" />
+            <circle cx="15" cy="10" r="1" fill="var(--color-brand)" />
           </svg>
           <p
             className="text-sm leading-[1.7]"

@@ -134,7 +134,9 @@ export function DalProgettoAllOpera({
           <div className="mb-6 flex items-end justify-between gap-6 md:mb-10">
             <div>
               <Eyebrow>{eyebrow}</Eyebrow>
-              <h2 className="text-h2 mt-4 max-w-xl font-semibold">{title}</h2>
+              <h2 className="text-h2 mt-4 max-w-xl font-serif font-medium tracking-tight">
+                {title}
+              </h2>
             </div>
             <p
               aria-hidden="true"

@@ -1,13 +1,31 @@
 import type { ReactNode } from "react";
+import { cn } from "@/lib/utils/cn";
 
-export function Eyebrow({ children, dark }: { children: ReactNode; dark?: boolean }) {
+// Kicker above section headings. Single source for the whole site — never re-implement inline.
+// Opacity chosen for WCAG AA at 12.75px: ink/70 on panna ≈ 6.1:1, panna/65 on brand ≈ 6.3:1.
+export function Eyebrow({
+  children,
+  dark,
+  className,
+}: {
+  children: ReactNode;
+  dark?: boolean;
+  className?: string;
+}) {
   return (
     <p
-      className={`text-xs font-semibold tracking-[0.38em] uppercase ${dark ? "text-panna/55" : "text-ink/60"}`}
+      className={cn(
+        "text-xs font-semibold tracking-[0.38em] uppercase",
+        dark ? "text-panna/65" : "text-ink/70",
+        className,
+      )}
     >
       <span
         aria-hidden="true"
-        className={`mr-3 inline-block h-px w-8 align-middle ${dark ? "bg-panna/40" : "bg-ink/40"}`}
+        className={cn(
+          "mr-3 inline-block h-px w-8 align-middle",
+          dark ? "bg-panna/40" : "bg-ink/40",
+        )}
       />
       {children}
     </p>

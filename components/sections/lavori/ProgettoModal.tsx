@@ -2,6 +2,9 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import { photoBadgeClass } from "@/components/ui/badge";
+import { CloseButton } from "@/components/ui/CloseButton";
+import { buttonClass } from "@/components/ui/button";
 
 /* ---- Types ---- */
 export type ProjectRow = [string, string];
@@ -335,7 +338,7 @@ export function ProgettoModal({
           />
 
           {project && (
-            <span className="absolute top-[22px] left-[22px] z-[6] rounded-full border border-white/25 bg-white/18 px-3.5 py-1.5 text-[10px] font-semibold tracking-[0.2em] text-white uppercase backdrop-blur-[8px]">
+            <span className={photoBadgeClass("absolute top-[22px] left-[22px] z-[6]")}>
               {project.tag}
             </span>
           )}
@@ -346,13 +349,11 @@ export function ProgettoModal({
             </span>
           )}
 
-          <button
+          <CloseButton
+            variant="glass"
             onClick={onClose}
-            aria-label="Chiudi"
-            className="absolute top-[18px] right-[18px] z-10 flex h-[38px] w-[38px] items-center justify-center rounded-full border border-white/25 bg-white/15 text-[17px] text-white backdrop-blur-[6px] transition-colors hover:bg-white/30"
-          >
-            ✕
-          </button>
+            className="absolute top-[18px] right-[18px] z-10"
+          />
 
           <div className="relative min-h-0 flex-1 overflow-hidden bg-black">
             {project?.imgs.map((src, i) => (
@@ -470,7 +471,7 @@ export function ProgettoModal({
             >
               {project.title}
             </h2>
-            <p className="text-ink/50 mb-8 text-xs tracking-[0.2em] uppercase">{project.place}</p>
+            <p className="text-ink/65 mb-8 text-xs tracking-[0.2em] uppercase">{project.place}</p>
             <p className="text-ink/70 mb-9 text-[15px] leading-[1.7]" style={{ maxWidth: "46ch" }}>
               {project.desc}
             </p>
@@ -486,7 +487,7 @@ export function ProgettoModal({
                       : {}
                   }
                 >
-                  <span className="text-ink/50 text-[11px] font-semibold tracking-[0.18em] uppercase">
+                  <span className="text-ink/65 text-[11px] font-semibold tracking-[0.18em] uppercase">
                     {label}
                   </span>
                   <span className="text-ink text-right font-serif text-base">{value}</span>
@@ -494,11 +495,8 @@ export function ProgettoModal({
               ))}
             </div>
 
-            <a
-              href="/contatti#form"
-              className="bg-brand text-panna mt-9 inline-flex items-center gap-3 self-start rounded-full px-6 py-[15px] font-[family-name:var(--font-neue-montreal)] text-[13px] font-medium tracking-[0.06em] uppercase transition-colors hover:bg-[#1a1a6b]"
-            >
-              Richiedi un preventivo simile →
+            <a href="/contatti#form" className={buttonClass({ className: "mt-9 self-start" })}>
+              Richiedi un sopralluogo →
             </a>
 
             {project.links && project.links.length > 0 && (
@@ -509,7 +507,7 @@ export function ProgettoModal({
                     href={link.href}
                     target={link.external ? "_blank" : undefined}
                     rel={link.external ? "noopener noreferrer" : undefined}
-                    className="text-ink/50 hover:text-ink font-[family-name:var(--font-neue-montreal)] text-[12px] tracking-[0.08em] underline underline-offset-4 transition-colors"
+                    className="text-ink/65 hover:text-ink font-[family-name:var(--font-neue-montreal)] text-[12px] tracking-[0.08em] underline underline-offset-4 transition-colors"
                   >
                     {link.label}
                     {link.external && " ↗"}

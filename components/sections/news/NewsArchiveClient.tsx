@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
+import { photoBadgeClass } from "@/components/ui/badge";
 import { urlFor } from "@/sanity/lib/client";
 import type { SanityNewsArticle } from "@/sanity/lib/types";
 import { ArticleReader } from "@/components/news/ArticleReader";
@@ -97,7 +98,7 @@ export function NewsArchiveClient({ articles, categoryCounts }: NewsArchiveClien
 function NewsPlaceholder() {
   return (
     <section className="bg-surface py-24 pb-32">
-      <div className="mx-auto max-w-[1280px] px-6 md:px-12">
+      <div className="mx-auto max-w-6xl px-6 md:px-12">
         <div className="border-border grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
           {[0, 1, 2].map((i) => (
             <div
@@ -115,7 +116,7 @@ function NewsPlaceholder() {
             </div>
           ))}
         </div>
-        <p className="text-ink/50 mt-12 font-serif text-base italic">Nuovi articoli in arrivo.</p>
+        <p className="text-ink/65 mt-12 font-serif text-base italic">Nuovi articoli in arrivo.</p>
       </div>
     </section>
   );
@@ -147,7 +148,7 @@ function FilterBar({
 
   return (
     <div className="bg-surface">
-      <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-4 px-6 py-5 md:px-12">
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-5 md:px-12">
         <div className="flex flex-wrap gap-2">
           {categories.map((c) => (
             <button
@@ -188,7 +189,7 @@ function NewsGrid({
   }
   return (
     <section className="bg-surface py-16 pb-12">
-      <div className="mx-auto max-w-[1280px] px-6 md:px-12">
+      <div className="mx-auto max-w-6xl px-6 md:px-12">
         <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((a, i) => (
             <ArchiveCard key={a._id} item={a} index={i} onOpen={onOpen} />
@@ -217,7 +218,7 @@ function ArchiveCard({
       className="group border-border bg-surface flex flex-col border text-left"
       style={{ animationDelay: `${(index % 6) * 50}ms` }}
     >
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#0a1830]">
+      <div className="bg-night relative aspect-[4/3] w-full overflow-hidden">
         <Image
           src={imgUrl}
           alt={item.coverImage.alt}
@@ -226,9 +227,7 @@ function ArchiveCard({
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="object-cover saturate-95 transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
         />
-        <span className="absolute top-[18px] left-[18px] rounded-full border border-white/22 bg-white/15 px-3 py-1.5 text-[10px] font-semibold tracking-[0.2em] text-white uppercase backdrop-blur-[8px]">
-          {item.category}
-        </span>
+        <span className={photoBadgeClass("absolute top-[18px] left-[18px]")}>{item.category}</span>
         <span
           aria-hidden
           className="absolute bottom-[18px] left-[18px] inline-block text-[18px] leading-none text-white transition-transform duration-[250ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[5px] group-hover:-translate-y-[5px]"
@@ -238,7 +237,7 @@ function ArchiveCard({
       </div>
 
       <div className="flex flex-1 flex-col gap-3 p-6 pb-[26px]">
-        <div className="text-ink/60 flex items-center gap-2.5 font-[family-name:var(--font-neue-montreal)] text-[11px] tracking-[0.06em] uppercase">
+        <div className="text-ink/65 flex items-center gap-2.5 font-[family-name:var(--font-neue-montreal)] text-[11px] tracking-[0.06em] uppercase">
           <span>{formatDate(item.publishedAt)}</span>
         </div>
         <h3 className="text-ink line-clamp-2 font-serif text-[21px] leading-[1.25] font-medium tracking-[-0.01em]">
@@ -272,9 +271,9 @@ function Pagination({
   if (totalPages <= 1) return null;
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
   return (
-    <section className="bg-surface pb-[120px]">
-      <div className="border-border mx-auto flex max-w-[1280px] flex-wrap items-center justify-between gap-6 border-t px-6 pt-8 md:px-12">
-        <span className="text-ink/60 font-serif text-base italic">
+    <section className="bg-surface pb-28">
+      <div className="border-border mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 border-t px-6 pt-8 md:px-12">
+        <span className="text-ink/65 font-serif text-base italic">
           Pagina <span className="text-ink">{String(page).padStart(2, "0")}</span> di{" "}
           {String(totalPages).padStart(2, "0")}
         </span>

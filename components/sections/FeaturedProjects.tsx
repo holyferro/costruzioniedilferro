@@ -5,11 +5,13 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { photoBadgeClass } from "@/components/ui/badge";
 import Link from "next/link";
 import type { Route } from "next";
 import type { FeaturedProject, ProjectTile } from "@/content/homepage";
 import { ProgettoModal } from "@/components/sections/lavori/ProgettoModal";
 import type { Project } from "@/components/sections/lavori/ProgettoModal";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 type FeaturedProjectsProps = {
   eyebrow: string;
@@ -43,7 +45,7 @@ export function FeaturedProjects({
           <div className="mb-12 flex flex-wrap items-end justify-between gap-8 md:mb-16">
             <div className="max-w-[34ch]">
               <Eyebrow>{eyebrow}</Eyebrow>
-              <h2 className="text-ink mt-5 max-w-[22ch] font-serif text-[clamp(2rem,1rem+2.4vw,3.1rem)] leading-[1.12] font-medium tracking-tight">
+              <h2 className="text-ink text-h2 mt-5 max-w-[22ch] font-serif font-medium tracking-tight">
                 {titleStart}
                 <em className="text-brand font-serif italic">{titleAccent}</em>
                 {titleEnd}
@@ -105,9 +107,7 @@ function FeatureCard({ item, onOpen }: { item: FeaturedProject; onOpen: () => vo
         aria-hidden="true"
         className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/75"
       />
-      <span className="border-panna/25 bg-panna/15 absolute top-5 left-5 rounded-full border px-3 py-1.5 text-[11px] font-semibold tracking-[0.2em] text-white uppercase backdrop-blur-md">
-        {item.tag}
-      </span>
+      <span className={photoBadgeClass("absolute top-5 left-5")}>{item.tag}</span>
       <span className="absolute top-5 right-5 font-serif text-base font-medium text-white/95 italic">
         {item.year}
       </span>
@@ -156,9 +156,7 @@ function MiniProject({ item, onOpen }: { item: ProjectTile; onOpen: () => void }
         className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/70"
       />
       <div className="absolute top-4 right-4 left-4 flex items-start justify-between">
-        <span className="border-panna/22 bg-panna/15 rounded-full border px-2.5 py-1 text-[10px] font-semibold tracking-[0.2em] text-white uppercase backdrop-blur-md">
-          {item.tag}
-        </span>
+        <span className={photoBadgeClass()}>{item.tag}</span>
         <span className="font-serif text-sm text-white/95 italic">{item.year}</span>
       </div>
       <div className="absolute right-5 bottom-4 left-5">
@@ -168,14 +166,5 @@ function MiniProject({ item, onOpen }: { item: ProjectTile; onOpen: () => void }
         <p className="mt-1.5 text-[11px] tracking-[0.2em] text-white/70 uppercase">{item.place}</p>
       </div>
     </div>
-  );
-}
-
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-ink/60 text-xs font-semibold tracking-[0.38em] uppercase">
-      <span aria-hidden="true" className="bg-ink/40 mr-3 inline-block h-px w-8 align-middle" />
-      {children}
-    </p>
   );
 }

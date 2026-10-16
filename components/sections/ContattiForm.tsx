@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import { submitContattiForm, type ContattiFormState } from "@/app/(site)/contatti/actions";
+import { buttonClass } from "@/components/ui/button";
 
 const initialState: ContattiFormState = { status: "idle" };
 
@@ -108,7 +109,7 @@ export function ContattiForm() {
 
       <SubmitButton />
 
-      <p className="text-ink/40 text-xs leading-relaxed">
+      <p className="text-ink/65 text-xs leading-relaxed">
         <span className="font-semibold">Nota:</span> il sistema di invio è in fase di sviluppo. Nel
         frattempo puoi contattarci direttamente per telefono o email.
       </p>
@@ -142,7 +143,7 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      className="bg-brand hover:bg-brand/90 text-panna disabled:bg-brand/50 mt-2 inline-flex w-full items-center justify-between rounded-full px-7 py-5 font-[family-name:var(--font-neue-montreal)] text-[15px] font-medium tracking-[0.04em] uppercase transition-colors sm:w-auto"
+      className={buttonClass({ size: "lg", className: "mt-2 w-full justify-between" })}
     >
       {pending ? "Invio in corso…" : "Richiedi un sopralluogo"}
       {!pending && <span aria-hidden="true">→</span>}

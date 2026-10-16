@@ -26,12 +26,12 @@ const stats: StatCell[] = [
 
 export function AziendaNumeri() {
   return (
-    <section className="bg-panna border-border border-t py-24 md:py-[120px]">
+    <section className="bg-panna border-border border-t py-24 md:py-28">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         <div className="mb-16 grid items-start gap-8 md:grid-cols-[1fr_2fr] md:gap-20">
           <div>
             <Eyebrow>I numeri dell&apos;impresa</Eyebrow>
-            <h2 className="text-ink mt-5 max-w-[14ch] font-serif text-[clamp(1.75rem,0.6rem+2.2vw,2.75rem)] leading-[1.15] font-medium tracking-[-0.018em]">
+            <h2 className="text-ink text-h2 mt-5 max-w-[14ch] font-serif font-medium tracking-tight">
               Dati verificabili. Nessuna stima di comodo.
             </h2>
           </div>
@@ -55,7 +55,7 @@ function StatCell({ n, suffix, label, sub, variant = "default" }: StatCell) {
   const bg = variant === "dark" ? "bg-ink" : variant === "brand" ? "bg-brand" : "bg-panna";
   const nColor = variant === "default" ? "text-ink" : "text-white";
   const labelColor = variant === "default" ? "text-ink" : "text-panna/90";
-  const subColor = variant === "default" ? "text-ink/50" : "text-panna/50";
+  const subColor = variant === "default" ? "text-ink/65" : "text-panna/65";
 
   return (
     <div className={`${bg} px-8 py-[52px] md:px-11`}>
