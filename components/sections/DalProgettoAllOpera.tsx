@@ -112,7 +112,7 @@ export function DalProgettoAllOpera({
   renderSrc,
   imageAlt,
 }: DalProgettoAllOperaProps) {
-  const track = useRef<HTMLElement>(null);
+  const track = useRef<HTMLDivElement>(null);
   const mask = useRef<SVGPathElement>(null);
   const solid = useRef<SVGRectElement>(null);
   const bar = useRef<HTMLDivElement>(null);
@@ -120,8 +120,8 @@ export function DalProgettoAllOpera({
   const id = useId().replace(/[^a-zA-Z0-9]/g, "");
 
   useStickyProgress(track, (p) => {
-    // Sweep starts as soon as the section sticks; the last 8% holds the finished render briefly.
-    const ink = ease(clamp(p / 0.92));
+    // Sweep runs exactly while the section is stuck: no dead scroll before or after.
+    const ink = ease(p);
     const y = inkY(ink);
     const d = inkBand(y);
     // Skip no-op writes (every frame before and after the sweep): each write re-runs the filter.
@@ -134,57 +134,67 @@ export function DalProgettoAllOpera({
   });
 
   return (
-    <section ref={track} aria-label={eyebrow} className="bg-panna relative h-[200vh]">
-      <div className="sticky top-[var(--header-height)] flex h-[calc(100svh-var(--header-height))] flex-col justify-center overflow-hidden">
-        <div className="mx-auto w-full max-w-6xl px-6 lg:px-12">
-          <div className="mb-6 flex items-end justify-between gap-6 md:mb-10">
-            <div>
-              <Eyebrow>{eyebrow}</Eyebrow>
-              <h2 className="text-h2 mt-4 max-w-xl font-serif font-medium tracking-tight">
-                {title}
-              </h2>
+    <section aria-label={eyebrow} className="bg-panna pb-12 md:pb-20">
+      {/* Track outside the bottom padding, so progress hits 1 exactly when the sticky child unsticks. */}
+      <div ref={track} className="relative h-[190vh]">
+        <div className="sticky top-[var(--header-height)] flex h-[calc(100svh-var(--header-height))] flex-col justify-center overflow-hidden">
+          <div className="mx-auto w-full max-w-6xl px-6 lg:px-12">
+            <div className="mb-6 flex items-end justify-between gap-6 md:mb-10">
+              <div>
+                <Eyebrow>{eyebrow}</Eyebrow>
+                <h2 className="text-h2 mt-4 max-w-xl font-serif font-medium tracking-tight">
+                  {title}
+                </h2>
+              </div>
+              <p
+                aria-hidden="true"
+                className="tracking-caps hidden font-mono text-xs uppercase md:block"
+              >
+                {done ? stageEnd : stageStart}
+              </p>
             </div>
-            <p
-              aria-hidden="true"
-              className="tracking-caps hidden font-mono text-xs uppercase md:block"
+
+            <svg
+              viewBox={`0 0 ${W} ${H}`}
+              preserveAspectRatio="xMidYMid slice"
+              className="block aspect-[4/3] h-auto w-full md:aspect-[2362/1160]"
+              role="img"
+              aria-label={imageAlt}
             >
-              {done ? stageEnd : stageStart}
-            </p>
-          </div>
+              <defs>
+                <filter id={`ink${id}`} x="-20%" y="-20%" width="140%" height="140%">
+                  <feImage href={NOISE_SRC} {...NOISE} preserveAspectRatio="none" result="noise" />
+                  <feDisplacementMap
+                    in="SourceGraphic"
+                    in2="noise"
+                    scale="70"
+                    xChannelSelector="R"
+                    yChannelSelector="G"
+                  />
+                  <feGaussianBlur stdDeviation="1.4" result="blurred" />
+                  <feComponentTransfer in="blurred">
+                    <feFuncA type="linear" slope="2.2" intercept="-0.6" />
+                  </feComponentTransfer>
+                </filter>
+                <mask id={`mask${id}`} maskUnits="userSpaceOnUse" x="0" y="0" width={W} height={H}>
+                  <rect
+                    ref={solid}
+                    x="0"
+                    y="-10"
+                    width={W}
+                    height={inkSolid(inkY(0))}
+                    fill="white"
+                  />
+                  <path ref={mask} d={inkBand(inkY(0))} fill="white" filter={`url(#ink${id})`} />
+                </mask>
+              </defs>
+              <image href={optimisedSrc(drawingSrc)} width={W} height={H} />
+              <image href={optimisedSrc(renderSrc)} width={W} height={H} mask={`url(#mask${id})`} />
+            </svg>
 
-          <svg
-            viewBox={`0 0 ${W} ${H}`}
-            preserveAspectRatio="xMidYMid slice"
-            className="block aspect-[4/3] h-auto w-full md:aspect-[2362/1160]"
-            role="img"
-            aria-label={imageAlt}
-          >
-            <defs>
-              <filter id={`ink${id}`} x="-20%" y="-20%" width="140%" height="140%">
-                <feImage href={NOISE_SRC} {...NOISE} preserveAspectRatio="none" result="noise" />
-                <feDisplacementMap
-                  in="SourceGraphic"
-                  in2="noise"
-                  scale="70"
-                  xChannelSelector="R"
-                  yChannelSelector="G"
-                />
-                <feGaussianBlur stdDeviation="1.4" result="blurred" />
-                <feComponentTransfer in="blurred">
-                  <feFuncA type="linear" slope="2.2" intercept="-0.6" />
-                </feComponentTransfer>
-              </filter>
-              <mask id={`mask${id}`} maskUnits="userSpaceOnUse" x="0" y="0" width={W} height={H}>
-                <rect ref={solid} x="0" y="-10" width={W} height={inkSolid(inkY(0))} fill="white" />
-                <path ref={mask} d={inkBand(inkY(0))} fill="white" filter={`url(#ink${id})`} />
-              </mask>
-            </defs>
-            <image href={optimisedSrc(drawingSrc)} width={W} height={H} />
-            <image href={optimisedSrc(renderSrc)} width={W} height={H} mask={`url(#mask${id})`} />
-          </svg>
-
-          <div aria-hidden="true" className="bg-border mt-6 h-px w-full">
-            <div ref={bar} className="bg-ink h-px w-full origin-left scale-x-0" />
+            <div aria-hidden="true" className="bg-border mt-6 h-px w-full">
+              <div ref={bar} className="bg-ink h-px w-full origin-left scale-x-0" />
+            </div>
           </div>
         </div>
       </div>
