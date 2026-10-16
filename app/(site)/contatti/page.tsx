@@ -5,6 +5,8 @@ import { siteContent } from "@/content/site";
 import { ContattiForm } from "@/components/sections/ContattiForm";
 import { DecorativeRings } from "@/components/ui/DecorativeRings";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { buttonClass } from "@/components/ui/button";
 
 export const metadata = buildMetadata({
   title: "Contattaci — Richiedi un sopralluogo",
@@ -25,14 +27,8 @@ export default function ContattiPage() {
         <DecorativeRings side="right" />
 
         <div className="relative mx-auto max-w-6xl">
-          <p className="text-panna/55 text-xs font-semibold tracking-[0.38em] uppercase">
-            <span
-              aria-hidden="true"
-              className="bg-panna/40 mr-3 inline-block h-px w-8 align-middle"
-            />
-            Scriveteci
-          </p>
-          <h1 className="text-panna mt-5 font-serif text-[clamp(2.4rem,1.4rem+3.2vw,4.5rem)] leading-[1.05] font-medium tracking-tight">
+          <Eyebrow dark>Scriveteci</Eyebrow>
+          <h1 className="text-panna text-h1 mt-5 font-serif font-medium tracking-[-0.02em]">
             Parlaci del tuo progetto.
           </h1>
           <p className="text-panna/75 mt-5 max-w-[52ch] text-lg leading-relaxed">
@@ -78,7 +74,7 @@ export default function ContattiPage() {
                     href={MAPS_QUERY_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-brand text-panna inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium tracking-wide transition-opacity hover:opacity-90"
+                    className={buttonClass()}
                   >
                     <MapPin className="h-4 w-4" aria-hidden="true" />
                     Apri in Google Maps
@@ -125,7 +121,7 @@ export default function ContattiPage() {
               >
                 {contact.email}
               </a>
-              <p className="text-panna/45 mt-2 text-xs">
+              <p className="text-panna/65 mt-2 text-xs">
                 PEC:{" "}
                 <a
                   href={`mailto:${contact.pec}`}
@@ -144,7 +140,7 @@ export default function ContattiPage() {
                   </span>
                 ))}
               </div>
-              <p className="text-panna/45 mt-3 text-xs leading-relaxed">
+              <p className="text-panna/65 mt-3 text-xs leading-relaxed">
                 Risposta entro 24 ore lavorative.
               </p>
             </InfoBlock>
@@ -166,7 +162,7 @@ function InfoBlock({
 }) {
   return (
     <div>
-      <p className="text-panna/45 mb-3 flex items-center gap-2 text-[11px] font-semibold tracking-[0.22em] uppercase">
+      <p className="text-panna/65 mb-3 flex items-center gap-2 text-[11px] font-semibold tracking-[0.22em] uppercase">
         <span className="text-panna/60" aria-hidden="true">
           {icon}
         </span>

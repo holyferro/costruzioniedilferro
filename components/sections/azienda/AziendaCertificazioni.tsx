@@ -37,12 +37,12 @@ const certs: CertCard[] = [
 
 export function AziendaCertificazioni() {
   return (
-    <section className="border-border border-t bg-white py-[100px]">
+    <section className="border-border border-t bg-white py-24">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         <div className="mb-14 flex flex-wrap items-end justify-between gap-10">
           <div>
             <Eyebrow>Certificazioni e qualifiche</Eyebrow>
-            <h2 className="text-ink mt-5 max-w-[22ch] font-serif text-[clamp(1.75rem,0.6rem+2vw,2.625rem)] leading-[1.15] font-medium tracking-[-0.015em]">
+            <h2 className="text-ink text-h2 mt-5 max-w-[22ch] font-serif font-medium tracking-tight">
               Qualificati da terzi. Verificabili da chiunque.
             </h2>
           </div>
@@ -80,7 +80,7 @@ export function AziendaCertificazioni() {
               <h3 className="text-ink font-serif text-[19px] leading-[1.3] font-medium tracking-[-0.01em]">
                 {cert.title}
               </h3>
-              <p className="text-ink/60 text-sm leading-[1.65]">{cert.body}</p>
+              <p className="text-ink/65 text-sm leading-[1.65]">{cert.body}</p>
             </div>
           ))}
         </div>

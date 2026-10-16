@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { ArticleBlock } from "@/lib/types/article";
+import { buttonClass } from "@/components/ui/button";
 
 /* ---- Lead ---- */
 export function LeadBlock({ text }: { text: string }) {
@@ -193,7 +194,7 @@ export function PartnersBlock({
                 <h4 className="text-ink m-0 font-serif text-[20px] font-medium tracking-[-0.01em]">
                   {item.name}
                 </h4>
-                <span className="text-ink/60 font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold tracking-[0.22em] uppercase">
+                <span className="text-ink/65 font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold tracking-[0.22em] uppercase">
                   {item.role}
                 </span>
               </div>
@@ -216,7 +217,7 @@ export function SpecsBlock({ rows }: { rows: [string, string][] }) {
           className={`grid gap-6 px-[22px] py-4 ${i > 0 ? "border-border border-t" : ""}`}
           style={{ gridTemplateColumns: "40% 1fr" }}
         >
-          <dt className="text-ink/60 self-center font-[family-name:var(--font-neue-montreal)] text-[12px] font-semibold tracking-[0.14em] uppercase">
+          <dt className="text-ink/65 self-center font-[family-name:var(--font-neue-montreal)] text-[12px] font-semibold tracking-[0.14em] uppercase">
             {k}
           </dt>
           <dd className="text-ink m-0 font-serif text-[16px] leading-[1.4]">{v}</dd>
@@ -259,10 +260,7 @@ export function CtaBlock({
             {title} <em className="text-panna/75 italic">{titleItalic}</em>
           </h3>
           <p className="text-panna/80 m-0 max-w-[48ch] text-[15px] leading-[1.6]">{text}</p>
-          <a
-            href={ctaHref}
-            className="bg-panna text-brand mt-7 inline-flex items-center gap-3 rounded-full px-[26px] py-3.5 font-[family-name:var(--font-neue-montreal)] text-[13px] font-medium tracking-[0.06em] uppercase no-underline"
-          >
+          <a href={ctaHref} className={buttonClass({ variant: "inverse", className: "mt-7" })}>
             {ctaLabel}
             <span aria-hidden>↗</span>
           </a>

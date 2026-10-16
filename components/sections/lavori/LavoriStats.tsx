@@ -34,7 +34,7 @@ const STATS = [
 
 export function LavoriStats() {
   return (
-    <section className="border-border bg-panna border-t py-[100px]">
+    <section className="border-border bg-panna border-t py-24">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         <div
           className="grid grid-cols-2 gap-[2px] lg:grid-cols-4"

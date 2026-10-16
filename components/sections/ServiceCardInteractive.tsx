@@ -34,7 +34,12 @@ export function ServiceCardInteractive({ cards, surface }: Props) {
         tabIndex={selected ? 0 : -1}
         aria-label="Chiudi"
         onClick={() => setSelectedIndex(null)}
-        onKeyDown={(e) => e.key === "Enter" && setSelectedIndex(null)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setSelectedIndex(null);
+          }
+        }}
         className={`absolute inset-0 cursor-pointer transition-transform duration-[600ms] ease-in-out ${
           selected ? "translate-x-0" : "translate-x-[110%]"
         }`}
@@ -46,10 +51,9 @@ export function ServiceCardInteractive({ cards, surface }: Props) {
                 <p className="text-ink font-serif text-[clamp(1.1rem,0.8rem+0.8vw,1.5rem)] leading-tight font-medium">
                   {selected.title}
                 </p>
-                <button
-                  type="button"
-                  aria-label="Chiudi"
-                  onClick={() => setSelectedIndex(null)}
+                {/* Decorative "−": the whole panel is the close control (no nested button) */}
+                <span
+                  aria-hidden="true"
                   className="bg-ink/[0.07] text-ink hover:bg-ink/[0.12] flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors duration-200"
                 >
                   <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
@@ -77,7 +81,7 @@ export function ServiceCardInteractive({ cards, surface }: Props) {
                       }}
                     />
                   </svg>
-                </button>
+                </span>
               </div>
               <p className="text-ink/75 text-sm leading-[1.65]">{selected.description}</p>
               {selected.features && selected.features.length > 0 && (
@@ -116,7 +120,7 @@ function EqualCard({ card, bg, onClick }: { card: ServiceCard; bg: string; onCli
       <p className="text-ink font-serif text-[clamp(0.9rem,0.6rem+0.6vw,1.1rem)] leading-snug font-medium">
         {card.title}
       </p>
-      <p className="text-ink/60 mt-2 line-clamp-2 text-sm leading-[1.5]">{card.description}</p>
+      <p className="text-ink/65 mt-2 line-clamp-2 text-sm leading-[1.5]">{card.description}</p>
       <span
         aria-hidden="true"
         className="text-brand mt-4 inline-block text-xs font-medium transition-transform duration-200 group-hover:translate-x-1"

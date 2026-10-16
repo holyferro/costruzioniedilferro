@@ -93,7 +93,7 @@ const components: PortableTextComponents = {
             />
           </div>
           {value.caption && (
-            <figcaption className="text-ink/50 mt-3 text-center font-[family-name:var(--font-neue-montreal)] text-[12px] tracking-[0.04em]">
+            <figcaption className="text-ink/65 mt-3 text-center font-[family-name:var(--font-neue-montreal)] text-[12px] tracking-[0.04em]">
               {value.caption}
             </figcaption>
           )}

@@ -31,7 +31,7 @@ export function NewsFeaturedCard({ article }: { article: SanityNewsArticle }) {
         aria-label={`Leggi l'articolo: ${article.title}`}
       >
         {/* Immagine */}
-        <div className="relative aspect-[5/4] overflow-hidden bg-[#0a1830] md:aspect-auto">
+        <div className="bg-night relative aspect-[5/4] overflow-hidden md:aspect-auto">
           <Image
             src={coverUrl}
             alt={article.coverImage.alt}
@@ -59,7 +59,7 @@ export function NewsFeaturedCard({ article }: { article: SanityNewsArticle }) {
 
         {/* Corpo */}
         <div className="flex flex-col justify-center gap-6 p-6 md:px-[52px] md:py-12">
-          <div className="text-ink/60 flex flex-wrap items-center gap-3.5 font-[family-name:var(--font-neue-montreal)] text-[12px] tracking-[0.06em] uppercase">
+          <div className="text-ink/65 flex flex-wrap items-center gap-3.5 font-[family-name:var(--font-neue-montreal)] text-[12px] tracking-[0.06em] uppercase">
             <span>{formatDate(article.publishedAt)}</span>
           </div>
 

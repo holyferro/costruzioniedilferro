@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 export function AziendaValori() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="bg-ink text-panna relative overflow-hidden py-24 md:py-[120px]">
+    <section className="bg-ink text-panna relative overflow-hidden py-24 md:py-28">
       {/* Dot texture */}
       <svg
         aria-hidden="true"
@@ -32,14 +33,8 @@ export function AziendaValori() {
         {/* Header */}
         <div className="mb-16 grid items-end gap-8 md:mb-20 md:grid-cols-[1fr_1.4fr] md:gap-20">
           <div>
-            <p className="text-panna/55 text-xs font-semibold tracking-[0.38em] uppercase">
-              <span
-                aria-hidden="true"
-                className="bg-panna/40 mr-3 inline-block h-px w-8 align-middle"
-              />
-              I nostri valori
-            </p>
-            <h2 className="mt-5 max-w-[18ch] font-serif text-[clamp(2rem,0.8rem+2.4vw,3.125rem)] leading-[1.1] font-medium tracking-[-0.02em] text-white">
+            <Eyebrow dark>I nostri valori</Eyebrow>
+            <h2 className="text-h2 mt-5 max-w-[18ch] font-serif font-medium tracking-tight text-white">
               Quattro pilastri.
               <br />
               Un&apos;unica identità.
@@ -124,7 +119,7 @@ function ValueCard({ n, pillar, title, body, isActive, onClick }: ValueCardProps
       <div className="relative z-10">
         <p
           className={`mb-4 text-[10px] font-semibold tracking-[0.28em] uppercase ${
-            isActive ? "text-panna/55" : "text-panna/40"
+            isActive ? "text-panna/55" : "text-panna/65"
           }`}
         >
           {pillar}

@@ -3,6 +3,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { buttonClass } from "@/components/ui/button";
 
 type CertCard = {
   id: string;
@@ -30,13 +32,7 @@ export function CertificazioniGrid({ certCards, eyebrow }: CertificazioniGridPro
   return (
     <section className="bg-panna py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
-        <p className="text-ink/60 mb-12 text-xs font-semibold tracking-[0.38em] uppercase">
-          <span
-            aria-hidden="true"
-            className="bg-ink/35 mr-3.5 inline-block h-px w-8 align-middle"
-          />
-          {eyebrow}
-        </p>
+        <Eyebrow className="mb-12">{eyebrow}</Eyebrow>
 
         {/* 1px-gap grid trick: background is the border color */}
         <div className="border-border bg-[var(--color-border,theme(colors.border))] grid grid-cols-1 gap-px border md:grid-cols-2 lg:grid-cols-3">
@@ -63,13 +59,13 @@ export function CertificazioniGrid({ certCards, eyebrow }: CertificazioniGridPro
                 href="https://servizi.anticorruzione.it/RicercaAttestazioniWebApp/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-panna text-brand flex items-center justify-between rounded-full px-6 py-4 font-[family-name:var(--font-neue-montreal)] text-[13px] font-medium tracking-[0.04em] uppercase transition-opacity hover:opacity-90"
+                className={buttonClass({ variant: "inverse", className: "justify-between" })}
               >
                 Portale ANAC <span aria-hidden="true">↗</span>
               </a>
               <Link
                 href="/contatti"
-                className="border-panna/35 flex items-center justify-between rounded-full border px-6 py-4 font-[family-name:var(--font-neue-montreal)] text-[13px] font-medium tracking-[0.04em] text-white uppercase transition-colors hover:bg-white/10"
+                className={buttonClass({ variant: "inverseOutline", className: "justify-between" })}
               >
                 Richiedi documentazione <span aria-hidden="true">→</span>
               </Link>
@@ -83,9 +79,9 @@ export function CertificazioniGrid({ certCards, eyebrow }: CertificazioniGridPro
 
 function CertCard({ card }: { card: CertCard }) {
   return (
-    <article className="group relative flex flex-col bg-white p-10 transition-shadow duration-300 hover:shadow-[0_12px_48px_rgba(10,42,107,0.10)] md:p-12">
+    <article className="group relative flex flex-col bg-white p-10 transition-shadow duration-300 hover:shadow-[0_12px_48px_color-mix(in_oklab,var(--color-brand)_10%,transparent)] md:p-12">
       {card.year && (
-        <span className="text-ink/40 absolute top-7 right-7 font-serif text-sm italic">
+        <span className="text-ink/65 absolute top-7 right-7 font-serif text-sm italic">
           {card.year}
         </span>
       )}
@@ -130,7 +126,7 @@ function CertCard({ card }: { card: CertCard }) {
           {card.registrations.map((reg) => (
             <li
               key={reg}
-              className="text-ink/50 font-[family-name:var(--font-neue-montreal)] text-[11px] tracking-[0.02em]"
+              className="text-ink/65 font-[family-name:var(--font-neue-montreal)] text-[11px] tracking-[0.02em]"
             >
               {reg}
             </li>
@@ -149,7 +145,7 @@ function CertCard({ card }: { card: CertCard }) {
             {card.pdfLabel ?? "Consulta il certificato"} <span aria-hidden="true">↗</span>
           </a>
           {card.pdfNote && (
-            <p className="text-ink/40 mt-2 font-[family-name:var(--font-neue-montreal)] text-[11px]">
+            <p className="text-ink/65 mt-2 font-[family-name:var(--font-neue-montreal)] text-[11px]">
               {card.pdfNote}
             </p>
           )}

@@ -7,6 +7,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { errorContent } from "@/content/site";
+import { buttonClass } from "@/components/ui/button";
 
 export default function Error({
   error,
@@ -23,21 +24,16 @@ export default function Error({
 
   return (
     <section className="mx-auto flex max-w-2xl flex-1 flex-col items-start justify-center gap-6 px-6 py-24">
-      <p className="text-ink/60 text-sm font-medium tracking-widest uppercase">Errore</p>
-      <h1 className="text-h1 text-ink font-serif">{errorContent.title}</h1>
+      <p className="text-ink/65 text-sm font-medium tracking-widest uppercase">Errore</p>
+      <h1 className="text-ink text-h1 font-serif font-medium tracking-[-0.02em]">
+        {errorContent.title}
+      </h1>
       <p className="text-ink/80 max-w-prose text-lg">{errorContent.body}</p>
       <div className="flex flex-wrap gap-4 pt-2">
-        <button
-          type="button"
-          onClick={() => unstable_retry()}
-          className="bg-brand text-panna hover:bg-brand/90 inline-flex items-center rounded-full px-6 py-3 transition-colors"
-        >
+        <button type="button" onClick={() => unstable_retry()} className={buttonClass()}>
           {errorContent.ctaRetryLabel}
         </button>
-        <Link
-          href="/"
-          className="border-ink/20 text-ink hover:border-ink/60 inline-flex items-center rounded-full border px-6 py-3 transition-colors"
-        >
+        <Link href="/" className={buttonClass({ variant: "secondary" })}>
           {errorContent.ctaHomeLabel}
         </Link>
       </div>

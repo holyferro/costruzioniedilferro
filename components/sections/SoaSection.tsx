@@ -2,6 +2,7 @@
 // RSC. Feature card SOA/CQOP dentro sezione bg-panna. Design 2-col: info+stats | commitments.
 
 import Image from "next/image";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 type SoaStat = { label: string; value: string; sub?: string };
 type SoaCommitment = { title: string; body: string };
@@ -31,13 +32,7 @@ export function SoaSection({
   return (
     <section className="bg-white pt-20 pb-20 md:pt-28 md:pb-28">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
-        <p className="text-ink/60 mb-14 text-xs font-semibold tracking-[0.38em] uppercase">
-          <span
-            aria-hidden="true"
-            className="bg-ink/35 mr-3.5 inline-block h-px w-8 align-middle"
-          />
-          {eyebrow}
-        </p>
+        <Eyebrow className="mb-14">{eyebrow}</Eyebrow>
 
         {/* Brand-color feature card */}
         <div className="bg-brand grid items-start gap-12 px-8 py-12 md:px-14 md:py-16 lg:grid-cols-2 lg:gap-20">

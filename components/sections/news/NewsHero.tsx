@@ -2,13 +2,13 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 
 export function NewsHero() {
   return (
-    <section className="bg-panna border-border border-b py-[120px] pb-20">
-      <div className="mx-auto max-w-[1280px] px-6 md:px-12">
+    <section className="bg-panna border-border border-b py-28 pb-20">
+      <div className="mx-auto max-w-6xl px-6 md:px-12">
         <div className="grid items-end gap-[80px] md:grid-cols-[1.4fr_1fr]">
           {/* Left */}
           <div>
             <Eyebrow>Aggiornamenti</Eyebrow>
-            <h1 className="text-ink mt-6 font-serif text-[clamp(2.75rem,1.4rem+3.4vw,5rem)] leading-[1.06] font-medium tracking-[-0.02em]">
+            <h1 className="text-ink text-h1 mt-6 font-serif font-medium tracking-[-0.02em]">
               News, cantieri
               <br />
               <em className="text-brand italic">e racconti</em>

@@ -75,16 +75,16 @@ const entries: TimelineEntry[] = [
 
 export function AziendaStoria() {
   return (
-    <section className="bg-panna py-24 md:py-[120px]">
+    <section className="bg-panna py-24 md:py-28">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         <div className="grid items-start gap-16 md:grid-cols-[1fr_1.5fr] md:gap-20">
           {/* Sticky intro */}
           <div className="md:sticky md:top-[calc(var(--header-height)+2rem)]">
             <Eyebrow>La nostra storia</Eyebrow>
-            <h2 className="text-ink mt-5 max-w-[14ch] font-serif text-[clamp(1.875rem,0.8rem+2.2vw,2.875rem)] leading-[1.15] font-medium tracking-[-0.018em]">
+            <h2 className="text-ink text-h2 mt-5 max-w-[14ch] font-serif font-medium tracking-tight">
               Dal 1952, una storia costruita sul campo.
             </h2>
-            <p className="text-ink/60 mt-6 max-w-[34ch] text-[15px] leading-[1.7]">
+            <p className="text-ink/65 mt-6 max-w-[34ch] text-[15px] leading-[1.7]">
               Dalle ricostruzioni del Polesine alla nuova sede, Costruzioni Edilferro ha trasformato
               esperienza familiare, metodo e continuità in una struttura d&apos;impresa solida.
             </p>

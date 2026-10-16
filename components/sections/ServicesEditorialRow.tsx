@@ -25,7 +25,7 @@ export function ServicesEditorialRow({ id, variant, item, reverse }: ServicesEdi
           <div className={`order-1 ${reverse ? "lg:order-2" : "lg:order-1"}`}>
             <div className="mb-4 flex items-baseline gap-4">
               <span className="text-brand font-serif text-sm font-medium italic">— {item.n}</span>
-              <span className="text-ink/60 text-[11px] font-semibold tracking-[0.22em] uppercase">
+              <span className="text-ink/65 text-[11px] font-semibold tracking-[0.22em] uppercase">
                 {item.kicker}
               </span>
             </div>
@@ -94,7 +94,7 @@ function SoaBadgeGrid({
           <p className="text-ink mt-2 font-serif text-[clamp(0.9rem,0.6rem+0.6vw,1.1rem)] leading-snug font-medium">
             {badge.name}
           </p>
-          <p className="text-ink/60 mt-2 line-clamp-2 text-sm leading-[1.5]">{badge.description}</p>
+          <p className="text-ink/65 mt-2 line-clamp-2 text-sm leading-[1.5]">{badge.description}</p>
         </div>
       ))}
     </div>

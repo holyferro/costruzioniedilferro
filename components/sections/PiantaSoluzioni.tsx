@@ -9,7 +9,7 @@
 // prefers-reduced-motion: pianta subito completa.
 
 import Image from "next/image";
-import { X } from "lucide-react";
+import { CloseButton } from "@/components/ui/CloseButton";
 import { useEffect, useId, useRef, useState, type RefObject } from "react";
 import type { FloorPlanMarker, HomepageContent } from "@/content/homepage";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -161,7 +161,7 @@ export function PiantaSoluzioni({
       <div className="mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-2 md:gap-x-16 md:gap-y-0 lg:px-12">
         <div className="md:col-start-1 md:row-start-1 md:self-end">
           <Eyebrow>{eyebrow}</Eyebrow>
-          <h2 className="text-h2 mt-4 font-semibold">{title}</h2>
+          <h2 className="text-h2 mt-4 font-serif font-medium tracking-tight">{title}</h2>
           <p className="text-ink/70 mt-4 max-w-md">{intro}</p>
         </div>
 
@@ -215,14 +215,11 @@ export function PiantaSoluzioni({
                           className={`absolute z-10 scroll-mt-[calc(var(--header-height)+1rem)] scroll-mb-4 ${pos.cardX} ${pos.cardY}`}
                         >
                           <PhotoCard key={m.n} marker={m} />
-                          <button
-                            type="button"
-                            aria-label="Chiudi scheda"
+                          <CloseButton
+                            label="Chiudi scheda"
                             onClick={close}
-                            className="bg-surface/90 text-ink focus-visible:outline-ink absolute top-1 right-1 hidden size-10 place-items-center rounded-full shadow-md focus-visible:outline-2 pointer-coarse:grid"
-                          >
-                            <X aria-hidden className="size-5" />
-                          </button>
+                            className="bg-surface/90 hover:bg-surface absolute top-1 right-1 hidden shadow-md pointer-coarse:grid"
+                          />
                         </div>
                       )}
                     </div>
@@ -256,7 +253,7 @@ export function PiantaSoluzioni({
               </li>
             ))}
           </ol>
-          <p className="text-ink/50 mt-3 text-sm">
+          <p className="text-ink/65 mt-3 text-sm">
             <span className="md:hidden">{hintTouch}</span>
             <span className="hidden md:inline">{hintPointer}</span>
           </p>
@@ -266,7 +263,7 @@ export function PiantaSoluzioni({
               close();
               setRun((r) => r + 1);
             }}
-            className="text-ink/60 hover:text-ink mt-6 font-mono text-xs tracking-[0.15em] uppercase underline-offset-4 hover:underline"
+            className="text-ink/65 hover:text-ink mt-6 font-mono text-xs tracking-[0.15em] uppercase underline-offset-4 hover:underline"
           >
             ↻ {replayLabel}
           </button>
@@ -311,7 +308,7 @@ function PhotoCard({ marker }: { marker: FloorPlanMarker }) {
             </div>
           )}
           {photo?.credit && (
-            <p className="text-ink/45 text-right text-[10px] leading-tight">{photo.credit}</p>
+            <p className="text-ink/65 text-right text-[10px] leading-tight">{photo.credit}</p>
           )}
         </div>
       </div>

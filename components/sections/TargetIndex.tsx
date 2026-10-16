@@ -35,7 +35,7 @@ function TargetCard({ target }: { target: ServicesTarget }) {
       {/* Numbered eyebrow row */}
       <div className="mb-4 flex items-baseline gap-4">
         <span className="text-brand font-serif text-sm font-medium italic">— {target.n}</span>
-        <span className="text-ink/60 text-[11px] font-semibold tracking-[0.22em] uppercase">
+        <span className="text-ink/65 text-[11px] font-semibold tracking-[0.22em] uppercase">
           {target.kicker}
         </span>
       </div>

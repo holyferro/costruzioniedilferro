@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { CloseButton } from "@/components/ui/CloseButton";
 import { urlFor } from "@/sanity/lib/client";
 import type { SanityNewsArticle } from "@/sanity/lib/types";
 import { PortableTextRenderer } from "./PortableTextRenderer";
@@ -125,25 +126,11 @@ export function ArticleReader({ article, onClose }: ArticleReaderProps) {
             </p>
           </div>
 
-          <button
+          <CloseButton
+            label="Chiudi articolo"
+            variant={pastHero ? "light" : "glass"}
             onClick={onClose}
-            aria-label="Chiudi articolo"
-            className="flex h-[34px] w-[34px] items-center justify-center rounded-full border transition-colors"
-            style={{
-              borderColor: pastHero ? "rgba(26,26,26,0.25)" : "rgba(255,255,255,0.25)",
-              color: pastHero ? "var(--color-ink)" : "#fff",
-              background: "transparent",
-            }}
-          >
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
-              <path
-                d="M2 2L10 10M10 2L2 10"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
+          />
 
           {/* Reading progress bar */}
           <div
@@ -165,7 +152,7 @@ export function ArticleReader({ article, onClose }: ArticleReaderProps) {
               {/* Hero */}
               <section
                 className="relative flex min-h-[540px] items-end overflow-hidden"
-                style={{ background: "#0a1830" }}
+                style={{ background: "var(--color-night)" }}
               >
                 {coverUrl && (
                   <Image

@@ -7,6 +7,8 @@
 import { MapPin } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import type { Zone } from "@/content/homepage";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { buttonClass } from "@/components/ui/button";
 
 const MAPS_STATIC_URL = `https://maps.googleapis.com/maps/api/staticmap?center=44.90,12.05&zoom=9&size=800x450&scale=2&markers=color:red%7C44.9167,12.1167&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_STATIC_KEY}`;
 const MAPS_LINK_URL = "https://maps.app.goo.gl/KxQ6vAzyqzhsbh1c7";
@@ -33,8 +35,8 @@ export function ServiceAreaSection({
         <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-x-16 lg:gap-y-14">
           {/* ① Intro */}
           <Reveal>
-            <DarkEyebrow>{eyebrow}</DarkEyebrow>
-            <h2 className="text-panna mt-5 max-w-[16ch] font-serif text-[clamp(2rem,1rem+2.6vw,3.4rem)] leading-[1.12] font-medium tracking-tight">
+            <Eyebrow dark>{eyebrow}</Eyebrow>
+            <h2 className="text-panna text-h2 mt-5 max-w-[16ch] font-serif font-medium tracking-tight">
               {titleStart}
               <em className="text-panna/65 font-serif italic">{titleAccent}</em>
             </h2>
@@ -57,7 +59,7 @@ export function ServiceAreaSection({
               href={MAPS_LINK_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="border-panna/25 hover:bg-panna hover:text-ink text-panna mt-4 inline-flex items-center gap-2 self-start rounded-full border px-5 py-3 text-sm font-medium tracking-wide transition-colors"
+              className={buttonClass({ variant: "inverseOutline", className: "mt-4 self-start" })}
             >
               <MapPin className="h-4 w-4" aria-hidden="true" />
               Apri in Google Maps
@@ -122,14 +124,5 @@ function ZoneRow({ zone, isLast, isSecondToLast, delay }: ZoneRowProps) {
         <span className="text-panna/55 font-serif text-sm italic">{zone.km}</span>
       </div>
     </Reveal>
-  );
-}
-
-function DarkEyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-panna/55 text-xs font-semibold tracking-[0.38em] uppercase">
-      <span aria-hidden="true" className="bg-panna/40 mr-3 inline-block h-px w-8 align-middle" />
-      {children}
-    </p>
   );
 }

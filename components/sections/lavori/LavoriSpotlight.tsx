@@ -1,19 +1,17 @@
 // RSC — Spotlight progetto di rilievo (Residenze Le Corti)
 import Image from "next/image";
 import { FadeUp } from "@/components/ui/FadeUp";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 export function LavoriSpotlight() {
   return (
     <section className="border-border bg-panna border-t">
       {/* Intro header */}
-      <div className="mx-auto max-w-6xl px-6 py-[100px] pb-[60px] md:px-12">
-        <p className="text-ink/60 flex items-center gap-3 text-xs font-semibold tracking-[0.38em] uppercase">
-          <span aria-hidden="true" className="bg-ink/40 inline-block h-px w-8 flex-shrink-0" />
-          Progetto di rilievo
-        </p>
+      <div className="mx-auto max-w-6xl px-6 py-24 pb-[60px] md:px-12">
+        <Eyebrow>Progetto di rilievo</Eyebrow>
         <h2
-          className="text-ink mt-5 font-serif leading-[1.15] font-medium tracking-[-0.015em]"
-          style={{ fontSize: "clamp(1.75rem, 0.6rem + 2vw, 2.625rem)", maxWidth: "28ch" }}
+          className="text-ink text-h2 mt-5 font-serif font-medium tracking-tight"
+          style={{ maxWidth: "28ch" }}
         >
           Un&apos;opera che racconta il metodo Impresa Edile
         </h2>

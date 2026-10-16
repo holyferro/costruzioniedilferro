@@ -8,6 +8,8 @@ import Link from "next/link";
 import type { Route } from "next";
 import { siteContent } from "@/content/site";
 import { DecorativeRings } from "@/components/ui/DecorativeRings";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { buttonClass } from "@/components/ui/button";
 
 type HomepageCtaProps = {
   eyebrow: string;
@@ -35,7 +37,7 @@ export function HomepageCta({
       <div className="relative mx-auto max-w-6xl px-6 md:px-12">
         <div className="grid items-center gap-8 md:grid-cols-[1.3fr_1fr] md:gap-20">
           <div>
-            <DarkEyebrow>{eyebrow}</DarkEyebrow>
+            <Eyebrow dark>{eyebrow}</Eyebrow>
             <h2 className="mt-4 max-w-[14ch] font-serif text-[clamp(2.4rem,1.4rem+3.2vw,4.5rem)] leading-[1.05] font-medium tracking-tight text-white md:mt-5">
               {headline}
             </h2>
@@ -72,13 +74,21 @@ export function HomepageCta({
           <div className="flex flex-col gap-2.5 md:gap-3.5">
             <Link
               href={primaryCta.href as Route<string>}
-              className="bg-panna text-brand hover:bg-panna/90 inline-flex items-center justify-between rounded-full px-7 py-5 font-[family-name:var(--font-neue-montreal)] text-[15px] font-medium tracking-[0.04em] uppercase transition-colors"
+              className={buttonClass({
+                variant: "inverse",
+                size: "lg",
+                className: "justify-between",
+              })}
             >
               {primaryCta.label} <span aria-hidden="true">→</span>
             </Link>
             <Link
               href={secondaryCta.href as Route<string>}
-              className="border-panna/40 bg-brand hover:border-panna inline-flex items-center justify-between rounded-full border px-7 py-5 font-[family-name:var(--font-neue-montreal)] text-[15px] font-medium tracking-[0.04em] text-white uppercase transition-colors"
+              className={buttonClass({
+                variant: "inverseOutline",
+                size: "lg",
+                className: "justify-between",
+              })}
             >
               {secondaryCta.label} <span aria-hidden="true">→</span>
             </Link>
@@ -112,14 +122,5 @@ export function HomepageCta({
         </div>
       </div>
     </section>
-  );
-}
-
-function DarkEyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-panna/55 text-xs font-semibold tracking-[0.38em] uppercase">
-      <span aria-hidden="true" className="bg-panna/40 mr-3 inline-block h-px w-8 align-middle" />
-      {children}
-    </p>
   );
 }

@@ -1,4 +1,5 @@
 import { buildMetadata } from "@/lib/seo/metadata";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 export const metadata = buildMetadata({
   title: "Privacy Policy",
@@ -21,16 +22,14 @@ export default function PrivacyPolicyPage() {
     <div className="bg-panna">
       <div className="mx-auto max-w-3xl px-4 py-20 lg:py-28">
         {/* Header */}
-        <p className="text-ink/50 text-xs font-semibold tracking-[0.38em] uppercase">
-          Informativa legale
-        </p>
+        <Eyebrow>Informativa legale</Eyebrow>
         <h1 className="text-ink mt-4 font-serif text-[clamp(2rem,1.2rem+2.5vw,3.5rem)] leading-[1.05] font-medium tracking-tight">
           Informativa sul trattamento dei dati personali
         </h1>
         <p className="text-ink/75 mt-4 text-base leading-relaxed">
           ai sensi del Regolamento UE 2016/679 — GDPR e del D.Lgs. 196/2003
         </p>
-        <p className="text-ink/40 mt-2 text-sm">Ultimo aggiornamento: 5 giugno 2026</p>
+        <p className="text-ink/65 mt-2 text-sm">Ultimo aggiornamento: 5 giugno 2026</p>
 
         {/* 1. Titolare */}
         <Section number="1" title="Titolare del trattamento">
@@ -43,7 +42,7 @@ export default function PrivacyPolicyPage() {
               <tbody>
                 {titolare.map(([label, value], i) => (
                   <tr key={label} className={i % 2 === 0 ? "bg-ink/[0.02]" : ""}>
-                    <td className="text-ink/60 w-40 px-4 py-3 align-top font-medium">{label}</td>
+                    <td className="text-ink/65 w-40 px-4 py-3 align-top font-medium">{label}</td>
                     <td className="text-ink/75 px-4 py-3 break-all">{value}</td>
                   </tr>
                 ))}

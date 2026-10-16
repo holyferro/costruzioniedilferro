@@ -5,12 +5,14 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
+import { photoBadgeClass } from "@/components/ui/badge";
 import Link from "next/link";
 import type { Route } from "next";
 import type { SanityNewsPreview, SanityNewsArticle } from "@/sanity/lib/types";
 import { urlFor, client } from "@/sanity/lib/client";
 import { newsBySlugQuery } from "@/sanity/lib/queries";
 import { ArticleReader } from "@/components/news/ArticleReader";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 type NewsUpdatesSectionProps = {
   eyebrow: string;
@@ -125,7 +127,7 @@ export function NewsUpdatesSection({
           <div className="mb-14 grid items-end gap-10 md:grid-cols-[1.2fr_1fr] md:gap-16">
             <div>
               <Eyebrow>{eyebrow}</Eyebrow>
-              <h2 className="text-ink mt-5 max-w-[20ch] font-serif text-[clamp(2rem,1rem+2.6vw,3.4rem)] leading-[1.12] font-medium tracking-tight">
+              <h2 className="text-ink text-h2 mt-5 max-w-[20ch] font-serif font-medium tracking-tight">
                 {titleStart}
                 <em className="text-brand font-serif italic">{titleAccent}</em>
               </h2>
@@ -189,10 +191,10 @@ export function NewsUpdatesSection({
               style={{ left: `${scrollState.progress * 70}%` }}
             />
           </div>
-          <span className="text-ink/60 font-serif text-sm whitespace-nowrap italic">
+          <span className="text-ink/65 font-serif text-sm whitespace-nowrap italic">
             <span className="tabular-nums">{String(currentCard).padStart(2, "0")}</span>
-            <span className="text-ink/40 mx-1.5">/</span>
-            <span className="text-ink/40 tabular-nums">
+            <span className="text-ink/65 mx-1.5">/</span>
+            <span className="text-ink/65 tabular-nums">
               {String(items.length).padStart(2, "0")}
             </span>
           </span>
@@ -233,11 +235,11 @@ function NewsCard({ item, isFirst, isLoading, onOpen }: NewsCardProps) {
             className="object-cover saturate-95 transition-transform duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
           />
           <div className="absolute top-[18px] left-[18px] flex flex-col gap-2">
-            <span className="self-start rounded-full border border-white/22 bg-white/15 px-3 py-1.5 text-[10px] font-semibold tracking-[0.2em] text-white uppercase backdrop-blur-[8px]">
-              {item.category}
-            </span>
+            <span className={photoBadgeClass("self-start")}>{item.category}</span>
             {isFirst && (
-              <span className="bg-brand/85 text-panna inline-flex items-center gap-2 self-start rounded-full border border-white/22 px-3 py-1.5 text-[10px] font-semibold tracking-[0.2em] uppercase backdrop-blur-[8px]">
+              <span
+                className={photoBadgeClass("inline-flex items-center gap-2 self-start", "brand")}
+              >
                 <span className="bg-panna inline-block h-1.5 w-1.5 rounded-full" />
                 Più recente
               </span>
@@ -254,7 +256,7 @@ function NewsCard({ item, isFirst, isLoading, onOpen }: NewsCardProps) {
         {/* Corpo card */}
         <div className="flex flex-1 flex-col gap-3.5 p-6 pb-[26px]">
           {/* Meta */}
-          <div className="text-ink/60 flex items-center gap-3 text-[12px] tracking-[0.06em] uppercase">
+          <div className="text-ink/65 flex items-center gap-3 text-[12px] tracking-[0.06em] uppercase">
             <span>{formatDate(item.publishedAt)}</span>
           </div>
 
@@ -294,7 +296,7 @@ function ArchiveCard({ href }: { href: string }) {
       <p className="text-ink font-serif text-[22px] leading-[1.3] font-medium italic">
         Esplora l&apos;archivio completo
       </p>
-      <p className="text-ink/60 font-[family-name:var(--font-neue-montreal)] text-[12px] tracking-[0.08em] uppercase">
+      <p className="text-ink/65 font-[family-name:var(--font-neue-montreal)] text-[12px] tracking-[0.08em] uppercase">
         Tutti gli aggiornamenti
       </p>
     </a>
@@ -372,14 +374,5 @@ function SpinnerIcon() {
         strokeLinecap="round"
       />
     </svg>
-  );
-}
-
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-ink/60 text-xs font-semibold tracking-[0.38em] uppercase">
-      <span aria-hidden="true" className="bg-ink/40 mr-3 inline-block h-px w-8 align-middle" />
-      {children}
-    </p>
   );
 }

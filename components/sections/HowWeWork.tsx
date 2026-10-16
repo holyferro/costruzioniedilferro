@@ -33,7 +33,7 @@ export function HowWeWork({ eyebrow, titleStart, titleAccent, titleEnd, steps }:
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         <div className="mb-14 max-w-[34ch] md:mb-20">
           <Eyebrow dark>{eyebrow}</Eyebrow>
-          <h2 className="text-panna mt-5 font-serif text-[clamp(2rem,1rem+2.6vw,3.4rem)] leading-[1.12] font-medium tracking-tight">
+          <h2 className="text-panna text-h2 mt-5 font-serif font-medium tracking-tight">
             {titleStart}
             <em className="text-panna/70 font-serif italic">{titleAccent}</em>
             {titleEnd}

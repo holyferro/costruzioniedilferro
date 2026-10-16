@@ -10,6 +10,7 @@ import Image from "next/image";
 import { CountUpNumber } from "@/components/ui/CountUpNumber";
 import { Reveal } from "@/components/ui/Reveal";
 import type { TrustRow } from "@/content/homepage";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 type TrustStripProps = {
   eyebrow: string;
@@ -29,7 +30,7 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
         {/* Intro — sticky solo su lg+ */}
         <div className="lg:sticky lg:top-[calc(var(--header-height)+24px)] lg:self-start">
           <Eyebrow>{eyebrow}</Eyebrow>
-          <h2 className="text-ink mt-5 max-w-[15ch] font-serif text-[clamp(2rem,1rem+2.6vw,3.4rem)] leading-[1.12] font-medium tracking-tight">
+          <h2 className="text-ink text-h2 mt-5 max-w-[15ch] font-serif font-medium tracking-tight">
             {title.split("misura").map((part, i, arr) =>
               i < arr.length - 1 ? (
                 <span key={i}>
@@ -102,7 +103,7 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
                 </dd>
 
                 {/* Label secondaria — sotto su mobile/tablet, a destra su lg+ */}
-                <dd className="text-ink/60 col-span-2 text-xs tracking-[0.12em] uppercase md:col-span-2 md:mt-1 lg:col-span-1 lg:mt-0 lg:max-w-[140px] lg:text-right lg:text-[10px] lg:leading-[1.45] lg:break-words xl:max-w-[200px] xl:text-[11px]">
+                <dd className="text-ink/65 col-span-2 text-xs tracking-[0.12em] uppercase md:col-span-2 md:mt-1 lg:col-span-1 lg:mt-0 lg:max-w-[140px] lg:text-right lg:text-[10px] lg:leading-[1.45] lg:break-words xl:max-w-[200px] xl:text-[11px]">
                   {r.sub}
                 </dd>
               </Reveal>
@@ -111,14 +112,5 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
         </dl>
       </div>
     </section>
-  );
-}
-
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-ink/60 text-xs font-semibold tracking-[0.38em] uppercase">
-      <span aria-hidden="true" className="bg-ink/40 mr-3 inline-block h-px w-8 align-middle" />
-      {children}
-    </p>
   );
 }

@@ -25,10 +25,10 @@ const reviews: Review[] = [
 
 export function AziendaTestimonianze() {
   return (
-    <section className="bg-panna border-border border-t py-24 md:py-[120px]">
+    <section className="bg-panna border-border border-t py-24 md:py-28">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         <Eyebrow>Parlano di noi</Eyebrow>
-        <h2 className="text-ink mt-5 max-w-[16ch] font-serif text-[clamp(1.75rem,0.6rem+2vw,2.625rem)] leading-[1.15] font-medium tracking-[-0.015em]">
+        <h2 className="text-ink text-h2 mt-5 max-w-[16ch] font-serif font-medium tracking-tight">
           Lo dicono i nostri clienti.
         </h2>
         <p className="text-ink/70 mt-5 text-[15px] leading-[1.7]">
@@ -47,7 +47,7 @@ export function AziendaTestimonianze() {
               key={review.name}
               className="hover:border-ink/40 relative flex flex-col gap-5 border border-transparent bg-white px-10 py-11 transition-colors duration-300"
             >
-              <span className="text-ink/40 absolute top-6 right-8 text-[11px] font-semibold tracking-[0.1em] uppercase">
+              <span className="text-ink/65 absolute top-6 right-8 text-[11px] font-semibold tracking-[0.1em] uppercase">
                 Google
               </span>
               <div className="flex gap-1" aria-hidden="true">
@@ -60,7 +60,7 @@ export function AziendaTestimonianze() {
               </p>
               <div className="mt-auto">
                 <p className="text-ink text-sm font-semibold">{review.name}</p>
-                <p className="text-ink/60 mt-0.5 text-sm">Recensione Google</p>
+                <p className="text-ink/65 mt-0.5 text-sm">Recensione Google</p>
               </div>
             </div>
           ))}

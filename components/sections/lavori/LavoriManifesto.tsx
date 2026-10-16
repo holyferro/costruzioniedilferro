@@ -1,6 +1,7 @@
 // RSC — Sezione "Come presentiamo i lavori"
 import { ShieldCheck, Camera, CalendarCheck } from "lucide-react";
 import { FadeUp } from "@/components/ui/FadeUp";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 const pillars = [
   {
@@ -22,14 +23,11 @@ const pillars = [
 
 export function LavoriManifesto() {
   return (
-    <section className="bg-panna border-border border-b py-[100px]">
+    <section className="bg-panna border-border border-b py-24">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         {/* Header */}
         <FadeUp>
-          <p className="text-ink/60 flex items-center gap-3 text-xs font-semibold tracking-[0.38em] uppercase">
-            <span aria-hidden="true" className="bg-ink/40 inline-block h-px w-8 flex-shrink-0" />
-            Come presentiamo i lavori
-          </p>
+          <Eyebrow>Come presentiamo i lavori</Eyebrow>
           <p className="text-ink mt-6 max-w-2xl font-serif text-[clamp(1.5rem,0.6rem+2vw,2.25rem)] leading-[1.2] font-medium tracking-[-0.015em]">
             Ogni voce dell&apos;archivio risponde a tre criteri di trasparenza.
           </p>

@@ -31,12 +31,12 @@ const team: TeamMember[] = [
 
 export function AziendaTeam() {
   return (
-    <section className="bg-panna border-border border-t py-24 md:py-[120px]">
+    <section className="bg-panna border-border border-t py-24 md:py-28">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         <div className="mb-18 grid items-start gap-10 md:mb-[72px] md:grid-cols-[1fr_1.6fr] md:gap-20">
           <div>
             <Eyebrow>Le persone</Eyebrow>
-            <h2 className="text-ink mt-5 max-w-[14ch] font-serif text-[clamp(1.875rem,0.8rem+2.2vw,2.875rem)] leading-[1.15] font-medium tracking-[-0.018em]">
+            <h2 className="text-ink text-h2 mt-5 max-w-[14ch] font-serif font-medium tracking-tight">
               Un&apos;azienda familiare con struttura professionale.
             </h2>
           </div>
@@ -54,7 +54,7 @@ export function AziendaTeam() {
           ))}
         </div>
 
-        <p className="border-border text-ink/50 mt-12 max-w-[70ch] border-t pt-7 text-sm leading-[1.65]">
+        <p className="border-border text-ink/65 mt-12 max-w-[70ch] border-t pt-7 text-sm leading-[1.65]">
           Le immagini di profilo sono placeholder istituzionali — le fotografie ufficiali del team
           sono in fase di produzione. I curricula completi sono disponibili su richiesta per
           stazioni appaltanti e committenti privati.
@@ -83,7 +83,7 @@ function TeamCard({ photo, role, name, bio }: TeamMember) {
         <h3 className="text-ink mb-2.5 font-serif text-[22px] leading-tight font-medium tracking-[-0.01em]">
           {name}
         </h3>
-        <p className="text-ink/60 text-sm leading-[1.65]">{bio}</p>
+        <p className="text-ink/65 text-sm leading-[1.65]">{bio}</p>
       </div>
     </div>
   );

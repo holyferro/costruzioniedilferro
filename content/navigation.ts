@@ -20,11 +20,6 @@ export const primaryNav: readonly NavLink[] = [
   { href: "/contatti", label: "Contattaci" },
 ];
 
-export const primaryCta: NavLink = {
-  href: "/contatti",
-  label: "Richiedi un preventivo",
-};
-
 export const footerNav: readonly NavGroup[] = [
   {
     title: "Sezioni",
