@@ -216,9 +216,10 @@ export function PiantaSoluzioni({
                         >
                           <PhotoCard key={m.n} marker={m} />
                           <CloseButton
+                            variant="glass"
                             label="Chiudi scheda"
                             onClick={close}
-                            className="bg-surface/90 hover:bg-surface absolute top-1 right-1 hidden shadow-md pointer-coarse:grid"
+                            className="absolute top-[18px] right-[18px] z-10 hidden pointer-coarse:grid"
                           />
                         </div>
                       )}
