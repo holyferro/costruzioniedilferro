@@ -30,9 +30,11 @@ Sito istituzionale di un'impresa edile locale storica. Strategia, obiettivi e to
 - `pnpm check`: lint, typecheck, compliance, contrasto, layout. Gira in CI su ogni PR: lancialo prima di aprirla.
 - Il pre-commit esegue solo eslint e prettier sui file staged.
 - Preview nel browser integrato: configurazione `next-dev` in `.claude/launch.json`. La porta è automatica perché spesso `pnpm dev` dell'utente occupa già la 3000.
+- Tocchi e bug solo iPhone: il browser integrato usa Chromium e manda i tap come click del mouse. Per tap veri e il motore di Safari usa `scripts/mobile.mjs` (WebKit con emulazione iPhone).
+- Se la home dà 500 con "Configuration must contain `projectId`", nel worktree manca `.env.local`: copialo dalla cartella principale. I nuovi worktree lo ricevono da `.worktreeinclude`.
 
 ## Deploy
 
 - Una modifica al sito è finita solo quando è su `main`: commit, push, PR verso `main` (`gh pr create`), check verdi, merge. Per aspettare i check usa `gh pr checks <n> --watch` con `run_in_background`.
-- Da `main` il sito si aggiorna da solo in due posti: Vercel (produzione) e il macserver (`https://macserver.taild6ecf5.ts.net:8084`), che ogni 2 minuti ricostruisce il container se `origin/main` è cambiato (`scripts/macserver-deploy.sh`, log in `/opt/stacks/edilferro/deploy.log`, host SSH `macserver`).
+- Da `main` il sito si aggiorna da solo in due posti: Vercel (produzione) e il macserver (`https://macserver.taild6ecf5.ts.net:8084`), che ogni 2 minuti ricostruisce il container se `origin/main` è cambiato (`scripts/macserver-deploy.sh`, log in `/opt/stacks/edilferro/deploy.log`, host SSH `macserver`). Il commit online sul macserver è in `/opt/stacks/edilferro/.deployed-sha`: confrontalo con `git rev-parse origin/main`.
 - Il dominio `costruzioniedilferro.com` (il sito "vero") resta com'è: DNS su Aruba, domini Vercel e certificati si toccano solo come ultimo passo del progetto, su richiesta esplicita. Fino ad allora si verifica sul macserver e sui deploy Vercel (`*.vercel.app`).
