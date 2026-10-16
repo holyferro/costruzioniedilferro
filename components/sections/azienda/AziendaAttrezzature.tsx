@@ -128,7 +128,7 @@ export function AziendaAttrezzature() {
   return (
     <section
       className="relative overflow-hidden py-28"
-      style={{ background: "#1a1a1a", color: "#f8f5ee" }}
+      style={{ background: "var(--color-ink)", color: "var(--color-panna)" }}
     >
       {/* texture di sfondo */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
@@ -166,7 +166,11 @@ export function AziendaAttrezzature() {
           </div>
           <p
             className="text-[17px] leading-[1.75]"
-            style={{ color: "rgba(248,245,238,0.7)", maxWidth: "56ch", paddingBottom: "4px" }}
+            style={{
+              color: "color-mix(in oklab, var(--color-panna) 70%, transparent)",
+              maxWidth: "56ch",
+              paddingBottom: "4px",
+            }}
           >
             Mezzi d&apos;opera costantemente aggiornati e tecnologicamente avanzati, attrezzatura
             meccanica a basso impatto ambientale e fonometrico — accanto a manodopera specializzata
@@ -179,7 +183,7 @@ export function AziendaAttrezzature() {
         <FadeUp>
           <div
             className="mb-px grid grid-cols-2 gap-px md:grid-cols-3 lg:grid-cols-6"
-            style={{ background: "rgba(248,245,238,0.08)" }}
+            style={{ background: "color-mix(in oklab, var(--color-panna) 8%, transparent)" }}
           >
             {mezzi.map((mezzo) => (
               <CardMezzo
@@ -196,8 +200,8 @@ export function AziendaAttrezzature() {
         <div
           className="flex flex-wrap items-center gap-10 px-10 py-8"
           style={{
-            background: "rgba(248,245,238,0.04)",
-            border: "1px solid rgba(248,245,238,0.08)",
+            background: "color-mix(in oklab, var(--color-panna) 4%, transparent)",
+            border: "1px solid color-mix(in oklab, var(--color-panna) 8%, transparent)",
           }}
         >
           <svg
@@ -206,22 +210,24 @@ export function AziendaAttrezzature() {
             viewBox="0 0 24 24"
             fill="none"
             aria-hidden="true"
-            className="shrink-0"
-            style={{ opacity: 0.6 }}
+            className="text-panna/70 shrink-0"
           >
-            <circle cx="12" cy="12" r="10" stroke="var(--color-brand)" strokeWidth="1.5" />
+            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" />
             <path
               d="M8 14s1.5 2 4 2 4-2 4-2"
-              stroke="var(--color-brand)"
+              stroke="currentColor"
               strokeWidth="1.5"
               strokeLinecap="round"
             />
-            <circle cx="9" cy="10" r="1" fill="var(--color-brand)" />
-            <circle cx="15" cy="10" r="1" fill="var(--color-brand)" />
+            <circle cx="9" cy="10" r="1" fill="currentColor" />
+            <circle cx="15" cy="10" r="1" fill="currentColor" />
           </svg>
           <p
             className="text-sm leading-[1.7]"
-            style={{ color: "rgba(248,245,238,0.6)", maxWidth: "80ch" }}
+            style={{
+              color: "color-mix(in oklab, var(--color-panna) 60%, transparent)",
+              maxWidth: "80ch",
+            }}
           >
             Tutta la flotta è soggetta a manutenzione programmata e rispetta i limiti fonometrici
             previsti dal D.Lgs. 262/2002. I mezzi di nuova generazione adottano motori Stage V a
@@ -243,10 +249,15 @@ function CardMezzo({
   onClick,
   icona,
 }: MezzoCard & { isActive: boolean; onClick: () => void }) {
-  const bg = isActive ? "var(--color-brand)" : "#111111";
-  const iconColor = isActive ? "rgba(248,245,238,0.9)" : "var(--color-brand)";
-  const labelColor = isActive ? "rgba(248,245,238,0.9)" : "rgba(248,245,238,0.8)";
-  const subColor = isActive ? "rgba(248,245,238,0.55)" : "rgba(248,245,238,0.35)";
+  const bg = isActive ? "var(--color-brand)" : "color-mix(in oklab, var(--color-ink) 70%, black)";
+  // inactive icon was brand on near-black (~1.3:1, invisible)
+  const iconColor = isActive
+    ? "color-mix(in oklab, var(--color-panna) 90%, transparent)"
+    : "color-mix(in oklab, var(--color-panna) 70%, transparent)";
+  const labelColor = isActive
+    ? "color-mix(in oklab, var(--color-panna) 90%, transparent)"
+    : "color-mix(in oklab, var(--color-panna) 80%, transparent)";
+  const subColor = "color-mix(in oklab, var(--color-panna) 65%, transparent)";
   const iconOpacity = isActive ? 0.7 : 0.55;
 
   return (
@@ -267,7 +278,7 @@ function CardMezzo({
       <span className="font-serif text-base italic" style={{ color: labelColor }}>
         {label}
       </span>
-      <span className="text-[10px] tracking-[0.18em] uppercase" style={{ color: subColor }}>
+      <span className="tracking-caps text-[10px] uppercase" style={{ color: subColor }}>
         {sottotitolo}
       </span>
     </button>

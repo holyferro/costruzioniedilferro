@@ -50,12 +50,12 @@ export function ScrollIndicator({ targetId }: Props) {
       onClick={handleClick}
       className="group text-panna/55 hover:text-panna/90 mt-8 flex items-center gap-2 transition-colors duration-[800ms] ease-in-out"
     >
-      <span className="font-[family-name:var(--font-neue-montreal)] text-sm tracking-[0.14em] uppercase">
+      <span className="tracking-caps font-[family-name:var(--font-neue-montreal)] text-sm uppercase">
         Scopri di più
       </span>
       <span
         className="inline-block"
-        style={{ animation: "scrollBounce 1.8s cubic-bezier(0.37, 0, 0.63, 1) infinite" }}
+        style={{ animation: "scrollNudge 1.8s cubic-bezier(0.37, 0, 0.63, 1) infinite" }}
       >
         ↓
       </span>

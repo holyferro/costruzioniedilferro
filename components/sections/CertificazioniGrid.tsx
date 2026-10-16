@@ -43,7 +43,7 @@ export function CertificazioniGrid({ certCards, eyebrow }: CertificazioniGridPro
           {/* CTA card — brand blue */}
           <div className="bg-brand flex flex-col justify-between p-10 md:p-12">
             <div>
-              <p className="text-panna/60 mb-6 font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold tracking-[0.22em] uppercase">
+              <p className="text-panna/60 tracking-caps mb-6 font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold uppercase">
                 Vuoi verificare le nostre qualifiche?
               </p>
               <h3 className="mb-4 max-w-[22ch] font-serif text-[26px] leading-[1.3] font-medium tracking-[-0.01em] text-white">
@@ -110,7 +110,7 @@ function CertCard({ card }: { card: CertCard }) {
       </div>
 
       {/* Tag */}
-      <span className="border-brand/25 text-brand mb-4 self-start rounded-full border px-3 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[10px] font-semibold tracking-[0.22em] uppercase">
+      <span className="border-brand/25 text-brand tracking-caps mb-4 self-start rounded-full border px-3 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[10px] font-semibold uppercase">
         {card.tag}
       </span>
 
@@ -140,7 +140,7 @@ function CertCard({ card }: { card: CertCard }) {
             href={card.pdfHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="border-brand/30 text-brand hover:bg-brand/5 inline-flex items-center gap-2 rounded-full border px-5 py-2.5 font-[family-name:var(--font-neue-montreal)] text-[12px] font-medium tracking-[0.04em] uppercase transition-colors"
+            className={buttonClass({ variant: "secondary", size: "sm", className: "gap-2" })}
           >
             {card.pdfLabel ?? "Consulta il certificato"} <span aria-hidden="true">↗</span>
           </a>

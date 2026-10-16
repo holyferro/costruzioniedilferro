@@ -48,7 +48,7 @@ export function SoaSection({
               />
             </div>
 
-            <span className="mb-5 inline-block rounded-full border border-white/30 px-3 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[10px] font-semibold tracking-[0.22em] text-white/70 uppercase">
+            <span className="tracking-caps mb-5 inline-block rounded-full border border-white/30 px-3 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[10px] font-semibold text-white/70 uppercase">
               {tag}
             </span>
 
@@ -66,12 +66,12 @@ export function SoaSection({
                 {categories.map((cat) => (
                   <div key={cat.code} className="flex items-baseline justify-between gap-4 py-2.5">
                     <div className="flex items-baseline gap-2.5">
-                      <span className="font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold tracking-[0.18em] text-white/90 uppercase">
+                      <span className="tracking-caps font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold text-white/90 uppercase">
                         {cat.code}
                       </span>
                       <span className="text-[13px] text-white/60">{cat.name}</span>
                     </div>
-                    <span className="shrink-0 font-[family-name:var(--font-neue-montreal)] text-[11px] tracking-[0.08em] text-white/50">
+                    <span className="tracking-caps-tight shrink-0 font-[family-name:var(--font-neue-montreal)] text-[11px] text-white/65">
                       {cat.classifica}
                     </span>
                   </div>
@@ -84,7 +84,7 @@ export function SoaSection({
                 href={anacLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-white/60 uppercase transition-opacity hover:opacity-70"
+                className="tracking-caps mt-6 inline-flex items-center gap-2 text-xs font-semibold text-white/60 uppercase transition-opacity hover:opacity-70"
               >
                 Verifica attestazione sul portale ANAC
                 <svg
@@ -108,7 +108,7 @@ export function SoaSection({
 
           {/* Right column — commitments + stat boxes */}
           <div>
-            <p className="mb-6 text-[11px] tracking-[0.2em] text-white/50 uppercase">
+            <p className="tracking-caps mb-6 text-[11px] text-white/65 uppercase">
               Cosa significa per il committente
             </p>
             <div className="flex flex-col">
@@ -126,22 +126,20 @@ export function SoaSection({
             </div>
 
             {/* Stat boxes */}
-            <div className="mt-8 grid grid-cols-3 gap-2 sm:gap-3.5">
+            <div className="mt-8 grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-3.5">
               {stats.map((s) => (
                 <div
                   key={s.label}
-                  className="rounded-md border border-white/15 px-2.5 py-3 sm:px-5 sm:py-4"
+                  className="rounded-sm border border-white/15 px-4 py-3 sm:px-5 sm:py-4"
                 >
-                  <p className="mb-1 text-[8px] leading-tight tracking-[0.06em] text-white/50 uppercase sm:text-[10px] sm:tracking-[0.2em]">
+                  <p className="tracking-caps mb-1 text-[11px] leading-tight text-white/65 uppercase">
                     {s.label}
                   </p>
-                  <p className="font-serif text-[11px] leading-snug font-medium whitespace-pre-line text-white sm:text-sm">
+                  <p className="font-serif text-sm leading-snug font-medium whitespace-pre-line text-white">
                     {s.value}
                   </p>
                   {s.sub && (
-                    <p className="mt-0.5 text-[9px] leading-tight text-white/40 sm:text-[10px]">
-                      {s.sub}
-                    </p>
+                    <p className="mt-0.5 text-[11px] leading-tight text-white/65">{s.sub}</p>
                   )}
                 </div>
               ))}

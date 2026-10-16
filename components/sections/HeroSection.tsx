@@ -54,8 +54,12 @@ export function HeroSection({
         {eyebrow && (
           <Reveal
             as="p"
-            className="text-panna/90 mb-5 text-sm font-semibold tracking-[0.38em] uppercase"
+            className="text-panna/90 tracking-eyebrow mb-5 text-sm font-semibold uppercase"
           >
+            <span
+              aria-hidden="true"
+              className="bg-panna/60 mr-3 inline-block h-px w-8 align-middle"
+            />
             {eyebrow}
           </Reveal>
         )}

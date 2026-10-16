@@ -44,7 +44,7 @@ export function ServiceCardInteractive({ cards, surface }: Props) {
           selected ? "translate-x-0" : "translate-x-[110%]"
         }`}
       >
-        <div className={`${bg} border-border h-full overflow-y-auto rounded-lg border px-6 py-5`}>
+        <div className={`${bg} border-border h-full overflow-y-auto rounded-sm border px-6 py-5`}>
           {selected && (
             <>
               <div className="mb-4 flex items-start justify-between gap-4">
@@ -115,7 +115,7 @@ function EqualCard({ card, bg, onClick }: { card: ServiceCard; bg: string; onCli
     <button
       type="button"
       onClick={onClick}
-      className={`${bg} border-border hover:border-ink/40 group focus-visible:outline-brand rounded-lg border p-5 text-left transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 md:p-6`}
+      className={`${bg} border-border hover:border-ink/40 group focus-visible:outline-brand rounded-sm border p-5 text-left transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 md:p-6`}
     >
       <p className="text-ink font-serif text-[clamp(0.9rem,0.6rem+0.6vw,1.1rem)] leading-snug font-medium">
         {card.title}

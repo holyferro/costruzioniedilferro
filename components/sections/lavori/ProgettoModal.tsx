@@ -306,7 +306,9 @@ export function ProgettoModal({
     <div
       className="fixed inset-0 z-[300] flex items-center justify-center p-4 sm:p-10"
       style={{
-        background: isOpen ? "rgba(10,14,26,0.87)" : "rgba(10,14,26,0)",
+        background: isOpen
+          ? "color-mix(in oklab, var(--color-night) 87%, transparent)"
+          : "transparent",
         pointerEvents: isOpen ? "all" : "none",
         transition: "background 380ms ease",
         touchAction: isOpen ? "none" : "auto",
@@ -417,7 +419,6 @@ export function ProgettoModal({
                     border: "none",
                     padding: 0,
                     cursor: "pointer",
-                    transition: "width 200ms",
                     flexShrink: 0,
                   }}
                 >
@@ -461,7 +462,7 @@ export function ProgettoModal({
         {/* Right — content */}
         {project && (
           <div className="bg-panna flex flex-col overflow-y-auto px-5 py-8 pb-10 md:min-h-0 md:px-[52px] md:py-[52px] md:pb-12">
-            <p className="text-brand mb-5 flex items-center gap-3 text-[11px] font-semibold tracking-[0.3em] uppercase">
+            <p className="text-brand tracking-caps-wide mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase">
               <span aria-hidden="true" className="bg-brand inline-block h-px w-6" />
               {project.tag}
             </p>
@@ -471,7 +472,7 @@ export function ProgettoModal({
             >
               {project.title}
             </h2>
-            <p className="text-ink/65 mb-8 text-xs tracking-[0.2em] uppercase">{project.place}</p>
+            <p className="text-ink/65 tracking-caps mb-8 text-xs uppercase">{project.place}</p>
             <p className="text-ink/70 mb-9 text-[15px] leading-[1.7]" style={{ maxWidth: "46ch" }}>
               {project.desc}
             </p>
@@ -487,7 +488,7 @@ export function ProgettoModal({
                       : {}
                   }
                 >
-                  <span className="text-ink/65 text-[11px] font-semibold tracking-[0.18em] uppercase">
+                  <span className="text-ink/65 tracking-caps text-[11px] font-semibold uppercase">
                     {label}
                   </span>
                   <span className="text-ink text-right font-serif text-base">{value}</span>

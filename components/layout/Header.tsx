@@ -10,6 +10,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { primaryNav } from "@/content/navigation";
+import { buttonClass } from "@/components/ui/button";
 import { siteContent } from "@/content/site";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 
@@ -128,7 +129,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href as Route<string>}
-                  className="bg-brand text-panna hover:bg-brand/85 inline-flex items-center rounded-full px-5 py-2 font-[family-name:var(--font-neue-montreal)] text-[15px] font-medium tracking-[0.015em] uppercase transition-colors"
+                  className={buttonClass({ size: "nav" })}
                 >
                   {item.label}
                 </Link>

@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import { photoBadgeClass } from "@/components/ui/badge";
 import { urlFor } from "@/sanity/lib/client";
 import type { SanityNewsArticle } from "@/sanity/lib/types";
@@ -154,10 +155,13 @@ function FilterBar({
             <button
               key={c.id}
               onClick={() => onChange(c.id)}
-              className="cursor-pointer rounded-full border px-[18px] py-[9px] font-[family-name:var(--font-neue-montreal)] text-[12px] font-medium tracking-[0.14em] uppercase transition-colors"
+              className="tracking-caps cursor-pointer rounded-full border px-[18px] py-[9px] font-[family-name:var(--font-neue-montreal)] text-[12px] font-medium uppercase transition-colors"
               style={{
                 background: active === c.id ? "var(--color-brand)" : "transparent",
-                color: active === c.id ? "var(--color-panna)" : "rgba(26,26,26,0.7)",
+                color:
+                  active === c.id
+                    ? "var(--color-panna)"
+                    : "color-mix(in oklab, var(--color-ink) 70%, transparent)",
                 borderColor: active === c.id ? "var(--color-brand)" : "var(--color-border)",
               }}
             >
@@ -232,25 +236,25 @@ function ArchiveCard({
           aria-hidden
           className="absolute bottom-[18px] left-[18px] inline-block text-[18px] leading-none text-white transition-transform duration-[250ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[5px] group-hover:-translate-y-[5px]"
         >
-          ↗
+          <ArrowUpRight aria-hidden className="size-[18px]" strokeWidth={1.5} />
         </span>
       </div>
 
       <div className="flex flex-1 flex-col gap-3 p-6 pb-[26px]">
-        <div className="text-ink/65 flex items-center gap-2.5 font-[family-name:var(--font-neue-montreal)] text-[11px] tracking-[0.06em] uppercase">
+        <div className="text-ink/65 tracking-caps-tight flex items-center gap-2.5 font-[family-name:var(--font-neue-montreal)] text-[11px] uppercase">
           <span>{formatDate(item.publishedAt)}</span>
         </div>
         <h3 className="text-ink line-clamp-2 font-serif text-[21px] leading-[1.25] font-medium tracking-[-0.01em]">
           {item.title}
         </h3>
         <p className="text-ink/70 line-clamp-3 text-[14.5px] leading-[1.55]">{item.excerpt}</p>
-        <span className="border-border text-ink group-hover:text-brand mt-auto flex items-center justify-between border-t pt-4 font-[family-name:var(--font-neue-montreal)] text-[12px] tracking-[0.1em] uppercase transition-colors duration-[250ms]">
+        <span className="border-border text-ink group-hover:text-brand tracking-caps-tight mt-auto flex items-center justify-between border-t pt-4 font-[family-name:var(--font-neue-montreal)] text-[12px] uppercase transition-colors duration-[250ms]">
           Leggi
           <span
             aria-hidden
             className="border-border group-hover:border-brand group-hover:bg-brand group-hover:text-panna inline-flex h-[30px] w-[30px] items-center justify-center rounded-full border bg-transparent transition-all duration-[300ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-1"
           >
-            <ArrowUpRight />
+            <ArrowUpRight aria-hidden className="size-3.5" strokeWidth={1.5} />
           </span>
         </span>
       </div>
@@ -318,7 +322,7 @@ function PageBtn({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`rounded-full border px-[18px] py-2.5 font-[family-name:var(--font-neue-montreal)] text-[12px] tracking-[0.08em] uppercase transition-all duration-[220ms] ${
+      className={`tracking-caps-tight rounded-full border px-[18px] py-2.5 font-[family-name:var(--font-neue-montreal)] text-[12px] uppercase transition-all duration-[220ms] ${
         disabled
           ? "border-ink/20 text-ink/40 cursor-not-allowed opacity-50"
           : "border-ink/40 text-ink hover:border-brand hover:bg-brand hover:text-panna cursor-pointer"
@@ -326,19 +330,5 @@ function PageBtn({
     >
       {label}
     </button>
-  );
-}
-
-function ArrowUpRight() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
-      <path
-        d="M3.5 10.5L10.5 3.5M10.5 3.5H4.5M10.5 3.5V9.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
   );
 }

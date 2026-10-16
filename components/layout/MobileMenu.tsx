@@ -79,12 +79,12 @@ export function MobileMenu({ scrolled }: MobileMenuProps) {
         aria-expanded={isOpen}
         aria-controls="mobile-menu-panel"
         onClick={handleOpen}
-        className={`flex items-center gap-1.5 rounded p-1.5 transition-colors ${
+        className={`flex items-center gap-1.5 rounded-sm p-1.5 transition-colors ${
           scrolled ? "text-white hover:bg-white/10" : "text-brand hover:bg-brand/8"
         }`}
       >
         <Menu size={26} strokeWidth={1.5} aria-hidden />
-        <span className="font-[family-name:var(--font-neue-montreal)] text-[11px] font-medium tracking-[0.12em] uppercase">
+        <span className="tracking-caps-tight font-[family-name:var(--font-neue-montreal)] text-[11px] font-medium uppercase">
           Menu
         </span>
       </button>
@@ -141,7 +141,7 @@ export function MobileMenu({ scrolled }: MobileMenuProps) {
                         handleClose();
                       }
                     }}
-                    className={`group flex items-center justify-between border-b border-black/10 py-5 font-[family-name:var(--font-neue-montreal)] text-[22px] font-normal tracking-[0.01em] uppercase transition-colors duration-150 ${
+                    className={`group tracking-caps-tight flex items-center justify-between border-b border-black/10 py-5 font-[family-name:var(--font-neue-montreal)] text-[22px] font-normal uppercase transition-colors duration-150 ${
                       isActive ? "text-brand" : "hover:text-brand text-black"
                     }`}
                   >

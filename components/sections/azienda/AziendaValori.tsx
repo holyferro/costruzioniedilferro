@@ -118,7 +118,7 @@ function ValueCard({ n, pillar, title, body, isActive, onClick }: ValueCardProps
       </span>
       <div className="relative z-10">
         <p
-          className={`mb-4 text-[10px] font-semibold tracking-[0.28em] uppercase ${
+          className={`tracking-caps-wide mb-4 text-[10px] font-semibold uppercase ${
             isActive ? "text-panna/55" : "text-panna/65"
           }`}
         >

@@ -13,7 +13,7 @@ export function photoBadgeClass(
   variant: keyof typeof variants = "glass",
 ): string {
   return cn(
-    "rounded-full border px-3 py-1.5 text-[10px] font-semibold tracking-[0.2em] uppercase backdrop-blur-[8px]",
+    "rounded-full border px-3 py-1.5 text-[10px] font-semibold tracking-caps uppercase backdrop-blur-[8px]",
     variants[variant],
     className,
   );

@@ -87,7 +87,7 @@ export function ContattiForm() {
           name="privacy"
           id="privacy"
           required
-          className="border-border bg-surface mt-0.5 h-4 w-4 shrink-0 cursor-pointer rounded-sm border accent-[#291572]"
+          className="border-border bg-surface accent-brand mt-0.5 h-4 w-4 shrink-0 cursor-pointer rounded-sm border"
         />
         <label htmlFor="privacy" className="text-ink/65 cursor-pointer text-sm leading-relaxed">
           Ho letto e accetto l&apos;
@@ -128,7 +128,7 @@ function Field({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <label className="text-ink/70 text-xs font-semibold tracking-[0.18em] uppercase">
+      <label className="text-ink/70 tracking-caps text-xs font-semibold uppercase">
         {label}
         {required && <span className="text-brand ml-0.5">*</span>}
       </label>

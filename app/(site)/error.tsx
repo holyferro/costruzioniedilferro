@@ -24,7 +24,7 @@ export default function Error({
 
   return (
     <section className="mx-auto flex max-w-2xl flex-1 flex-col items-start justify-center gap-6 px-6 py-24">
-      <p className="text-ink/65 text-sm font-medium tracking-widest uppercase">Errore</p>
+      <p className="text-ink/65 tracking-caps text-sm font-medium uppercase">Errore</p>
       <h1 className="text-ink text-h1 font-serif font-medium tracking-[-0.02em]">
         {errorContent.title}
       </h1>

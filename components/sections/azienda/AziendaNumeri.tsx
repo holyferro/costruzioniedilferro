@@ -70,7 +70,7 @@ function StatCell({ n, suffix, label, sub, variant = "default" }: StatCell) {
       >
         {label}
       </span>
-      <p className={`mt-2 text-[11px] tracking-[0.14em] uppercase ${subColor}`}>{sub}</p>
+      <p className={`tracking-caps mt-2 text-[11px] uppercase ${subColor}`}>{sub}</p>
     </div>
   );
 }

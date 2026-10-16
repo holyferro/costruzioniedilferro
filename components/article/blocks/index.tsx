@@ -66,7 +66,7 @@ export function SectionBlock({
 }) {
   return (
     <section className="border-border border-t py-12">
-      <p className="text-brand m-0 font-[family-name:var(--font-neue-montreal)] text-[12px] font-semibold tracking-[0.28em] uppercase">
+      <p className="text-brand tracking-caps-wide m-0 font-[family-name:var(--font-neue-montreal)] text-[12px] font-semibold uppercase">
         {eyebrow}
       </p>
       <h2 className="text-ink mt-4 mb-7 max-w-[22ch] font-serif text-[clamp(1.5rem,0.6rem+1.4vw,2rem)] leading-[1.2] font-medium tracking-[-0.015em] [text-wrap:pretty]">
@@ -125,7 +125,7 @@ export function AdvantagesBlock({
   return (
     <section className="bg-ink text-panna my-8 py-24">
       <div className="mx-auto max-w-[920px] px-8">
-        <p className="text-panna/55 m-0 font-[family-name:var(--font-neue-montreal)] text-[12px] font-semibold tracking-[0.32em] uppercase">
+        <p className="text-panna/55 tracking-caps-wide m-0 font-[family-name:var(--font-neue-montreal)] text-[12px] font-semibold uppercase">
           <span aria-hidden className="bg-panna/40 mr-3 inline-block h-px w-7 align-middle" />
           {eyebrow}
         </p>
@@ -194,7 +194,7 @@ export function PartnersBlock({
                 <h4 className="text-ink m-0 font-serif text-[20px] font-medium tracking-[-0.01em]">
                   {item.name}
                 </h4>
-                <span className="text-ink/65 font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold tracking-[0.22em] uppercase">
+                <span className="text-ink/65 tracking-caps font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold uppercase">
                   {item.role}
                 </span>
               </div>
@@ -217,7 +217,7 @@ export function SpecsBlock({ rows }: { rows: [string, string][] }) {
           className={`grid gap-6 px-[22px] py-4 ${i > 0 ? "border-border border-t" : ""}`}
           style={{ gridTemplateColumns: "40% 1fr" }}
         >
-          <dt className="text-ink/65 self-center font-[family-name:var(--font-neue-montreal)] text-[12px] font-semibold tracking-[0.14em] uppercase">
+          <dt className="text-ink/65 tracking-caps self-center font-[family-name:var(--font-neue-montreal)] text-[12px] font-semibold uppercase">
             {k}
           </dt>
           <dd className="text-ink m-0 font-serif text-[16px] leading-[1.4]">{v}</dd>
@@ -253,7 +253,7 @@ export function CtaBlock({
           H
         </span>
         <div className="relative">
-          <p className="text-panna/60 m-0 font-[family-name:var(--font-neue-montreal)] text-[12px] font-semibold tracking-[0.32em] uppercase">
+          <p className="text-panna/60 tracking-caps-wide m-0 font-[family-name:var(--font-neue-montreal)] text-[12px] font-semibold uppercase">
             {kicker}
           </p>
           <h3 className="mt-4 mb-3 max-w-[20ch] font-serif text-[clamp(1.625rem,0.8rem+1.6vw,2.25rem)] leading-[1.2] font-medium tracking-[-0.015em]">

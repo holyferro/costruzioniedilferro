@@ -47,9 +47,7 @@ export function HomepageCta({
 
             <div className="border-panna/20 mt-8 grid max-w-xl grid-cols-2 gap-x-12 gap-y-5 border-t pt-6 md:mt-12 md:gap-y-6 md:pt-8">
               <div>
-                <p className="text-panna/60 text-[11px] tracking-[0.22em] uppercase">
-                  Sede operativa
-                </p>
+                <p className="text-panna/60 tracking-caps text-[11px] uppercase">Sede operativa</p>
                 <p className="mt-2.5 font-serif text-base leading-snug text-white md:text-lg">
                   {address.street}
                   <br />
@@ -57,7 +55,7 @@ export function HomepageCta({
                 </p>
               </div>
               <div>
-                <p className="text-panna/60 text-[11px] tracking-[0.22em] uppercase">Orari</p>
+                <p className="text-panna/60 tracking-caps text-[11px] uppercase">Orari</p>
                 <div className="mt-2.5 font-serif text-white">
                   <p className="text-base leading-snug md:text-lg">{contact.schedule.weekdays}</p>
                   <div className="mt-1 grid grid-cols-1 gap-x-4 gap-y-0.5 text-sm leading-snug sm:grid-cols-[auto_1fr] sm:items-baseline md:text-base">
@@ -98,9 +96,7 @@ export function HomepageCta({
                 href={`tel:${contact.phone.tel}`}
                 className="hover:text-panna flex flex-col text-white no-underline transition-colors"
               >
-                <span className="text-panna/60 text-[11px] tracking-[0.22em] uppercase">
-                  Telefono
-                </span>
+                <span className="text-panna/60 tracking-caps text-[11px] uppercase">Telefono</span>
                 <span className="mt-1 font-serif text-lg tracking-tight">
                   {contact.phone.display}
                 </span>
@@ -109,7 +105,7 @@ export function HomepageCta({
                 href={`mailto:${contact.email}`}
                 className="hover:text-panna flex flex-col text-white no-underline transition-colors"
               >
-                <span className="text-panna/60 text-[11px] tracking-[0.22em] uppercase">Email</span>
+                <span className="text-panna/60 tracking-caps text-[11px] uppercase">Email</span>
                 <span className="mt-1 font-serif text-base tracking-tight md:text-[17px]">
                   {contact.email}
                 </span>

@@ -104,11 +104,15 @@ function HeroBreadcrumb({
 }) {
   return (
     <div className={`flex items-center justify-between ${className}`}>
-      <p className="text-ink/65 text-[10px] font-semibold tracking-[0.22em] uppercase">
-        Home <span className="mx-1.5 opacity-40">/</span> {page}
+      <p className="text-ink/65 tracking-caps text-[10px] font-semibold uppercase">
+        Home{" "}
+        <span aria-hidden="true" className="mx-1.5 opacity-40">
+          /
+        </span>{" "}
+        {page}
       </p>
       {showScroll && (
-        <p className="text-ink/65 text-[10px] font-semibold tracking-[0.16em] uppercase">
+        <p className="text-ink/65 tracking-caps text-[10px] font-semibold uppercase">
           Scorri per esplorare →
         </p>
       )}
@@ -124,8 +128,8 @@ function BadgeRow({ badges, className = "" }: { badges: string[]; className?: st
           key={badge}
           className={
             i === 0
-              ? "bg-brand rounded-full px-3.5 py-2 text-[11px] font-semibold tracking-[0.14em] text-white uppercase"
-              : "border-ink/20 text-ink/65 rounded-full border px-3.5 py-2 text-[11px] font-semibold tracking-[0.14em] uppercase"
+              ? "bg-brand tracking-caps rounded-full px-3.5 py-2 text-[11px] font-semibold text-white uppercase"
+              : "border-ink/20 text-ink/65 tracking-caps rounded-full border px-3.5 py-2 text-[11px] font-semibold uppercase"
           }
         >
           {badge}
