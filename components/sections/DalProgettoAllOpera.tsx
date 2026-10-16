@@ -34,6 +34,9 @@ const smooth = (t: number) => t * t * (3 - 2 * t);
 /** Half linear, half smoothstep: the sweep starts and stops softly without long, almost-still tails. */
 const ease = (t: number) => (t + smooth(t)) / 2;
 
+/** Ease input at which the ink's lowest point (curve bulge + displacement) touches the image bottom. */
+const INK_AT_UNSTICK = 0.78;
+
 /** Height of the ink edge: sweeps from above the top (p=0) to just past the bottom (p=1). */
 const inkY = (p: number) => -80 + p * (H + 130);
 
@@ -66,7 +69,8 @@ function optimisedSrc(src: string) {
   }).props.src;
 }
 
-/** Calls onProgress(0..1) with how far the section's sticky track has been scrolled. */
+/** Calls onProgress with how far the section's sticky track has been scrolled: 0 when it sticks, 1 when
+ * it unsticks, and on past 1 while it scrolls away. */
 function useStickyProgress(el: RefObject<HTMLElement | null>, onProgress: (p: number) => void) {
   const cb = useRef(onProgress);
   useEffect(() => {
@@ -74,7 +78,7 @@ function useStickyProgress(el: RefObject<HTMLElement | null>, onProgress: (p: nu
   });
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      cb.current(1);
+      cb.current(Infinity);
       return;
     }
     let raf = 0;
@@ -82,12 +86,10 @@ function useStickyProgress(el: RefObject<HTMLElement | null>, onProgress: (p: nu
       raf = 0;
       const sticky = el.current?.firstElementChild;
       if (!el.current || !sticky) return;
-      // How far the sticky child has slid inside the section: 0 when it sticks under the header,
-      // max when it unsticks.
       const r = el.current.getBoundingClientRect();
-      const s = sticky.getBoundingClientRect();
-      const travel = r.height - s.height;
-      cb.current(clamp(travel > 0 ? (s.top - r.top) / travel : 0));
+      const travel = r.height - sticky.getBoundingClientRect().height;
+      const stickAt = parseFloat(getComputedStyle(sticky).top);
+      cb.current(travel > 0 ? Math.max(0, (stickAt - r.top) / travel) : 0);
     };
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(tick);
@@ -120,8 +122,9 @@ export function DalProgettoAllOpera({
   const id = useId().replace(/[^a-zA-Z0-9]/g, "");
 
   useStickyProgress(track, (p) => {
-    // Sweep runs exactly while the section is stuck: no dead scroll before or after.
-    const ink = ease(p);
+    // Sweep starts as the section sticks. It unsticks (p=1) when the ink's lowest point reaches the
+    // image bottom, and the sweep finishes while the section scrolls away.
+    const ink = ease(clamp(p * INK_AT_UNSTICK));
     const y = inkY(ink);
     const d = inkBand(y);
     // Skip no-op writes (every frame before and after the sweep): each write re-runs the filter.
@@ -136,7 +139,7 @@ export function DalProgettoAllOpera({
   return (
     <section aria-label={eyebrow} className="bg-panna pb-12 md:pb-20">
       {/* Track outside the bottom padding, so progress hits 1 exactly when the sticky child unsticks. */}
-      <div ref={track} className="relative h-[190vh]">
+      <div ref={track} className="relative h-[168vh]">
         <div className="sticky top-[var(--header-height)] flex h-[calc(100svh-var(--header-height))] flex-col justify-center overflow-hidden">
           <div className="mx-auto w-full max-w-6xl px-6 lg:px-12">
             <div className="mb-6 flex items-end justify-between gap-6 md:mb-10">
