@@ -171,6 +171,7 @@ export function PiantaDisegno({
               width={m.area.w + 2 * HIT_PAD}
               height={m.area.h + 2 * HIT_PAD}
               fill="transparent"
+              data-pianta-trigger
               className="cursor-pointer"
               onPointerEnter={(e) => onAreaEnter(i, e)}
               onPointerLeave={onAreaLeave}

@@ -5,10 +5,11 @@
 // quando entra in vista (IntersectionObserver + rAF, stili scritti via ref: nessun re-render per
 // frame); poi tre marcatori sulle soluzioni tecniche. Mouse: passando sopra a marcatore, voce
 // dell'elenco o elemento evidenziato si apre una scheda con foto. Touch / tastiera: tap o Invio
-// apre e chiude, Esc o tap fuori chiude.
+// apre e chiude; Esc, tap fuori dalla scheda o la X (solo touch) chiudono.
 // prefers-reduced-motion: pianta subito completa.
 
 import Image from "next/image";
+import { X } from "lucide-react";
 import { useEffect, useId, useRef, useState, type RefObject } from "react";
 import type { FloorPlanMarker, HomepageContent } from "@/content/homepage";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -94,7 +95,6 @@ export function PiantaSoluzioni({
   const box = useRef<HTMLDivElement>(null);
   const svg = useRef<SVGSVGElement>(null);
   const overlay = useRef<HTMLDivElement>(null);
-  const section = useRef<HTMLElement>(null);
   const closeTimer = useRef(0);
   const pinned = useRef(false); // opened by click/tap: hover-out does not close it
   const reveal = useRef(false); // opened by tap/keyboard: scroll the card fully into view
@@ -142,8 +142,9 @@ export function PiantaSoluzioni({
   useEffect(() => {
     if (active === null) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && close();
+    // Triggers toggle on their own click; anything else outside the card closes it.
     const onDown = (e: PointerEvent) => {
-      if (!section.current?.contains(e.target as Node)) close();
+      if (!(e.target as Element).closest?.("[data-pianta-card],[data-pianta-trigger]")) close();
     };
     document.addEventListener("keydown", onKey);
     document.addEventListener("pointerdown", onDown);
@@ -156,7 +157,7 @@ export function PiantaSoluzioni({
   useEffect(() => () => clearTimeout(closeTimer.current), []);
 
   return (
-    <section ref={section} aria-label={eyebrow} className="bg-panna py-20 md:py-28">
+    <section aria-label={eyebrow} className="bg-panna py-20 md:py-28">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-2 md:gap-x-16 md:gap-y-0 lg:px-12">
         <div className="md:col-start-1 md:row-start-1 md:self-end">
           <Eyebrow>{eyebrow}</Eyebrow>
@@ -189,6 +190,7 @@ export function PiantaSoluzioni({
                     <div key={m.n} className="pointer-events-auto absolute" style={pos.style}>
                       <button
                         type="button"
+                        data-pianta-trigger
                         aria-expanded={isOpen}
                         aria-controls={isOpen ? `${cardId}-${i}` : undefined}
                         aria-label={`${m.n}: ${m.title}`}
@@ -202,6 +204,7 @@ export function PiantaSoluzioni({
                       {isOpen && (
                         <div
                           id={`${cardId}-${i}`}
+                          data-pianta-card
                           ref={(el) => {
                             if (!el || !reveal.current) return;
                             reveal.current = false;
@@ -212,6 +215,14 @@ export function PiantaSoluzioni({
                           className={`absolute z-10 scroll-mt-[calc(var(--header-height)+1rem)] scroll-mb-4 ${pos.cardX} ${pos.cardY}`}
                         >
                           <PhotoCard key={m.n} marker={m} />
+                          <button
+                            type="button"
+                            aria-label="Chiudi scheda"
+                            onClick={close}
+                            className="bg-surface/90 text-ink focus-visible:outline-ink absolute top-1 right-1 hidden size-10 place-items-center rounded-full shadow-md focus-visible:outline-2 pointer-coarse:grid"
+                          >
+                            <X aria-hidden className="size-5" />
+                          </button>
                         </div>
                       )}
                     </div>
@@ -228,6 +239,7 @@ export function PiantaSoluzioni({
               <li key={m.n}>
                 <button
                   type="button"
+                  data-pianta-trigger
                   aria-expanded={active === i}
                   onPointerEnter={(e) => isMouse(e) && done && open(i)}
                   onPointerLeave={(e) => isMouse(e) && closeSoon()}
