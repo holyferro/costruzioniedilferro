@@ -50,7 +50,7 @@ function hiddenTransform(direction: Direction, distance: number): string {
 }
 
 // Sincronizza prefers-reduced-motion in React senza setState nell'effect.
-function usePrefersReducedMotion(): boolean {
+export function usePrefersReducedMotion(): boolean {
   return useSyncExternalStore(
     (onChange) => {
       const mq = window.matchMedia(QUERY);

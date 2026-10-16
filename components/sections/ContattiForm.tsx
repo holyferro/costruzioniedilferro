@@ -152,4 +152,4 @@ function SubmitButton() {
 }
 
 const inputClass =
-  "border-border bg-surface text-ink placeholder:text-ink/35 focus:border-brand w-full rounded-sm border px-4 py-3.5 text-base outline-none transition-colors";
+  "border-border bg-surface text-ink placeholder:text-ink/65 focus:border-brand w-full rounded-sm border px-4 py-3.5 text-base outline-none transition-colors";

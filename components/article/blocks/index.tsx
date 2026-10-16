@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { ArticleBlock } from "@/lib/types/article";
 import { buttonClass } from "@/components/ui/button";
+import { ArrowUpRight } from "lucide-react";
 
 /* ---- Lead ---- */
 export function LeadBlock({ text }: { text: string }) {
@@ -262,7 +263,7 @@ export function CtaBlock({
           <p className="text-panna/80 m-0 max-w-[48ch] text-[15px] leading-[1.6]">{text}</p>
           <a href={ctaHref} className={buttonClass({ variant: "inverse", className: "mt-7" })}>
             {ctaLabel}
-            <span aria-hidden>↗</span>
+            <ArrowUpRight aria-hidden className="size-3.5" strokeWidth={1.5} />
           </a>
         </div>
       </div>

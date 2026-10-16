@@ -124,8 +124,13 @@ img {
   animation: ringBreathe 12s ease-in-out infinite;
 }
 
+.animate-scroll-nudge {
+  animation: scrollNudge 1.8s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-ring-breathe {
+  .animate-ring-breathe,
+  .animate-scroll-nudge {
     animation: none;
   }
 }

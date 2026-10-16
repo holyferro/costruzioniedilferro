@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buttonClass } from "@/components/ui/button";
+import { ArrowUpRight } from "lucide-react";
 
 type CertCard = {
   id: string;
@@ -61,7 +62,7 @@ export function CertificazioniGrid({ certCards, eyebrow }: CertificazioniGridPro
                 rel="noopener noreferrer"
                 className={buttonClass({ variant: "inverse", className: "justify-between" })}
               >
-                Portale ANAC <span aria-hidden="true">↗</span>
+                Portale ANAC <ArrowUpRight aria-hidden className="size-3.5" strokeWidth={1.5} />
               </a>
               <Link
                 href="/contatti"
@@ -110,7 +111,7 @@ function CertCard({ card }: { card: CertCard }) {
       </div>
 
       {/* Tag */}
-      <span className="border-brand/25 text-brand tracking-caps mb-4 self-start rounded-full border px-3 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[10px] font-semibold uppercase">
+      <span className="border-brand/25 text-brand tracking-caps mb-4 self-start rounded-full border px-3 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold uppercase">
         {card.tag}
       </span>
 
@@ -142,7 +143,8 @@ function CertCard({ card }: { card: CertCard }) {
             rel="noopener noreferrer"
             className={buttonClass({ variant: "secondary", size: "sm", className: "gap-2" })}
           >
-            {card.pdfLabel ?? "Consulta il certificato"} <span aria-hidden="true">↗</span>
+            {card.pdfLabel ?? "Consulta il certificato"}{" "}
+            <ArrowUpRight aria-hidden className="size-3.5" strokeWidth={1.5} />
           </a>
           {card.pdfNote && (
             <p className="text-ink/65 mt-2 font-[family-name:var(--font-neue-montreal)] text-[11px]">

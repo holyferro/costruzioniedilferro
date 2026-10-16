@@ -3,7 +3,8 @@
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { photoBadgeClass } from "@/components/ui/badge";
-import { CloseButton } from "@/components/ui/CloseButton";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { CloseButton, iconButtonClass } from "@/components/ui/CloseButton";
 import { buttonClass } from "@/components/ui/button";
 
 /* ---- Types ---- */
@@ -385,16 +386,22 @@ export function ProgettoModal({
             <button
               onClick={prev}
               aria-label="Foto precedente"
-              className="absolute top-1/2 left-3.5 z-[5] flex h-[38px] w-[38px] -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-white/16 text-base text-white backdrop-blur-[6px] transition-colors hover:bg-white/30"
+              className={iconButtonClass(
+                "glass",
+                "absolute top-1/2 left-3.5 z-[5] -translate-y-1/2",
+              )}
             >
-              ‹
+              <ChevronLeft aria-hidden className="size-5" strokeWidth={1.5} />
             </button>
             <button
               onClick={next}
               aria-label="Foto successiva"
-              className="absolute top-1/2 right-3.5 z-[5] flex h-[38px] w-[38px] -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-white/16 text-base text-white backdrop-blur-[6px] transition-colors hover:bg-white/30"
+              className={iconButtonClass(
+                "glass",
+                "absolute top-1/2 right-3.5 z-[5] -translate-y-1/2",
+              )}
             >
-              ›
+              <ChevronRight aria-hidden className="size-5" strokeWidth={1.5} />
             </button>
 
             <style>{`
@@ -511,7 +518,13 @@ export function ProgettoModal({
                     className="text-ink/65 hover:text-ink font-[family-name:var(--font-neue-montreal)] text-[12px] tracking-[0.08em] underline underline-offset-4 transition-colors"
                   >
                     {link.label}
-                    {link.external && " ↗"}
+                    {link.external && (
+                      <ArrowUpRight
+                        aria-hidden
+                        className="ml-1 inline size-3.5"
+                        strokeWidth={1.5}
+                      />
+                    )}
                   </a>
                 ))}
               </div>

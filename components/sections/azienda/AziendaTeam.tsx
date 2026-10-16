@@ -77,7 +77,7 @@ function TeamCard({ photo, role, name, bio }: TeamMember) {
         />
       </div>
       <div className="border-border mt-[18px] border-t pt-[22px]">
-        <p className="text-brand tracking-caps mb-2 text-[10px] font-semibold uppercase">{role}</p>
+        <p className="text-brand tracking-caps mb-2 text-[11px] font-semibold uppercase">{role}</p>
         <h3 className="text-ink mb-2.5 font-serif text-[22px] leading-tight font-medium tracking-[-0.01em]">
           {name}
         </h3>

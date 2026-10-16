@@ -48,7 +48,7 @@ export function SoaSection({
               />
             </div>
 
-            <span className="tracking-caps mb-5 inline-block rounded-full border border-white/30 px-3 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[10px] font-semibold text-white/70 uppercase">
+            <span className="tracking-caps mb-5 inline-block rounded-full border border-white/30 px-3 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold text-white/70 uppercase">
               {tag}
             </span>
 

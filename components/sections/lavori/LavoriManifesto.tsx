@@ -1,6 +1,6 @@
 // RSC — Sezione "Come presentiamo i lavori"
 import { ShieldCheck, Camera, CalendarCheck } from "lucide-react";
-import { FadeUp } from "@/components/ui/FadeUp";
+import { Reveal } from "@/components/ui/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
 const pillars = [
@@ -26,12 +26,12 @@ export function LavoriManifesto() {
     <section className="bg-panna border-border border-b py-24">
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         {/* Header */}
-        <FadeUp>
+        <Reveal>
           <Eyebrow>Come presentiamo i lavori</Eyebrow>
           <p className="text-ink mt-6 max-w-2xl font-serif text-[clamp(1.5rem,0.6rem+2vw,2.25rem)] leading-[1.2] font-medium tracking-[-0.015em]">
             Ogni voce dell&apos;archivio risponde a tre criteri di trasparenza.
           </p>
-        </FadeUp>
+        </Reveal>
 
         {/* Pillars */}
         <div className="border-border mt-16 grid grid-cols-1 border-t md:grid-cols-3">
@@ -39,7 +39,7 @@ export function LavoriManifesto() {
             const pad = i === 0 ? "md:pr-10 md:pl-0" : i === 1 ? "md:px-10" : "md:pl-10 md:pr-0";
             const divider = i < 2 ? "md:border-r border-border" : "";
             return (
-              <FadeUp key={title} delay={i * 80}>
+              <Reveal key={title} delay={i * 80}>
                 <div
                   className={`flex flex-col gap-5 border-b py-10 md:border-b-0 md:py-12 ${pad} ${divider}`}
                 >
@@ -47,7 +47,7 @@ export function LavoriManifesto() {
                   <h3 className="text-ink text-base leading-tight font-semibold">{title}</h3>
                   <p className="text-ink/65 text-sm leading-[1.7]">{body}</p>
                 </div>
-              </FadeUp>
+              </Reveal>
             );
           })}
         </div>

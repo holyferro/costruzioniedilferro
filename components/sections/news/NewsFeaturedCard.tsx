@@ -52,7 +52,7 @@ export function NewsFeaturedCard({ article }: { article: SanityNewsArticle }) {
             <span className="text-brand tracking-caps rounded-full bg-white/95 px-3.5 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold uppercase md:absolute md:top-6 md:left-6">
               {article.category}
             </span>
-            <span className="bg-brand text-panna tracking-caps inline-flex items-center gap-2 rounded-full px-3 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[10px] font-semibold uppercase md:absolute md:top-6 md:right-6">
+            <span className="bg-brand text-panna tracking-caps inline-flex items-center gap-2 rounded-full px-3 py-1.5 font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold uppercase md:absolute md:top-6 md:right-6">
               <span className="bg-panna inline-block h-1.5 w-1.5 rounded-full" />
               In evidenza
             </span>
