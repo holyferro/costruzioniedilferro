@@ -48,7 +48,7 @@ export function AziendaCertificazioni() {
           </div>
           <Link
             href="/certificazioni"
-            className="text-brand border-brand border-b pb-1.5 font-[family-name:var(--font-neue-montreal)] text-[13px] tracking-[0.08em] uppercase no-underline"
+            className="text-brand border-brand tracking-caps-tight border-b pb-1.5 font-[family-name:var(--font-neue-montreal)] text-[13px] uppercase no-underline"
           >
             Tutte le certificazioni →
           </Link>

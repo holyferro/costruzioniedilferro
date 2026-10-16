@@ -47,7 +47,7 @@ export function AziendaTestimonianze() {
               key={review.name}
               className="hover:border-ink/40 relative flex flex-col gap-5 border border-transparent bg-white px-10 py-11 transition-colors duration-300"
             >
-              <span className="text-ink/65 absolute top-6 right-8 text-[11px] font-semibold tracking-[0.1em] uppercase">
+              <span className="text-ink/65 tracking-caps-tight absolute top-6 right-8 text-[11px] font-semibold uppercase">
                 Google
               </span>
               <div className="flex gap-1" aria-hidden="true">

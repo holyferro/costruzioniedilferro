@@ -5,6 +5,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import { photoBadgeClass } from "@/components/ui/badge";
 import Link from "next/link";
 import type { Route } from "next";
@@ -53,7 +54,7 @@ export function FeaturedProjects({
             </div>
             <Link
               href={archiveLinkHref as Route<string>}
-              className="text-brand border-brand inline-flex items-center gap-2 border-b pb-1.5 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.08em] uppercase"
+              className="text-brand border-brand tracking-caps-tight inline-flex items-center gap-2 border-b pb-1.5 font-[family-name:var(--font-neue-montreal)] text-xs uppercase"
             >
               {archiveLinkLabel} <span aria-hidden="true">→</span>
             </Link>
@@ -115,17 +116,17 @@ function FeatureCard({ item, onOpen }: { item: FeaturedProject; onOpen: () => vo
         <h3 className="font-serif text-[clamp(1.6rem,0.6rem+1.6vw,2.25rem)] leading-[1.15] font-medium tracking-tight text-white">
           {item.title}
         </h3>
-        <p className="mt-2.5 text-[13px] tracking-[0.18em] text-white/70 uppercase">{item.place}</p>
+        <p className="tracking-caps mt-2.5 text-[13px] text-white/70 uppercase">{item.place}</p>
         <p className="mt-4 line-clamp-3 max-w-[48ch] text-[15px] leading-relaxed text-white/85 md:line-clamp-none">
           {item.description}
         </p>
-        <span className="mt-6 inline-flex items-center gap-2.5 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.1em] text-white uppercase">
+        <span className="tracking-caps-tight mt-6 inline-flex items-center gap-2.5 font-[family-name:var(--font-neue-montreal)] text-xs text-white uppercase">
           Scheda progetto
           <span
             aria-hidden="true"
             className="inline-block transition-transform duration-300 group-hover/feature:translate-x-1.5 group-hover/feature:-translate-y-1.5"
           >
-            ↗
+            <ArrowUpRight aria-hidden className="size-4" strokeWidth={1.5} />
           </span>
         </span>
       </div>
@@ -163,7 +164,7 @@ function MiniProject({ item, onOpen }: { item: ProjectTile; onOpen: () => void }
         <h3 className="font-serif text-xl leading-snug font-medium tracking-tight text-white">
           {item.title}
         </h3>
-        <p className="mt-1.5 text-[11px] tracking-[0.2em] text-white/70 uppercase">{item.place}</p>
+        <p className="tracking-caps mt-1.5 text-[11px] text-white/70 uppercase">{item.place}</p>
       </div>
     </div>
   );

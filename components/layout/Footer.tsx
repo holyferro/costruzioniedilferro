@@ -45,7 +45,7 @@ export function Footer() {
                 <a
                   href="https://www.facebook.com/costruzioniedilferro.it/"
                   aria-label="Facebook"
-                  className="text-white/50 transition-colors hover:text-white"
+                  className="text-white/65 transition-colors hover:text-white"
                 >
                   <svg
                     aria-hidden="true"
@@ -60,7 +60,7 @@ export function Footer() {
                 <a
                   href="#"
                   aria-label="Instagram"
-                  className="text-white/50 transition-colors hover:text-white"
+                  className="text-white/65 transition-colors hover:text-white"
                 >
                   <svg
                     aria-hidden="true"
@@ -81,7 +81,7 @@ export function Footer() {
                 <a
                   href="#"
                   aria-label="LinkedIn"
-                  className="text-white/50 transition-colors hover:text-white"
+                  className="text-white/65 transition-colors hover:text-white"
                 >
                   <svg
                     aria-hidden="true"
@@ -100,7 +100,7 @@ export function Footer() {
 
             {/* Col 2 — Sections */}
             <nav aria-label="Sezioni del sito">
-              <h2 className="text-xs font-semibold tracking-widest text-white/40 uppercase">
+              <h2 className="tracking-caps text-xs font-semibold text-white/65 uppercase">
                 Sezioni
               </h2>
               <ul className="mt-2 space-y-1.5 lg:mt-3 lg:space-y-2">
@@ -119,7 +119,7 @@ export function Footer() {
 
             {/* Col 3 — Contacts */}
             <div>
-              <h2 className="text-xs font-semibold tracking-widest text-white/40 uppercase">
+              <h2 className="tracking-caps text-xs font-semibold text-white/65 uppercase">
                 Contatti
               </h2>
               <ul className="mt-2 space-y-1.5 text-xs text-white/70 lg:mt-3 lg:space-y-2 lg:text-sm">
@@ -139,7 +139,7 @@ export function Footer() {
                   </a>
                 </li>
                 {siteContent.contact.hours.map((line) => (
-                  <li key={line} className="text-white/50">
+                  <li key={line} className="text-white/65">
                     {line}
                   </li>
                 ))}
@@ -148,10 +148,10 @@ export function Footer() {
 
             {/* Col 4 — Legal */}
             <div>
-              <h2 className="text-xs font-semibold tracking-widest text-white/40 uppercase">
+              <h2 className="tracking-caps text-xs font-semibold text-white/65 uppercase">
                 Dati legali
               </h2>
-              <ul className="mt-2 space-y-1 text-xs text-white/50 lg:mt-3">
+              <ul className="mt-2 space-y-1 text-xs text-white/65 lg:mt-3">
                 <li>
                   {legalContent.sedeLegale.street}, {legalContent.sedeLegale.zip}{" "}
                   {legalContent.sedeLegale.city} ({legalContent.sedeLegale.province})
@@ -163,8 +163,8 @@ export function Footer() {
                 </li>
               </ul>
               <div className="mt-3 flex gap-2 text-xs lg:mt-4">
-                <span className="bg-brand rounded px-2 py-1 font-semibold text-white">SOA</span>
-                <span className="bg-brand rounded px-2 py-1 font-semibold text-white">ISO</span>
+                <span className="bg-brand rounded-sm px-2 py-1 font-semibold text-white">SOA</span>
+                <span className="bg-brand rounded-sm px-2 py-1 font-semibold text-white">ISO</span>
               </div>
             </div>
           </div>
@@ -193,7 +193,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-4 flex flex-col gap-3 border-t border-white/10 pt-4 text-xs text-white/40 xl:mt-8 xl:flex-row xl:items-center xl:justify-between xl:gap-4 xl:pt-6">
+        <div className="mt-4 flex flex-col gap-3 border-t border-white/10 pt-4 text-xs text-white/65 xl:mt-8 xl:flex-row xl:items-center xl:justify-between xl:gap-4 xl:pt-6">
           <p>
             © {new Date().getFullYear()} {legalContent.ragioneSociale}. Tutti i diritti riservati.
           </p>
@@ -204,7 +204,7 @@ export function Footer() {
                   key={item.href}
                   href={item.href}
                   label={item.label}
-                  className="text-white/40"
+                  className="text-white/65"
                   iconSize={13}
                 />
               ))}
@@ -213,7 +213,7 @@ export function Footer() {
               </span>
               <Link
                 href={"/studio" as never}
-                className="text-white/30 transition-colors hover:text-white/60"
+                className="text-white/65 transition-colors hover:text-white"
               >
                 Area gestione
               </Link>

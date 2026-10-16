@@ -162,7 +162,7 @@ function InfoBlock({
 }) {
   return (
     <div>
-      <p className="text-panna/65 mb-3 flex items-center gap-2 text-[11px] font-semibold tracking-[0.22em] uppercase">
+      <p className="text-panna/65 tracking-caps mb-3 flex items-center gap-2 text-[11px] font-semibold uppercase">
         <span className="text-panna/60" aria-hidden="true">
           {icon}
         </span>

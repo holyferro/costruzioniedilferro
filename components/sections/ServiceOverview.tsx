@@ -45,7 +45,7 @@ export function ServiceOverview({
           </div>
           <Link
             href={indexLinkHref as Route<string>}
-            className="text-panna border-panna/30 hover:border-panna inline-flex items-center gap-2 self-end border-b pb-1.5 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.08em] uppercase transition-colors"
+            className="text-panna border-panna/30 hover:border-panna tracking-caps-tight inline-flex items-center gap-2 self-end border-b pb-1.5 font-[family-name:var(--font-neue-montreal)] text-xs uppercase transition-colors"
           >
             {indexLinkLabel} <span aria-hidden="true">→</span>
           </Link>
@@ -82,7 +82,7 @@ function ServiceRow({
       >
         <div className="mb-4 flex items-baseline gap-4">
           <span className="text-panna/65 font-serif text-sm font-medium italic">— {item.n}</span>
-          <span className="text-panna/60 text-[11px] font-semibold tracking-[0.22em] uppercase">
+          <span className="text-panna/60 tracking-caps text-[11px] font-semibold uppercase">
             {item.kicker}
           </span>
         </div>

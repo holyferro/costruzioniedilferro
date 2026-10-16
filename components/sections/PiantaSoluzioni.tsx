@@ -264,7 +264,7 @@ export function PiantaSoluzioni({
               close();
               setRun((r) => r + 1);
             }}
-            className="text-ink/65 hover:text-ink mt-6 font-mono text-xs tracking-[0.15em] uppercase underline-offset-4 hover:underline"
+            className="text-ink/65 hover:text-ink tracking-caps mt-6 font-mono text-xs uppercase underline-offset-4 hover:underline"
           >
             ↻ {replayLabel}
           </button>
@@ -285,9 +285,7 @@ function PhotoCard({ marker }: { marker: FloorPlanMarker }) {
         </div>
       )}
       <div className="p-4">
-        <p className="text-brand font-mono text-[11px] tracking-[0.15em] uppercase">
-          {marker.norm}
-        </p>
+        <p className="text-brand tracking-caps font-mono text-[11px] uppercase">{marker.norm}</p>
         <p className="mt-1 leading-snug font-semibold">{marker.title}</p>
         <p className="text-ink/70 mt-1 text-sm">{marker.body}</p>
         <div className="mt-3 flex items-end justify-between gap-3">

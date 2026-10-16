@@ -143,13 +143,13 @@ export function AziendaStoria() {
                         height={180}
                         className="mb-4 h-auto w-28 md:w-36"
                       />
-                      <div className="border-brand/25 text-brand mb-4 inline-flex items-center border px-3 py-1.5 text-[11px] leading-none font-semibold tracking-[0.16em] uppercase">
+                      <div className="border-brand/25 text-brand tracking-caps mb-4 inline-flex items-center border px-3 py-1.5 text-[11px] leading-none font-semibold uppercase">
                         Oggi
                       </div>
                     </>
                   )}
                   {entry.eyebrow && (
-                    <p className="text-brand mb-2 max-w-[38ch] text-[12px] leading-[1.45] font-semibold tracking-[0.14em] uppercase">
+                    <p className="text-brand tracking-caps mb-2 max-w-[38ch] text-[12px] leading-[1.45] font-semibold uppercase">
                       {entry.eyebrow}
                     </p>
                   )}

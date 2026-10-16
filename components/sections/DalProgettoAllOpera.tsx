@@ -140,7 +140,7 @@ export function DalProgettoAllOpera({
             </div>
             <p
               aria-hidden="true"
-              className="hidden font-mono text-xs tracking-[0.2em] uppercase md:block"
+              className="tracking-caps hidden font-mono text-xs uppercase md:block"
             >
               {done ? stageEnd : stageStart}
             </p>

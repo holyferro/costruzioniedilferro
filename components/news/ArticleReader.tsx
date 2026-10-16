@@ -73,7 +73,9 @@ export function ArticleReader({ article, onClose }: ArticleReaderProps) {
     <div
       className="fixed inset-0 z-[300] flex items-center justify-center p-3 sm:p-6"
       style={{
-        background: open ? "rgba(10,14,26,0.87)" : "rgba(10,14,26,0)",
+        background: open
+          ? "color-mix(in oklab, var(--color-night) 87%, transparent)"
+          : "transparent",
         pointerEvents: open ? "all" : "none",
         transition: "background 380ms ease",
       }}
@@ -97,7 +99,9 @@ export function ArticleReader({ article, onClose }: ArticleReaderProps) {
         <header
           className="relative z-20 flex shrink-0 items-center justify-between gap-4 px-5 py-3 sm:px-8"
           style={{
-            background: pastHero ? "rgba(248,245,238,0.96)" : "rgba(10,24,48,0.45)",
+            background: pastHero
+              ? "color-mix(in oklab, var(--color-panna) 96%, transparent)"
+              : "color-mix(in oklab, var(--color-night) 45%, transparent)",
             backdropFilter: "blur(12px)",
             WebkitBackdropFilter: "blur(12px)",
             borderBottom: pastHero
@@ -108,7 +112,7 @@ export function ArticleReader({ article, onClose }: ArticleReaderProps) {
         >
           <div className="min-w-0 flex-1 overflow-hidden">
             <p
-              className="truncate font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold tracking-[0.22em] uppercase transition-opacity duration-300"
+              className="tracking-caps truncate font-[family-name:var(--font-neue-montreal)] text-[11px] font-semibold uppercase transition-opacity duration-300"
               style={{ color: pastHero ? "var(--color-brand)" : "rgba(255,255,255,0.6)" }}
             >
               {pastHero ? (article?.category ?? "") : "Articolo"}
@@ -169,7 +173,7 @@ export function ArticleReader({ article, onClose }: ArticleReaderProps) {
                   className="absolute inset-0"
                   style={{
                     background:
-                      "linear-gradient(to bottom, rgba(10,24,48,0.25) 0%, rgba(10,24,48,0.4) 50%, rgba(10,24,48,0.88) 100%)",
+                      "linear-gradient(to bottom, color-mix(in oklab, var(--color-night) 25%, transparent) 0%, color-mix(in oklab, var(--color-night) 40%, transparent) 50%, color-mix(in oklab, var(--color-night) 88%, transparent) 100%)",
                   }}
                 />
                 <div className="relative mx-auto w-full max-w-[860px] px-8 pt-12 pb-14">
@@ -203,7 +207,7 @@ export function ArticleReader({ article, onClose }: ArticleReaderProps) {
                           className="w-1/2 min-w-0 pr-4 md:w-auto md:flex-1 md:pr-8 md:last:pr-0"
                         >
                           <p
-                            className="m-0 mb-1.5 font-[family-name:var(--font-neue-montreal)] text-[10px] tracking-[0.22em] uppercase md:text-[11px]"
+                            className="tracking-caps m-0 mb-1.5 font-[family-name:var(--font-neue-montreal)] text-[10px] uppercase md:text-[11px]"
                             style={{ color: "rgba(255,255,255,0.55)" }}
                           >
                             {m.label}

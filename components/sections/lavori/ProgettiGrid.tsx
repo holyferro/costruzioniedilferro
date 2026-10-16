@@ -3,6 +3,7 @@
 import { useState, useCallback, useRef } from "react";
 import { flushSync } from "react-dom";
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import { photoBadgeClass } from "@/components/ui/badge";
 import { ProgettoModal } from "./ProgettoModal";
 import { RealizzazioniEmptyState } from "./RealizzazioniEmptyState";
@@ -118,10 +119,13 @@ export function ProgettiGrid({
               <button
                 key={opt.value}
                 onClick={() => handleFilterChange(opt.value)}
-                className="cursor-pointer rounded-full border px-[18px] py-[9px] font-[family-name:var(--font-neue-montreal)] text-[12px] font-medium tracking-[0.14em] uppercase transition-colors"
+                className="tracking-caps cursor-pointer rounded-full border px-[18px] py-[9px] font-[family-name:var(--font-neue-montreal)] text-[12px] font-medium uppercase transition-colors"
                 style={{
                   background: activeFilter === opt.value ? "var(--color-brand)" : "transparent",
-                  color: activeFilter === opt.value ? "var(--color-panna)" : "rgba(26,26,26,0.7)",
+                  color:
+                    activeFilter === opt.value
+                      ? "var(--color-panna)"
+                      : "color-mix(in oklab, var(--color-ink) 70%, transparent)",
                   borderColor:
                     activeFilter === opt.value ? "var(--color-brand)" : "var(--color-border)",
                 }}
@@ -202,11 +206,14 @@ export function ProgettiGrid({
                         >
                           {p.title}
                         </h3>
-                        <p className="mt-2 text-[11px] tracking-[0.2em] text-white/70 uppercase">
+                        <p className="tracking-caps mt-2 text-[11px] text-white/70 uppercase">
                           {p.place}
                         </p>
-                        <span className="mt-4 inline-block text-[18px] transition-transform duration-[250ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[5px] group-hover:-translate-y-[5px]">
-                          ↗
+                        <span
+                          aria-hidden="true"
+                          className="mt-4 inline-block text-[18px] transition-transform duration-[250ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[5px] group-hover:-translate-y-[5px]"
+                        >
+                          <ArrowUpRight aria-hidden className="size-[18px]" strokeWidth={1.5} />
                         </span>
                       </div>
                     </div>

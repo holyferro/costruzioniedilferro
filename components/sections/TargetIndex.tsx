@@ -30,12 +30,12 @@ function TargetCard({ target }: { target: ServicesTarget }) {
   return (
     <Link
       href={href}
-      className="group bg-surface border-border hover:border-ink/40 focus-visible:outline-brand flex h-full flex-col rounded-xl border p-8 transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 md:p-10"
+      className="group bg-surface border-border hover:border-ink/40 focus-visible:outline-brand flex h-full flex-col rounded-sm border p-8 transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 md:p-10"
     >
       {/* Numbered eyebrow row */}
       <div className="mb-4 flex items-baseline gap-4">
         <span className="text-brand font-serif text-sm font-medium italic">— {target.n}</span>
-        <span className="text-ink/65 text-[11px] font-semibold tracking-[0.22em] uppercase">
+        <span className="text-ink/65 tracking-caps text-[11px] font-semibold uppercase">
           {target.kicker}
         </span>
       </div>
@@ -51,7 +51,7 @@ function TargetCard({ target }: { target: ServicesTarget }) {
       </p>
 
       {/* Arrow CTA — pushed to bottom, always on one line */}
-      <span className="text-ink mt-auto inline-flex items-center gap-2.5 pt-6 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.08em] whitespace-nowrap uppercase xl:pt-9">
+      <span className="text-ink tracking-caps-tight mt-auto inline-flex items-center gap-2.5 pt-6 font-[family-name:var(--font-neue-montreal)] text-xs whitespace-nowrap uppercase xl:pt-9">
         <span className="border-ink/35 group-hover:border-ink border-b pb-1.5 transition-colors">
           {target.ctaLabel}
         </span>

@@ -103,7 +103,7 @@ export function TrustStrip({ eyebrow, title, body, rows }: TrustStripProps) {
                 </dd>
 
                 {/* Label secondaria — sotto su mobile/tablet, a destra su lg+ */}
-                <dd className="text-ink/65 col-span-2 text-xs tracking-[0.12em] uppercase md:col-span-2 md:mt-1 lg:col-span-1 lg:mt-0 lg:max-w-[140px] lg:text-right lg:text-[10px] lg:leading-[1.45] lg:break-words xl:max-w-[200px] xl:text-[11px]">
+                <dd className="text-ink/65 tracking-caps-tight col-span-2 text-xs uppercase md:col-span-2 md:mt-1 lg:col-span-1 lg:mt-0 lg:max-w-[140px] lg:text-right lg:text-[10px] lg:leading-[1.45] lg:break-words xl:max-w-[200px] xl:text-[11px]">
                   {r.sub}
                 </dd>
               </Reveal>

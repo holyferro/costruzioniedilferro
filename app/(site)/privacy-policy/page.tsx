@@ -37,7 +37,7 @@ export default function PrivacyPolicyPage() {
             Il Titolare del trattamento dei dati personali raccolti tramite il sito web{" "}
             costruzioniedilferro.com è:
           </p>
-          <div className="border-ink/10 mt-6 overflow-hidden rounded-xl border">
+          <div className="border-ink/10 mt-6 overflow-hidden rounded-sm border">
             <table className="w-full text-sm">
               <tbody>
                 {titolare.map(([label, value], i) => (
@@ -180,7 +180,7 @@ export default function PrivacyPolicyPage() {
 
         {/* Footer note */}
         <div className="border-ink/10 mt-16 border-t pt-8">
-          <p className="text-ink/35 text-xs">
+          <p className="text-ink/65 text-xs">
             Costruzioni Edilferro S.r.l. — Via dei Salici 7, 45014 Porto Viro (RO) — P.IVA
             00580810299 — REA RO-85037
           </p>

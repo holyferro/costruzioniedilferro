@@ -65,13 +65,21 @@ export function LavoriStats() {
                 </span>
                 <p
                   className="mt-3 font-serif text-[19px] italic"
-                  style={{ color: stat.dark ? "rgba(248,245,238,0.9)" : "var(--color-ink)" }}
+                  style={{
+                    color: stat.dark
+                      ? "color-mix(in oklab, var(--color-panna) 90%, transparent)"
+                      : "var(--color-ink)",
+                  }}
                 >
                   {stat.label}
                 </p>
                 <p
-                  className="mt-2 text-[13px] tracking-[0.1em] uppercase"
-                  style={{ color: stat.dark ? "rgba(248,245,238,0.55)" : "var(--color-ink)/50" }}
+                  className="tracking-caps-tight mt-2 text-[13px] uppercase"
+                  style={{
+                    color: stat.dark
+                      ? "color-mix(in oklab, var(--color-panna) 55%, transparent)"
+                      : "color-mix(in oklab, var(--color-ink) 65%, transparent)",
+                  }}
                 >
                   {stat.sub}
                 </p>

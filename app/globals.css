@@ -51,6 +51,14 @@
   --text-h1--line-height: 1.06;
   --text-h2: clamp(2rem, 1rem + 2.6vw, 3.4rem);
   --text-h2--line-height: 1.12;
+
+  /* Letter-spacing for uppercase labels — the only four values the site uses.
+     caps-tight: text links, meta (dates, place)  · caps: badges, card labels
+     caps-wide: emphasized labels                 · eyebrow: <Eyebrow> kicker */
+  --tracking-caps-tight: 0.08em;
+  --tracking-caps: 0.2em;
+  --tracking-caps-wide: 0.3em;
+  --tracking-eyebrow: 0.38em;
 }
 
 /* ---------- Global defaults ---------- */
@@ -90,8 +98,8 @@ img {
   -webkit-touch-callout: none;
 }
 
-/* ---------- Scroll indicator bounce ---------- */
-@keyframes scrollBounce {
+/* ---------- Scroll indicator nudge ---------- */
+@keyframes scrollNudge {
   0%,
   100% {
     transform: translateY(0);

@@ -53,8 +53,11 @@ export function LavoriSpotlight() {
             {/* Badge + anno */}
             <div className="mb-8 flex items-center gap-3.5">
               <span
-                className="rounded-full border px-3.5 py-1.5 text-[10px] font-semibold tracking-[0.22em] uppercase"
-                style={{ color: "rgba(142,163,209,0.9)", borderColor: "rgba(142,163,209,0.4)" }}
+                className="tracking-caps rounded-full border px-3.5 py-1.5 text-[10px] font-semibold uppercase"
+                style={{
+                  color: "color-mix(in oklab, var(--color-panna) 90%, transparent)",
+                  borderColor: "color-mix(in oklab, var(--color-panna) 40%, transparent)",
+                }}
               >
                 Residenziale
               </span>
@@ -91,8 +94,8 @@ export function LavoriSpotlight() {
                   style={{ borderTop: "1px solid rgba(255,255,255,0.12)" }}
                 >
                   <span
-                    className="text-[11px] tracking-[0.2em] uppercase"
-                    style={{ color: "rgba(248,245,238,0.55)" }}
+                    className="tracking-caps text-[11px] uppercase"
+                    style={{ color: "color-mix(in oklab, var(--color-panna) 55%, transparent)" }}
                   >
                     {label}
                   </span>

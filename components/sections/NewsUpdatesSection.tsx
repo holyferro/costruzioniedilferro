@@ -5,6 +5,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import { photoBadgeClass } from "@/components/ui/badge";
 import Link from "next/link";
 import type { Route } from "next";
@@ -139,7 +140,7 @@ export function NewsUpdatesSection({
               <div className="flex flex-wrap items-center justify-between gap-5">
                 <Link
                   href={allNewsHref as Route<string>}
-                  className="text-brand border-brand inline-flex items-center gap-2.5 border-b pb-1.5 font-[family-name:var(--font-neue-montreal)] text-xs tracking-[0.08em] uppercase"
+                  className="text-brand border-brand tracking-caps-tight inline-flex items-center gap-2.5 border-b pb-1.5 font-[family-name:var(--font-neue-montreal)] text-xs uppercase"
                 >
                   {allNewsLabel} <span aria-hidden="true">→</span>
                 </Link>
@@ -249,14 +250,14 @@ function NewsCard({ item, isFirst, isLoading, onOpen }: NewsCardProps) {
             aria-hidden="true"
             className="absolute bottom-[18px] left-[18px] inline-block text-[18px] leading-none text-white transition-transform duration-[250ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-[5px] group-hover:-translate-y-[5px]"
           >
-            ↗
+            <ArrowUpRight aria-hidden className="size-[18px]" strokeWidth={1.5} />
           </span>
         </div>
 
         {/* Corpo card */}
         <div className="flex flex-1 flex-col gap-3.5 p-6 pb-[26px]">
           {/* Meta */}
-          <div className="text-ink/65 flex items-center gap-3 text-[12px] tracking-[0.06em] uppercase">
+          <div className="text-ink/65 tracking-caps-tight flex items-center gap-3 text-[12px] uppercase">
             <span>{formatDate(item.publishedAt)}</span>
           </div>
 
@@ -269,13 +270,17 @@ function NewsCard({ item, isFirst, isLoading, onOpen }: NewsCardProps) {
           <p className="text-ink/70 line-clamp-3 text-[15px] leading-[1.55]">{item.excerpt}</p>
 
           {/* CTA */}
-          <div className="border-border text-ink group-hover:text-brand mt-auto flex items-center justify-between border-t pt-[18px] font-[family-name:var(--font-neue-montreal)] text-[12px] tracking-[0.1em] uppercase transition-colors duration-[250ms]">
+          <div className="border-border text-ink group-hover:text-brand tracking-caps-tight mt-auto flex items-center justify-between border-t pt-[18px] font-[family-name:var(--font-neue-montreal)] text-[12px] uppercase transition-colors duration-[250ms]">
             {isLoading ? "Caricamento…" : "Leggi di più"}
             <span
               aria-hidden="true"
               className="border-border text-ink group-hover:border-brand group-hover:bg-brand group-hover:text-panna inline-flex h-8 w-8 items-center justify-center rounded-full border bg-transparent transition-[transform,background-color,border-color,color] duration-[300ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-1"
             >
-              {isLoading ? <SpinnerIcon /> : <ArrowUpRight />}
+              {isLoading ? (
+                <SpinnerIcon />
+              ) : (
+                <ArrowUpRight aria-hidden className="size-3.5" strokeWidth={1.5} />
+              )}
             </span>
           </div>
         </div>
@@ -291,12 +296,12 @@ function ArchiveCard({ href }: { href: string }) {
       className="border-ink/30 group hover:border-brand flex w-[clamp(240px,22vw,320px)] shrink-0 snap-start flex-col items-center justify-center gap-5 border border-dashed p-8 text-center no-underline transition-colors duration-[250ms]"
     >
       <span className="bg-brand text-panna inline-flex h-14 w-14 items-center justify-center rounded-full transition-transform duration-[300ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110">
-        <ArrowUpRight size={20} />
+        <ArrowUpRight aria-hidden className="size-5" strokeWidth={1.5} />
       </span>
       <p className="text-ink font-serif text-[22px] leading-[1.3] font-medium italic">
         Esplora l&apos;archivio completo
       </p>
-      <p className="text-ink/65 font-[family-name:var(--font-neue-montreal)] text-[12px] tracking-[0.08em] uppercase">
+      <p className="text-ink/65 tracking-caps-tight font-[family-name:var(--font-neue-montreal)] text-[12px] uppercase">
         Tutti gli aggiornamenti
       </p>
     </a>
@@ -339,20 +344,6 @@ function NavArrow({ dir, disabled, onClick }: NavArrowProps) {
         />
       </svg>
     </button>
-  );
-}
-
-function ArrowUpRight({ size = 14 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 14 14" fill="none" aria-hidden="true">
-      <path
-        d="M3.5 10.5L10.5 3.5M10.5 3.5H4.5M10.5 3.5V9.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
   );
 }
 
