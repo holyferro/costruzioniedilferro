@@ -3,11 +3,10 @@
 // Nessun hardcoding: tutto il copy viene da content/homepage.ts o content/site.ts.
 import { buildMetadata } from "@/lib/seo/metadata";
 import { homepageContent } from "@/content/homepage";
-import { siteContent } from "@/content/site";
 import { serverClient } from "@/sanity/lib/client";
-import { featuredRealizzazioniQuery, homepageNewsQuery } from "@/sanity/lib/queries";
-import { buildFeaturedData } from "@/sanity/lib/realizzazione-helpers";
-import type { Realizzazione, SanityNewsPreview } from "@/sanity/lib/types";
+import { homepageNewsQuery } from "@/sanity/lib/queries";
+import type { SanityNewsPreview } from "@/sanity/lib/types";
+import { getRealizzazioniInEvidenza } from "@/lib/realizzazioni";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { TrustStrip } from "@/components/sections/TrustStrip";
 import { DalProgettoAllOpera } from "@/components/sections/DalProgettoAllOpera";
@@ -35,11 +34,7 @@ export const metadata = buildMetadata({
 
 export default async function Home() {
   const [realizzazioni, newsData] = await Promise.all([
-    serverClient.fetch<Realizzazione[]>(
-      featuredRealizzazioniQuery,
-      {},
-      { next: { tags: ["homepage-realizzazioni"] } },
-    ),
+    getRealizzazioniInEvidenza(),
     serverClient.fetch<{ featured: SanityNewsPreview | null; recent: SanityNewsPreview[] }>(
       homepageNewsQuery,
       {},
@@ -47,7 +42,6 @@ export default async function Home() {
     ),
   ]);
 
-  const featuredData = buildFeaturedData(realizzazioni);
   const newsItems = [newsData.featured, ...newsData.recent]
     .filter((x): x is SanityNewsPreview => x !== null)
     .slice(0, 4);
@@ -59,13 +53,8 @@ export default async function Home() {
       <DalProgettoAllOpera {...homepageContent.fromDrawing} />
       <ServiceOverview {...homepageContent.services} />
       <PiantaSoluzioni {...homepageContent.floorPlan} />
-      {featuredData && (
-        <FeaturedProjects
-          {...homepageContent.featuredProjects}
-          feature={featuredData.feature}
-          tiles={featuredData.tiles}
-          projectsData={featuredData.projectsData}
-        />
+      {realizzazioni.length > 0 && (
+        <FeaturedProjects {...homepageContent.featuredProjects} realizzazioni={realizzazioni} />
       )}
       {newsItems.length > 0 && (
         <NewsUpdatesSection {...homepageContent.newsUpdates} items={newsItems} />

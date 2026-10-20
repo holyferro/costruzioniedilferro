@@ -1,4 +1,5 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
+import { CATEGORIE } from "../../lib/realizzazioni/model";
 
 export const realizzazione = defineType({
   name: "realizzazione",
@@ -30,13 +31,7 @@ export const realizzazione = defineType({
       title: "Categoria",
       type: "string",
       options: {
-        list: [
-          { title: "Residenziale", value: "residenziale" },
-          { title: "Restauro", value: "restauro" },
-          { title: "Opere pubbliche", value: "pubblico" },
-          { title: "Industriale", value: "industriale" },
-          { title: "Efficientamento", value: "efficientamento" },
-        ],
+        list: CATEGORIE.map((c) => ({ title: c.label, value: c.value })),
       },
       validation: (Rule) => Rule.required(),
     }),

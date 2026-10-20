@@ -5,13 +5,7 @@ import { LavoriManifesto } from "@/components/sections/lavori/LavoriManifesto";
 import { ProgettiGrid } from "@/components/sections/lavori/ProgettiGrid";
 import { HomepageCta } from "@/components/sections/HomepageCta";
 import { defaultFinalCta } from "@/content/finalCta";
-import { serverClient } from "@/sanity/lib/client";
-import { allRealizzazioniQuery } from "@/sanity/lib/queries";
-import { sanityToProject } from "@/sanity/lib/realizzazione-helpers";
-import { PROJECTS } from "@/components/sections/lavori/ProgettoModal";
-import type { Realizzazione } from "@/sanity/lib/types";
-import type { CardDef } from "@/components/sections/lavori/ProgettiGrid";
-import type { Project } from "@/components/sections/lavori/ProgettoModal";
+import { getRealizzazioni } from "@/lib/realizzazioni";
 
 export const revalidate = 3600;
 
@@ -22,72 +16,15 @@ export const metadata = buildMetadata({
   alternates: { canonical: "/realizzazioni" },
 });
 
-const DELAYS = [0, 80, 160] as const;
-
-function buildFromSanity(realizzazioni: Realizzazione[]): {
-  cards: CardDef[];
-  projects: Record<string, Project>;
-} {
-  const projects: Record<string, Project> = {};
-  const cards: CardDef[] = [];
-
-  realizzazioni.forEach((r, i) => {
-    const key = r.slug.current;
-    projects[key] = sanityToProject(r);
-    cards.push({
-      key,
-      cat: r.category,
-      wide: r.wide ?? false,
-      delay: DELAYS[i % 3],
-    });
-  });
-
-  return { cards, projects };
-}
-
-function buildFromLegacy(): { cards: CardDef[]; projects: Record<string, Project> } {
-  const projects: Record<string, Project> = { ...PROJECTS };
-  const legacyKeys = Object.keys(PROJECTS);
-  const cards: CardDef[] = legacyKeys.map((key, i) => ({
-    key,
-    cat: PROJECTS[key]!.tag.toLowerCase()
-      .replace("opere pubbliche", "pubblico")
-      .replace("efficientamento", "efficientamento"),
-    wide: false,
-    delay: DELAYS[i % 3],
-  }));
-  return { cards, projects };
-}
-
 export default async function RealizzazioniPage() {
-  if (process.env.USE_LEGACY_PROJECTS === "true") {
-    const { cards, projects } = buildFromLegacy();
-    return <RealizzazioniLayout cards={cards} projects={projects} />;
-  }
+  const realizzazioni = await getRealizzazioni();
 
-  const realizzazioni = await serverClient.fetch<Realizzazione[]>(
-    allRealizzazioniQuery,
-    {},
-    { next: { tags: ["realizzazioni"] } },
-  );
-  const { cards, projects } = buildFromSanity(realizzazioni);
-
-  return <RealizzazioniLayout cards={cards} projects={projects} />;
-}
-
-function RealizzazioniLayout({
-  cards,
-  projects,
-}: {
-  cards: CardDef[];
-  projects: Record<string, Project>;
-}) {
   return (
     <>
       <ScrollToHash />
       <LavoriHero />
       <LavoriManifesto />
-      <ProgettiGrid cards={cards} projects={projects} />
+      <ProgettiGrid realizzazioni={realizzazioni} />
       <HomepageCta
         {...defaultFinalCta}
         headline="Il prossimo cantiere può essere il vostro."

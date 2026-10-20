@@ -19,26 +19,6 @@ export type ServiceItem = {
   readonly tags: readonly string[];
 };
 
-export type ProjectTile = {
-  readonly imageSrc: string;
-  readonly imageAlt: string;
-  readonly tag: string;
-  readonly title: string;
-  readonly place: string;
-  readonly year: string;
-  readonly projectKey?: string;
-};
-
-export type FeaturedProject = ProjectTile & {
-  readonly description: string;
-};
-
-export type Principle = {
-  readonly n: string;
-  readonly title: string;
-  readonly body: string;
-};
-
 export type Zone = {
   readonly name: string;
   readonly role: string;
@@ -122,16 +102,6 @@ export type HomepageContent = {
     readonly titleEnd: string;
     readonly archiveLinkLabel: string;
     readonly archiveLinkHref: string;
-    readonly feature: FeaturedProject;
-    readonly tiles: readonly ProjectTile[];
-  };
-  readonly values: {
-    readonly eyebrow: string;
-    readonly titleStart: string;
-    readonly titleAccent: string;
-    readonly titleEnd: string;
-    readonly body: string;
-    readonly principles: readonly Principle[];
   };
   readonly serviceArea: {
     readonly eyebrow: string;
@@ -319,75 +289,6 @@ export const homepageContent: HomepageContent = {
     titleEnd: " al resto del Veneto.",
     archiveLinkLabel: "Archivio lavori",
     archiveLinkHref: "/realizzazioni#archivio-lavori",
-    feature: {
-      imageSrc: "/images/cantieri/studentato rovigo/2021-04-02_08-49-18_099.webp",
-      imageAlt: "Studentato Universitario a Rovigo in fase di cantiere",
-      tag: "Residenziale",
-      title: "Studentato Universitario",
-      place: "Rovigo",
-      year: "2024",
-      projectKey: "studentato-universitario",
-      description:
-        "Dispone di 100 posti letto, con alloggi temporanei da destinare agli studenti fuori sede, distribuiti in tre corpi di fabbrica ognuno di due piani. Gli edifici, di nuova costruzione e moderna progettazione, sono articolati in modo da creare tra loro aree verdi esterne vivibili.",
-    },
-    tiles: [
-      {
-        imageSrc: "/images/cantieri/casa-di-cura-città-di-rovigo/foto-csa.webp",
-        imageAlt: "Policlinico Città di Rovigo — nuova costruzione",
-        tag: "Opere pubbliche",
-        title: "Policlinico Città di Rovigo",
-        place: "Rovigo",
-        year: "2015",
-        projectKey: "policlinico-rovigo",
-      },
-      {
-        imageSrc: "/images/design/proj-passiva.webp",
-        imageAlt: "Habita — prima casa passiva in legno nel Delta del Po",
-        tag: "Residenziale",
-        title: "Habita — Casa passiva",
-        place: "Porto Viro",
-        year: "2016",
-        projectKey: "habita",
-      },
-      {
-        imageSrc: "/images/design/proj-casa-cura.webp",
-        imageAlt: "Ampliamento casa di cura — Porto Viro",
-        tag: "Opere pubbliche",
-        title: "Ampliamento casa di cura",
-        place: "Porto Viro",
-        year: "2022",
-        projectKey: "casa-di-cura",
-      },
-    ],
-  },
-  values: {
-    eyebrow: "Perché sceglierci",
-    titleStart: "Quattro promesse ",
-    titleAccent: "che manteniamo",
-    titleEnd: " da cantiere a cantiere.",
-    body: "Non le chiamiamo valori. Sono il modo in cui lavoriamo da settant'anni, e il motivo per cui i nostri clienti tornano.",
-    principles: [
-      {
-        n: "01",
-        title: "Un unico interlocutore, dal preventivo al collaudo.",
-        body: "Il direttore di cantiere che incontri al sopralluogo è lo stesso che firma la consegna. Niente passaggi di mano, niente catena di subappalti da rincorrere.",
-      },
-      {
-        n: "02",
-        title: "Preventivi chiusi, senza varianti a sorpresa.",
-        body: "Lavoriamo a corpo. Il prezzo pattuito è il prezzo finale, salvo modifiche esplicitamente richieste dal committente e sempre preventivate per iscritto.",
-      },
-      {
-        n: "03",
-        title: "Maestranze dirette, non agenzie interinali.",
-        body: "Trentacinque persone in organico, contratti Cassa Edile. La qualità di una finitura dipende da chi la posa: per questo non esternalizziamo il mestiere.",
-      },
-      {
-        n: "04",
-        title: "Cantieri puliti, consegne puntuali.",
-        body: "Sicurezza sul lavoro certificata ISO 45001, piani operativi aggiornati settimanalmente. Nel 2024 il 96% dei nostri cantieri è stato consegnato entro la data contrattuale.",
-      },
-    ],
   },
   serviceArea: {
     eyebrow: "Dove operiamo",

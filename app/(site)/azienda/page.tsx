@@ -10,7 +10,7 @@ import { defaultFinalCta } from "@/content/finalCta";
 export const metadata = buildMetadata({
   title: "L'Azienda",
   description:
-    "Dal 1978 a Porto Viro. Tre generazioni, 42 persone in organico, SOA classifica IV, ISO 9001. Impresa Edile S.r.l. — un'impresa familiare con struttura professionale.",
+    "Dal 1978 a Porto Viro. Tre generazioni, 42 persone in organico, SOA classifica IV, ISO 9001. Costruzioni Edilferro S.r.l. — un'impresa familiare con struttura professionale.",
   alternates: { canonical: "/azienda" },
 });
 
