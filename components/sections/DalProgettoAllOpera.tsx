@@ -12,6 +12,7 @@
 import { getImageProps } from "next/image";
 import { useEffect, useId, useRef, useState, type RefObject } from "react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { DISPLACEMENT, H, IMG_H, IMG_W, W, inkAt, inkBand, inkSolid, inkY } from "./inkSweep";
 
 type DalProgettoAllOperaProps = {
   eyebrow: string;
@@ -22,32 +23,6 @@ type DalProgettoAllOperaProps = {
   renderSrc: string;
   imageAlt: string;
 };
-
-// Both images: 2362×1160, rendered from the same Blender camera (pixel-aligned).
-const IMG_W = 2362;
-const IMG_H = 1160;
-const W = 1000;
-const H = (W * IMG_H) / IMG_W;
-
-const clamp = (v: number) => Math.min(1, Math.max(0, v));
-const smooth = (t: number) => t * t * (3 - 2 * t);
-/** Half linear, half smoothstep: the sweep starts and stops softly without long, almost-still tails. */
-const ease = (t: number) => (t + smooth(t)) / 2;
-
-/** Ease input at which the ink's lowest point (curve bulge + displacement) touches the image bottom. */
-const INK_AT_UNSTICK = 0.78;
-/** Ease input when the section sticks: the sweep has already started while it scrolled in. */
-const INK_AT_STICK = 0.3;
-
-/** Height of the ink edge: sweeps from above the top (p=0) to just past the bottom (p=1). */
-const inkY = (p: number) => -80 + p * (H + 130);
-
-/** Only a thin band along the edge is filtered: the filter's cost grows with the area it covers, and on
- * WebKit (all iOS browsers) it runs on the CPU every frame. The band's own top edge gets ragged too,
- * but by at most 35 (displacement scale / 2), so the solid area up to y-10 hides it. */
-const inkBand = (y: number) =>
-  `M0 ${y - 60} L${W} ${y - 60} L${W} ${y} Q${W / 2} ${y + 110} 0 ${y} Z`;
-const inkSolid = (y: number) => String(Math.max(0, y));
 
 // Noise for the ink edge, rendered once as an image and fed to the filter via <feImage>.
 // A live <feTurbulence> is recomputed on every scroll frame in WebKit (all iOS browsers), on the
@@ -124,9 +99,7 @@ export function DalProgettoAllOpera({
   const id = useId().replace(/[^a-zA-Z0-9]/g, "");
 
   useStickyProgress(track, (p) => {
-    // The sweep starts while the section scrolls in, continues while it is stuck, and finishes while it
-    // scrolls away: it unsticks (p=1) when the ink's lowest point reaches the image bottom.
-    const ink = ease(clamp(INK_AT_STICK + p * (INK_AT_UNSTICK - INK_AT_STICK)));
+    const ink = inkAt(p);
     const y = inkY(ink);
     const d = inkBand(y);
     // Skip no-op writes (every frame before and after the sweep): each write re-runs the filter.
@@ -140,7 +113,8 @@ export function DalProgettoAllOpera({
 
   return (
     <section aria-label={eyebrow} className="bg-panna pb-12 md:pb-20">
-      {/* Track outside the bottom padding, so progress hits 1 exactly when the sticky child unsticks. */}
+      {/* Track outside the bottom padding, so progress hits 1 exactly when the sticky child unsticks.
+          Its height sets the sweep speed: taller = more scrolling per sweep. */}
       <div ref={track} className="relative h-[140vh]">
         <div className="sticky top-[var(--header-height)] flex h-[calc(100svh-var(--header-height))] flex-col justify-center overflow-hidden">
           <div className="mx-auto w-full max-w-6xl px-6 lg:px-12">
@@ -172,7 +146,7 @@ export function DalProgettoAllOpera({
                   <feDisplacementMap
                     in="SourceGraphic"
                     in2="noise"
-                    scale="70"
+                    scale={DISPLACEMENT}
                     xChannelSelector="R"
                     yChannelSelector="G"
                   />
