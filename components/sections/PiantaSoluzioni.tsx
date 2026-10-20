@@ -22,9 +22,6 @@ const BUILD_MS = 4200;
 const CLOSE_DELAY_MS = 160; // lets the pointer travel from marker to card without closing it
 
 const isMouse = (e: { pointerType: string }) => e.pointerType === "mouse";
-/** click is a PointerEvent in browsers; keyboard-triggered clicks have pointerType "". */
-const isMouseClick = (e: { nativeEvent: Event }) =>
-  "pointerType" in e.nativeEvent && e.nativeEvent.pointerType === "mouse";
 
 /**
  * Plays the build once when `box` scrolls into view; changing `run` replays it.
@@ -80,6 +77,14 @@ function usePinnablePopover(enabled: boolean) {
   const [state, setState] = useState(closed);
   const closeTimer = useRef(0);
   const reveal = useRef(false); // opened by tap/keyboard: scroll the card fully into view
+  // Pointer of the last press. A click's own pointerType can't tell: WebKit reports "mouse" for the
+  // click that follows a tap, which pinned the card instead of toggling it.
+  const lastPointer = useRef("");
+  useEffect(() => {
+    const onDown = (e: PointerEvent) => (lastPointer.current = e.pointerType);
+    document.addEventListener("pointerdown", onDown, true);
+    return () => document.removeEventListener("pointerdown", onDown, true);
+  }, []);
 
   const send = (e: PopoverEvent) => {
     clearTimeout(closeTimer.current);
@@ -96,10 +101,12 @@ function usePinnablePopover(enabled: boolean) {
       CLOSE_DELAY_MS,
     );
   };
-  const pick = (i: number, e: { nativeEvent: Event }) => {
+  /** Mouse click pins the card; tap and keyboard (click with detail 0) toggle it. */
+  const pick = (i: number, e: { detail: number }) => {
     if (!enabled) return;
-    reveal.current = !isMouseClick(e);
-    send({ type: "pick", i, mouse: isMouseClick(e) });
+    const mouse = e.detail > 0 && lastPointer.current === "mouse";
+    reveal.current = !mouse;
+    send({ type: "pick", i, mouse });
   };
 
   const active = state.active;
@@ -131,7 +138,7 @@ function usePinnablePopover(enabled: boolean) {
     triggerProps: (i: number) => ({
       "data-pianta-trigger": true,
       "aria-expanded": active === i,
-      onClick: (e: { nativeEvent: Event }) => pick(i, e),
+      onClick: (e: { detail: number }) => pick(i, e),
       onPointerEnter: (e: { pointerType: string }) => enter(i, e),
       onPointerLeave: leave,
     }),
@@ -155,7 +162,9 @@ const markerPos = (m: FloorPlanMarker) => {
     style: { left: `${fx * 100}%`, top: `${fy * 100}%` },
     // Card side: keep it inside the plan on a 375px screen.
     cardX: fx > 0.7 ? "right-0 -mr-3" : fx < 0.3 ? "-left-3" : "left-0 -translate-x-1/2",
-    cardY: fy > 0.55 ? "bottom-7" : "top-7",
+    // Measured from the marker wrapper, which is as tall as the button (36px): above the marker the
+    // card needs that height on top of the gap, or it covers the marker and a second tap misses it.
+    cardY: fy > 0.55 ? "bottom-[calc(100%+1.75rem)]" : "top-7",
   };
 };
 
