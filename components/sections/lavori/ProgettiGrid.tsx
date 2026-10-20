@@ -74,12 +74,6 @@ export function ProgettiGrid({ realizzazioni }: { realizzazioni: readonly Realiz
 
   return (
     <>
-      <style>{`
-        @keyframes cardFadeIn {
-          from { opacity: 0; transform: translateY(8px); }
-          to   { opacity: 1; transform: none; }
-        }
-      `}</style>
       <section className="bg-surface py-24">
         <div className="mx-auto max-w-6xl px-6 md:px-12">
           <div className="mb-12 flex flex-wrap items-end justify-between gap-8">
@@ -133,18 +127,16 @@ export function ProgettiGrid({ realizzazioni }: { realizzazioni: readonly Realiz
                     <div
                       key={p.slug}
                       onClick={() => setActive(p)}
-                      className="group relative cursor-pointer overflow-hidden bg-black transition-shadow duration-300 hover:shadow-[0_12px_48px_color-mix(in_oklab,var(--color-brand)_10%,transparent)]"
+                      className="group animate-card-fade-in relative cursor-pointer overflow-hidden bg-black transition-shadow duration-300 hover:shadow-[0_12px_48px_color-mix(in_oklab,var(--color-brand)_10%,transparent)]"
                       style={
                         p.wide
                           ? {
                               gridColumn: "span 2",
                               aspectRatio: "3/2",
-                              animation: "cardFadeIn 380ms cubic-bezier(0.16,1,0.3,1) both",
                               animationDelay: `${delay}ms`,
                             }
                           : {
                               aspectRatio: "3/4",
-                              animation: "cardFadeIn 380ms cubic-bezier(0.16,1,0.3,1) both",
                               animationDelay: `${delay}ms`,
                             }
                       }

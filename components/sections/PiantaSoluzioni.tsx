@@ -11,6 +11,7 @@
 import Image from "next/image";
 import { CloseButton } from "@/components/ui/CloseButton";
 import { useEffect, useId, useRef, useState, type RefObject } from "react";
+import { closed, nextPopover, type PopoverEvent } from "./piantaPopover";
 import type { FloorPlanMarker, HomepageContent } from "@/content/homepage";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { PLAN_VIEWBOX as VB, PiantaDisegno, clamp01, drawPlan } from "./PiantaDisegno";
@@ -71,6 +72,82 @@ function useBuildOnce(box: RefObject<HTMLElement | null>, apply: (p: number) => 
   return doneRun === run;
 }
 
+/**
+ * The open floor-plan card (transitions in piantaPopover.ts) wired to pointer, click, Esc and taps
+ * outside. Every trigger does nothing until `enabled`, so no card opens while the plan builds.
+ */
+function usePinnablePopover(enabled: boolean) {
+  const [state, setState] = useState(closed);
+  const closeTimer = useRef(0);
+  const reveal = useRef(false); // opened by tap/keyboard: scroll the card fully into view
+
+  const send = (e: PopoverEvent) => {
+    clearTimeout(closeTimer.current);
+    setState((s) => nextPopover(s, e));
+  };
+  const close = () => send({ type: "close" });
+  const enter = (i: number, e: { pointerType: string }) =>
+    enabled && isMouse(e) && send({ type: "hover", i });
+  const leave = (e: { pointerType: string }) => {
+    if (!isMouse(e)) return;
+    clearTimeout(closeTimer.current);
+    closeTimer.current = window.setTimeout(
+      () => setState((s) => nextPopover(s, { type: "leaveTimeout" })),
+      CLOSE_DELAY_MS,
+    );
+  };
+  const pick = (i: number, e: { nativeEvent: Event }) => {
+    if (!enabled) return;
+    reveal.current = !isMouseClick(e);
+    send({ type: "pick", i, mouse: isMouseClick(e) });
+  };
+
+  const active = state.active;
+  useEffect(() => {
+    if (active === null) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setState(closed);
+    // Triggers toggle on their own click; anything else outside the card closes it.
+    const onDown = (e: PointerEvent) => {
+      if (!(e.target as Element).closest?.("[data-pianta-card],[data-pianta-trigger]")) {
+        setState(closed);
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onDown);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onDown);
+    };
+  }, [active]);
+
+  useEffect(() => () => clearTimeout(closeTimer.current), []);
+
+  return {
+    active,
+    close,
+    enter,
+    leave,
+    pick,
+    triggerProps: (i: number) => ({
+      "data-pianta-trigger": true,
+      "aria-expanded": active === i,
+      onClick: (e: { nativeEvent: Event }) => pick(i, e),
+      onPointerEnter: (e: { pointerType: string }) => enter(i, e),
+      onPointerLeave: leave,
+    }),
+    cardProps: (i: number) => ({
+      "data-pianta-card": true,
+      onPointerEnter: (e: { pointerType: string }) => enter(i, e),
+      onPointerLeave: leave,
+      ref: (el: HTMLElement | null) => {
+        if (!el || !reveal.current) return;
+        reveal.current = false;
+        el.scrollIntoView({ block: "nearest", behavior: "smooth" });
+      },
+    }),
+  };
+}
+
 const markerPos = (m: FloorPlanMarker) => {
   const fx = (m.x - VB.x) / VB.w;
   const fy = (m.y - VB.y) / VB.h;
@@ -95,11 +172,7 @@ export function PiantaSoluzioni({
   const box = useRef<HTMLDivElement>(null);
   const svg = useRef<SVGSVGElement>(null);
   const overlay = useRef<HTMLDivElement>(null);
-  const closeTimer = useRef(0);
-  const pinned = useRef(false); // opened by click/tap: hover-out does not close it
-  const reveal = useRef(false); // opened by tap/keyboard: scroll the card fully into view
   const [run, setRun] = useState(0);
-  const [active, setActive] = useState<number | null>(null);
   const cardId = useId();
 
   const done = useBuildOnce(
@@ -116,45 +189,7 @@ export function PiantaSoluzioni({
     run,
   );
 
-  const open = (i: number, pin = false) => {
-    clearTimeout(closeTimer.current);
-    if (i !== active) pinned.current = false;
-    pinned.current ||= pin;
-    setActive(i);
-  };
-  const close = () => {
-    clearTimeout(closeTimer.current);
-    pinned.current = false;
-    setActive(null);
-  };
-  const closeSoon = () => {
-    if (pinned.current) return;
-    clearTimeout(closeTimer.current);
-    closeTimer.current = window.setTimeout(() => setActive(null), CLOSE_DELAY_MS);
-  };
-  /** Mouse click pins the hovered card; tap / keyboard toggles. */
-  const onPick = (i: number, e: { nativeEvent: Event }) => {
-    reveal.current = !isMouseClick(e);
-    if (isMouseClick(e) || active !== i) open(i, true);
-    else close();
-  };
-
-  useEffect(() => {
-    if (active === null) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && close();
-    // Triggers toggle on their own click; anything else outside the card closes it.
-    const onDown = (e: PointerEvent) => {
-      if (!(e.target as Element).closest?.("[data-pianta-card],[data-pianta-trigger]")) close();
-    };
-    document.addEventListener("keydown", onKey);
-    document.addEventListener("pointerdown", onDown);
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.removeEventListener("pointerdown", onDown);
-    };
-  }, [active]);
-
-  useEffect(() => () => clearTimeout(closeTimer.current), []);
+  const { active, close, enter, leave, pick, triggerProps, cardProps } = usePinnablePopover(done);
 
   return (
     <section aria-label={eyebrow} className="bg-panna py-20 md:py-28">
@@ -178,9 +213,9 @@ export function PiantaSoluzioni({
                 markers={markers}
                 active={active}
                 interactive={done}
-                onAreaEnter={(i, e) => isMouse(e) && open(i)}
-                onAreaLeave={(e) => isMouse(e) && closeSoon()}
-                onAreaClick={onPick}
+                onAreaEnter={enter}
+                onAreaLeave={leave}
+                onAreaClick={pick}
               />
               <div ref={overlay} inert className="pointer-events-none absolute inset-0 opacity-0">
                 {markers.map((m, i) => {
@@ -190,13 +225,9 @@ export function PiantaSoluzioni({
                     <div key={m.n} className="pointer-events-auto absolute" style={pos.style}>
                       <button
                         type="button"
-                        data-pianta-trigger
-                        aria-expanded={isOpen}
+                        {...triggerProps(i)}
                         aria-controls={isOpen ? `${cardId}-${i}` : undefined}
                         aria-label={`${m.n}: ${m.title}`}
-                        onClick={(e) => onPick(i, e)}
-                        onPointerEnter={(e) => isMouse(e) && open(i)}
-                        onPointerLeave={(e) => isMouse(e) && closeSoon()}
                         className={`bg-brand focus-visible:outline-ink relative grid size-9 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full font-mono text-xs font-semibold text-white shadow-md ring-4 transition-[box-shadow,transform] before:absolute before:-inset-1 before:rounded-full before:content-[''] focus-visible:outline-2 focus-visible:outline-offset-2 ${isOpen ? "ring-brand/35 scale-110" : "ring-brand/15"}`}
                       >
                         {m.n}
@@ -204,14 +235,7 @@ export function PiantaSoluzioni({
                       {isOpen && (
                         <div
                           id={`${cardId}-${i}`}
-                          data-pianta-card
-                          ref={(el) => {
-                            if (!el || !reveal.current) return;
-                            reveal.current = false;
-                            el.scrollIntoView({ block: "nearest", behavior: "smooth" });
-                          }}
-                          onPointerEnter={(e) => isMouse(e) && open(i)}
-                          onPointerLeave={(e) => isMouse(e) && closeSoon()}
+                          {...cardProps(i)}
                           className={`absolute z-10 scroll-mt-[calc(var(--header-height)+1rem)] scroll-mb-4 ${pos.cardX} ${pos.cardY}`}
                         >
                           <PhotoCard key={m.n} marker={m} />
@@ -237,11 +261,7 @@ export function PiantaSoluzioni({
               <li key={m.n}>
                 <button
                   type="button"
-                  data-pianta-trigger
-                  aria-expanded={active === i}
-                  onPointerEnter={(e) => isMouse(e) && done && open(i)}
-                  onPointerLeave={(e) => isMouse(e) && closeSoon()}
-                  onClick={(e) => onPick(i, e)}
+                  {...triggerProps(i)}
                   className="flex w-full items-center gap-4 py-4 text-left"
                 >
                   <span
