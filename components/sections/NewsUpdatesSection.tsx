@@ -11,7 +11,7 @@ import Link from "next/link";
 import type { Route } from "next";
 import type { SanityNewsPreview } from "@/sanity/lib/types";
 import { urlFor } from "@/sanity/lib/client";
-import { NewsReader, openArticle } from "@/components/news/NewsReader";
+import { NewsReader, articleLinkProps } from "@/components/news/NewsReader";
 import { formatNewsDate } from "@/lib/news";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
@@ -139,12 +139,7 @@ export function NewsUpdatesSection({
           }}
         >
           {items.map((item, i) => (
-            <NewsCard
-              key={item._id}
-              item={item}
-              isFirst={i === 0}
-              onOpen={() => openArticle(item.slug)}
-            />
+            <NewsCard key={item._id} item={item} isFirst={i === 0} />
           ))}
           <ArchiveCard href={allNewsHref} />
         </div>
@@ -175,16 +170,14 @@ export function NewsUpdatesSection({
 type NewsCardProps = {
   item: SanityNewsPreview;
   isFirst: boolean;
-  onOpen: () => void;
 };
 
-function NewsCard({ item, isFirst, onOpen }: NewsCardProps) {
+function NewsCard({ item, isFirst }: NewsCardProps) {
   const imgSrc = urlFor(item.coverImage).width(840).height(630).url();
   return (
-    <button
-      type="button"
+    <a
+      {...articleLinkProps(item.slug)}
       data-news-card=""
-      onClick={onOpen}
       className="group flex w-[clamp(280px,28vw,420px)] shrink-0 snap-start flex-col text-left no-underline"
     >
       <div className="border-border bg-surface flex w-full flex-col border">
@@ -244,7 +237,7 @@ function NewsCard({ item, isFirst, onOpen }: NewsCardProps) {
           </div>
         </div>
       </div>
-    </button>
+    </a>
   );
 }
 

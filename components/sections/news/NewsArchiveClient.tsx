@@ -6,7 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 import { photoBadgeClass } from "@/components/ui/badge";
 import { urlFor } from "@/sanity/lib/client";
 import type { SanityNewsArticle } from "@/sanity/lib/types";
-import { openArticle } from "@/components/news/NewsReader";
+import { articleLinkProps } from "@/components/news/NewsReader";
 import { formatNewsDate } from "@/lib/news";
 
 const PAGE_SIZE = 9;
@@ -173,9 +173,9 @@ function ArchiveCard({ item, index }: { item: SanityNewsArticle; index: number }
   const imgUrl = urlFor(item.coverImage).width(900).url();
 
   return (
-    <button
+    <a
       id={`article-${item.slug}`}
-      onClick={() => openArticle(item.slug)}
+      {...articleLinkProps(item.slug)}
       className="group border-border bg-surface flex flex-col border text-left"
       style={{ animationDelay: `${(index % 6) * 50}ms` }}
     >
@@ -215,7 +215,7 @@ function ArchiveCard({ item, index }: { item: SanityNewsArticle; index: number }
           </span>
         </span>
       </div>
-    </button>
+    </a>
   );
 }
 
