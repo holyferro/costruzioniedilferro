@@ -8,7 +8,6 @@ import { defaultFinalCta } from "@/content/finalCta";
 import { serverClient } from "@/sanity/lib/client";
 import { allRealizzazioniQuery } from "@/sanity/lib/queries";
 import { sanityToProject } from "@/sanity/lib/realizzazione-helpers";
-import { PROJECTS } from "@/components/sections/lavori/ProgettoModal";
 import type { Realizzazione } from "@/sanity/lib/types";
 import type { CardDef } from "@/components/sections/lavori/ProgettiGrid";
 import type { Project } from "@/components/sections/lavori/ProgettoModal";
@@ -45,26 +44,7 @@ function buildFromSanity(realizzazioni: Realizzazione[]): {
   return { cards, projects };
 }
 
-function buildFromLegacy(): { cards: CardDef[]; projects: Record<string, Project> } {
-  const projects: Record<string, Project> = { ...PROJECTS };
-  const legacyKeys = Object.keys(PROJECTS);
-  const cards: CardDef[] = legacyKeys.map((key, i) => ({
-    key,
-    cat: PROJECTS[key]!.tag.toLowerCase()
-      .replace("opere pubbliche", "pubblico")
-      .replace("efficientamento", "efficientamento"),
-    wide: false,
-    delay: DELAYS[i % 3],
-  }));
-  return { cards, projects };
-}
-
 export default async function RealizzazioniPage() {
-  if (process.env.USE_LEGACY_PROJECTS === "true") {
-    const { cards, projects } = buildFromLegacy();
-    return <RealizzazioniLayout cards={cards} projects={projects} />;
-  }
-
   const realizzazioni = await serverClient.fetch<Realizzazione[]>(
     allRealizzazioniQuery,
     {},

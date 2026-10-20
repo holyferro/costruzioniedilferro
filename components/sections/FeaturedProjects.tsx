@@ -23,7 +23,7 @@ type FeaturedProjectsProps = {
   archiveLinkHref: string;
   feature: FeaturedProject;
   tiles: readonly ProjectTile[];
-  projectsData?: Readonly<Record<string, Project>>;
+  projectsData: Readonly<Record<string, Project>>;
 };
 
 export function FeaturedProjects({
