@@ -1,29 +1,19 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/client";
 import type { SanityNewsArticle } from "@/sanity/lib/types";
-import { ArticleReader } from "@/components/news/ArticleReader";
+import { openArticle } from "@/components/news/NewsReader";
+import { formatNewsDate } from "@/lib/news";
 import { ArrowUpRight } from "lucide-react";
 
-function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString("it-IT", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-}
-
 export function NewsFeaturedCard({ article }: { article: SanityNewsArticle }) {
-  const [readerOpen, setReaderOpen] = useState(false);
-
   const coverUrl = urlFor(article.coverImage).width(1600).url();
 
   return (
     <>
       <button
-        onClick={() => setReaderOpen(true)}
+        onClick={() => openArticle(article.slug)}
         className="group border-border bg-surface grid w-full cursor-pointer overflow-hidden border text-left md:grid-cols-[1.35fr_1fr]"
         style={{
           transition:
@@ -62,7 +52,7 @@ export function NewsFeaturedCard({ article }: { article: SanityNewsArticle }) {
         {/* Corpo */}
         <div className="flex flex-col justify-center gap-6 p-6 md:px-[52px] md:py-12">
           <div className="text-ink/65 tracking-caps-tight flex flex-wrap items-center gap-3.5 font-[family-name:var(--font-neue-montreal)] text-[12px] uppercase">
-            <span>{formatDate(article.publishedAt)}</span>
+            <span>{formatNewsDate(article.publishedAt)}</span>
           </div>
 
           <h2 className="text-ink m-0 font-serif text-[clamp(1.75rem,0.8rem+1.8vw,2.5rem)] leading-[1.15] font-medium tracking-[-0.015em]">
@@ -90,8 +80,6 @@ export function NewsFeaturedCard({ article }: { article: SanityNewsArticle }) {
           </div>
         </div>
       </button>
-
-      <ArticleReader article={readerOpen ? article : null} onClose={() => setReaderOpen(false)} />
     </>
   );
 }

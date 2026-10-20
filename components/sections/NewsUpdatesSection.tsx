@@ -9,10 +9,10 @@ import { ArrowUpRight } from "lucide-react";
 import { photoBadgeClass } from "@/components/ui/badge";
 import Link from "next/link";
 import type { Route } from "next";
-import type { SanityNewsPreview, SanityNewsArticle } from "@/sanity/lib/types";
-import { urlFor, client } from "@/sanity/lib/client";
-import { newsBySlugQuery } from "@/sanity/lib/queries";
-import { ArticleReader } from "@/components/news/ArticleReader";
+import type { SanityNewsPreview } from "@/sanity/lib/types";
+import { urlFor } from "@/sanity/lib/client";
+import { NewsReader, openArticle } from "@/components/news/NewsReader";
+import { formatNewsDate } from "@/lib/news";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
 type NewsUpdatesSectionProps = {
@@ -31,14 +31,6 @@ type ScrollState = {
   atEnd: boolean;
 };
 
-function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString("it-IT", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-}
-
 export function NewsUpdatesSection({
   eyebrow,
   titleStart,
@@ -54,21 +46,6 @@ export function NewsUpdatesSection({
     atStart: true,
     atEnd: false,
   });
-
-  const [openArticle, setOpenArticle] = useState<SanityNewsArticle | null>(null);
-  const [loadingSlug, setLoadingSlug] = useState<string | null>(null);
-
-  async function openBySlug(slug: string) {
-    setLoadingSlug(slug);
-    try {
-      const article = await client.fetch<SanityNewsArticle>(newsBySlugQuery, { slug });
-      setOpenArticle(article);
-    } catch (err) {
-      console.error("[NewsUpdatesSection] fetch articolo fallito:", err);
-    } finally {
-      setLoadingSlug(null);
-    }
-  }
 
   const updateScroll = useCallback(() => {
     const el = trackRef.current;
@@ -166,8 +143,7 @@ export function NewsUpdatesSection({
               key={item._id}
               item={item}
               isFirst={i === 0}
-              isLoading={loadingSlug === item.slug}
-              onOpen={() => openBySlug(item.slug)}
+              onOpen={() => openArticle(item.slug)}
             />
           ))}
           <ArchiveCard href={allNewsHref} />
@@ -191,7 +167,7 @@ export function NewsUpdatesSection({
         </div>
       </section>
 
-      <ArticleReader article={openArticle} onClose={() => setOpenArticle(null)} />
+      <NewsReader />
     </>
   );
 }
@@ -199,19 +175,17 @@ export function NewsUpdatesSection({
 type NewsCardProps = {
   item: SanityNewsPreview;
   isFirst: boolean;
-  isLoading: boolean;
   onOpen: () => void;
 };
 
-function NewsCard({ item, isFirst, isLoading, onOpen }: NewsCardProps) {
+function NewsCard({ item, isFirst, onOpen }: NewsCardProps) {
   const imgSrc = urlFor(item.coverImage).width(840).height(630).url();
   return (
     <button
       type="button"
       data-news-card=""
       onClick={onOpen}
-      disabled={isLoading}
-      className="group flex w-[clamp(280px,28vw,420px)] shrink-0 snap-start flex-col text-left no-underline disabled:cursor-wait"
+      className="group flex w-[clamp(280px,28vw,420px)] shrink-0 snap-start flex-col text-left no-underline"
     >
       <div className="border-border bg-surface flex w-full flex-col border">
         {/* Immagine */}
@@ -247,7 +221,7 @@ function NewsCard({ item, isFirst, isLoading, onOpen }: NewsCardProps) {
         <div className="flex flex-1 flex-col gap-3.5 p-6 pb-[26px]">
           {/* Meta */}
           <div className="text-ink/65 tracking-caps-tight flex items-center gap-3 text-[12px] uppercase">
-            <span>{formatDate(item.publishedAt)}</span>
+            <span>{formatNewsDate(item.publishedAt)}</span>
           </div>
 
           {/* Titolo */}
@@ -260,16 +234,12 @@ function NewsCard({ item, isFirst, isLoading, onOpen }: NewsCardProps) {
 
           {/* CTA */}
           <div className="border-border text-ink group-hover:text-brand tracking-caps-tight mt-auto flex items-center justify-between border-t pt-[18px] font-[family-name:var(--font-neue-montreal)] text-[12px] uppercase transition-colors duration-[250ms]">
-            {isLoading ? "Caricamento…" : "Leggi di più"}
+            Leggi di più
             <span
               aria-hidden="true"
               className="border-border text-ink group-hover:border-brand group-hover:bg-brand group-hover:text-panna inline-flex h-8 w-8 items-center justify-center rounded-full border bg-transparent transition-[transform,background-color,border-color,color] duration-[300ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-1"
             >
-              {isLoading ? (
-                <SpinnerIcon />
-              ) : (
-                <ArrowUpRight aria-hidden className="size-3.5" strokeWidth={1.5} />
-              )}
+              <ArrowUpRight aria-hidden className="size-3.5" strokeWidth={1.5} />
             </span>
           </div>
         </div>
@@ -333,26 +303,5 @@ function NavArrow({ dir, disabled, onClick }: NavArrowProps) {
         />
       </svg>
     </button>
-  );
-}
-
-function SpinnerIcon() {
-  return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 14 14"
-      fill="none"
-      aria-hidden="true"
-      className="animate-spin"
-    >
-      <circle cx="7" cy="7" r="5.5" stroke="currentColor" strokeWidth="1.5" strokeOpacity="0.25" />
-      <path
-        d="M7 1.5A5.5 5.5 0 0 1 12.5 7"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
   );
 }

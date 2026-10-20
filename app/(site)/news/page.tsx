@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { serverClient } from "@/sanity/lib/client";
 import { allNewsQuery } from "@/sanity/lib/queries";
@@ -6,6 +5,7 @@ import type { SanityNewsArticle } from "@/sanity/lib/types";
 import { NewsHero } from "@/components/sections/news/NewsHero";
 import { NewsFeatured } from "@/components/sections/news/NewsFeatured";
 import { NewsArchiveClient } from "@/components/sections/news/NewsArchiveClient";
+import { NewsReader } from "@/components/news/NewsReader";
 import { HomepageCta } from "@/components/sections/HomepageCta";
 import { defaultFinalCta } from "@/content/finalCta";
 
@@ -38,9 +38,8 @@ export default async function NewsPage() {
     <>
       <NewsHero />
       {featuredArticle && <NewsFeatured article={featuredArticle} />}
-      <Suspense>
-        <NewsArchiveClient articles={articles} categoryCounts={categoryCounts} />
-      </Suspense>
+      <NewsArchiveClient articles={articles} categoryCounts={categoryCounts} />
+      <NewsReader articles={articles} />
       <HomepageCta
         {...defaultFinalCta}
         headline="Hai un progetto in mente?"
