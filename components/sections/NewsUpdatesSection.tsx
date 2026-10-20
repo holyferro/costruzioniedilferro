@@ -58,17 +58,6 @@ export function NewsUpdatesSection({
   const [openArticle, setOpenArticle] = useState<SanityNewsArticle | null>(null);
   const [loadingSlug, setLoadingSlug] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (openArticle !== null) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [openArticle]);
-
   async function openBySlug(slug: string) {
     setLoadingSlug(slug);
     try {
