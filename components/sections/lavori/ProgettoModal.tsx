@@ -136,12 +136,6 @@ export function ProgettoModal({
             <ChevronRight aria-hidden className="size-5" strokeWidth={1.5} />
           </button>
 
-          <style>{`
-              @keyframes dotProgress {
-                from { transform: scaleX(0); }
-                to   { transform: scaleX(1); }
-              }
-            `}</style>
           <div className="absolute bottom-[80px] left-1/2 z-[5] flex -translate-x-1/2 gap-1.5">
             {images.map((_, i) => (
               <button
@@ -164,13 +158,13 @@ export function ProgettoModal({
                 {i === idx && images.length >= 2 && (
                   <span
                     key={idx}
+                    className="animate-dot-progress"
                     style={{
                       position: "absolute",
                       inset: 0,
                       background: "#fff",
                       borderRadius: 9999,
                       transformOrigin: "left center",
-                      animation: "dotProgress 5000ms linear forwards",
                       animationPlayState: paused ? "paused" : "running",
                     }}
                   />
