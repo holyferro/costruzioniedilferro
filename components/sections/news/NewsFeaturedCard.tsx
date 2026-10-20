@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/client";
 import type { SanityNewsArticle } from "@/sanity/lib/types";
-import { openArticle } from "@/components/news/NewsReader";
+import { articleLinkProps } from "@/components/news/NewsReader";
 import { formatNewsDate } from "@/lib/news";
 import { ArrowUpRight } from "lucide-react";
 
@@ -12,8 +12,8 @@ export function NewsFeaturedCard({ article }: { article: SanityNewsArticle }) {
 
   return (
     <>
-      <button
-        onClick={() => openArticle(article.slug)}
+      <a
+        {...articleLinkProps(article.slug)}
         className="group border-border bg-surface grid w-full cursor-pointer overflow-hidden border text-left md:grid-cols-[1.35fr_1fr]"
         style={{
           transition:
@@ -79,7 +79,7 @@ export function NewsFeaturedCard({ article }: { article: SanityNewsArticle }) {
             </span>
           </div>
         </div>
-      </button>
+      </a>
     </>
   );
 }

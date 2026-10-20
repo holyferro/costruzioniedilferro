@@ -81,6 +81,10 @@ export const newsBySlugQuery = /* groq */ `
   }
 ` as unknown as string & { __type: SanityNewsArticle };
 
+export const newsSlugsQuery = /* groq */ `
+  *[_type == "newsArticle" && defined(slug.current)].slug.current
+` as unknown as string & { __type: string[] };
+
 export const homepageNewsQuery = /* groq */ `
   {
     "featured": *[_type == "newsArticle" && featured == true]

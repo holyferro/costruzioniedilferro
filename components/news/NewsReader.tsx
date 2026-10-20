@@ -1,16 +1,24 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useState, type MouseEvent } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { client } from "@/sanity/lib/client";
 import { newsBySlugQuery } from "@/sanity/lib/queries";
 import type { SanityNewsArticle } from "@/sanity/lib/types";
 import { ArticleReader } from "./ArticleReader";
 
-/** Opens an article in the page's NewsReader. Plain history API, which Next keeps in sync with
- * useSearchParams without a server round-trip; Back closes the reader. */
-export function openArticle(slug: string) {
-  window.history.pushState(null, "", `?article=${encodeURIComponent(slug)}`);
+/** Props for an article card's <a>: the href is the article's own page (/news/[slug]), for search
+ * engines and new tabs; a plain click opens the page's NewsReader instead. That is the plain history
+ * API, which Next keeps in sync with useSearchParams without a server round-trip; Back closes it. */
+export function articleLinkProps(slug: string) {
+  return {
+    href: `/news/${slug}`,
+    onClick: (e: MouseEvent) => {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      window.history.pushState(null, "", `?article=${encodeURIComponent(slug)}`);
+    },
+  };
 }
 
 /** The page's one article reader, driven by `?article=<slug>`, so every article has a shareable link.
