@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState, useMemo } from "react";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { photoBadgeClass } from "@/components/ui/badge";
 import { urlFor } from "@/sanity/lib/client";
 import type { SanityNewsArticle } from "@/sanity/lib/types";
-import { ArticleReader } from "@/components/news/ArticleReader";
+import { openArticle } from "@/components/news/NewsReader";
+import { formatNewsDate } from "@/lib/news";
 
 const PAGE_SIZE = 9;
 
@@ -21,29 +21,14 @@ const CATEGORY_ORDER = [
   "Eventi",
 ];
 
-function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString("it-IT", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-}
-
 interface NewsArchiveClientProps {
   articles: SanityNewsArticle[];
   categoryCounts: Record<string, number>;
 }
 
 export function NewsArchiveClient({ articles, categoryCounts }: NewsArchiveClientProps) {
-  const searchParams = useSearchParams();
-  const targetSlug = searchParams.get("article");
-
   const [cat, setCat] = useState("all");
   const [page, setPage] = useState(1);
-  const [openArticle, setOpenArticle] = useState<SanityNewsArticle | null>(null);
-
-  const handleOpen = useCallback((article: SanityNewsArticle) => setOpenArticle(article), []);
-  const handleClose = useCallback(() => setOpenArticle(null), []);
 
   const filtered = useMemo(
     () => articles.filter((a) => cat === "all" || a.category === cat),
@@ -53,19 +38,6 @@ export function NewsArchiveClient({ articles, categoryCounts }: NewsArchiveClien
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
   const pageItems = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
-
-  // Open article from URL param on mount
-  useEffect(() => {
-    if (!targetSlug) return;
-    const article = articles.find((a) => a.slug === targetSlug);
-    if (!article) return;
-    const idx = articles.findIndex((a) => a.slug === targetSlug);
-    const t = setTimeout(() => {
-      if (idx >= 0) setPage(Math.ceil((idx + 1) / PAGE_SIZE));
-      setOpenArticle(article);
-    }, 150);
-    return () => clearTimeout(t);
-  }, [targetSlug, articles]);
 
   if (articles.length === 0) {
     return <NewsPlaceholder />;
@@ -81,7 +53,7 @@ export function NewsArchiveClient({ articles, categoryCounts }: NewsArchiveClien
         }}
         categoryCounts={categoryCounts}
       />
-      <NewsGrid items={pageItems} onOpen={handleOpen} />
+      <NewsGrid items={pageItems} />
       <Pagination
         page={safePage}
         totalPages={totalPages}
@@ -90,7 +62,6 @@ export function NewsArchiveClient({ articles, categoryCounts }: NewsArchiveClien
           window.scrollTo({ top: 500, behavior: "smooth" });
         }}
       />
-      <ArticleReader article={openArticle} onClose={handleClose} />
     </>
   );
 }
@@ -175,13 +146,7 @@ function FilterBar({
 }
 
 /* ---- Grid ---- */
-function NewsGrid({
-  items,
-  onOpen,
-}: {
-  items: SanityNewsArticle[];
-  onOpen: (article: SanityNewsArticle) => void;
-}) {
+function NewsGrid({ items }: { items: SanityNewsArticle[] }) {
   if (items.length === 0) {
     return (
       <div className="bg-surface py-32 text-center">
@@ -196,7 +161,7 @@ function NewsGrid({
       <div className="mx-auto max-w-6xl px-6 md:px-12">
         <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((a, i) => (
-            <ArchiveCard key={a._id} item={a} index={i} onOpen={onOpen} />
+            <ArchiveCard key={a._id} item={a} index={i} />
           ))}
         </div>
       </div>
@@ -204,21 +169,13 @@ function NewsGrid({
   );
 }
 
-function ArchiveCard({
-  item,
-  index,
-  onOpen,
-}: {
-  item: SanityNewsArticle;
-  index: number;
-  onOpen: (article: SanityNewsArticle) => void;
-}) {
+function ArchiveCard({ item, index }: { item: SanityNewsArticle; index: number }) {
   const imgUrl = urlFor(item.coverImage).width(900).url();
 
   return (
     <button
       id={`article-${item.slug}`}
-      onClick={() => onOpen(item)}
+      onClick={() => openArticle(item.slug)}
       className="group border-border bg-surface flex flex-col border text-left"
       style={{ animationDelay: `${(index % 6) * 50}ms` }}
     >
@@ -242,7 +199,7 @@ function ArchiveCard({
 
       <div className="flex flex-1 flex-col gap-3 p-6 pb-[26px]">
         <div className="text-ink/65 tracking-caps-tight flex items-center gap-2.5 font-[family-name:var(--font-neue-montreal)] text-[11px] uppercase">
-          <span>{formatDate(item.publishedAt)}</span>
+          <span>{formatNewsDate(item.publishedAt)}</span>
         </div>
         <h3 className="text-ink line-clamp-2 font-serif text-[21px] leading-[1.25] font-medium tracking-[-0.01em]">
           {item.title}

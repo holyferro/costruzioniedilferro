@@ -9,13 +9,14 @@ import type { SanityNewsArticle } from "@/sanity/lib/types";
 import { PortableTextRenderer } from "./PortableTextRenderer";
 
 interface ArticleReaderProps {
+  open: boolean;
+  /** null while it loads: the panel opens at once with a loading line. */
   article: SanityNewsArticle | null;
   onClose: () => void;
 }
 
-export function ArticleReader({ article, onClose }: ArticleReaderProps) {
-  const open = article !== null;
-
+/** Used through NewsReader, which drives it from the URL. */
+export function ArticleReader({ open, article, onClose }: ArticleReaderProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
   const [pastHero, setPastHero] = useState(false);
@@ -117,6 +118,9 @@ export function ArticleReader({ article, onClose }: ArticleReaderProps) {
         onScroll={handleScroll}
         className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-y-contain"
       >
+        {open && !article && (
+          <p className="text-ink/65 px-8 py-14 text-center font-serif italic">Caricamento…</p>
+        )}
         {article && (
           <article>
             {/* Hero */}
