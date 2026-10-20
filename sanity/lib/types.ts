@@ -1,3 +1,5 @@
+import type { Categoria } from "../../lib/realizzazioni/model";
+
 export type SanityAsset = {
   _ref: string;
   _type: "reference";
@@ -12,13 +14,6 @@ export type SanityImage = {
   crop?: { top: number; bottom: number; left: number; right: number };
 };
 
-export type RealizzazioneCategory =
-  | "residenziale"
-  | "restauro"
-  | "pubblico"
-  | "industriale"
-  | "efficientamento";
-
 export type RealizzazioneRiga = {
   label: string;
   valore: string;
@@ -30,13 +25,13 @@ export type RealizzazioneLink = {
   esterno: boolean;
 };
 
-export type Realizzazione = {
+export type RealizzazioneDoc = {
   _id: string;
   _type: "realizzazione";
   _createdAt: string;
   title: string;
   slug: { current: string };
-  category: RealizzazioneCategory;
+  category: Categoria;
   anno: number;
   luogo: string;
   descrizione?: string;
@@ -47,22 +42,6 @@ export type Realizzazione = {
   featured?: boolean;
   order?: number;
 };
-
-export type FeaturedRealizzazione = Pick<
-  Realizzazione,
-  | "_id"
-  | "title"
-  | "slug"
-  | "category"
-  | "anno"
-  | "luogo"
-  | "descrizione"
-  | "immagini"
-  | "righe"
-  | "link"
-  | "featured"
-  | "order"
->;
 
 export type NewsArticleCategory =
   | "Progetto"

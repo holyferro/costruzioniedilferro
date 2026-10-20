@@ -6,62 +6,38 @@ import { photoBadgeClass } from "@/components/ui/badge";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { CloseButton, iconButtonClass } from "@/components/ui/CloseButton";
 import { buttonClass } from "@/components/ui/button";
-
-/* ---- Types ---- */
-export type ProjectRow = [string, string];
-
-export type ProjectLink = {
-  label: string;
-  href: string;
-  external?: boolean;
-};
-
-export type Project = {
-  imgs: string[];
-  tag: string;
-  year: string;
-  title: string;
-  place: string;
-  desc: string;
-  rows: ProjectRow[];
-  links?: ProjectLink[];
-};
+import type { Realizzazione } from "@/lib/realizzazioni";
 
 /* ---- Carousel hook ---- */
-export function useCarousel(imgs: string[], active: boolean) {
+function useCarousel(count: number, active: boolean) {
   const [idx, setIdx] = useState(0);
   const [paused, setPaused] = useState(false);
 
-  const goTo = useCallback(
-    (i: number) => setIdx(((i % imgs.length) + imgs.length) % imgs.length),
-    [imgs.length],
-  );
+  const goTo = useCallback((i: number) => setIdx(((i % count) + count) % count), [count]);
   const prev = useCallback(() => goTo(idx - 1), [idx, goTo]);
   const next = useCallback(() => goTo(idx + 1), [idx, goTo]);
 
   useEffect(() => {
-    if (!active || imgs.length < 2 || paused) return;
+    if (!active || count < 2 || paused) return;
     const id = setInterval(() => {
-      setIdx((i) => (i + 1) % imgs.length);
+      setIdx((i) => (i + 1) % count);
     }, 5000);
     return () => clearInterval(id);
-  }, [active, imgs.length, paused, idx]);
+  }, [active, count, paused, idx]);
 
   return { idx, goTo, prev, next, setPaused, paused };
 }
 
 /* ---- Modal ---- */
 export function ProgettoModal({
-  projectKey,
+  realizzazione: project,
   onClose,
-  projects,
 }: {
-  projectKey: string | null;
+  realizzazione: Realizzazione | null;
   onClose: () => void;
-  projects: Readonly<Record<string, Project>>;
 }) {
-  const project = projectKey ? (projects[projectKey] ?? null) : null;
-  const { idx, goTo, prev, next, setPaused, paused } = useCarousel(project?.imgs ?? [], !!project);
+  const images = project?.images ?? [];
+  const { idx, goTo, prev, next, setPaused, paused } = useCarousel(images.length, !!project);
 
   useEffect(() => {
     if (!project) return;
@@ -87,7 +63,7 @@ export function ProgettoModal({
     goTo(0);
     setPaused(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [projectKey]);
+  }, [project?.slug]);
 
   const isOpen = !!project;
 
@@ -130,7 +106,7 @@ export function ProgettoModal({
 
           {project && (
             <span className={photoBadgeClass("absolute top-[22px] left-[22px] z-[6]")}>
-              {project.tag}
+              {project.categoryLabel}
             </span>
           )}
 
@@ -147,7 +123,7 @@ export function ProgettoModal({
           />
 
           <div className="relative min-h-0 flex-1 overflow-hidden bg-black">
-            {project?.imgs.map((src, i) => (
+            {images.map(({ src, alt }, i) => (
               <div
                 key={src}
                 className="absolute inset-0"
@@ -161,7 +137,7 @@ export function ProgettoModal({
               >
                 <Image
                   src={src}
-                  alt={`Foto ${i + 1}`}
+                  alt={alt}
                   fill
                   quality={100}
                   loading="eager"
@@ -199,7 +175,7 @@ export function ProgettoModal({
               }
             `}</style>
             <div className="absolute bottom-[80px] left-1/2 z-[5] flex -translate-x-1/2 gap-1.5">
-              {project?.imgs.map((_, i) => (
+              {images.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => goTo(i)}
@@ -217,7 +193,7 @@ export function ProgettoModal({
                     flexShrink: 0,
                   }}
                 >
-                  {i === idx && (project?.imgs.length ?? 0) >= 2 && (
+                  {i === idx && images.length >= 2 && (
                     <span
                       key={idx}
                       style={{
@@ -237,7 +213,7 @@ export function ProgettoModal({
           </div>
 
           <div className="flex h-[72px] w-full flex-shrink-0 gap-[3px] bg-black">
-            {project?.imgs.map((src, i) => (
+            {images.map(({ src }, i) => (
               <button
                 key={src}
                 onClick={() => goTo(i)}
@@ -259,7 +235,7 @@ export function ProgettoModal({
           <div className="bg-panna flex flex-col overflow-y-auto px-5 py-8 pb-10 md:min-h-0 md:px-[52px] md:py-[52px] md:pb-12">
             <p className="text-brand tracking-caps-wide mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase">
               <span aria-hidden="true" className="bg-brand inline-block h-px w-6" />
-              {project.tag}
+              {project.categoryLabel}
             </p>
             <h2
               className="text-ink mb-3 font-serif leading-[1.15] font-medium tracking-[-0.015em]"
@@ -269,11 +245,11 @@ export function ProgettoModal({
             </h2>
             <p className="text-ink/65 tracking-caps mb-8 text-xs uppercase">{project.place}</p>
             <p className="text-ink/70 mb-9 text-[15px] leading-[1.7]" style={{ maxWidth: "46ch" }}>
-              {project.desc}
+              {project.description}
             </p>
 
             <div>
-              {project.rows.map(([label, value], i) => (
+              {project.rows.map(({ label, value }, i) => (
                 <div
                   key={i}
                   className="border-border flex items-baseline justify-between border-t py-3"
@@ -295,7 +271,7 @@ export function ProgettoModal({
               Richiedi un sopralluogo →
             </a>
 
-            {project.links && project.links.length > 0 && (
+            {project.links.length > 0 && (
               <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
                 {project.links.map((link) => (
                   <a

@@ -6,6 +6,8 @@ Sito istituzionale di un'impresa edile locale storica. Strategia, obiettivi e to
 
 - Testi e dati delle pagine: `content/*.ts`.
 - News e realizzazioni: Sanity CMS. Schemi in `sanity/schemas`, query in `sanity/lib/queries.ts`, Studio su `/studio`, revalidate in `app/api/revalidate`.
+- Le pagine leggono le realizzazioni solo da `lib/realizzazioni`: fetch, mapping e l'unica lista delle categorie (`model.ts`, usata anche dallo schema).
+- Termini di dominio: `GLOSSARY.md`.
 - Sezioni di pagina in `components/sections`, UI riusabile in `components/ui`, componenti di dominio in `components/business`.
 - Header e Footer si montano in `app/(site)/layout.tsx`; `app/layout.tsx` resta minimale perché serve anche `/studio`.
 - Palette e token in `app/globals.css` (`@theme`).
@@ -27,7 +29,7 @@ Sito istituzionale di un'impresa edile locale storica. Strategia, obiettivi e to
 ## Comandi
 
 - `pnpm dev`, `pnpm build`.
-- `pnpm check`: lint, typecheck, compliance, contrasto, layout. Gira in CI su ogni PR: lancialo prima di aprirla.
+- `pnpm check`: lint, typecheck, test (`node --test`), compliance, contrasto, layout. Gira in CI su ogni PR: lancialo prima di aprirla.
 - Il pre-commit esegue solo eslint e prettier sui file staged.
 - Preview nel browser integrato: configurazione `next-dev` in `.claude/launch.json`. La porta è automatica perché spesso `pnpm dev` dell'utente occupa già la 3000.
 - Tocchi e bug solo iPhone: il browser integrato usa Chromium e manda i tap come click del mouse. Per tap veri e il motore di Safari usa `scripts/mobile.mjs` (WebKit con emulazione iPhone).

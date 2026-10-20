@@ -14,7 +14,8 @@
     "check:compliance": "node scripts/check-compliance.mjs",
     "check:contrast": "node scripts/check-contrast.mjs",
     "check:layout": "node scripts/check-layout.mjs",
-    "check": "pnpm lint && pnpm typecheck && pnpm check:compliance && pnpm check:contrast && pnpm check:layout",
+    "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test 'lib/**/*.test.ts'",
+    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm check:compliance && pnpm check:contrast && pnpm check:layout",
     "prepare": "husky"
   },
   "dependencies": {

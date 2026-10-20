@@ -19,20 +19,6 @@ export type ServiceItem = {
   readonly tags: readonly string[];
 };
 
-export type ProjectTile = {
-  readonly imageSrc: string;
-  readonly imageAlt: string;
-  readonly tag: string;
-  readonly title: string;
-  readonly place: string;
-  readonly year: string;
-  readonly projectKey?: string;
-};
-
-export type FeaturedProject = ProjectTile & {
-  readonly description: string;
-};
-
 export type Zone = {
   readonly name: string;
   readonly role: string;

@@ -9,9 +9,8 @@ import { ArrowUpRight } from "lucide-react";
 import { photoBadgeClass } from "@/components/ui/badge";
 import Link from "next/link";
 import type { Route } from "next";
-import type { FeaturedProject, ProjectTile } from "@/content/homepage";
 import { ProgettoModal } from "@/components/sections/lavori/ProgettoModal";
-import type { Project } from "@/components/sections/lavori/ProgettoModal";
+import type { Realizzazione } from "@/lib/realizzazioni";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
 type FeaturedProjectsProps = {
@@ -21,9 +20,8 @@ type FeaturedProjectsProps = {
   titleEnd: string;
   archiveLinkLabel: string;
   archiveLinkHref: string;
-  feature: FeaturedProject;
-  tiles: readonly ProjectTile[];
-  projectsData: Readonly<Record<string, Project>>;
+  /** Not empty: the first is the large card, the rest are the small tiles. */
+  realizzazioni: readonly Realizzazione[];
 };
 
 export function FeaturedProjects({
@@ -33,11 +31,11 @@ export function FeaturedProjects({
   titleEnd,
   archiveLinkLabel,
   archiveLinkHref,
-  feature,
-  tiles,
-  projectsData,
+  realizzazioni,
 }: FeaturedProjectsProps) {
-  const [activeKey, setActiveKey] = useState<string | null>(null);
+  const [active, setActive] = useState<Realizzazione | null>(null);
+  const [feature, ...tiles] = realizzazioni;
+  if (!feature) return null;
 
   return (
     <>
@@ -61,15 +59,11 @@ export function FeaturedProjects({
           </div>
 
           <div className={tiles.length > 0 ? "grid gap-6 md:grid-cols-[1.5fr_1fr]" : "grid gap-6"}>
-            <FeatureCard item={feature} onOpen={() => setActiveKey(feature.projectKey ?? null)} />
+            <FeatureCard item={feature} onOpen={() => setActive(feature)} />
             {tiles.length > 0 && (
               <div className="grid gap-6 md:grid-rows-3">
                 {tiles.map((t) => (
-                  <MiniProject
-                    key={t.title}
-                    item={t}
-                    onOpen={() => setActiveKey(t.projectKey ?? null)}
-                  />
+                  <MiniProject key={t.slug} item={t} onOpen={() => setActive(t)} />
                 ))}
               </div>
             )}
@@ -77,16 +71,12 @@ export function FeaturedProjects({
         </div>
       </section>
 
-      <ProgettoModal
-        projectKey={activeKey}
-        onClose={() => setActiveKey(null)}
-        projects={projectsData}
-      />
+      <ProgettoModal realizzazione={active} onClose={() => setActive(null)} />
     </>
   );
 }
 
-function FeatureCard({ item, onOpen }: { item: FeaturedProject; onOpen: () => void }) {
+function FeatureCard({ item, onOpen }: { item: Realizzazione; onOpen: () => void }) {
   return (
     <div
       onClick={onOpen}
@@ -97,8 +87,8 @@ function FeatureCard({ item, onOpen }: { item: FeaturedProject; onOpen: () => vo
       onKeyDown={(e) => e.key === "Enter" && onOpen()}
     >
       <Image
-        src={item.imageSrc}
-        alt={item.imageAlt}
+        src={item.images[0]!.src}
+        alt={item.images[0]!.alt}
         fill
         quality={92}
         sizes="(min-width: 768px) 60vw, 100vw"
@@ -108,7 +98,7 @@ function FeatureCard({ item, onOpen }: { item: FeaturedProject; onOpen: () => vo
         aria-hidden="true"
         className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/75"
       />
-      <span className={photoBadgeClass("absolute top-5 left-5")}>{item.tag}</span>
+      <span className={photoBadgeClass("absolute top-5 left-5")}>{item.categoryLabel}</span>
       <span className="absolute top-5 right-5 font-serif text-base font-medium text-white/95 italic">
         {item.year}
       </span>
@@ -134,7 +124,7 @@ function FeatureCard({ item, onOpen }: { item: FeaturedProject; onOpen: () => vo
   );
 }
 
-function MiniProject({ item, onOpen }: { item: ProjectTile; onOpen: () => void }) {
+function MiniProject({ item, onOpen }: { item: Realizzazione; onOpen: () => void }) {
   return (
     <div
       onClick={onOpen}
@@ -145,8 +135,8 @@ function MiniProject({ item, onOpen }: { item: ProjectTile; onOpen: () => void }
       onKeyDown={(e) => e.key === "Enter" && onOpen()}
     >
       <Image
-        src={item.imageSrc}
-        alt={item.imageAlt}
+        src={item.images[0]!.src}
+        alt={item.images[0]!.alt}
         fill
         quality={90}
         sizes="(min-width: 768px) 33vw, 100vw"
@@ -157,7 +147,7 @@ function MiniProject({ item, onOpen }: { item: ProjectTile; onOpen: () => void }
         className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/70"
       />
       <div className="absolute top-4 right-4 left-4 flex items-start justify-between">
-        <span className={photoBadgeClass()}>{item.tag}</span>
+        <span className={photoBadgeClass()}>{item.categoryLabel}</span>
         <span className="font-serif text-sm text-white/95 italic">{item.year}</span>
       </div>
       <div className="absolute right-5 bottom-4 left-5">

@@ -7,37 +7,18 @@ import { ArrowUpRight } from "lucide-react";
 import { photoBadgeClass } from "@/components/ui/badge";
 import { ProgettoModal } from "./ProgettoModal";
 import { RealizzazioniEmptyState } from "./RealizzazioniEmptyState";
-import type { Project } from "./ProgettoModal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { CATEGORIE } from "@/lib/realizzazioni/model";
+import type { Realizzazione } from "@/lib/realizzazioni";
 
-/* ---- Types ---- */
-export type CardDef = {
-  key: string;
-  cat: string;
-  wide?: boolean;
-  delay?: number;
-};
-
-const FILTER_OPTIONS = [
-  { value: "all", label: "Tutti" },
-  { value: "residenziale", label: "Residenziale" },
-  { value: "restauro", label: "Restauro" },
-  { value: "pubblico", label: "Opere pubbliche" },
-  { value: "industriale", label: "Industriale" },
-  { value: "efficientamento", label: "Efficientamento" },
-] as const;
+const FILTER_OPTIONS = [{ value: "all", label: "Tutti" }, ...CATEGORIE];
+const DELAYS = [0, 80, 160] as const;
 
 /* ---- Main component ---- */
-export function ProgettiGrid({
-  cards,
-  projects,
-}: {
-  cards: ReadonlyArray<CardDef>;
-  projects: Readonly<Record<string, Project>>;
-}) {
+export function ProgettiGrid({ realizzazioni }: { realizzazioni: readonly Realizzazione[] }) {
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [displayFilter, setDisplayFilter] = useState<string>("all");
-  const [activeKey, setActiveKey] = useState<string | null>(null);
+  const [active, setActive] = useState<Realizzazione | null>(null);
   const [transitioning, setTransitioning] = useState(false);
   const outerRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
@@ -86,8 +67,10 @@ export function ProgettiGrid({
     [activeFilter, transitioning],
   );
 
-  const visibleCards = cards.filter((c) => displayFilter === "all" || c.cat === displayFilter);
-  const count = visibleCards.length;
+  const visible = realizzazioni.filter(
+    (r) => displayFilter === "all" || r.category === displayFilter,
+  );
+  const count = visible.length;
 
   return (
     <>
@@ -135,7 +118,7 @@ export function ProgettiGrid({
             ))}
           </div>
 
-          {cards.length === 0 ? (
+          {realizzazioni.length === 0 ? (
             <RealizzazioniEmptyState />
           ) : (
             <div ref={outerRef} className="overflow-hidden">
@@ -143,40 +126,36 @@ export function ProgettiGrid({
                 ref={innerRef}
                 className="grid grid-cols-1 gap-[2px] sm:grid-cols-2 lg:grid-cols-3"
               >
-                {cards.map((card) => {
-                  const hidden = displayFilter !== "all" && card.cat !== displayFilter;
-                  if (hidden) return null;
-                  const p = projects[card.key];
-                  const img = p?.imgs[0];
-                  if (!p || !img) return null;
-                  const imgAlt = `${p.title} — ${p.place}`;
+                {visible.map((p, i) => {
+                  const cover = p.images[0]!;
+                  const delay = DELAYS[i % DELAYS.length];
                   return (
                     <div
-                      key={card.key}
-                      onClick={() => setActiveKey(card.key)}
+                      key={p.slug}
+                      onClick={() => setActive(p)}
                       className="group relative cursor-pointer overflow-hidden bg-black transition-shadow duration-300 hover:shadow-[0_12px_48px_color-mix(in_oklab,var(--color-brand)_10%,transparent)]"
                       style={
-                        card.wide
+                        p.wide
                           ? {
                               gridColumn: "span 2",
                               aspectRatio: "3/2",
                               animation: "cardFadeIn 380ms cubic-bezier(0.16,1,0.3,1) both",
-                              animationDelay: `${card.delay ?? 0}ms`,
+                              animationDelay: `${delay}ms`,
                             }
                           : {
                               aspectRatio: "3/4",
                               animation: "cardFadeIn 380ms cubic-bezier(0.16,1,0.3,1) both",
-                              animationDelay: `${card.delay ?? 0}ms`,
+                              animationDelay: `${delay}ms`,
                             }
                       }
                     >
                       <Image
-                        src={img}
-                        alt={imgAlt}
+                        src={cover.src}
+                        alt={cover.alt}
                         fill
                         className="object-cover transition-transform duration-[900ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
                         sizes={
-                          card.wide
+                          p.wide
                             ? "(max-width: 768px) 100vw, 66vw"
                             : "(max-width: 768px) 100vw, 33vw"
                         }
@@ -190,7 +169,7 @@ export function ProgettiGrid({
                         }}
                       />
                       <span className={photoBadgeClass("absolute top-[18px] left-[18px]")}>
-                        {p.tag}
+                        {p.categoryLabel}
                       </span>
                       <span className="absolute top-[18px] right-[18px] font-serif text-[15px] font-medium text-white/95 italic">
                         {p.year}
@@ -199,7 +178,7 @@ export function ProgettiGrid({
                         <h3
                           className="font-serif leading-[1.2] font-medium tracking-[-0.01em] text-white"
                           style={{
-                            fontSize: card.wide
+                            fontSize: p.wide
                               ? "clamp(1.5rem, 0.6rem + 1.4vw, 2.125rem)"
                               : "1.25rem",
                           }}
@@ -225,11 +204,7 @@ export function ProgettiGrid({
         </div>
       </section>
 
-      <ProgettoModal
-        projectKey={activeKey}
-        onClose={() => setActiveKey(null)}
-        projects={projects}
-      />
+      <ProgettoModal realizzazione={active} onClose={() => setActive(null)} />
     </>
   );
 }
