@@ -10,6 +10,7 @@ import Link from "next/link";
 import { Menu, ArrowUpRight } from "lucide-react";
 import { CloseButton } from "@/components/ui/CloseButton";
 import { primaryNav } from "@/content/navigation";
+import { lockScroll } from "@/lib/scrollLock";
 
 interface MobileMenuProps {
   scrolled: boolean;
@@ -41,24 +42,12 @@ export function MobileMenu({ scrolled }: MobileMenuProps) {
     return () => document.removeEventListener("keydown", onKey);
   }, [isOpen]);
 
-  // iOS-compatible scroll lock: position:fixed avoids the scroll-jump that
-  // overflow:hidden causes on Mobile Safari when the page is scrolled down.
+  // iOS-safe scroll lock; no restore after a navigation, the new page starts at its own position.
   useEffect(() => {
     if (!isOpen) return;
     isNavigatingRef.current = false;
-    const scrollY = window.scrollY;
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.width = "100%";
-    return () => {
-      const savedY = Math.abs(parseInt(document.body.style.top || "0", 10));
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      if (!isNavigatingRef.current) {
-        window.scrollTo({ top: savedY, behavior: "instant" });
-      }
-    };
+    const unlock = lockScroll();
+    return () => unlock(!isNavigatingRef.current);
   }, [isOpen]);
 
   const handleOpen = () => {
