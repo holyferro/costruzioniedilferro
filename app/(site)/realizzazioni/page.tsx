@@ -7,7 +7,7 @@ import { HomepageCta } from "@/components/sections/HomepageCta";
 import { defaultFinalCta } from "@/content/finalCta";
 import { getRealizzazioni } from "@/lib/realizzazioni";
 
-export const revalidate = 3600;
+export const revalidate = 300;
 
 export const metadata = buildMetadata({
   title: "Realizzazioni",

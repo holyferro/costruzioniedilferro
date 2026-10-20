@@ -18,7 +18,7 @@ import { ServiceAreaSection } from "@/components/sections/ServiceAreaSection";
 import { HomepageCta } from "@/components/sections/HomepageCta";
 import { defaultFinalCta } from "@/content/finalCta";
 
-export const revalidate = 3600;
+export const revalidate = 300;
 
 export const metadata = buildMetadata({
   title: { absolute: "Costruzioni Edilferro S.r.l. — Impresa edile a Porto Viro (RO)" },

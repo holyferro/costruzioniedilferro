@@ -13,7 +13,7 @@ import { siteContent } from "@/content/site";
 // The page of one article, for search engines and shared links. On the site, cards open the same
 // content in the reader overlay (NewsReader); their href points here.
 
-export const revalidate = 3600;
+export const revalidate = 300;
 
 type Props = { params: Promise<{ slug: string }> };
 

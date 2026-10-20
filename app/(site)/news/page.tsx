@@ -9,7 +9,7 @@ import { NewsReader } from "@/components/news/NewsReader";
 import { HomepageCta } from "@/components/sections/HomepageCta";
 import { defaultFinalCta } from "@/content/finalCta";
 
-export const revalidate = 3600;
+export const revalidate = 300;
 
 export const metadata = buildMetadata({
   title: "News & Aggiornamenti",
